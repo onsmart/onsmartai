@@ -1,0 +1,80 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "Home"
+    },
+    {
+      "path": "/quem-somos",
+      "title": "Quem Somos"
+    },
+    {
+      "path": "/servicos",
+      "title": "Serviços"
+    },
+    {
+      "path": "/ecossistema",
+      "title": "Ecossistema"
+    },
+    {
+      "path": "/conteudo",
+      "title": "Conteúdo — Blog Onsmart.AI"
+    },
+    {
+      "path": "/contato",
+      "title": "Contato"
+    },
+    {
+      "path": "/servicos/palestras-em-ia",
+      "title": "Palestras em IA"
+    },
+    {
+      "path": "/servicos/imersao-em-ia",
+      "title": "Imersão em IA"
+    },
+    {
+      "path": "/servicos/capacitacao-de-lideres",
+      "title": "Capacitação de Líderes em IA"
+    },
+    {
+      "path": "/servicos/academia",
+      "title": "Academia Onsmart.AI"
+    },
+    {
+      "path": "/servicos/educacao-corporativa",
+      "title": "Educação Corporativa em IA"
+    },
+    {
+      "path": "/servicos/consultoria-em-ia",
+      "title": "Consultoria em IA"
+    },
+    {
+      "path": "/servicos/apps-e-agentes",
+      "title": "Apps e Agentes de IA"
+    },
+    {
+      "path": "/servicos/sonia",
+      "title": "SON.IA"
+    },
+    {
+      "path": "/parcerias",
+      "title": "Parcerias"
+    },
+    {
+      "path": "/previa/:type/:slug",
+      "title": "Prévias e acessos anteriores"
+    },
+    {
+      "path": "/conteudo/:slug",
+      "title": "Detalhe editorial"
+    },
+    {
+      "path": "/admin",
+      "title": "CMS — Administração"
+    },
+    {
+      "path": "/admin/*",
+      "title": "CMS — Gestão editorial"
+    }
+  ]
+}

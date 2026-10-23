@@ -1,0 +1,16 @@
+.site-photography.academy-home-study-photo > img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 24px;
+  display: block;
+  background: #242729;
+}
+.academy-home-study-photo {
+  overflow: visible;
+}
+.academy-home-study-photo > figcaption {
+  margin-top: 12px;
+}

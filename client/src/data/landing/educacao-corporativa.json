@@ -1,0 +1,96 @@
+{
+  "slug": "educacao-corporativa",
+  "eyebrow": "Educação corporativa",
+  "heroTitle": "Formação em IA conectada à jornada da sua empresa",
+  "lead": "Um programa anual de formação em inteligência artificial para empresas, com trilhas por nível de maturidade e acompanhamento contínuo da adoção. O desenho, o formato e as condições são definidos após entendimento das necessidades da organização.",
+  "contextTitle": "Como desenvolver competências em IA de forma contínua?",
+  "context": "A adoção de IA envolve públicos com diferentes níveis de familiaridade. Uma iniciativa corporativa pode aproximar a aprendizagem do estágio da empresa e apoiar a continuidade da adoção. O briefing define um programa anual com trilhas por maturidade e acompanhamento, sem informar formato, calendário ou escopo detalhado.",
+  "solutionTitle": "Uma jornada de formação para a realidade da empresa",
+  "solutionText": "A Educação Corporativa em IA é um programa anual para empresas, organizado em trilhas por nível de maturidade e com acompanhamento contínuo da adoção. A jornada pode considerar públicos, prioridades e contexto da organização; atividades, conteúdos, responsáveis e critérios devem ser confirmados em proposta. Não há metodologia oficial, carga horária ou entregáveis padronizados informados.",
+  "audiences": [
+    "Empresas que buscam desenvolver competências em inteligência artificial de forma contínua.",
+    "Organizações com equipes em diferentes níveis de maturidade em IA.",
+    "Empresas que desejam relacionar formação e adoção de IA no trabalho."
+  ],
+  "goals": [
+    {
+      "title": "Desenvolver competências",
+      "text": "A formação pode apoiar o desenvolvimento de conhecimentos em IA conforme os níveis de maturidade considerados para a empresa."
+    },
+    {
+      "title": "Aproximar aprendizagem e adoção",
+      "text": "O acompanhamento contínuo está previsto na proposta e pode manter a atenção na adoção ao longo do programa; seu formato deve ser acordado."
+    },
+    {
+      "title": "Organizar uma jornada corporativa",
+      "text": "As trilhas por nível de maturidade oferecem uma base para estruturar a formação, com composição a definir conforme o contexto da organização."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Entender o contexto",
+      "text": "Em conversa comercial, identificar necessidades, públicos e informações para avaliar a proposta. O processo de diagnóstico precisa ser confirmado."
+    },
+    {
+      "title": "Alinhar níveis e trilhas",
+      "text": "Discutir como as trilhas por nível de maturidade se relacionariam aos públicos. Critérios e conteúdos não informados; definir em proposta."
+    },
+    {
+      "title": "Definir a formação",
+      "text": "Acordar atividades, formato, calendário e responsabilidades, não detalhados no briefing."
+    },
+    {
+      "title": "Combinar acompanhamento",
+      "text": "Especificar o escopo do acompanhamento contínuo da adoção, frequência e meios antes de contratar."
+    }
+  ],
+  "methodology": "O briefing informa programa anual, trilhas por nível de maturidade e acompanhamento contínuo da adoção, sem descrever metodologia contratada. Etapas, conteúdos, formato, calendário, carga horária, critérios e responsabilidades devem ser validados e registrados em proposta.",
+  "deliverables": [
+    "Composição das trilhas por nível de maturidade — escopo a confirmar em proposta.",
+    "Atividades e materiais de formação — itens e formatos a confirmar em proposta.",
+    "Plano de acompanhamento contínuo da adoção — escopo, frequência e indicadores a confirmar; não informados como entregáveis oficiais."
+  ],
+  "differentiators": [
+    {
+      "title": "Proposta corporativa anual",
+      "text": "O briefing caracteriza a oferta como programa anual de formação para empresas."
+    },
+    {
+      "title": "Trilhas por maturidade",
+      "text": "A proposta prevê trilhas organizadas por nível de maturidade, sem detalhar níveis ou ementas."
+    },
+    {
+      "title": "Acompanhamento da adoção",
+      "text": "O acompanhamento contínuo da adoção integra a descrição do programa; formato e escopo permanecem a confirmar."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "O programa é presencial, remoto ou híbrido?",
+      "a": "O formato não está informado. Disponibilidade e condições devem ser confirmadas em conversa comercial."
+    },
+    {
+      "q": "Qual é a duração e a carga horária?",
+      "a": "A proposta é anual, mas carga horária, calendário e datas não foram informados. Definir em proposta."
+    },
+    {
+      "q": "Quais conteúdos e níveis compõem as trilhas?",
+      "a": "Há previsão de trilhas por maturidade, sem níveis, módulos ou ementas especificados. A composição deve ser validada para cada proposta."
+    },
+    {
+      "q": "O que inclui o acompanhamento contínuo?",
+      "a": "O acompanhamento é mencionado, sem atividades, frequência ou indicadores detalhados. Seu escopo deve ser acordado antes da contratação."
+    },
+    {
+      "q": "Como funciona a contratação e qual é o investimento?",
+      "a": "Preço, condições comerciais e processo de contratação não foram informados. Consulte a equipe para validar disponibilidade e receber proposta."
+    }
+  ],
+  "cta": "Conversar sobre formação corporativa",
+  "interest": "Treinamentos",
+  "metaTitle": "Educação Corporativa em IA | Onsmart.AI",
+  "metaDescription": "Programa anual de formação em IA para empresas, com trilhas por nível de maturidade e acompanhamento contínuo da adoção. Consulte condições.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

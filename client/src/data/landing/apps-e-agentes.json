@@ -1,0 +1,96 @@
+{
+  "slug": "apps-e-agentes",
+  "eyebrow": "Desenvolvimento de IA",
+  "heroTitle": "Aplicativos e agentes de IA sob medida para sua empresa",
+  "lead": "Desenvolvemos aplicativos, agentes e plataformas de inteligência artificial customizados para demandas específicas de empresas, em projetos independentes da plataforma SON.IA.",
+  "contextTitle": "Quando a demanda pede uma solução própria",
+  "context": "Processos, requisitos e sistemas variam de uma empresa para outra. Uma solução personalizada pode ser considerada quando as alternativas disponíveis não correspondem à necessidade identificada. O escopo, a viabilidade e os critérios de aceite dependem de levantamento e validação com a empresa.",
+  "solutionTitle": "Desenvolvimento alinhado à demanda empresarial",
+  "solutionText": "A Onsmart.AI desenvolve sob medida aplicativos, agentes e plataformas de IA para necessidades específicas. O briefing posiciona os projetos como independentes da SON.IA e indica o percurso geral do levantamento de requisitos à entrega; tecnologia, integrações, etapas, prazos e critérios são definidos e confirmados em proposta.",
+  "audiences": [
+    "Empresas com uma demanda específica que possa ser atendida por aplicativo com IA.",
+    "Equipes que avaliam agentes de IA para apoiar atividades ou processos próprios.",
+    "Organizações que consideram uma plataforma de IA customizada e precisam validar requisitos e escopo."
+  ],
+  "goals": [
+    {
+      "title": "Atender requisitos próprios",
+      "text": "Avaliar o desenvolvimento de uma solução customizada em relação à demanda e aos requisitos levantados; adequação é objeto de validação."
+    },
+    {
+      "title": "Explorar aplicações de IA",
+      "text": "Identificar oportunidades para aplicativos, agentes ou plataformas de IA relacionadas às necessidades da empresa."
+    },
+    {
+      "title": "Orientar uma decisão de projeto",
+      "text": "Organizar requisitos e escopo como base para avaliar uma proposta, sem antecipar viabilidade ou resultado."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Levantamento de requisitos",
+      "text": "Compreender a demanda e os requisitos da empresa; formato e profundidade do levantamento serão confirmados."
+    },
+    {
+      "title": "Definição da solução",
+      "text": "Avaliar se a demanda envolve aplicativo, agente ou plataforma de IA e registrar o escopo a propor."
+    },
+    {
+      "title": "Validação da proposta",
+      "text": "Confirmar abordagem, limites, responsabilidades, tecnologia, etapas, prazos e critérios antes de contratar."
+    },
+    {
+      "title": "Desenvolvimento e entrega",
+      "text": "Etapas de execução e conteúdo da entrega serão descritos e acordados na proposta; não há padrão público confirmado."
+    }
+  ],
+  "methodology": "O briefing informa desenvolvimento customizado do levantamento de requisitos à entrega, mas não define metodologia oficial. Processo detalhado, tecnologia, integrações, governança, responsabilidades, cronograma e critérios de aceite devem ser avaliados e confirmados na proposta antes da contratação.",
+  "deliverables": [
+    "Aplicativo de IA sob medida — escopo, funcionalidades e critérios de aceite a confirmar em proposta.",
+    "Agente de IA sob medida — finalidade, limites, supervisão e requisitos a confirmar em proposta.",
+    "Plataforma de IA customizada — abrangência, arquitetura e integrações a confirmar em proposta."
+  ],
+  "differentiators": [
+    {
+      "title": "Desenvolvimento customizado",
+      "text": "Projetos são descritos como sob medida para demandas específicas das empresas."
+    },
+    {
+      "title": "Três tipos de solução",
+      "text": "O briefing cita aplicativos, agentes e plataformas de IA como possibilidades de desenvolvimento."
+    },
+    {
+      "title": "Independente da SON.IA",
+      "text": "O serviço é apresentado como projeto customizado independente da plataforma SON.IA."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Como funciona o desenvolvimento?",
+      "a": "O briefing aponta do levantamento de requisitos à entrega. Etapas, método e participação de cada equipe precisam ser confirmados para o projeto."
+    },
+    {
+      "q": "Quais tecnologias ou integrações são utilizadas?",
+      "a": "O briefing não informa stack nem integrações padrão. A compatibilidade e as escolhas técnicas precisam ser avaliadas conforme os requisitos e registradas em proposta."
+    },
+    {
+      "q": "Qual é o prazo e o que será entregue?",
+      "a": "Prazos, critérios de aceite e entregas específicas não estão informados; serão definidos após entender a demanda e validados na proposta."
+    },
+    {
+      "q": "É necessário usar a plataforma SON.IA?",
+      "a": "Não. O briefing descreve os projetos personalizados como independentes da SON.IA."
+    },
+    {
+      "q": "Como contratar e qual é o investimento?",
+      "a": "A forma de contratação e os preços não estão informados. Consulte a equipe para apresentar sua necessidade e confirmar escopo e condições comerciais."
+    }
+  ],
+  "cta": "Conversar sobre meu projeto",
+  "interest": "Desenvolvimento de IA",
+  "metaTitle": "Desenvolvimento de Apps e Agentes de IA | Onsmart.AI",
+  "metaDescription": "Aplicativos, agentes e plataformas de IA sob medida para demandas empresariais. Escopo, tecnologia, prazos e entregas são confirmados em proposta.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

@@ -1,0 +1,168 @@
+.sonia-character {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+}
+.sonia-presentation {
+  margin: 0;
+  min-width: 0;
+  background: transparent;
+  border: 1px solid #d6e2eb;
+}
+.sonia-presentation video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+  object-fit: contain;
+  background: #fafafa;
+}
+.sonia-presentation figcaption {
+  display: grid;
+  gap: 6px;
+  padding: 14px 18px;
+  border-top: 1px solid #d6e2eb;
+  font-size: 9px;
+  line-height: 1.7;
+  color: #526979;
+}
+.sonia-video-fallback {
+  padding: 12px;
+}
+.sonia-video-fallback > .sonia-character {
+  max-height: 340px;
+  object-fit: contain;
+}
+.sonia-video-fallback p {
+  font-size: 11px;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+.about-page .about-portrait.has-photo {
+  aspect-ratio: auto;
+  min-height: 0;
+  padding: 0;
+  display: block;
+  background: transparent;
+  overflow: visible;
+}
+.about-portrait.has-photo > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.about-portrait.has-photo > figcaption {
+  padding: 13px 16px;
+  font-size: 9px;
+  color: #617483;
+  line-height: 1.7;
+  background: #f4f8fb;
+}
+.platform-visual .sonia-presentation {
+  margin-bottom: 24px;
+}
+.commercial-hero-visual.commercial-visual-platform.has-sonia-media {
+  display: block;
+  min-height: 0;
+  background: transparent;
+  padding: 23px;
+  overflow: visible;
+}
+.commercial-visual-platform.has-sonia-media > img {
+  width: 160px;
+  height: auto;
+  margin-bottom: 15px;
+}
+.commercial-visual-platform.has-sonia-media > p {
+  font-size: 11px;
+  line-height: 1.8;
+  margin: 0 0 19px;
+  color: #526979;
+}
+.commercial-visual-platform.has-sonia-media .sonia-presentation {
+  width: 100%;
+}
+.product-card-sonia .product-card-top > .sonia-character {
+  width: 82px;
+  height: 82px;
+  border-radius: 4px;
+}
+.product-card-sonia .product-card-top {
+  align-items: flex-start;
+}
+.services-solution .service-sonia-character {
+  width: 110px;
+  height: auto;
+  margin: 0 0 18px;
+  border: 1px solid #d6e2eb;
+}
+.commercial-related-card .related-sonia-character {
+  width: 76px;
+  height: auto;
+  margin-bottom: 18px;
+  border: 1px solid #d6e2eb;
+}
+.about-achievement .achievement-sonia-character {
+  width: 94px;
+  height: auto;
+  margin: 0 0 18px;
+  border: 1px solid #d6e2eb;
+}
+.sonia-floating .floating-sonia-character {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sonia-avatar .sonia-character {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+.sonia-dialog .sonia-avatar {
+  width: 46px;
+  height: 46px;
+  background: transparent;
+  overflow: hidden;
+  border: 1px solid #d6e2eb;
+}
+.cms-content-cover > img {
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+}
+.cms-article-image {
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+}
+.admin-media-thumb > img,
+.admin-media-preview img {
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  .commercial-hero-visual.commercial-visual-platform.has-sonia-media {
+    padding: 16px;
+  }
+  .sonia-presentation figcaption {
+    font-size: 9px;
+    padding: 12px 14px;
+  }
+  .about-page .about-portrait.has-photo {
+    width: min(100%, 440px);
+    margin: 0 auto;
+  }
+  .platform-visual .sonia-presentation {
+    margin-bottom: 18px;
+  }
+  .product-card-sonia .product-card-top > .sonia-character {
+    width: 70px;
+    height: 70px;
+  }
+  .services-solution .service-sonia-character {
+    width: 94px;
+  }
+}

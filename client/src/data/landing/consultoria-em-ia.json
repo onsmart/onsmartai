@@ -1,0 +1,101 @@
+{
+  "slug": "consultoria-em-ia",
+  "eyebrow": "Consultoria em IA",
+  "heroTitle": "Estruture a adoção de IA a partir dos processos e objetivos da sua empresa",
+  "lead": "Mapeamento de processos, priorização de casos de uso e desenho da arquitetura de IA da operação. Da estratégia à implementação, considerando governança e objetivos empresariais.",
+  "contextTitle": "Onde a IA pode fazer sentido na sua operação?",
+  "context": "Identificar oportunidades exige compreender os processos e relacioná-los aos objetivos empresariais. Sem essa leitura, fica difícil priorizar casos de uso e pensar a arquitetura de IA considerando governança. A consultoria aborda esse percurso; formato, escopo e condições são definidos a confirmar.",
+  "solutionTitle": "Da análise dos processos ao desenho da arquitetura de IA",
+  "solutionText": "A consultoria contempla mapeamento de processos, priorização de casos de uso e desenho da arquitetura de IA da operação. A abordagem considera governança e objetivos empresariais e pode tratar da estratégia à implementação. O detalhamento do trabalho e o que será contratado precisam ser definidos em proposta; não há método ou pacote oficial especificado no briefing.",
+  "audiences": [
+    "Empresas que querem estruturar a adoção de inteligência artificial.",
+    "Lideranças que precisam relacionar iniciativas de IA a objetivos empresariais.",
+    "Organizações que buscam avaliar processos e priorizar casos de uso considerando governança."
+  ],
+  "goals": [
+    {
+      "title": "Mapear processos",
+      "text": "Compreender processos da operação como ponto de partida para avaliar oportunidades de IA."
+    },
+    {
+      "title": "Priorizar casos de uso",
+      "text": "Organizar oportunidades de acordo com os objetivos empresariais; prioridades e critérios dependem do contexto da empresa."
+    },
+    {
+      "title": "Desenhar a arquitetura",
+      "text": "Considerar uma arquitetura de IA para a operação, levando em conta governança e objetivos, sem pressupor tecnologias específicas."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Entender objetivos",
+      "text": "Relacionar a conversa sobre IA aos objetivos empresariais; formato e informações necessários serão confirmados."
+    },
+    {
+      "title": "Mapear processos",
+      "text": "Examinar processos da operação. Abrangência e método de levantamento são definidos em proposta."
+    },
+    {
+      "title": "Priorizar casos de uso",
+      "text": "Avaliar e priorizar casos de uso. Critérios e nível de detalhamento precisam ser acordados."
+    },
+    {
+      "title": "Desenhar a arquitetura de IA",
+      "text": "Considerar arquitetura, estratégia e governança; decisões de implementação e escopo serão confirmados caso a caso."
+    }
+  ],
+  "methodology": "O briefing cita mapeamento de processos, priorização de casos de uso e desenho da arquitetura, da estratégia à implementação, considerando governança e objetivos empresariais. Não especifica metodologia oficial, etapas contratadas, duração, carga horária ou formato. O fluxo acima organiza atividades citadas para fins de apresentação; não constitui método ou escopo contratado. Confirmar abordagem, participantes, critérios, responsabilidades e limites em proposta.",
+  "deliverables": [
+    "Mapeamento de processos — escopo e forma de registro a confirmar em proposta.",
+    "Priorização de casos de uso — critérios e formato do resultado a confirmar.",
+    "Desenho da arquitetura de IA da operação — nível de detalhamento e limites a confirmar.",
+    "Eventual apoio à implementação — atividades, responsabilidades e entregas a definir em proposta."
+  ],
+  "differentiators": [
+    {
+      "title": "Visão da operação",
+      "text": "O serviço parte do mapeamento de processos e considera a arquitetura de IA da operação."
+    },
+    {
+      "title": "Foco em priorização",
+      "text": "Inclui priorização de casos de uso em relação aos objetivos empresariais."
+    },
+    {
+      "title": "Governança considerada",
+      "text": "O briefing apresenta governança como consideração da consultoria, sem detalhar controles ou frameworks específicos."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Qual é o formato da consultoria?",
+      "a": "O briefing não informa se o atendimento é remoto, presencial ou híbrido, nem a dinâmica de trabalho. Esses pontos precisam ser confirmados na conversa comercial."
+    },
+    {
+      "q": "Quais são os prazos e a duração?",
+      "a": "Não há duração, cronograma ou carga horária informados. O prazo deve ser confirmado conforme o escopo proposto."
+    },
+    {
+      "q": "O que receberei ao final?",
+      "a": "Mapeamento, priorização e desenho da arquitetura são atividades citadas. Os documentos, formatos e demais entregas oficiais precisam ser especificados e acordados em proposta."
+    },
+    {
+      "q": "A consultoria inclui implementação?",
+      "a": "A descrição posiciona o trabalho da estratégia à implementação, mas não define quais atividades de implementação estão incluídas. O escopo e as responsabilidades serão confirmados em proposta."
+    },
+    {
+      "q": "Como contratar e quanto custa?",
+      "a": "Preço, condições comerciais e processo de contratação não foram informados. Solicite uma conversa para validar necessidade e receber uma proposta."
+    },
+    {
+      "q": "Há uma metodologia ou tecnologia definida?",
+      "a": "O briefing não especifica metodologia oficial, stack ou ferramentas. Qualquer escolha e abordagem aplicável deve ser confirmada para o contexto do projeto."
+    }
+  ],
+  "cta": "Solicitar diagnóstico",
+  "interest": "Consultoria",
+  "metaTitle": "Consultoria em IA para Empresas | Onsmart.AI",
+  "metaDescription": "Mapeamento de processos, priorização de casos de uso e arquitetura de IA considerando objetivos empresariais e governança. Escopo a confirmar.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

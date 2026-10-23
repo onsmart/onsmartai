@@ -1,0 +1,101 @@
+{
+  "slug": "academia",
+  "eyebrow": "Treinamentos",
+  "heroTitle": "Aprenda IA aplicada ao trabalho, sem exigir programação",
+  "lead": "Cursos gravados em três níveis, da IA generativa e engenharia de prompt ao desenho e à gestão de agentes de IA. Para profissionais, gestores e empresas. Informações comerciais e disponibilidade precisam ser confirmadas antes da contratação.",
+  "contextTitle": "Como desenvolver competências em IA no ritmo da sua realidade?",
+  "context": "Profissionais, gestores e empresas podem precisar de diferentes pontos de partida para compreender e aplicar inteligência artificial. A Academia organiza a formação em três níveis, mas títulos, conteúdos detalhados e condições atuais de acesso devem ser confirmados antes da escolha.",
+  "solutionTitle": "Uma jornada de aprendizagem em três níveis",
+  "solutionText": "A Academia Onsmart.AI oferece cursos gravados, sem exigir programação, que percorrem temas desde IA generativa e engenharia de prompt até desenho e gestão de agentes de IA. O briefing menciona licença individual ou por colaborador e 12 meses de acesso; valores e oferta gratuita estão sujeitos a confirmação.",
+  "audiences": [
+    "Profissionais que desejam aprender sobre IA generativa e engenharia de prompt.",
+    "Gestores interessados em compreender desenho e gestão de agentes de IA.",
+    "Empresas que avaliam formação para colaboradores, com licença individual ou por colaborador a confirmar."
+  ],
+  "goals": [
+    {
+      "title": "Compreender IA generativa",
+      "text": "Ampliar conhecimentos sobre IA generativa e engenharia de prompt conforme o conteúdo efetivamente oferecido nos cursos."
+    },
+    {
+      "title": "Conhecer agentes de IA",
+      "text": "Explorar temas de desenho e gestão de agentes de IA, sem pressupor módulos ou competências específicas não informados."
+    },
+    {
+      "title": "Apoiar a aprendizagem profissional",
+      "text": "Considerar uma formação sem exigência de programação, adequada a profissionais, gestores e empresas; resultados dependem do percurso e uso de cada participante."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Identificar o ponto de partida",
+      "text": "Considere o nível e os temas de interesse; títulos oficiais e critérios de progressão entre níveis precisam ser confirmados."
+    },
+    {
+      "title": "Conhecer os níveis",
+      "text": "A oferta é descrita em três níveis, cobrindo da IA generativa e engenharia de prompt ao desenho e à gestão de agentes de IA; ementas não foram fornecidas."
+    },
+    {
+      "title": "Validar o acesso",
+      "text": "O briefing menciona cursos gravados, licença individual ou por colaborador e 12 meses de acesso; disponibilidade e condições vigentes devem ser confirmadas."
+    },
+    {
+      "title": "Confirmar contratação",
+      "text": "Consulte a equipe sobre matrícula, compra, valores e acesso. Não há contratação ou compra ativa informada nesta página."
+    }
+  ],
+  "methodology": "A oferta é descrita como cursos gravados em três níveis. Formato detalhado, títulos oficiais, ementas, sequência, avaliação, suporte e demais condições de acesso não foram informados e devem ser confirmados antes da contratação; esta página não define uma metodologia oficial.",
+  "deliverables": [
+    "Cursos gravados em três níveis — conteúdo e títulos específicos a confirmar.",
+    "Licença individual ou por colaborador mencionada no briefing — disponibilidade e condições a confirmar.",
+    "Acesso por 12 meses mencionado no briefing — confirmar vigência e regras aplicáveis.",
+    "Curso introdutório gratuito mencionado no briefing — existência e disponibilidade atuais a confirmar."
+  ],
+  "differentiators": [
+    {
+      "title": "Três níveis",
+      "text": "A estrutura informada percorre temas desde IA generativa e engenharia de prompt até desenho e gestão de agentes de IA."
+    },
+    {
+      "title": "Cursos gravados",
+      "text": "O briefing caracteriza a formação como cursos gravados; plataforma, recursos e formato de acesso detalhado não foram especificados."
+    },
+    {
+      "title": "Sem exigir programação",
+      "text": "A proposta é voltada a profissionais, gestores e empresas sem exigir programação, conforme descrito no briefing."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Quais são os três níveis e o conteúdo de cada curso?",
+      "a": "O briefing informa três níveis, da IA generativa e engenharia de prompt ao desenho e à gestão de agentes de IA, mas não traz nomes oficiais nem ementas. Confirme os detalhes antes de escolher."
+    },
+    {
+      "q": "É necessário saber programar?",
+      "a": "A formação é descrita como não exigindo programação. Outros requisitos de participação não foram informados e devem ser confirmados."
+    },
+    {
+      "q": "Como funcionam o formato e o acesso?",
+      "a": "Os cursos são descritos como gravados e o briefing menciona 12 meses de acesso. Plataforma, início do prazo e regras de acesso precisam ser validados."
+    },
+    {
+      "q": "Qual é o preço?",
+      "a": "O briefing cita a partir de R$ 349 ou 12x de R$ 29,08, além de curso introdutório gratuito, e determina que essas condições sejam confirmadas antes da publicação. Valores, parcelamento e oferta gratuita atuais não estão confirmados."
+    },
+    {
+      "q": "Como faço matrícula ou compro um curso?",
+      "a": "Não há matrícula ou compra ativa informada. Consulte a equipe para confirmar disponibilidade, contratação e próximos passos."
+    },
+    {
+      "q": "Há prazo de conclusão ou carga horária definida?",
+      "a": "Essas informações não foram fornecidas. Consulte a equipe para confirmar duração, carga horária e eventuais prazos aplicáveis."
+    }
+  ],
+  "cta": "Consultar cursos e condições",
+  "interest": "Treinamentos",
+  "metaTitle": "Academia Onsmart.AI | Cursos de IA em três níveis",
+  "metaDescription": "Conheça os cursos gravados da Academia Onsmart.AI: três níveis em IA generativa, engenharia de prompt e agentes, sem exigir programação.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

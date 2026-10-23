@@ -1,0 +1,197 @@
+.ecosystem-chart {
+  padding: 44px 0 8px;
+  position: relative;
+  --chart-gap: 24px;
+  --chart-line: #b6cbdc;
+}
+.ecosystem-chart-root {
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #f9fafd;
+  padding: 14px 28px;
+  border: 1px solid #d5e1e9;
+  border-radius: 4px;
+  font-size: 21px;
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+  font-weight: 500;
+  position: relative;
+  color: #242729;
+}
+.ecosystem-chart-root::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  height: 32px;
+  border-left: 1px solid var(--chart-line);
+}
+.ecosystem-chart-branches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--chart-gap);
+  position: relative;
+  margin-top: 64px;
+}
+.ecosystem-chart-branches::before {
+  content: "";
+  position: absolute;
+  top: -32px;
+  left: calc(12.5% - 9px);
+  right: calc(12.5% - 9px);
+  border-top: 1px solid var(--chart-line);
+}
+.ecosystem-chart-card {
+  position: relative;
+  aspect-ratio: 1/1;
+  background: #fff;
+  border: 1px solid #d7e3eb;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 27px;
+  text-decoration: none;
+  box-shadow: 0 5px 22px rgba(36, 39, 41, 0.025);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+.ecosystem-chart-card::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -33px;
+  height: 32px;
+  border-left: 1px solid var(--chart-line);
+}
+.ecosystem-chart-card > .company-logo {
+  width: 100%;
+  height: 84px;
+  max-width: 210px;
+  object-fit: contain;
+  object-position: center;
+}
+.ecosystem-chart-card:hover {
+  border-color: #79b9ea;
+  background: #f9fcff;
+  box-shadow: 0 8px 25px rgba(72, 112, 140, 0.07);
+}
+.ecosystem-chart-card:focus-visible {
+  outline: 3px solid #3979a5;
+  outline-offset: 5px;
+}
+.about-company-name .company-logo {
+  object-position: center;
+  margin: 0 auto;
+}
+.company-menu-brand .company-logo {
+  width: 160px;
+  height: 45px;
+  object-position: center;
+}
+.company-menu-brand {
+  width: 100%;
+  justify-content: center;
+}
+.nav-dropdown a:has(.company-menu-brand) {
+  min-height: 67px;
+}
+.inner-page.about-page .page-hero.has-visual > .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr);
+  gap: 30px 76px;
+  align-items: center;
+}
+.inner-page.about-page .page-hero.has-visual h1 {
+  font-size: clamp(42px, 4.8vw, 70px);
+  max-width: 750px;
+}
+.page-hero.has-visual .page-hero-copy {
+  min-width: 0;
+}
+.page-hero-visual {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 470px;
+  justify-self: end;
+}
+.page-hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+  box-shadow: 0 6px 30px rgba(36, 39, 41, 0.04);
+}
+.page-hero.has-visual .hero-rule {
+  grid-column: 1/-1;
+}
+.page-hero-visual .cms-page-image {
+  margin: 0;
+  max-height: none;
+  width: 100%;
+}
+@media (max-width: 1020px) {
+  .ecosystem-chart-card {
+    padding: 20px;
+  }
+  .ecosystem-chart-card > .company-logo {
+    height: 70px;
+  }
+  .inner-page.about-page .page-hero.has-visual > .container {
+    gap: 30px 40px;
+  }
+  .inner-page.about-page .page-hero.has-visual h1 {
+    font-size: clamp(38px, 5.3vw, 60px);
+  }
+}
+@media (max-width: 760px) {
+  .ecosystem-chart {
+    padding-top: 26px;
+  }
+  .ecosystem-chart-root {
+    font-size: 20px;
+    padding: 12px 25px;
+  }
+  .ecosystem-chart-branches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 26px;
+    gap: 16px;
+  }
+  .ecosystem-chart-root::after,
+  .ecosystem-chart-branches::before,
+  .ecosystem-chart-card::before {
+    display: none;
+  }
+  .ecosystem-chart-card {
+    padding: 22px;
+    box-shadow: none;
+  }
+  .ecosystem-chart-card > .company-logo {
+    height: 65px;
+  }
+  .inner-page.about-page .page-hero.has-visual > .container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+  .inner-page.about-page .page-hero.has-visual h1 {
+    font-size: clamp(39px, 9vw, 58px);
+  }
+  .page-hero-visual {
+    justify-self: center;
+    max-width: 440px;
+  }
+  .page-hero.has-visual .hero-rule {
+    grid-column: auto;
+    margin-top: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ecosystem-chart-card {
+    transition: none;
+  }
+}

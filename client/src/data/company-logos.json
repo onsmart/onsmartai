@@ -1,0 +1,46 @@
+{
+  "tech": {
+    "url": "/manus-storage/tech_209941c6.png",
+    "name": "Onsmart Tech",
+    "alt": "Logotipo Onsmart Tech fornecido pelo usuário.",
+    "width": 1253,
+    "height": 382,
+    "file": "tech.png",
+    "mime": "image/png",
+    "size": 34781,
+    "source": "OnsmartTECH.png"
+  },
+  "ai": {
+    "url": "/manus-storage/ai_07404c56.png",
+    "name": "Onsmart.AI",
+    "alt": "Logotipo Onsmart.AI fornecido pelo usuário.",
+    "width": 1600,
+    "height": 261,
+    "file": "ai.png",
+    "mime": "image/png",
+    "size": 39943,
+    "source": "Onsmart.AI.png"
+  },
+  "growth": {
+    "url": "/manus-storage/growth_c4ff4ac1.png",
+    "name": "Onsmart.AI Growth Lab",
+    "alt": "Logotipo Onsmart.AI Growth Lab fornecido pelo usuário.",
+    "width": 1600,
+    "height": 434,
+    "file": "growth.png",
+    "mime": "image/png",
+    "size": 90491,
+    "source": "Onsmart.AIGrowthLab.png"
+  },
+  "robotics": {
+    "url": "/manus-storage/robotics_3cdeab9e.png",
+    "name": "Onsmart.AI Robotics",
+    "alt": "Logotipo Onsmart.AI Robotics fornecido pelo usuário.",
+    "width": 1600,
+    "height": 434,
+    "file": "robotics.png",
+    "mime": "image/png",
+    "size": 77031,
+    "source": "Onsmart.AIRobotics.png"
+  }
+}

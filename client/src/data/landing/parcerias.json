@@ -1,0 +1,92 @@
+{
+  "slug": "parcerias",
+  "eyebrow": "Programa de Parcerias",
+  "heroTitle": "Explore uma parceria em soluções de IA com a Onsmart.AI",
+  "lead": "Conheça as modalidades previstas para empreendedores, agências, prestadores de serviços, gestores e empresas interessadas em comercializar soluções de IA. Formato, condições e operação de cada modalidade precisam ser confirmados com a equipe.",
+  "contextTitle": "Sua atuação pode abrir conversas sobre IA nas empresas",
+  "context": "Empreendedores, agências, prestadores de serviços e empresas podem ter interesse em atuar com soluções de inteligência artificial. A Onsmart.AI prevê um programa com três modalidades; os detalhes comerciais e operacionais ainda precisam ser validados antes de qualquer adesão.",
+  "solutionTitle": "Conheça as modalidades previstas",
+  "solutionText": "O briefing identifica Agente Digital, Revenda e White Label como modalidades do programa. Esta página apresenta essas opções para iniciar uma conversa, não como oferta com condições já definidas. Descrição operacional, público indicado, oportunidade de atuação, benefícios oficialmente confirmados e funcionamento de cada modalidade devem ser esclarecidos pela equipe antes da contratação.",
+  "audiences": [
+    "Empreendedores interessados em comercializar soluções de IA",
+    "Agências de marketing e prestadores de serviços",
+    "Gestores e empresas avaliando uma atuação em parceria"
+  ],
+  "goals": [
+    {
+      "title": "Avaliar uma possibilidade de atuação",
+      "text": "Identificar qual modalidade merece ser discutida considerando o perfil e os objetivos do interessado; a adequação depende de validação comercial."
+    },
+    {
+      "title": "Entender o escopo da parceria",
+      "text": "Esclarecer com a equipe o funcionamento, responsabilidades e condições aplicáveis antes de qualquer decisão."
+    },
+    {
+      "title": "Definir próximos passos",
+      "text": "Iniciar uma conversa de qualificação para verificar se há alinhamento, sem pressupor aprovação ou disponibilidade de uma modalidade."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Escolha um perfil para conversar",
+      "text": "A página pode apresentar Agente Digital, Revenda e White Label como opções de interesse, conforme previsto no briefing; escolha não representa adesão."
+    },
+    {
+      "title": "Compartilhe seu contexto",
+      "text": "O briefing prevê formulário de qualificação específico. Campos, coleta de dados e critérios de qualificação precisam ser confirmados antes da publicação."
+    },
+    {
+      "title": "Converse com a equipe",
+      "text": "Solicite esclarecimentos sobre escopo e condições. O briefing prevê opção de agendamento com o setor responsável, cuja disponibilidade e funcionamento devem ser confirmados."
+    }
+  ],
+  "methodology": "Não há método de parceria, processo de implantação, critérios de aprovação, responsabilidades ou cronograma oficialmente detalhados no briefing. A equipe deve confirmar esses pontos, além da disponibilidade de cada modalidade, em conversa e eventual proposta comercial. A organização acima é apenas uma orientação de navegação e qualificação, não um processo contratado.",
+  "deliverables": [
+    "Descrição e público indicado de cada modalidade — conteúdo oficial a confirmar",
+    "Oportunidade de atuação e benefícios oficialmente confirmados — validar com a equipe",
+    "Funcionamento, responsabilidades e condições comerciais — definir antes de eventual contratação"
+  ],
+  "differentiators": [
+    {
+      "title": "Três modalidades identificadas",
+      "text": "O briefing lista Agente Digital, Revenda e White Label, sem especificar condições ou operação."
+    },
+    {
+      "title": "Públicos diversos",
+      "text": "A proposta de página considera empreendedores, agências de marketing, prestadores de serviços, gestores e empresas interessadas em comercializar soluções de IA."
+    },
+    {
+      "title": "Conversa antes de assumir condições",
+      "text": "A comunicação mantém pendentes os detalhes não fornecidos, como comissões, ganhos, contratos e funcionamento."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Quais modalidades estão previstas?",
+      "a": "O briefing lista Agente Digital, Revenda e White Label. A disponibilidade e as condições de cada uma precisam ser confirmadas com a equipe."
+    },
+    {
+      "q": "Como funciona cada modalidade?",
+      "a": "O funcionamento não está detalhado no material disponível. Peça à equipe a descrição oficial, responsabilidades e escopo antes de avançar."
+    },
+    {
+      "q": "Há comissão, ganhos ou condições contratuais definidos?",
+      "a": "Essas informações não foram fornecidas. Não é possível afirmar percentuais, ganhos, contratos ou outras condições; confirme diretamente com a equipe."
+    },
+    {
+      "q": "White Label inclui personalização ou licenças?",
+      "a": "O briefing apenas cita White Label como modalidade. Personalização, licenças e demais condições não estão confirmadas e devem ser verificadas."
+    },
+    {
+      "q": "Como demonstrar interesse ou agendar uma conversa?",
+      "a": "O briefing prevê formulário de qualificação e opção de agendamento com o setor responsável. A disponibilidade, o processo e os dados solicitados ainda precisam ser confirmados."
+    }
+  ],
+  "cta": "Quero ser parceiro",
+  "interest": "Parcerias",
+  "metaTitle": "Programa de Parcerias em IA | Onsmart.AI",
+  "metaDescription": "Conheça as modalidades de parceria previstas pela Onsmart.AI e converse com a equipe para validar escopo, funcionamento e condições.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

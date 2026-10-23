@@ -1,0 +1,95 @@
+{
+  "slug": "imersao-em-ia",
+  "eyebrow": "Educação corporativa em IA",
+  "heroTitle": "Transforme desafios da equipe em prioridades para adoção de IA",
+  "lead": "Uma jornada intensiva para identificar e priorizar casos de uso e delinear um plano de implantação conectado ao que a plataforma SON.IA já executa. O formato, o escopo e as condições são definidos em conversa comercial.",
+  "contextTitle": "Da curiosidade sobre IA a próximos passos relevantes",
+  "context": "Empresas podem reconhecer oportunidades de inteligência artificial sem saber quais desafios priorizar ou como conectá-los à operação. A imersão propõe trabalhar a partir dos casos de uso da equipe, sem presumir resultados, cronograma ou plano padronizado.",
+  "solutionTitle": "Uma jornada intensiva orientada aos desafios da equipe",
+  "solutionText": "A Imersão em IA busca sair com casos de uso priorizados e um plano de implantação claro, conectado ao que a plataforma SON.IA já executa. A condução, as atividades e o escopo específico precisam ser validados para cada contratação.",
+  "audiences": [
+    "Equipes que precisam identificar oportunidades de IA relacionadas ao próprio trabalho.",
+    "Empresas que buscam priorizar possíveis casos de uso antes de avançar para implantação.",
+    "Organizações interessadas em relacionar iniciativas de IA ao que a SON.IA já executa."
+  ],
+  "goals": [
+    {
+      "title": "Identificar oportunidades",
+      "text": "Explorar casos de uso ligados aos desafios apresentados pela equipe; resultados dependem do contexto e do escopo acordado."
+    },
+    {
+      "title": "Priorizar casos de uso",
+      "text": "Organizar oportunidades como foco de discussão e priorização, sem garantia de viabilidade ou resultado de negócio."
+    },
+    {
+      "title": "Orientar próximos passos",
+      "text": "Delinear um plano de implantação a ser conectado às capacidades da SON.IA e validado conforme a realidade da empresa."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Alinhar o contexto",
+      "text": "Levantar desafios e necessidades da equipe; formato e atividades de levantamento devem ser confirmados na proposta."
+    },
+    {
+      "title": "Explorar casos de uso",
+      "text": "Trabalhar possibilidades de aplicação de IA relacionadas ao contexto informado, sem presumir uma dinâmica oficial específica."
+    },
+    {
+      "title": "Priorizar oportunidades",
+      "text": "Definir casos de uso prioritários no escopo acordado; critérios e método de priorização precisam ser confirmados."
+    },
+    {
+      "title": "Delinear implantação",
+      "text": "Conectar o plano de implantação ao que a SON.IA já executa; conteúdo, nível de detalhe e responsabilidades serão definidos em proposta."
+    }
+  ],
+  "methodology": "O briefing descreve uma jornada intensiva e seus objetivos, mas não informa duração, carga horária, formato, agenda, metodologia oficial ou composição da equipe. Esses elementos, além dos critérios de priorização e do escopo do plano de implantação, devem ser confirmados em proposta comercial antes da contratação.",
+  "deliverables": [
+    "Casos de uso priorizados — escopo, formato de registro e critérios a confirmar em proposta.",
+    "Plano de implantação claro — conteúdo, nível de detalhamento, formato e responsabilidades a confirmar em proposta."
+  ],
+  "differentiators": [
+    {
+      "title": "Foco na realidade da equipe",
+      "text": "A proposta é orientada aos casos de uso e desafios da equipe, conforme briefing."
+    },
+    {
+      "title": "Prioridade antes da implantação",
+      "text": "A jornada busca priorizar casos de uso e delinear próximos passos, sem garantir resultados."
+    },
+    {
+      "title": "Conexão com a SON.IA",
+      "text": "O plano é apresentado como conectado ao que a plataforma já executa; capacidades específicas devem ser verificadas no escopo comercial."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Qual é o formato da imersão?",
+      "a": "O briefing não informa se é presencial, remoto ou híbrido. O formato deve ser confirmado em conversa comercial."
+    },
+    {
+      "q": "Quanto tempo dura e qual é a carga horária?",
+      "a": "Duração e carga horária não foram informadas; serão definidas e confirmadas em proposta."
+    },
+    {
+      "q": "O que a equipe recebe?",
+      "a": "A jornada busca gerar casos de uso priorizados e um plano de implantação claro. Formato, conteúdo e limites dessas entregas devem constar na proposta; não há entregáveis adicionais confirmados."
+    },
+    {
+      "q": "Como funciona a contratação e quais são os prazos?",
+      "a": "Condições comerciais, disponibilidade, prazos e processo de contratação não estão informados. Solicite uma conversa para validação."
+    },
+    {
+      "q": "A imersão garante implantação ou resultados?",
+      "a": "Não há garantia informada. A imersão tem como objetivo priorizar casos de uso e delinear um plano; a eventual implantação e seus resultados dependem de escopo e condições a confirmar."
+    }
+  ],
+  "cta": "Solicitar proposta de imersão",
+  "interest": "Treinamentos",
+  "metaTitle": "Imersão em IA para Empresas | Onsmart.AI",
+  "metaDescription": "Jornada intensiva para priorizar casos de uso de IA e delinear um plano de implantação conectado à SON.IA. Consulte formato e escopo.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

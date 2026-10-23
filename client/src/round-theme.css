@@ -1,0 +1,293 @@
+/*
+ * Rounded visual layer
+ *
+ * Imported after index.css by the application shell.  This file changes only
+ * the shape of named surfaces and controls; typography, color, spacing,
+ * layout, content, focus treatment and scrolling remain owned by the route
+ * stylesheets.
+ */
+:root {
+  --radius-card: 24px;
+  --radius-photo: 24px;
+  --radius-control: 12px;
+  --radius-button: 999px;
+  --radius-menu: 20px;
+  --radius-small: 10px;
+}
+
+/* Shared controls and menus. Text links deliberately stay editorial. */
+:root .button:not(.button-text),
+:root .admin-button,
+:root .cookie-actions button:not(.cookie-personalize) {
+  border-radius: var(--radius-button);
+}
+
+:root .button-text,
+:root .cookie-actions .cookie-personalize,
+:root .content-reset-button,
+:root .commercial-reset,
+:root .admin-link-button,
+:root .admin-back-button,
+:root .admin-back-link-button {
+  border-radius: 0;
+}
+
+:root .skip-link,
+:root .dialog-close,
+:root .admin-icon-button,
+:root .services-filter-button,
+:root .content-filter-button,
+:root .commercial-subnav a,
+:root .tiny-tag,
+:root .concept-tag,
+:root .contact-booking-status,
+:root .partner-profile-labels > span,
+:root .partner-booking .container > span {
+  border-radius: var(--radius-control);
+}
+
+:root .nav-dropdown,
+:root .mega-menu,
+:root .language-dropdown {
+  border-radius: var(--radius-menu);
+}
+
+:root .nav-dropdown > a,
+:root .language-dropdown p,
+:root .admin-nav button {
+  border-radius: var(--radius-small);
+}
+
+/* Named form fields only: checkbox/radio/hidden inputs remain native. */
+:root
+  .newsletter-form
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root
+  .contact-form
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root .contact-form textarea,
+:root .contact-form select,
+:root
+  .commercial-form
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root .commercial-form textarea,
+:root
+  .contact-page
+  .contact-form-panel
+  :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not(
+    [type="hidden"]
+  ),
+:root
+  .admin-filter-bar
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root .admin-filter-bar select,
+:root
+  .admin-field
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root .admin-field textarea,
+:root .admin-field select,
+:root
+  .admin-primitive
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root .admin-primitive textarea,
+:root .admin-primitive select,
+:root
+  .admin-block
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root .admin-block textarea,
+:root .admin-block select,
+:root .admin-file-input input,
+:root .admin-table select {
+  border-radius: var(--radius-control);
+}
+
+/* Home and shared site surfaces. Full-width sections, logos and mascots are
+ * intentionally absent; image containers keep their intrinsic proportions. */
+:root .journey-card,
+:root .product-card,
+:root .platform-visual,
+:root .sonia-process,
+:root .editorial-cover,
+:root .contact-form-panel,
+:root .preview-label,
+:root .home-media-card,
+:root .sonia-presentation,
+:root .about-portrait,
+:root .page-hero-visual,
+:root .ecosystem-chart-root,
+:root .ecosystem-chart-card {
+  border-radius: var(--radius-card);
+}
+
+:root .course-level,
+:root .business-visual > div > span,
+:root .process-icon,
+:root .services-category-icon,
+:root .content-featured-mark,
+:root .content-youtube-mark,
+:root .contact-channel-icon,
+:root .contact-booking-icon {
+  border-radius: var(--radius-control);
+}
+
+:root .about-page .about-portrait.has-photo > img,
+:root .page-hero-visual img,
+:root .site-photography img {
+  border-radius: var(--radius-photo);
+}
+
+:root figure.site-photography {
+  border-radius: var(--radius-photo);
+}
+
+/* Consent and SONIA: preserve fixed positioning, focus outlines and scrollable
+ * max-height/overflow rules from index.css. */
+:root .cookie-banner,
+:root .preferences-dialog,
+:root .storage-notice,
+:root .sonia-dialog {
+  border-radius: var(--radius-card);
+}
+
+:root .sonia-dialog-head {
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+:root .sonia-welcome {
+  border-radius: 16px 16px 16px 4px;
+}
+
+:root .sonia-suggestions button {
+  border-radius: var(--radius-control);
+}
+
+:root .sonia-floating {
+  border-radius: var(--radius-button);
+}
+
+/* Internal pages: only actual panels, cards, image frames and controls. */
+:root .inner-page .about-story-panel,
+:root .inner-page .about-portrait,
+:root .inner-page .about-achievement,
+:root .inner-page .services-solution-soft,
+:root .inner-page .services-academy-note,
+:root .inner-page .services-closing-panel,
+:root .inner-page .ecosystem-diagram,
+:root .inner-page .ecosystem-node,
+:root .inner-page .ecosystem-company-section,
+:root .inner-page .ecosystem-closing-panel,
+:root .inner-page .content-featured,
+:root .inner-page .content-grid .editorial-card,
+:root .inner-page .contact-form-panel,
+:root .inner-page .contact-channel,
+:root .inner-page .contact-booking-panel {
+  border-radius: var(--radius-card);
+}
+
+:root .inner-page .services-category-icon,
+:root .inner-page .content-featured-mark,
+:root .inner-page .content-youtube-mark,
+:root .inner-page .contact-channel-icon,
+:root .inner-page .contact-booking-icon {
+  border-radius: var(--radius-control);
+}
+
+:root .inner-page .content-featured-visual {
+  border-radius: var(--radius-card) 0 0 var(--radius-card);
+}
+
+:root .inner-page .services-filter-button,
+:root .inner-page .content-filter-button,
+:root .inner-page .contact-booking-status {
+  border-radius: var(--radius-button);
+}
+
+/* Commercial pages: diagram frames retain their dimensions/aspect and SVG
+ * lines are not selected. */
+:root .commercial-page .commercial-hero-visual,
+:root .commercial-page .commercial-visual-service,
+:root .commercial-page .commercial-visual-platform,
+:root .commercial-page .partner-hero-visual,
+:root .commercial-page .commercial-academy-conditions,
+:root .commercial-page .commercial-deliverables,
+:root .commercial-page .commercial-form-panel,
+:root .commercial-page .commercial-mode-confirm,
+:root .commercial-page .partner-mode-controls > button,
+:root .commercial-page .partner-mode-panel,
+:root .commercial-page .partner-conditions-note {
+  border-radius: var(--radius-card);
+}
+
+:root .commercial-page .partner-profile-labels > span,
+:root .commercial-page .partner-booking .container > span {
+  border-radius: var(--radius-control);
+}
+
+/* Admin/CMS surfaces. Table geometry and horizontal scrolling stay intact. */
+:root .admin-panel,
+:root .admin-notice,
+:root .admin-inline-error,
+:root .admin-inline-message,
+:root .admin-filter-bar,
+:root .admin-totals > div,
+:root .admin-overview-card,
+:root .admin-quick-create,
+:root .admin-editor-section,
+:root .admin-block,
+:root .admin-tree-node,
+:root .admin-tree-item,
+:root .admin-primitive,
+:root .admin-media-preview,
+:root .admin-auth-card,
+:root .admin-identity-card,
+:root .admin-modal,
+:root .admin-picker-item,
+:root .admin-safety-callout,
+:root .admin-governance-note,
+:root .admin-locked-note {
+  border-radius: var(--radius-card);
+}
+
+:root .admin-tree-item,
+:root .admin-primitive,
+:root .admin-quick-create,
+:root .admin-icon-button {
+  border-radius: var(--radius-control);
+}
+
+:root .cms-content-card,
+:root .cms-article-image,
+:root .cms-page-image,
+:root .cms-prose blockquote,
+:root .cms-data-error {
+  border-radius: var(--radius-card);
+}
+
+:root .cms-content-cover {
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+@media (max-width: 680px) {
+  /* The split featured card becomes a vertical card on small screens. */
+  :root .inner-page .content-featured-visual {
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+}
+
+/* Explicit exclusions: .company-logo, .sonia-character, avatar circles,
+ * existing circular controls, line-only rows, diagram lines and SVGs are not
+ * rounded or resized by this layer. SolutionShowcase owns its own CSS. */
+
+/* A primeira dobra é tratada como um painel, sem arredondar o fundo de toda seção. */
+:root .home-hero {
+  width: calc(100% - 48px);
+  margin: 18px auto 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  :root .home-hero {
+    width: calc(100% - 24px);
+    margin-top: 12px;
+  }
+}

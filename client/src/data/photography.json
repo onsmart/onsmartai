@@ -1,0 +1,54 @@
+{
+  "workshop": {
+    "url": "/manus-storage/workshop-corporate-v2_baee0c54.webp",
+    "name": "Executivos em reunião corporativa moderna",
+    "alt": "Grupo de executivos adultos em trajes sociais e blazers reúne-se em uma sala de reunião moderna; fotografia ilustrativa.",
+    "width": 1400,
+    "height": 933,
+    "size": 78880,
+    "mime": "image/webp",
+    "sourceUrl": "https://www.pexels.com/photo/people-in-business-suit-sitting-at-the-table-8134067/",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "credit": "Alena Darmel / Pexels",
+    "localFile": "brand-assets/corporate-replacements/workshop-corporate-v2.webp"
+  },
+  "strategy": {
+    "url": "/manus-storage/strategy_d2ec798d.webp",
+    "name": "Reunião de estratégia e consultoria",
+    "alt": "Pessoas discutem estratégia em uma reunião de consultoria; foto ilustrativa, sem relação com funcionários, clientes ou eventos da Onsmart.",
+    "width": 1400,
+    "height": 788,
+    "size": 73302,
+    "mime": "image/webp",
+    "sourceUrl": "https://www.pexels.com/photo/three-business-people-sitting-at-a-table-with-a-laptop-23496869/",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "credit": "Vitaly Gariev / Pexels",
+    "localFile": "brand-assets/site-photography/strategy.webp"
+  },
+  "learning": {
+    "url": "/manus-storage/learning-corporate-v2_4b83d6b1.webp",
+    "name": "Profissional em notebook no escritório corporativo",
+    "alt": "Mulher adulta e profissional de blazer branco usa um notebook em um escritório corporativo; fotografia ilustrativa.",
+    "width": 1400,
+    "height": 2100,
+    "size": 95920,
+    "mime": "image/webp",
+    "sourceUrl": "https://www.pexels.com/photo/woman-in-white-blazer-at-the-office-8485714/",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "credit": "Thirdman / Pexels",
+    "localFile": "brand-assets/corporate-replacements/learning-corporate-v2.webp"
+  },
+  "development": {
+    "url": "/manus-storage/development_eb82d86a.webp",
+    "name": "Desenvolvimento de software em equipe",
+    "alt": "Duas pessoas desenvolvedoras colaboram diante de telas com código; foto ilustrativa, sem relação com funcionários, clientes ou eventos da Onsmart.",
+    "width": 1400,
+    "height": 935,
+    "size": 91164,
+    "mime": "image/webp",
+    "sourceUrl": "https://www.pexels.com/photo/men-working-on-a-computer-7988742/",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "credit": "Mikhail Nilov / Pexels",
+    "localFile": "brand-assets/site-photography/development.webp"
+  }
+}

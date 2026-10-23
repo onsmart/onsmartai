@@ -1,0 +1,59 @@
+{
+  "ricardo": {
+    "url": "/manus-storage/ricardo_f4ee75ca.webp",
+    "alt": "Ricardo Palomar — retrato fornecido para a seção de liderança da Onsmart.AI.",
+    "width": 1080,
+    "height": 1620,
+    "name": "ricardo.webp",
+    "mime": "image/webp",
+    "size": 100516
+  },
+  "sonia": {
+    "url": "/manus-storage/sonia-transparent_b0003895.webp",
+    "alt": "Personagem SON.IA com fundo transparente, óculos e headset.",
+    "width": 960,
+    "height": 960,
+    "name": "sonia-transparent.webp",
+    "mime": "image/webp",
+    "size": 98230,
+    "thumbnailUrl": "/manus-storage/sonia-transparent-mini_88a7df10.webp"
+  },
+  "confraria": {
+    "url": "/manus-storage/confraria_2bd365b8.webp",
+    "alt": "Ricardo Palomar na Confraria com Thiago Nigro e Bruno Perini — arte fornecida.",
+    "width": 1600,
+    "height": 900,
+    "name": "confraria.webp",
+    "mime": "image/webp",
+    "size": 129966
+  },
+  "volei": {
+    "url": "/manus-storage/volei_cbc10a93.webp",
+    "alt": "Equipe de vôlei apoiada pela Onsmart.AI — arte fornecida para a pauta.",
+    "width": 1600,
+    "height": 900,
+    "name": "volei.webp",
+    "mime": "image/webp",
+    "size": 244192
+  },
+  "video": {
+    "url": "/manus-storage/sonia-video_7f6c2d9e.mp4",
+    "alt": "Vídeo de apresentação da SONIA com áudio original.",
+    "width": 1280,
+    "height": 720,
+    "name": "sonia-video.mp4",
+    "mime": "video/mp4",
+    "size": 1086978,
+    "duration": 10.005
+  },
+  "ricardoHero": {
+    "url": "/manus-storage/ricardo-cabeca-ate-maos_3eb1279d.webp",
+    "alt": "Ricardo Palomar em retrato da cabeça até as mãos.",
+    "name": "ricardo-cabeca-ate-maos.webp",
+    "mime": "image/webp",
+    "size": 53202,
+    "width": 780,
+    "height": 941,
+    "sourceFilename": "Ricardo-20.webp"
+  }
+}

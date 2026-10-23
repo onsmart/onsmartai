@@ -1,0 +1,118 @@
+.site-photography {
+  margin: 0;
+  min-width: 0;
+}
+.site-photography > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  object-fit: contain;
+  background: #eaf1f6;
+}
+.site-photography > figcaption {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #5d6d79;
+  margin-top: 12px;
+  max-width: 560px;
+}
+.commercial-hero-visual.site-photography {
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  min-height: 0;
+  display: block;
+  overflow: visible;
+}
+.commercial-hero-visual.site-photography > img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+}
+.commercial-hero-visual.site-photography > figcaption {
+  color: #566773;
+  font-size: 11px;
+  margin-top: 13px;
+}
+.inner-page .page-hero.has-visual > .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 30px 68px;
+  align-items: center;
+}
+.inner-page .page-hero.has-visual h1 {
+  font-size: clamp(40px, 4.7vw, 69px);
+}
+.inner-page .page-hero.has-visual::before {
+  display: none;
+}
+.inner-page .page-hero.has-visual .page-hero-visual {
+  max-width: 540px;
+}
+.inner-page .page-hero-visual .site-photography img {
+  box-shadow: none;
+}
+.page-hero.has-visual .hero-rule {
+  grid-column: 1/-1;
+}
+.journey-photo {
+  margin: 24px 0 28px;
+}
+.journey-photo img {
+  border-radius: 18px;
+}
+.journey-card.business .site-photography figcaption {
+  color: #d8e7f0;
+}
+.journey-card.personal .site-photography figcaption {
+  color: #526678;
+}
+.partners-hero-photography {
+  margin-top: 48px;
+}
+.partners-hero-photography img {
+  max-height: none;
+}
+.photographic-services-lead {
+  margin-bottom: 34px;
+}
+.photographic-services-lead .site-photography img {
+  max-width: 100%;
+}
+@media (max-width: 1000px) {
+  .inner-page .page-hero.has-visual > .container {
+    gap: 30px 38px;
+  }
+  .inner-page .page-hero.has-visual h1 {
+    font-size: clamp(36px, 4.7vw, 57px);
+  }
+}
+@media (max-width: 760px) {
+  .inner-page .page-hero.has-visual > .container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .inner-page .page-hero.has-visual h1 {
+    font-size: clamp(39px, 9vw, 58px);
+  }
+  .inner-page .page-hero.has-visual .page-hero-visual {
+    justify-self: center;
+    max-width: 540px;
+  }
+  .site-photography > figcaption {
+    font-size: 10px;
+  }
+  .partners-hero-photography {
+    margin-top: 30px;
+  }
+}
+
+/* Fotografias verticais preservadas inteiras em um quadro amplo, sem crop. */
+.site-photography.photo-portrait > img {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  height: auto;
+  background: #eef3f6;
+}

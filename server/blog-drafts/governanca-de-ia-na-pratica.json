@@ -1,0 +1,248 @@
+{
+  "key": "article:governanca-de-ia-na-pratica",
+  "kind": "article",
+  "locale": "pt-BR",
+  "slug": "governanca-de-ia-na-pratica",
+  "status": "draft",
+  "payload": {
+    "title": "Governança de IA na prática: dados, responsabilidades e supervisão humana",
+    "summary": "Governança de IA é definir quais dados entram, quem autoriza cada uso, como os resultados são monitorados e quando uma pessoa deve intervir. Este guia propõe práticas para gestores e distingue orientação voluntária de obrigações legais aplicáveis.",
+    "author": "Redação Onsmart.AI",
+    "publishedAt": "",
+    "seoTitle": "Governança de IA na prática: dados, responsabilidades e supervisão humana",
+    "seoDescription": "Veja como gestores podem organizar dados, acessos, aprovações, supervisão humana, fornecedores, monitoramento e incidentes em usos de IA.",
+    "imageUrl": "/manus-storage/workshop-corporate-v2_baee0c54.webp",
+    "imageAlt": "Executivos em sala de reuniões formal; fotografia ilustrativa não representa equipe ou evento Onsmart.",
+    "category": "Blog",
+    "relatedSlugs": [
+      "como-comecar-ia-na-empresa",
+      "agentes-de-ia-nas-empresas"
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Governança começa pelo uso, não pela ferramenta",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Governança de IA não é apenas aprovar uma política. É tomar decisões verificáveis sobre finalidade, risco, acesso e resposta a falhas. Antes de escolher um modelo, descreva o processo que será apoiado, quem pode ser afetado, qual resultado será produzido e o que aconteceria se ele estiver errado. Essa descrição ajuda a decidir se a IA deve sugerir, classificar, redigir ou apenas organizar informações.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "O NIST AI Risk Management Framework (AI RMF) oferece uma referência voluntária para incorporar confiabilidade ao desenho, desenvolvimento, uso e avaliação de sistemas de IA. Ele organiza o trabalho em Governar, Mapear, Medir e Gerenciar. O próprio NIST ressalta que o framework não substitui uma avaliação de contexto nem cria, por si só, uma obrigação legal. [1]",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Dados: finalidade, qualidade e acesso",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Comece pelo inventário: quais dados entram, de onde vêm, quem pode consultá-los, por quanto tempo precisam ficar disponíveis e para que finalidade serão usados. Registre também limitações conhecidas, dados ausentes e possíveis distorções. Um conjunto grande não é automaticamente adequado; qualidade depende do uso e do contexto.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Acesso deve seguir a necessidade da tarefa, não a conveniência da ferramenta. Uma prática sugerida é separar leitura de escrita, reduzir campos ao mínimo necessário, controlar exportações e manter registros de consultas e alterações. Para dados sensíveis ao negócio, avalie ainda segregação de ambientes e retenção. Esses controles são decisões de gestão e segurança; não devem ser apresentados como uma fórmula universal de conformidade.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Responsabilidades e aprovações sem criar cargos fictícios",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Uma matriz simples evita que “a IA decidiu” vire a explicação quando algo dá errado. Para cada uso, defina internamente quem responde pela finalidade de negócio, quem mantém dados e configurações, quem avalia riscos técnicos, quem aprova uma ação sensível e quem recebe incidentes. As pessoas podem acumular funções, desde que a acumulação não elimine a revisão necessária.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "A aprovação deve estar ligada a uma ação concreta. Um sistema pode preparar uma resposta, recomendar uma prioridade ou preencher um rascunho sem autorização para enviar, contratar, excluir ou alterar um registro. Em ações financeiras, externas, irreversíveis ou com possível impacto sobre pessoas, a organização pode exigir revisão explícita e registrar quem aprovou, o que foi visto e quais ressalvas existiam.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Supervisão humana que funciona",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Supervisão humana não é carimbo automático. A pessoa precisa ter tempo, informação e autoridade para aceitar, corrigir, devolver ou interromper a saída. Mostre a solicitação recebida, o resultado, as fontes usadas quando disponíveis, as limitações conhecidas e o efeito esperado da ação. Não trate uma pontuação de confiança do modelo como prova suficiente de correção.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Um exemplo hipotético: uma IA pode organizar pedidos de compras e sugerir a rota de aprovação, mas uma pessoa verifica exceções, valores e conflitos antes de qualquer compromisso. Se faltarem dados, se a recomendação fugir do escopo ou se houver impacto maior que o previsto, a saída deve voltar para análise. Defina antes quando a intervenção é obrigatória e como desfazer ou conter uma ação.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Monitoramento, mudanças e incidentes",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "A governança continua depois da entrada em operação. Acompanhe qualidade das respostas, erros, recusas, revisões humanas, tentativas de acesso indevido, mudanças nos dados e sinais de uso fora do propósito. Compare o comportamento com critérios definidos para o caso, sem transformar uma métrica isolada em garantia de segurança ou resultado.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Registros devem permitir reconstruir o que aconteceu, mas não devem coletar dados indiscriminadamente. Ao detectar um incidente, preserve evidências, limite o acesso afetado, interrompa a ação de risco quando necessário e encaminhe o caso para as áreas internas pertinentes. Depois, avalie causa, impacto, comunicação e correção. Obrigações de notificação e outras medidas dependem do contexto, dos contratos e das leis aplicáveis; não devem ser presumidas neste artigo. O NIST e a OCDE tratam monitoramento, rastreabilidade e gestão contínua de riscos como partes do ciclo de vida. [1] [4]",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Fornecedores também fazem parte do controle",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Um fornecedor de modelo, dados, hospedagem ou integração altera o risco do sistema. Antes de contratar ou ampliar o uso, pergunte quais dados serão enviados, se há retenção, quem pode acessá-los, como mudanças são comunicadas e quais recursos existem para auditoria, exclusão, reversão e resposta a incidentes. Documente limites de serviço e dependências relevantes.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Essas verificações são boas práticas sugeridas, não uma lista universal de requisitos contratuais. NIST e OCDE destacam a necessidade de considerar terceiros, cadeia de fornecimento, rastreabilidade e cooperação entre os atores conforme o contexto. [2] [4]",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Um ciclo prático para começar",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Um ciclo enxuto pode seguir cinco movimentos:",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "list",
+        "text": "",
+        "items": [
+          "Registrar finalidade, usuários, dados, ação permitida e tolerância a risco.",
+          "Classificar acessos e testar entradas representativas, ambíguas e fora do escopo.",
+          "Definir aprovação humana, condição de parada, retorno seguro e trilha de evidências.",
+          "Medir qualidade, erros, revisões, incidentes e mudanças relevantes após o uso.",
+          "Reavaliar fornecedor, dados e controles antes de ampliar o escopo."
+        ],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "O resultado esperado é visibilidade para decidir, não um certificado automático. O Playbook do NIST apresenta ações sugeridas para os resultados do AI RMF, mas esclarece que não é checklist nem conjunto obrigatório de etapas. [2]",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "LGPD: contexto, não atalho",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Quando o uso envolve informação relacionada a pessoa natural identificada ou identificável, pode haver tratamento de dados pessoais no contexto da LGPD. A ANPD explica que controlador é quem toma as principais decisões e define finalidade e elementos essenciais; operador atua em nome do controlador e segundo suas instruções. A própria ANPD também descreve o encarregado como canal de comunicação com titulares e com a Autoridade. [3]",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Isso não permite concluir, sem examinar o caso, qual base legal, contrato, retenção, transferência ou medida de segurança deve ser adotada. Também não cabe transformar uma prática interna em “exigência da LGPD” sem fundamento específico. NIST, OCDE e este artigo oferecem orientação de governança; não substituem a análise das normas efetivamente aplicáveis. Este texto é informativo e não constitui aconselhamento jurídico específico.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "A decisão de gestão",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Governança de IA funciona quando conecta dados, permissões, aprovações, monitoramento e resposta a incidentes ao processo real. Comece com escopo controlado, mantenha uma pessoa capaz de intervir e amplie somente quando as evidências do próprio uso justificarem. A responsabilidade não desaparece porque uma ferramenta produziu a primeira sugestão.",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "heading",
+        "text": "Fontes e leituras",
+        "items": [],
+        "href": ""
+      },
+      {
+        "type": "link",
+        "text": "[1] NIST — AI Risk Management Framework",
+        "items": [],
+        "href": "https://www.nist.gov/itl/ai-risk-management-framework"
+      },
+      {
+        "type": "link",
+        "text": "[2] NIST — AI RMF Playbook",
+        "items": [],
+        "href": "https://airc.nist.gov/airmf-resources/playbook/"
+      },
+      {
+        "type": "link",
+        "text": "[3] ANPD — Titular de Dados",
+        "items": [],
+        "href": "https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados"
+      },
+      {
+        "type": "link",
+        "text": "[4] OECD — AI principles",
+        "items": [],
+        "href": "https://www.oecd.org/en/topics/ai-principles.html"
+      }
+    ],
+    "fields": {
+      "topic": "Governança",
+      "references": [
+        {
+          "label": "NIST — AI Risk Management Framework",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+        },
+        {
+          "label": "NIST — AI RMF Playbook",
+          "url": "https://airc.nist.gov/airmf-resources/playbook/"
+        },
+        {
+          "label": "ANPD — Titular de Dados",
+          "url": "https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados"
+        },
+        {
+          "label": "OECD — AI principles",
+          "url": "https://www.oecd.org/en/topics/ai-principles.html"
+        }
+      ],
+      "approvalState": "Em revisão"
+    },
+    "bannerTargets": [],
+    "downloadUrl": "",
+    "sourceUrl": "",
+    "validationNote": "Texto aprovado editorialmente e incluído publicamente neste repositório por autorização. Publicação no blog continua pendente."
+  }
+}

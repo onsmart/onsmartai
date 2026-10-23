@@ -1,0 +1,100 @@
+{
+  "slug": "sonia",
+  "eyebrow": "Plataforma de IA operacional",
+  "heroTitle": "Conecte conversas, agentes e processos à operação da sua empresa",
+  "lead": "A SON.IA conecta conversas, agentes, sistemas e processos para transformar interações contínuas em ações de negócio governadas. Conheça a plataforma da Onsmart.AI e valide com a equipe quais aplicações fazem sentido para sua operação.",
+  "contextTitle": "Como levar a IA da interação à ação de negócio?",
+  "context": "Adotar IA na empresa envolve mais do que responder a uma conversa: é preciso considerar processos, contexto, regras e responsabilidades. A SON.IA é apresentada como uma plataforma que conecta conversas, agentes, sistemas e processos. Os canais, integrações e condições aplicáveis a cada cenário precisam ser confirmados antes de definir escopo.",
+  "solutionTitle": "Uma plataforma para conectar inteligência e operação",
+  "solutionText": "A SON.IA busca transformar interações contínuas em ações de negócio governadas. O fluxo descrito contempla recebimento de conversas e eventos, consulta a conhecimento autorizado, aplicação de regras e permissões, ação e supervisão com rastreabilidade e encaminhamento de exceções. Sistemas e ações disponíveis dependem de validação para cada projeto; não presumimos conectores ou funcionalidades além do briefing.",
+  "audiences": [
+    "Empresas que querem conectar inteligência artificial à operação.",
+    "Equipes que precisam considerar regras, permissões e supervisão ao estruturar processos com IA.",
+    "Organizações que desejam avaliar como conversas e agentes podem se relacionar a processos de negócio."
+  ],
+  "goals": [
+    {
+      "title": "Conectar interações e processos",
+      "text": "Avaliar oportunidades para transformar conversas e eventos em ações de negócio, conforme os requisitos da operação."
+    },
+    {
+      "title": "Estruturar uso governado",
+      "text": "Considerar conhecimento autorizado, regras, permissões e supervisão no desenho do fluxo."
+    },
+    {
+      "title": "Aproximar aprendizado e operação",
+      "text": "A plataforma é apresentada como espaço para colocar em operação o que se aprende nos programas da Onsmart.AI; resultados dependem do contexto e do escopo definido."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Recebe",
+      "text": "Centraliza conversas e eventos vindos dos canais da operação. Canais suportados precisam ser confirmados."
+    },
+    {
+      "title": "Compreende",
+      "text": "Consulta conhecimento autorizado e identifica contexto, intenção e dados necessários."
+    },
+    {
+      "title": "Decide",
+      "text": "Segue regras, permissões e caminhos definidos para cada processo."
+    },
+    {
+      "title": "Age",
+      "text": "Registra, consulta, atualiza ou aciona sistemas conectados, conforme os sistemas e as ações validados para o escopo."
+    },
+    {
+      "title": "Supervisiona",
+      "text": "Mantém rastreabilidade e encaminha exceções para a pessoa responsável."
+    }
+  ],
+  "methodology": "As etapas acima organizam as atividades descritas para a plataforma; não constituem metodologia contratada ou processo oficial de implantação. Escopo, configuração, responsabilidades, sistemas envolvidos, critérios de supervisão, cronograma e condições de contratação devem ser confirmados em proposta comercial.",
+  "deliverables": [
+    "Definição de escopo e aplicações: confirmar em proposta.",
+    "Sistemas, canais e integrações envolvidos: confirmar conforme requisitos.",
+    "Configuração, responsabilidades e critérios de supervisão: confirmar em proposta."
+  ],
+  "differentiators": [
+    {
+      "title": "Foco operacional",
+      "text": "A proposta da plataforma conecta conversas, agentes, sistemas e processos."
+    },
+    {
+      "title": "Regras e conhecimento",
+      "text": "O fluxo descrito considera conhecimento autorizado, regras e permissões definidas."
+    },
+    {
+      "title": "Supervisão e rastreabilidade",
+      "text": "A etapa de supervisão prevê rastreabilidade e encaminhamento de exceções à pessoa responsável."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Quais canais e sistemas a SON.IA conecta?",
+      "a": "O briefing não informa a lista de canais, conectores ou sistemas compatíveis. A disponibilidade deve ser validada para os requisitos da empresa."
+    },
+    {
+      "q": "Como funciona a implantação e quanto tempo leva?",
+      "a": "Formato, etapas de implantação e prazos não estão informados. Esses pontos precisam ser avaliados e confirmados em proposta."
+    },
+    {
+      "q": "A plataforma executa ações sem supervisão humana?",
+      "a": "O fluxo informado inclui regras, permissões, rastreabilidade e encaminhamento de exceções a uma pessoa responsável. O grau de supervisão e as aprovações de cada processo devem ser definidos para o escopo; não presumimos execução irrestrita."
+    },
+    {
+      "q": "Quais são preço e condições de contratação?",
+      "a": "Preço, licenciamento e condições comerciais não foram informados. Consulte a equipe para validação."
+    },
+    {
+      "q": "A SON.IA já está disponível para contratação?",
+      "a": "O material fornecido não esclarece disponibilidade comercial, acesso ou formato de contratação. A equipe deve confirmar essas informações."
+    }
+  ],
+  "cta": "Solicitar demonstração",
+  "interest": "SON.IA",
+  "metaTitle": "SON.IA | Plataforma de IA Operacional",
+  "metaDescription": "Conheça a SON.IA, plataforma da Onsmart.AI que conecta conversas, agentes, sistemas e processos para ações de negócio governadas.",
+  "commercialNotices": [
+    "Valores, disponibilidade, formatos, escopo e condições de contratação estão sujeitos a confirmação com a equipe comercial."
+  ]
+}

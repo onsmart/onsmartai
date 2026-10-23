@@ -1,0 +1,221 @@
+{
+  "items": [
+    {
+      "name": "Nestlé",
+      "url": "/manus-storage/nestle_b51f15a9.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 197,
+      "height": 202,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/nestle.png",
+      "size": 41158,
+      "mime": "image/png"
+    },
+    {
+      "name": "Coca-Cola",
+      "url": "/manus-storage/web-01_8d0dd680.png",
+      "source": "https://www.coca-cola.com/us/en",
+      "width": 249,
+      "height": 40,
+      "variant": "white",
+      "file": "brand-assets/clients/web-01.png",
+      "size": 4863,
+      "mime": "image/png"
+    },
+    {
+      "name": "Colgate-Palmolive",
+      "url": "/manus-storage/web-02_a35cce3b.png",
+      "source": "https://www.colgatepalmolive.com/en-us/news/brand-identity-refresh-2025",
+      "width": 427,
+      "height": 240,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-02.png",
+      "size": 22607,
+      "mime": "image/png"
+    },
+    {
+      "name": "Globo",
+      "url": "/manus-storage/web-03_f758380d.png",
+      "source": "https://grupoglobo.globo.com/",
+      "width": 185,
+      "height": 180,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-03.png",
+      "size": 5891,
+      "mime": "image/png"
+    },
+    {
+      "name": "Fresenius Kabi",
+      "url": "/manus-storage/web-04_cd061a10.png",
+      "source": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/de/images/downloadbereich/logo/Logo_RGB.pdf",
+      "width": 720,
+      "height": 194,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-04.png",
+      "size": 23791,
+      "mime": "image/png"
+    },
+    {
+      "name": "Clarios",
+      "url": "/manus-storage/web-05_baac0a8f.png",
+      "source": "https://www.clarios.com/media-press",
+      "width": 720,
+      "height": 139,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-05.png",
+      "size": 24809,
+      "mime": "image/png"
+    },
+    {
+      "name": "Tronox",
+      "url": "/manus-storage/tronox_ac322a51.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 720,
+      "height": 149,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/tronox.png",
+      "size": 26762,
+      "mime": "image/png"
+    },
+    {
+      "name": "Sotreq CAT",
+      "url": "/manus-storage/sotreq_8ab80aec.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 272,
+      "height": 81,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/sotreq.png",
+      "size": 18256,
+      "mime": "image/png"
+    },
+    {
+      "name": "Nissin",
+      "url": "/manus-storage/web-06_c1ec6c59.png",
+      "source": "https://www.nissin.com.br/",
+      "width": 96,
+      "height": 50,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-06.png",
+      "size": 2926,
+      "mime": "image/png"
+    },
+    {
+      "name": "Softys",
+      "url": "/manus-storage/softys_27224f84.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 357,
+      "height": 198,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/softys.png",
+      "size": 52918,
+      "mime": "image/png"
+    },
+    {
+      "name": "DB Diagnóstico",
+      "url": "/manus-storage/db-diagnosticos_bdce3c59.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 599,
+      "height": 240,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/db-diagnosticos.png",
+      "size": 40252,
+      "mime": "image/png"
+    },
+    {
+      "name": "Radix",
+      "url": "/manus-storage/web-07_c8b186e3.png",
+      "source": "https://www.radixeng.com/aboutradix",
+      "width": 471,
+      "height": 240,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-07.png",
+      "size": 23855,
+      "mime": "image/png"
+    },
+    {
+      "name": "Metagal",
+      "url": "/manus-storage/web-08_719ffe60.png",
+      "source": "https://www.metagal.com.br/",
+      "width": 121,
+      "height": 53,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-08.png",
+      "size": 3218,
+      "mime": "image/png"
+    },
+    {
+      "name": "Radil Alimentos",
+      "url": "/manus-storage/web-09_09d31000.png",
+      "source": "https://radilalimentos.com.br/",
+      "width": 158,
+      "height": 54,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-09.png",
+      "size": 7472,
+      "mime": "image/png"
+    },
+    {
+      "name": "CSI Cargo",
+      "url": "/manus-storage/web-10_83cc7e15.png",
+      "source": "https://www.csicargo.com.br/",
+      "width": 466,
+      "height": 240,
+      "variant": "white",
+      "file": "brand-assets/clients/web-10.png",
+      "size": 9672,
+      "mime": "image/png"
+    },
+    {
+      "name": "Bravo Serviços Logísticos",
+      "url": "/manus-storage/bravo_043f3f8b.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 510,
+      "height": 190,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/bravo.png",
+      "size": 83451,
+      "mime": "image/png"
+    },
+    {
+      "name": "GrupoSC",
+      "url": "/manus-storage/web-11_a8ec8ea9.png",
+      "source": "https://gruposc.gupy.io/",
+      "width": 240,
+      "height": 240,
+      "variant": "normal",
+      "file": "brand-assets/clients/web-11.png",
+      "size": 23422,
+      "mime": "image/png"
+    },
+    {
+      "name": "Avivar",
+      "url": "/manus-storage/avivar_01ae015c.png",
+      "source": "Arquivo fornecido pelo usuário em 22/10/2026",
+      "width": 276,
+      "height": 74,
+      "variant": "normal",
+      "file": "brand-assets/supplied-client-logos/avivar.png",
+      "size": 9892,
+      "mime": "image/png"
+    }
+  ],
+  "pending": [
+    {
+      "name": "Holambra",
+      "reason": "Confirmar cooperativa agroindustrial ou município."
+    },
+    {
+      "name": "Consistec e Celer",
+      "reason": "Confirmar se são duas empresas e identificar Celer."
+    },
+    {
+      "name": "NTK",
+      "reason": "Arquivo da Nautika localizado; confirmar que essa é a marca do briefing antes de usar."
+    },
+    {
+      "name": "P.S.C.A.",
+      "reason": "Informar empresa ou domínio correto; sigla ambígua."
+    }
+  ],
+  "showPendingNotice": false
+}
