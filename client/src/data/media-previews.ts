@@ -19,7 +19,7 @@ export const approvedMediaPreviews: MediaPreview[] = [
     imageUrl: media.confraria.url,
     imageAlt: media.confraria.alt,
     sourceUrl: "",
-    state: "Conteúdo em revisão",
+    state: "Onsmart na mídia",
   },
   {
     id: "lancamento-sonia",
@@ -30,7 +30,7 @@ export const approvedMediaPreviews: MediaPreview[] = [
     imageUrl: media.sonia.url,
     imageAlt: media.sonia.alt,
     sourceUrl: "https://lnkd.in/p/dcygKB2R",
-    state: "Conteúdo em revisão",
+    state: "Plataforma SON.IA",
   },
   {
     id: "esporte-e-inclusao",
@@ -41,6 +41,6 @@ export const approvedMediaPreviews: MediaPreview[] = [
     imageUrl: media.volei.url,
     imageAlt: media.volei.alt,
     sourceUrl: "https://lnkd.in/p/dxKtuzUq",
-    state: "Conteúdo em revisão",
+    state: "Comunidade",
   },
 ];

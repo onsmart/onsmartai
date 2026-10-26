@@ -134,7 +134,7 @@ export default function Ecosystem() {
                 </div>
                 <div className="ecosystem-company-section-content">
                   <CompanyLogo id="tech" className="company-section-logo" />
-                  <h2>{cmsText("Um capítulo institucional em validação.")}</h2>
+                  <h2>{cmsText("Tecnologia desde 2014.")}</h2>
                   <p>
                     {cmsText(
                       "O registro público da Onsmart Tech é a fonte do marco de 2014. A apresentação da atuação, dos produtos e dos diferenciais será incorporada quando os materiais oficiais do grupo forem validados."
@@ -142,12 +142,12 @@ export default function Ecosystem() {
                   </p>
                   <Notice>
                     {cmsText(
-                      "Materiais institucionais da Onsmart Tech pendentes."
+                      "Conteúdo institucional em atualização."
                     )}
                   </Notice>
                 </div>
                 <span className="ecosystem-company-state">
-                  {cmsText("Conteúdo institucional em validação")}
+                  {cmsText("Onsmart Tech")}
                 </span>
               </article>
 
@@ -197,19 +197,16 @@ export default function Ecosystem() {
                 <div className="ecosystem-company-section-content">
                   <CompanyLogo id="growth" className="company-section-logo" />
                   <h2>
-                    {cmsText("Espaço preparado para os materiais oficiais.")}
+                    {cmsText("Crescimento e novos negócios.")}
                   </h2>
                   <p>
                     {cmsText(
-                      "As soluções e os diferenciais desta empresa serão apresentados com base em documentos oficiais. O nome, por si só, não é tratado como evidência de uma oferta."
+                      "Frente do Grupo Onsmart dedicada a acelerar resultados e expandir oportunidades com tecnologia."
                     )}
                   </p>
-                  <Notice>
-                    {cmsText("Conteúdo institucional em validação.")}
-                  </Notice>
                 </div>
                 <span className="ecosystem-company-state">
-                  {cmsText("Conteúdo institucional em validação")}
+                  {cmsText("Onsmart Growth")}
                 </span>
               </article>
 

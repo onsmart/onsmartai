@@ -3,6 +3,7 @@ import { useCmsCopy } from "@/components/cms/CmsProvider";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { solutions, solutionHref, socials, WHATSAPP } from "@/data/site";
+import { MARKETING_EMAIL } from "@shared/contact";
 export default function Footer({
   onPreferences,
 }: {
@@ -93,15 +94,10 @@ export default function Footer({
               {cmsText("+55 (11) 93068-3562")}
               <ArrowUpRight size={15} />
             </a>
-            <a href={cmsHref("mailto:marketing@onsmart.ai")}>
-              {cmsText("marketing@onsmart.ai")}
+            <a href={`mailto:${MARKETING_EMAIL}`}>
+              {MARKETING_EMAIL}
             </a>
             <div className="footer-address">
-              <p className="footer-address-validation">
-                {cmsText(
-                  "Endereços fornecidos no briefing · validação pendente."
-                )}
-              </p>
               <strong>{cmsText("São Paulo · Matriz")}</strong>
               <p>
                 {cmsText("Rua Arizona, 1349, Conj. 1B")}
@@ -124,28 +120,17 @@ export default function Footer({
             {cmsText(" Onsmart.AI. Todos os direitos reservados.")}
           </p>
           <div>
-            <Link href={cmsHref("/previa/legal/privacidade")}>
+            <Link href={cmsHref("/legal/privacidade")}>
               {cmsText("Privacidade")}
-            </Link>
-            <Link href={cmsHref("/previa/legal/cookies")}>
-              {cmsText("Cookies")}
             </Link>
             <button onClick={onPreferences}>
               {cmsText("Preferências de cookies")}
             </button>
-            <Link href={cmsHref("/previa/legal/termos")}>
+            <Link href={cmsHref("/legal/termos")}>
               {cmsText("Termos de uso")}
             </Link>
           </div>
         </div>
-        <p className="footer-prototype">
-          {cmsText(
-            "Ambiente de homologação · Não publicado · Conteúdos e materiais sinalizados aguardam validação antes de publicação. Privacidade:"
-          )}{" "}
-          <a href={cmsHref("mailto:juridico@onsmart.ai")}>
-            {cmsText("juridico@onsmart.ai")}
-          </a>
-        </p>
       </div>
     </footer>
   );

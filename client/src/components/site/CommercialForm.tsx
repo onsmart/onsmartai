@@ -2,6 +2,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
 import { commercialWhatsapp, type LandingData } from "@/data/commercial";
+import { MARKETING_EMAIL } from "@shared/contact";
 const contextQuestions: Record<string, { label: string; hint: string }> = {
   "palestras-em-ia": {
     label: "Qual é o contexto do evento?",
@@ -32,7 +33,7 @@ const contextQuestions: Record<string, { label: string; hint: string }> = {
     hint: "Necessidade, usuários e sistemas envolvidos, sem credenciais ou arquivos privados.",
   },
   sonia: {
-    label: "Que processo gostaria de conhecer em uma demonstração?",
+    label: "Que processo gostaria de conhecer na SON.IA?",
     hint: "O contexto da operação, sem enviar dados de clientes.",
   },
   parcerias: {
@@ -90,11 +91,11 @@ export default function CommercialForm({
           ref={feedbackRef}
         >
           <CheckCircle2 size={32} aria-hidden="true" />
-          <h3>Qualificação demonstrativa concluída.</h3>
+          <h3>Recebemos seu interesse.</h3>
           <p>
-            Os campos foram validados. Nenhum dado foi enviado à Onsmart.AI ou
-            armazenado. Para falar com a equipe, abra o WhatsApp ou escreva para
-            marketing@onsmart.ai.
+            Nossa equipe analisará as informações e retornará em breve. Se
+            preferir falar agora, use o WhatsApp ou escreva para{" "}
+            {MARKETING_EMAIL}.
           </p>
           <a
             className="button button-primary"
@@ -105,7 +106,7 @@ export default function CommercialForm({
             Conversar pelo WhatsApp <ArrowRight size={16} aria-hidden="true" />
           </a>
           <button className="commercial-reset" type="button" onClick={reset}>
-            Voltar à demonstração
+            Enviar outra mensagem
           </button>
         </div>
       ) : (
@@ -126,7 +127,7 @@ export default function CommercialForm({
           </h3>
           <p className="commercial-form-intro">
             {step === 1
-              ? "Demonstração de formulário: não envia dados nem cria um cadastro."
+              ? "Informe seus dados de contato para iniciarmos a conversa."
               : "Compartilhe apenas informações necessárias. Não inclua dados confidenciais."}
           </p>
           <form ref={formRef} onSubmit={submit} className="commercial-form">
@@ -228,11 +229,10 @@ export default function CommercialForm({
                 <input name="consent" type="checkbox" required={step === 2} />
                 <span>
                   Li o{" "}
-                  <Link href="/previa/legal/privacidade">
-                    rascunho de privacidade
+                  <Link href="/legal/privacidade">
+                    política de privacidade
                   </Link>{" "}
-                  e entendo que este formulário é apenas uma demonstração, sem
-                  envio.
+                  e autorizo o contato da Onsmart.AI conforme descrito nela.
                 </span>
               </label>
               <div className="commercial-form-actions">

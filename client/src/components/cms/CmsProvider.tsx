@@ -9,6 +9,10 @@ import { useLocation } from "wouter";
 import type { PublishedDocument } from "@shared/cms";
 import { safeCmsUrl } from "@shared/cms";
 import { apiCms } from "@/lib/cms-api";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { cmsLocaleFallback } from "@/i18n/cms-fallback";
+import { UI_MESSAGES } from "@/i18n/messages";
+import type { SiteLocale } from "@shared/locale";
 type State = { documents: PublishedDocument[]; ready: boolean; error: string };
 const Context = createContext<State>({
   documents: [],
@@ -49,8 +53,7 @@ export function CmsProvider({
           if (active)
             setState(current => ({
               ...current,
-              error:
-                "O conteúdo atualizado não pôde ser carregado. Tente novamente.",
+              error: "cms-load-error",
             }));
         });
     }
@@ -64,37 +67,68 @@ export function CmsProvider({
   return <Context.Provider value={state}>{children}</Context.Provider>;
 }
 export const useCms = () => useContext(Context);
-export function useCmsDocument(key: string) {
-  return useCms().documents.find(
-    doc => doc.key === key && doc.locale === "pt-BR"
+export function useCmsDocument(key: string, locale?: SiteLocale) {
+  const { locale: activeLocale } = useLocale();
+  const resolved = locale ?? activeLocale;
+  return (
+    useCms().documents.find(
+      doc => doc.key === key && doc.locale === resolved
+    ) ??
+    (resolved !== "pt-BR"
+      ? useCms().documents.find(
+          doc => doc.key === key && doc.locale === "pt-BR"
+        )
+      : undefined)
   );
+}
+function resolveCmsText(
+  fields: Array<{ texts?: unknown }>,
+  original: string
+): string | undefined {
+  for (const field of fields) {
+    const items = field.texts;
+    if (Array.isArray(items)) {
+      const found = items.find(
+        item =>
+          item &&
+          typeof item === "object" &&
+          "original" in item &&
+          (item as { original: string }).original === original &&
+          typeof (item as { text?: string }).text === "string"
+      );
+      if (found) return (found as { text: string }).text;
+    }
+  }
+  return undefined;
 }
 export function useCmsCopy() {
   const [location] = useLocation();
-  const { documents } = useCms();
+  const { locale } = useLocale();
+  const { documents, error } = useCms();
   const normalize = location
     .replace("/previa/solucao/", "/servicos/")
     .replace("/previa/parcerias/programa", "/parcerias");
-  const scopes = documents.filter(
-    doc =>
-      (doc.key === normalize || doc.key === "global") && doc.locale === "pt-BR"
+  const matchKey = (doc: PublishedDocument) =>
+    doc.key === normalize || doc.key === "global";
+  const primary = documents.filter(
+    doc => matchKey(doc) && doc.locale === locale
   );
-  const fields = scopes.map(doc => doc.payload.fields);
+  const fallbackPt =
+    locale === "pt-BR"
+      ? []
+      : documents.filter(doc => matchKey(doc) && doc.locale === "pt-BR");
+  const primaryFields = primary.map(doc => doc.payload.fields);
+  const fallbackFields = fallbackPt.map(doc => doc.payload.fields);
   function text(original: string): string {
-    for (const field of fields) {
-      const items = field.texts;
-      if (Array.isArray(items)) {
-        const found = items.find(
-          item =>
-            item &&
-            typeof item === "object" &&
-            item.original === original &&
-            typeof item.text === "string"
-        );
-        if (found) return found.text;
-      }
+    const localized = resolveCmsText(primaryFields, original);
+    if (localized !== undefined) {
+      return locale === "pt-BR"
+        ? localized
+        : cmsLocaleFallback(original, localized, locale);
     }
-    return original;
+    const fromPt = resolveCmsText(fallbackFields, original);
+    const resolved = fromPt ?? original;
+    return cmsLocaleFallback(original, resolved, locale);
   }
   function href(original: string): string {
     for (const field of fields) {

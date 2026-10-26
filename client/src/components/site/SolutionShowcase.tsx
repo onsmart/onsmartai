@@ -113,8 +113,8 @@ export default function SolutionShowcase() {
           </div>
         </div>
         <Notice>
-          As landing pages comerciais estão disponíveis. Escopos e condições
-          seguem sujeitos a validação.
+          Cada solução tem página dedicada com escopo, público e formas de
+          contato com a equipe Onsmart.AI.
         </Notice>
       </div>
     </section>

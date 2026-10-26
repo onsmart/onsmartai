@@ -6,8 +6,8 @@ export function cmsRouteInfo(path:string,documents:PublishedDocument[]) {
  const normalized=pathname.replace('/previa/solucao/','/servicos/').replace('/previa/parcerias/programa','/parcerias').replace('/previa/conteudo/','/conteudo/');
  const doc=documents.find(item=>item.locale==='pt-BR'&&(item.key===normalized||normalized===`/conteudo/${item.slug}`&&!['page','landing','banner'].includes(item.kind)));
  if(doc)return {status:200,title:doc.payload.seoTitle||doc.payload.title,description:doc.payload.seoDescription||doc.payload.summary};
- if(normalized.startsWith('/previa/legal/'))return {status:200,title:'Rascunho jurídico | Onsmart.AI',description:'Documento preliminar para revisão jurídica.'};
- return {status:404,title:'Página não encontrada | Onsmart.AI',description:'Esta página não está disponível no ambiente de homologação.'};
+ if(metadata[normalized])return {status:200,title:metadata[normalized].title,description:metadata[normalized].description};
+ return {status:404,title:'Página não encontrada | Onsmart.AI',description:'Esta página não está disponível no site Onsmart.AI.'};
 }
 const escape=(value:string)=>value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]!));
 export function composeCmsHtml(template:string,body:string,documents:PublishedDocument[],info:ReturnType<typeof cmsRouteInfo>) {

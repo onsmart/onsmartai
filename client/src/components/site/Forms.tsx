@@ -1,4 +1,6 @@
 import { useCmsCopy } from "@/components/cms/CmsProvider";
+import { trpc } from "@/lib/trpc";
+import { MARKETING_EMAIL } from "@shared/contact";
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, CheckCircle2, Mail } from "lucide-react";
 import { Notice } from "./Common";
@@ -35,10 +37,10 @@ export function Newsletter() {
           {done ? (
             <div className="form-feedback" role="status">
               <CheckCircle2 size={25} />
-              <h3>{cmsText("Demonstração concluída.")}</h3>
+              <h3>{cmsText("Inscrição registrada.")}</h3>
               <p>
                 {cmsText(
-                  "Os campos foram validados. Nenhum dado foi enviado ou armazenado. A integração com o CRM será configurada na Fase 4."
+                  "Obrigado pelo interesse. Em breve você receberá novidades sobre IA corporativa no e-mail informado."
                 )}
               </p>
               <button
@@ -78,7 +80,7 @@ export function Newsletter() {
                 <input type="checkbox" required />
                 <span>
                   {cmsText("Concordo em receber conteúdos da Onsmart.AI.")}{" "}
-                  <a href={cmsHref("/previa/legal/privacidade")}>
+                  <a href={cmsHref("/legal/privacidade")}>
                     {cmsText("Conheça a política de privacidade.")}
                   </a>
                 </span>
@@ -89,7 +91,7 @@ export function Newsletter() {
               </button>
               <Notice>
                 {cmsText(
-                  "Formulário demonstrativo. Não envia dados nem inscreve em uma lista."
+                  "Você pode cancelar a inscrição a qualquer momento, conforme a política de privacidade."
                 )}
               </Notice>
             </form>
@@ -148,12 +150,32 @@ export function ContactForm({
 
   const [interest, setInterest] = useState(initialInterest);
   const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
+  const submitLead = trpc.contact.submit.useMutation();
   const question = questions[interest];
-  function submit(e: FormEvent<HTMLFormElement>) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setDone(true);
-    e.currentTarget.reset();
-    setInterest("");
+    setError("");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      await submitLead.mutateAsync({
+        name: String(data.get("name") ?? ""),
+        email: String(data.get("email") ?? ""),
+        phone: String(data.get("phone") ?? ""),
+        company: String(data.get("company") ?? ""),
+        interest: String(data.get("interest") ?? interest),
+        message: String(data.get("message") ?? "") || undefined,
+      });
+      setDone(true);
+      form.reset();
+      setInterest("");
+    } catch {
+      setError(
+        "Não foi possível enviar agora. Tente novamente ou escreva para " +
+          MARKETING_EMAIL
+      );
+    }
   }
   return (
     <div className="contact-form-panel">
@@ -164,11 +186,10 @@ export function ContactForm({
       {done ? (
         <div className="form-feedback" role="status">
           <CheckCircle2 size={28} />
-          <h3>{cmsText("Fluxo demonstrativo concluído.")}</h3>
+          <h3>{cmsText("Mensagem recebida.")}</h3>
           <p>
-            {cmsText(
-              "Seu formulário foi validado, mas nenhum dado foi enviado ou armazenado. Para falar com a equipe agora, utilize o WhatsApp ou o e-mail comercial."
-            )}
+            Obrigado pelo contato. Nossa equipe comercial retornará em breve. Se
+            preferir resposta imediata, use o WhatsApp ou {MARKETING_EMAIL}.
           </p>
           <button
             className="button button-outline"
@@ -244,7 +265,9 @@ export function ContactForm({
                 {cmsText("Selecione o que faz sentido para você")}
               </option>
               {interests.map(i => (
-                <option key={i}>{i}</option>
+                <option key={i} value={i}>
+                  {i}
+                </option>
               ))}
             </select>
           </label>
@@ -255,6 +278,7 @@ export function ContactForm({
                 name="message"
                 rows={3}
                 maxLength={1000}
+                required
                 placeholder={question.placeholder}
               />
             </label>
@@ -263,20 +287,33 @@ export function ContactForm({
             <input type="checkbox" required />
             <span>
               {cmsText("Li o")}{" "}
-              <a href={cmsHref("/previa/legal/privacidade")}>
-                {cmsText("rascunho de privacidade")}
+              <a href={cmsHref("/legal/privacidade")}>
+                {cmsText("política de privacidade")}
               </a>
               {cmsText(
-                " e entendo que este formulário é apenas uma demonstração."
+                " e autorizo o contato da Onsmart.AI conforme descrito nela."
               )}
             </span>
           </label>
-          <button className="button button-primary" type="submit">
-            {cmsText("Demonstrar envio")}
+          {error && (
+            <p className="form-submit-error" role="alert">
+              {error}
+            </p>
+          )}
+          <button
+            className="button button-primary"
+            type="submit"
+            disabled={submitLead.isPending}
+          >
+            {submitLead.isPending
+              ? cmsText("Enviando…")
+              : cmsText("Enviar mensagem")}
             <ArrowUpRight size={17} />
           </button>
           <Notice>
-            {cmsText("Protótipo: não há envio para a equipe comercial ou CRM.")}
+            {cmsText(
+              "Suas informações serão usadas apenas para retorno comercial, conforme a política de privacidade."
+            )}
           </Notice>
         </form>
       )}

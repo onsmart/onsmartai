@@ -147,8 +147,8 @@ export default function Header() {
                           ))}
                         </div>
                         <p className="mega-note">
-                          Páginas comerciais disponíveis · condições em
-                          validação.
+                          Educação, serviços e plataforma para cada etapa da
+                          jornada com IA.
                         </p>
                       </>
                     ) : label === "Ecossistema" ? (
@@ -237,13 +237,13 @@ export default function Header() {
               >
                 <p>
                   <strong>Português</strong>
-                  <span>Versão do protótipo</span>
+                  <span>Idioma ativo</span>
                 </p>
                 <p>
-                  English<span>Disponível na Fase 5</span>
+                  English<span>Em breve</span>
                 </p>
                 <p>
-                  Español<span>Disponível na Fase 5</span>
+                  Español<span>Em breve</span>
                 </p>
               </div>
             )}

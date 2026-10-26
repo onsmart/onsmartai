@@ -1745,9 +1745,11 @@
 }
 
 .contact-page .contact-form-panel {
-  border: 1px solid rgba(36, 39, 41, 0.2);
+  border: 1px solid var(--inner-line);
   padding: clamp(22px, 4vw, 46px);
   background: var(--inner-paper);
+  box-shadow: 0 20px 55px rgba(20, 32, 41, 0.07);
+  overflow: hidden;
 }
 
 .contact-page .contact-form-panel .form-panel-top {
@@ -1847,6 +1849,13 @@
   line-height: 1.7;
 }
 
+.contact-page .form-submit-error {
+  margin: 0;
+  color: #b42318;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
 .contact-channels-section {
   padding: clamp(78px, 9vw, 126px) 0;
 }
@@ -1881,9 +1890,9 @@
 .contact-channels-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
+  gap: clamp(18px, 2.5vw, 24px);
   margin-top: 54px;
-  background: var(--inner-line);
+  background: transparent;
 }
 
 .contact-channel {
@@ -1892,10 +1901,12 @@
   min-height: 250px;
   padding: 28px;
   background: var(--inner-paper);
+  border: 1px solid rgba(36, 39, 41, 0.12);
   text-decoration: none;
   transition:
     background-color 180ms ease,
-    transform 180ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .contact-channel:hover {
@@ -2026,6 +2037,7 @@
   border: 1px solid var(--inner-ink);
   background: var(--inner-ink);
   color: var(--inner-paper);
+  overflow: hidden;
 }
 
 .contact-booking-icon {

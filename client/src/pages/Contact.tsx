@@ -12,6 +12,7 @@ import {
 import { ContactForm } from "@/components/site/Forms";
 import { ButtonLink, Notice, PageHero } from "@/components/site/Common";
 import { WHATSAPP } from "@/data/site";
+import { MARKETING_EMAIL } from "@shared/contact";
 
 export default function Contact() {
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
@@ -36,9 +37,9 @@ export default function Contact() {
           </ButtonLink>
           <a
             className="contact-hero-email"
-            href={cmsHref("mailto:marketing@onsmart.ai")}
+            href={cmsHref(`mailto:${MARKETING_EMAIL}`)}
           >
-            {cmsText("marketing@onsmart.ai ")}
+            {MARKETING_EMAIL}
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </div>
@@ -57,7 +58,7 @@ export default function Contact() {
               </h2>
               <p>
                 {cmsText(
-                  "Selecione o assunto que mais se aproxima do seu momento. O campo complementar muda para manter o primeiro contato objetivo — e nenhum dado será enviado nesta demonstração."
+                  "Selecione o assunto que mais se aproxima do seu momento. O campo complementar ajuda a direcionar sua mensagem à equipe certa."
                 )}
               </p>
               <div
@@ -124,7 +125,7 @@ export default function Contact() {
               </a>
               <a
                 className="contact-channel contact-channel-email"
-                href={cmsHref("mailto:marketing@onsmart.ai")}
+                href={cmsHref(`mailto:${MARKETING_EMAIL}`)}
               >
                 <span className="contact-channel-icon">
                   <Mail size={22} strokeWidth={1.5} aria-hidden="true" />
@@ -132,7 +133,7 @@ export default function Contact() {
                 <span className="contact-channel-type">
                   {cmsText("E-mail comercial")}
                 </span>
-                <strong>{cmsText("marketing@onsmart.ai")}</strong>
+                <strong>{MARKETING_EMAIL}</strong>
                 <span className="contact-channel-action">
                   {cmsText("Enviar e-mail ")}
                   <ArrowUpRight size={16} aria-hidden="true" />
@@ -152,7 +153,7 @@ export default function Contact() {
               <h2>{cmsText("Presença para conversar de perto.")}</h2>
               <p>
                 {cmsText(
-                  "Endereços fornecidos no briefing. Mapas e links de localização ficam aguardando validação antes da publicação."
+                  "Estamos em São Paulo e Curitiba. Agende uma visita ou fale conosco pelos canais comerciais."
                 )}
               </p>
             </div>
@@ -203,13 +204,13 @@ export default function Contact() {
               </p>
             </div>
             <span className="contact-booking-status">
-              {cmsText("Link oficial pendente")}
+              {cmsText("Em breve")}
             </span>
           </div>
           <div className="container contact-notice-wrap">
             <Notice>
               {cmsText(
-                "Não há link de agendamento, mapa ou integração externa ativa nesta Fase 1."
+                "O agendamento online será disponibilizado em breve. Enquanto isso, fale conosco pelo WhatsApp ou e-mail."
               )}
             </Notice>
           </div>

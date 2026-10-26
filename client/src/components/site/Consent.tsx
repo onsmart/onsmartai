@@ -75,8 +75,9 @@ export default function Consent({
             <strong>Sua privacidade importa.</strong>
           </div>
           <p>
-            Neste protótipo, usamos apenas o armazenamento das suas
-            preferências. As integrações de marketing não estão ativas.
+            Usamos cookies essenciais e, com a sua autorização, cookies de
+            análise e marketing. Você pode alterar suas preferências a qualquer
+            momento.
           </p>
           <div className="cookie-actions">
             <button onClick={() => save(true, true)} className="cookie-accept">
@@ -106,9 +107,8 @@ export default function Consent({
           <Dialog.Content className="preferences-dialog">
             <Dialog.Title>Preferências de cookies</Dialog.Title>
             <Dialog.Description>
-              Você decide quais categorias autorizar. Este é um protótipo:
-              analytics e marketing não são carregados, independentemente da sua
-              escolha.
+              Você decide quais categorias autorizar. Cookies essenciais
+              permanecem ativos para o funcionamento do site.
             </Dialog.Description>
             <Dialog.Close
               className="dialog-close"
@@ -126,9 +126,7 @@ export default function Consent({
             <label className="cookie-category">
               <div>
                 <strong>Analytics</strong>
-                <p>
-                  Preparação para medir a navegação. Integração não instalada.
-                </p>
+                <p>Ajudam a entender como o site é utilizado e a melhorá-lo.</p>
               </div>
               <input
                 type="checkbox"
@@ -139,7 +137,9 @@ export default function Consent({
             <label className="cookie-category">
               <div>
                 <strong>Marketing</strong>
-                <p>Preparação para campanhas. Integração não instalada.</p>
+                <p>
+                  Permitem personalizar comunicações e medir campanhas.
+                </p>
               </div>
               <input
                 type="checkbox"
@@ -168,11 +168,11 @@ export default function Consent({
               </button>
             </div>
             <Link
-              href="/previa/legal/cookies"
+              href="/legal/privacidade#cookies"
               onClick={() => onOpenChange(false)}
               className="legal-link"
             >
-              Consultar rascunho da política de cookies
+              Saiba mais na política de privacidade
             </Link>
           </Dialog.Content>
         </Dialog.Portal>

@@ -15,11 +15,23 @@ import Ecosystem from "./pages/Ecosystem";
 import Content from "./pages/Content";
 import Contact from "./pages/Contact";
 import Preview from "./pages/Preview";
+import Legal from "./pages/Legal";
 import SolutionLanding from "./pages/SolutionLanding";
 import Partners from "./pages/Partners";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { metadata } from "./data/site";
 import { commercialMetadata } from "./data/commercial";
+function LegalLegacyRedirect({ slug }: { slug: string }) {
+  const [, setLocation] = useLocation();
+  useEffect(() => {
+    if (slug === "cookies") setLocation("/legal/privacidade#cookies");
+    else if (slug === "privacidade" || slug === "termos")
+      setLocation(`/legal/${slug}`);
+    else setLocation("/");
+  }, [slug, setLocation]);
+  return null;
+}
+
 function Router() {
   const [location] = useLocation();
   const { documents, ready } = useCms();
@@ -36,7 +48,7 @@ function Router() {
       <section className="not-found">
         <div className="container">
           <h1>Página não disponível.</h1>
-          <p>Esta página está despublicada na homologação.</p>
+          <p>Esta página não está disponível no momento.</p>
           <Link href="/" className="button button-outline">
             Voltar à Home
           </Link>
@@ -54,6 +66,10 @@ function Router() {
       <Route path="/servicos/:slug" component={SolutionLanding} />
       <Route path="/parcerias" component={Partners} />
       <Route path="/conteudo/:slug" component={CmsArticle} />
+      <Route path="/legal/:slug" component={Legal} />
+      <Route path="/previa/legal/:slug">
+        {params => <LegalLegacyRedirect slug={params.slug} />}
+      </Route>
       <Route path="/admin" component={Admin} />
       <Route path="/admin/*" component={Admin} />
       <Route path="/previa/:type/:slug" component={Preview} />
@@ -62,7 +78,7 @@ function Router() {
           <div className="container">
             <p className="eyebrow">404 · Página não encontrada</p>
             <h1>Vamos encontrar o seu próximo passo?</h1>
-            <p>Esta página não faz parte do protótipo.</p>
+            <p>Verifique o endereço ou volte à página inicial.</p>
             <Link className="button button-primary" href="/">
               Voltar à Home
             </Link>
@@ -103,15 +119,14 @@ export default function App() {
       (normalized.startsWith("/conteudo/")
         ? {
             title: "Página não encontrada | Onsmart.AI",
-            description:
-              "Esta página não está disponível no ambiente de homologação.",
+            description: "Esta página não está disponível no site Onsmart.AI.",
           }
         : undefined) ??
       commercialMetadata(location) ??
       metadata[location] ?? {
-        title: "Prévia | Onsmart.AI",
+        title: "Onsmart.AI",
         description:
-          "Protótipo navegável Onsmart.AI. Destino provisório em homologação.",
+          "IA corporativa sem mistério: educação, serviços e plataforma para empresas.",
       };
     document.title = info.title;
     document

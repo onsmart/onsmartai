@@ -1,3 +1,4 @@
+import "dotenv/config";
 import fs from 'node:fs/promises';
 import { seedCms } from '../server/cms/db';
 async function main(){

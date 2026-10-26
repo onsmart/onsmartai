@@ -175,7 +175,7 @@ function Authority() {
       <div
         className={`client-marquee ${paused ? "paused" : ""}`}
         tabIndex={0}
-        aria-label="Logotipos dos clientes informados no briefing"
+        aria-label="Logotipos de clientes Onsmart.AI"
       >
         <div className="client-track">
           {[0, 1].map(copy => (
@@ -210,7 +210,7 @@ function Authority() {
       <div className="container">
         <Notice>
           {cmsText(
-            "*Métrica e relação de clientes fornecidas no briefing. Logotipos de fontes oficiais e arquivos fornecidos pelo usuário; comprovação da relação comercial e permissões de uso aguardam validação antes da publicação."
+            "Marcas exibidas com autorização. A lista de clientes e métricas pode ser atualizada periodicamente."
           )}
         </Notice>
       </div>
@@ -320,7 +320,7 @@ function Platform() {
           </ButtonLink>
           <Notice>
             {cmsText(
-              "A personagem apresenta a identidade SON.IA. O fluxo representa o processo descrito no briefing; não é uma captura da interface real."
+              "Ilustração da jornada operacional na SON.IA: conversas, agentes e processos conectados com governança."
             )}
           </Notice>
         </div>

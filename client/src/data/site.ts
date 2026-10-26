@@ -283,4 +283,14 @@ export const metadata: Record<string, { title: string; description: string }> =
       description:
         "Converse com a Onsmart.AI sobre educação, consultoria e o próximo passo da IA na sua empresa.",
     },
+    "/legal/privacidade": {
+      title: "Política de Privacidade | Onsmart.AI",
+      description:
+        "Como a Onsmart.AI trata dados pessoais, cookies e formulários, em conformidade com a LGPD.",
+    },
+    "/legal/termos": {
+      title: "Termos de Uso | Onsmart.AI",
+      description:
+        "Condições de uso do site institucional e comercial da Onsmart.AI.",
+    },
   };

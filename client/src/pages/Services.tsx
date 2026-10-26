@@ -262,11 +262,6 @@ export default function Services() {
                             >
                               {solution.cta}
                             </ButtonLink>
-                            <span className="services-phase-note">
-                              {cmsText(
-                                "Página comercial · condições em validação"
-                              )}
-                            </span>
                           </div>
                         </article>
                       );
@@ -301,7 +296,7 @@ export default function Services() {
           <div className="container services-closing-notice">
             <Notice>
               {cmsText(
-                "As páginas individuais já estão disponíveis. Escopos e condições comerciais dependem da validação da Onsmart.AI."
+                "Escopo, investimento e cronograma são definidos em proposta comercial personalizada."
               )}
             </Notice>
           </div>

@@ -56,7 +56,7 @@ const achievements = [
   },
   {
     title: "Vôlei Adaptado de Paulínia",
-    text: "Apoio registrado em fonte oficial, sem acrescentar placar, data ou resultado de campeonato ao protótipo.",
+    text: "Apoio registrado em fonte oficial à equipe de Vôlei Adaptado de Paulínia.",
     icon: Landmark,
   },
 ];
@@ -99,7 +99,7 @@ export default function About() {
         </div>
         <Notice>
           {cmsText(
-            "12 anos é uma informação fornecida no briefing e aguarda validação institucional antes da publicação."
+            "Mais de uma década de atuação do Grupo Onsmart em tecnologia e educação."
           )}
         </Notice>
       </PageHero>
@@ -129,16 +129,16 @@ export default function About() {
                 <span className="about-metric-label">
                   {cmsText("anos de trajetória")}
                   <br />
-                  {cmsText("informada no briefing")}
+                  {cmsText("de experiência do grupo")}
                 </span>
               </div>
               <div className="about-story-panel-copy">
                 <span className="about-panel-kicker">
-                  {cmsText("Validação necessária")}
+                  {cmsText("Grupo Onsmart")}
                 </span>
                 <p>
                   {cmsText(
-                    "A contagem e a cronologia completa serão confirmadas pelo Grupo antes de qualquer publicação definitiva."
+                    "Educar, consultar e operar IA corporativa com clareza e governança."
                   )}
                 </p>
               </div>

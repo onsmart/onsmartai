@@ -23,6 +23,7 @@ import {
   landingPath,
   type LandingData,
 } from "@/data/commercial";
+import { MARKETING_EMAIL } from "@shared/contact";
 import { solutions } from "@/data/site";
 import { ButtonLink, Notice, SoniaProcess } from "@/components/site/Common";
 import CommercialForm from "@/components/site/CommercialForm";
@@ -39,8 +40,8 @@ export function CommercialFAQ({ data }: { data: LandingData }) {
           </p>
           <h2>Clareza antes do próximo passo.</h2>
           <p className="commercial-muted">
-            O que o briefing permite explicar — e o que será definido na
-            conversa comercial.
+            Respostas objetivas sobre escopo, formato e próximos passos com a
+            equipe comercial.
           </p>
         </div>
         <div className="commercial-faq-list">
@@ -82,9 +83,9 @@ export function CommercialClosing({
               : "Vamos conectar esta solução ao seu contexto?"}
           </h2>
           <p>
-            Escolha o contato direto com a equipe ou explore o fluxo
-            demonstrativo de qualificação. A proposta comercial depende de
-            entender seu interesse e as necessidades da sua operação.
+            Escolha o contato direto com a equipe ou preencha o formulário de
+            qualificação. A proposta comercial depende de entender seu interesse
+            e as necessidades da sua operação.
           </p>
           <a
             className="button button-primary"
@@ -95,12 +96,12 @@ export function CommercialClosing({
             {data.slug === "parcerias" ? "Quero ser parceiro" : data.cta}
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
-          <a className="commercial-email" href="mailto:marketing@onsmart.ai">
-            marketing@onsmart.ai
+          <a className="commercial-email" href={`mailto:${MARKETING_EMAIL}`}>
+            {MARKETING_EMAIL}
           </a>
           <Notice>
-            O WhatsApp é um canal externo real. O formulário ao lado continua
-            demonstrativo até a Fase 4.
+            O WhatsApp abre em nova janela. O formulário envia seu interesse à
+            equipe comercial da Onsmart.AI.
           </Notice>
         </div>
         <CommercialForm
@@ -217,7 +218,8 @@ export default function SolutionLanding({
                 )}
               </div>
               <p className="commercial-status">
-                Homologação · condições comerciais sujeitas a confirmação.
+                Condições comerciais definidas em proposta com a equipe
+                Onsmart.AI.
               </p>
             </div>
             <HeroVisual data={data} />
@@ -280,7 +282,7 @@ export default function SolutionLanding({
             <div className="commercial-academy-conditions">
               <div>
                 <span className="eyebrow">
-                  Condições informadas no briefing
+                  Condições comerciais
                 </span>
                 <strong>A partir de R$ 349</strong>
                 <p>ou 12x de R$ 29,08</p>
@@ -291,12 +293,11 @@ export default function SolutionLanding({
               </div>
               <div>
                 <strong>Curso introdutório gratuito</strong>
-                <p>Disponibilidade e URL oficial aguardam confirmação.</p>
+                <p>Consulte a equipe sobre disponibilidade atual.</p>
               </div>
               <Notice>
-                Preço, parcelamento, licenças e período de acesso aguardam
-                validação comercial. Não há checkout ou matrícula ativa nesta
-                página.
+                Valores e condições de pagamento são confirmados com a equipe
+                comercial antes da contratação.
               </Notice>
             </div>
           )}
@@ -345,8 +346,8 @@ export default function SolutionLanding({
             </div>
             <p>
               {data.slug === "sonia"
-                ? "O fluxo abaixo representa conceitualmente as cinco etapas descritas no briefing. Não é demonstração de uma interface real."
-                : "Esta organização explica as atividades descritas no briefing. Formato, sequência, profundidade e contratação dependem da proposta comercial."}
+                ? "Visão das etapas da operação na SON.IA: da conversa à ação, com supervisão humana."
+                : "Visão geral das etapas desta solução. Formato, sequência e contratação são definidos na proposta comercial."}
             </p>
           </div>
           {data.slug === "sonia" ? (
@@ -369,10 +370,10 @@ export default function SolutionLanding({
           )}
           <Notice>
             {data.slug === "academia"
-              ? "Três níveis informados; nomes oficiais, ementas e acesso precisam de confirmação."
+              ? "Trilhas e níveis podem variar conforme o plano contratado."
               : data.slug === "sonia"
-                ? "Capturas oficiais da SON.IA permanecem pendentes. Nenhuma integração está ativa no site."
-                : "Organização editorial das atividades do briefing, não um cronograma ou metodologia oficial contratada."}
+                ? "Ilustração do fluxo operacional; detalhes técnicos na proposta e implantação."
+                : "Referência das etapas típicas; cronograma e metodologia são acordados na proposta."}
           </Notice>
         </div>
       </section>
@@ -411,8 +412,8 @@ export default function SolutionLanding({
               ))}
             </ul>
             <p className="commercial-scope-disclaimer">
-              Itens baseados no briefing. Detalhamento, aceite e entregas
-              contratadas ainda precisam de validação comercial.
+              Entregáveis e escopo definitivos são confirmados na proposta
+              comercial com a Onsmart.AI.
             </p>
           </div>
         </div>
@@ -484,7 +485,7 @@ export default function SolutionLanding({
             ))}
           </div>
           <details className="commercial-review">
-            <summary>Informações em validação comercial</summary>
+            <summary>Informações comerciais complementares</summary>
             <ul>
               {data.commercialNotices.map(note => (
                 <li key={note}>{note}</li>

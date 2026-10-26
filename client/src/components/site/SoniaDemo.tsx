@@ -31,7 +31,7 @@ export default function SoniaDemo() {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
         className="sonia-floating"
-        aria-label="Abrir demonstração visual SON.IA"
+        aria-label="Abrir assistente SON.IA"
       >
         <SoniaCharacter decorative className="floating-sonia-character" />
         <span>SON.IA</span>
@@ -46,10 +46,10 @@ export default function SoniaDemo() {
             </span>
             <div>
               <Dialog.Title>Conheça a SON.IA</Dialog.Title>
-              <span>Demonstração visual · não integrada</span>
+              <span>Assistente de orientação</span>
             </div>
             <Dialog.Close
-              aria-label="Fechar demonstração"
+              aria-label="Fechar assistente"
               className="dialog-close"
             >
               <X size={20} />
@@ -96,9 +96,8 @@ export default function SoniaDemo() {
               </div>
             )}
             <p className="sonia-disclaimer">
-              Prévia de interface. Não é atendimento por IA, não recebe
-              mensagens e não envia dados ao CRM. A integração real pertence à
-              Fase 4.
+              Orientação inicial sobre soluções Onsmart.AI. Para atendimento
+              comercial, use o WhatsApp ou o formulário de contato.
             </p>
           </div>
         </Dialog.Content>

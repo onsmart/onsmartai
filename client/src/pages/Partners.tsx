@@ -71,7 +71,8 @@ export default function Partners() {
                 </a>
               </div>
               <p className="commercial-status">
-                Homologação · modalidades e condições sujeitas a validação.
+                Modalidades e condições são definidas em conversa com a equipe
+                Onsmart.AI.
               </p>
             </div>
             <SitePhotography
@@ -147,8 +148,8 @@ export default function Partners() {
           </p>
           <h2>Três modalidades. Uma conversa para definir o caminho.</h2>
           <p className="commercial-muted">
-            Selecione a modalidade que deseja conhecer. A seleção orienta a
-            demonstração de qualificação, não implica adesão ou elegibilidade.
+            Selecione a modalidade que deseja conhecer. A seleção orienta o
+            formulário de contato e não implica adesão ou elegibilidade.
           </p>
           <div
             className="partner-mode-controls"
