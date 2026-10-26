@@ -3,15 +3,39 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useSearch } from "wouter";
 import { ArrowUpRight, ChevronDown, Menu, X, Globe2 } from "lucide-react";
 import { companies, solutions, solutionHref } from "@/data/site";
+import { useLocale } from "@/i18n/LocaleProvider";
+import {
+  localizedSolutionCategory,
+  localizedSolutionTitle,
+} from "@/i18n/site";
+import { CMS_LOCALES } from "@shared/cms";
+import { LOCALE_NAMES, type SiteLocale } from "@shared/locale";
+
+const SECTION_KEYS = ["services", "ecosystem", "content"] as const;
+type SectionKey = (typeof SECTION_KEYS)[number];
+
+const SECTION_PATH: Record<SectionKey, string> = {
+  services: "/servicos",
+  ecosystem: "/ecossistema",
+  content: "/conteudo",
+};
 
 export default function Header() {
   const [location] = useLocation();
   const search = useSearch();
+  const { ui, locale, setLocale, localeShort } = useLocale();
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const root = useRef<HTMLElement>(null);
   const lastTrigger = useRef<HTMLButtonElement | null>(null);
   const previousRoute = useRef(`${location}?${search}`);
+
+  const sectionLabel: Record<SectionKey, string> = {
+    services: ui.nav.services,
+    ecosystem: ui.nav.ecosystem,
+    content: ui.nav.content,
+  };
+
   useEffect(() => {
     const route = `${location}?${search}`;
     if (previousRoute.current !== route) {
@@ -49,6 +73,11 @@ export default function Header() {
     lastTrigger.current = el;
     setOpen(open === name ? null : name);
   }
+  function pickLocale(code: SiteLocale) {
+    setLocale(code);
+    setOpen(null);
+  }
+
   return (
     <header className="site-header" ref={root}>
       <div className="container header-inner">
@@ -58,7 +87,7 @@ export default function Header() {
         <button
           className="mobile-toggle"
           type="button"
-          aria-label={mobile ? "Fechar navegação" : "Abrir navegação"}
+          aria-label={mobile ? ui.nav.closeNav : ui.nav.openNav}
           aria-expanded={mobile}
           aria-controls="main-navigation"
           onClick={e => {
@@ -71,26 +100,22 @@ export default function Header() {
         <nav
           id="main-navigation"
           className={mobile ? "main-nav mobile-open" : "main-nav"}
-          aria-label="Navegação principal"
+          aria-label={ui.nav.mainNav}
         >
           <Link href="/" aria-current={location === "/" ? "page" : undefined}>
-            Home
+            {ui.nav.home}
           </Link>
           <Link
             href="/quem-somos"
             aria-current={location === "/quem-somos" ? "page" : undefined}
           >
-            Quem Somos
+            {ui.nav.about}
           </Link>
-          {["Serviços", "Ecossistema", "Conteúdo"].map(label => {
-            const path =
-              label === "Serviços"
-                ? "/servicos"
-                : label === "Ecossistema"
-                  ? "/ecossistema"
-                  : "/conteudo";
+          {SECTION_KEYS.map(section => {
+            const path = SECTION_PATH[section];
+            const label = sectionLabel[section];
             return (
-              <div className="nav-item" key={label}>
+              <div className="nav-item" key={section}>
                 <Link
                   href={path}
                   aria-current={location === path ? "page" : undefined}
@@ -100,29 +125,29 @@ export default function Header() {
                 <button
                   type="button"
                   className="nav-dropdown-toggle"
-                  aria-label={`${open === label ? "Fechar" : "Abrir"} ${label}`}
-                  aria-expanded={open === label}
-                  aria-controls={`dropdown-${label}`}
-                  onClick={e => toggle(label, e.currentTarget)}
+                  aria-label={`${open === section ? ui.nav.closeSection : ui.nav.openSection} ${label}`}
+                  aria-expanded={open === section}
+                  aria-controls={`dropdown-${section}`}
+                  onClick={e => toggle(section, e.currentTarget)}
                 >
                   <ChevronDown size={13} />
                 </button>
-                {open === label && (
+                {open === section && (
                   <div
-                    id={`dropdown-${label}`}
-                    className={`nav-dropdown ${label === "Serviços" ? "mega-menu" : ""}`}
+                    id={`dropdown-${section}`}
+                    className={`nav-dropdown ${section === "services" ? "mega-menu" : ""}`}
                   >
-                    {label === "Serviços" ? (
+                    {section === "services" ? (
                       <>
                         <div className="mega-intro">
-                          <p className="eyebrow">Do aprendizado à operação</p>
+                          <p className="eyebrow">{ui.mega.eyebrow}</p>
                           <h2>
-                            Qual é o próximo passo
+                            {ui.mega.titleLine1}
                             <br />
-                            da sua empresa?
+                            {ui.mega.titleLine2}
                           </h2>
                           <Link href="/servicos" className="mega-all">
-                            Conhecer todas as soluções
+                            {ui.mega.allSolutions}
                             <ArrowUpRight size={17} />
                           </Link>
                         </div>
@@ -131,7 +156,9 @@ export default function Header() {
                             ["Educação", "Serviços", "Plataforma"] as const
                           ).map(category => (
                             <div key={category}>
-                              <h3>{category}</h3>
+                              <h3>
+                                {localizedSolutionCategory(category, locale)}
+                              </h3>
                               {solutions
                                 .filter(s => s.category === category)
                                 .map(s => (
@@ -139,22 +166,25 @@ export default function Header() {
                                     key={s.slug}
                                     href={solutionHref(s.slug)}
                                   >
-                                    <span>{s.title}</span>
+                                    <span>
+                                      {localizedSolutionTitle(
+                                        s.slug,
+                                        s.title,
+                                        locale
+                                      )}
+                                    </span>
                                     <ArrowUpRight size={13} />
                                   </Link>
                                 ))}
                             </div>
                           ))}
                         </div>
-                        <p className="mega-note">
-                          Educação, serviços e plataforma para cada etapa da
-                          jornada com IA.
-                        </p>
+                        <p className="mega-note">{ui.mega.note}</p>
                       </>
-                    ) : label === "Ecossistema" ? (
+                    ) : section === "ecosystem" ? (
                       <>
                         <Link href="/ecossistema">
-                          Grupo Onsmart
+                          {ui.mega.groupOnsmart}
                           <ArrowUpRight size={14} />
                         </Link>
                         {companies.map(c => (
@@ -163,7 +193,9 @@ export default function Header() {
                               <CompanyLogo id={c.id as CompanyId} />
                             </span>
                             {c.id === "robotics" ? (
-                              <span className="tiny-tag">Em breve</span>
+                              <span className="tiny-tag">
+                                {ui.mega.comingSoon}
+                              </span>
                             ) : (
                               <ArrowUpRight size={14} />
                             )}
@@ -173,20 +205,26 @@ export default function Header() {
                     ) : (
                       <>
                         {[
-                          { label: "Blog", href: "/conteudo?categoria=Blog" },
                           {
-                            label: "Materiais gratuitos",
+                            label: ui.contentMenu.blog,
+                            href: "/conteudo?categoria=Blog",
+                          },
+                          {
+                            label: ui.contentMenu.materials,
                             href: "/conteudo?categoria=Materiais%20gratuitos",
                           },
                           {
-                            label: "YouTube",
+                            label: ui.contentMenu.youtube,
                             href: "https://www.youtube.com/@onsmartai",
                           },
                           {
-                            label: "Onsmart na mídia",
+                            label: ui.contentMenu.media,
                             href: "/conteudo?categoria=Onsmart%20na%20m%C3%ADdia",
                           },
-                          { label: "Cases", href: "/conteudo?categoria=Cases" },
+                          {
+                            label: ui.contentMenu.cases,
+                            href: "/conteudo?categoria=Cases",
+                          },
                         ].map(item =>
                           item.href.startsWith("http") ? (
                             <a
@@ -216,35 +254,39 @@ export default function Header() {
             href="/contato"
             aria-current={location === "/contato" ? "page" : undefined}
           >
-            Contato
+            {ui.nav.contact}
           </Link>
           <div className="nav-item language-nav">
             <button
               type="button"
               className="language-toggle"
-              aria-expanded={open === "Idioma"}
+              aria-expanded={open === "language"}
               aria-controls="dropdown-idioma"
-              onClick={e => toggle("Idioma", e.currentTarget)}
+              onClick={e => toggle("language", e.currentTarget)}
             >
               <Globe2 size={15} />
-              PT
+              {localeShort}
               <ChevronDown size={12} />
             </button>
-            {open === "Idioma" && (
+            {open === "language" && (
               <div
                 id="dropdown-idioma"
                 className="nav-dropdown language-dropdown"
               >
-                <p>
-                  <strong>Português</strong>
-                  <span>Idioma ativo</span>
-                </p>
-                <p>
-                  English<span>Em breve</span>
-                </p>
-                <p>
-                  Español<span>Em breve</span>
-                </p>
+                {CMS_LOCALES.map(code => (
+                  <button
+                    key={code}
+                    type="button"
+                    className={
+                      locale === code ? "language-option is-active" : "language-option"
+                    }
+                    aria-current={locale === code ? "true" : undefined}
+                    onClick={() => pickLocale(code)}
+                  >
+                    <strong>{LOCALE_NAMES[code]}</strong>
+                    {locale === code ? <span>{ui.nav.selected}</span> : null}
+                  </button>
+                ))}
               </div>
             )}
           </div>

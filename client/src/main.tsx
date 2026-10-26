@@ -1,6 +1,7 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import { CmsProvider } from "./components/cms/CmsProvider";
+import { LocaleProvider } from "./i18n/LocaleProvider";
 import { TrpcProvider } from "./lib/TrpcProvider";
 import "./index.css";
 import "./round-theme.css";
@@ -9,16 +10,20 @@ if (root.hasChildNodes())
   hydrateRoot(
     root,
     <TrpcProvider>
-      <CmsProvider>
-        <App />
-      </CmsProvider>
+      <LocaleProvider>
+        <CmsProvider>
+          <App />
+        </CmsProvider>
+      </LocaleProvider>
     </TrpcProvider>
   );
 else
   createRoot(root).render(
     <TrpcProvider>
-      <CmsProvider>
-        <App />
-      </CmsProvider>
+      <LocaleProvider>
+        <CmsProvider>
+          <App />
+        </CmsProvider>
+      </LocaleProvider>
     </TrpcProvider>
   );

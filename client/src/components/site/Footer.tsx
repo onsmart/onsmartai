@@ -4,11 +4,14 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { solutions, solutionHref, socials, WHATSAPP } from "@/data/site";
 import { MARKETING_EMAIL } from "@shared/contact";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { localizedSolutionTitle } from "@/i18n/site";
 export default function Footer({
   onPreferences,
 }: {
   onPreferences: () => void;
 }) {
+  const { locale } = useLocale();
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
 
   return (
@@ -44,7 +47,10 @@ export default function Footer({
               .filter(s => s.category === "Educação")
               .map(s => (
                 <Link href={solutionHref(s.slug)} key={s.slug}>
-                  {s.title.replace(" em IA", "")}
+                  {localizedSolutionTitle(s.slug, s.title, locale).replace(
+                    / em IA$/i,
+                    locale === "pt-BR" ? " em IA" : ""
+                  )}
                 </Link>
               ))}
           </div>
@@ -57,8 +63,8 @@ export default function Footer({
                   {s.slug === "sonia"
                     ? "SON.IA"
                     : s.slug === "apps-e-agentes"
-                      ? "Apps e Agentes de IA"
-                      : s.title}
+                      ? localizedSolutionTitle(s.slug, s.title, locale)
+                      : localizedSolutionTitle(s.slug, s.title, locale)}
                 </Link>
               ))}
             <Link href={cmsHref("/parcerias")}>{cmsText("Parcerias")}</Link>

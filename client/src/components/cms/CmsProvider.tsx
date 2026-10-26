@@ -11,7 +11,6 @@ import { safeCmsUrl } from "@shared/cms";
 import { apiCms } from "@/lib/cms-api";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { cmsLocaleFallback } from "@/i18n/cms-fallback";
-import { UI_MESSAGES } from "@/i18n/messages";
 import type { SiteLocale } from "@shared/locale";
 type State = { documents: PublishedDocument[]; ready: boolean; error: string };
 const Context = createContext<State>({
@@ -53,7 +52,8 @@ export function CmsProvider({
           if (active)
             setState(current => ({
               ...current,
-              error: "cms-load-error",
+              error:
+                "O conteúdo atualizado não pôde ser carregado. Tente novamente.",
             }));
         });
     }
@@ -70,14 +70,11 @@ export const useCms = () => useContext(Context);
 export function useCmsDocument(key: string, locale?: SiteLocale) {
   const { locale: activeLocale } = useLocale();
   const resolved = locale ?? activeLocale;
+  const { documents } = useCms();
   return (
-    useCms().documents.find(
-      doc => doc.key === key && doc.locale === resolved
-    ) ??
+    documents.find(doc => doc.key === key && doc.locale === resolved) ??
     (resolved !== "pt-BR"
-      ? useCms().documents.find(
-          doc => doc.key === key && doc.locale === "pt-BR"
-        )
+      ? documents.find(doc => doc.key === key && doc.locale === "pt-BR")
       : undefined)
   );
 }
@@ -104,7 +101,7 @@ function resolveCmsText(
 export function useCmsCopy() {
   const [location] = useLocation();
   const { locale } = useLocale();
-  const { documents, error } = useCms();
+  const { documents } = useCms();
   const normalize = location
     .replace("/previa/solucao/", "/servicos/")
     .replace("/previa/parcerias/programa", "/parcerias");
@@ -119,6 +116,7 @@ export function useCmsCopy() {
       : documents.filter(doc => matchKey(doc) && doc.locale === "pt-BR");
   const primaryFields = primary.map(doc => doc.payload.fields);
   const fallbackFields = fallbackPt.map(doc => doc.payload.fields);
+  const linkFields = [...primaryFields, ...fallbackFields];
   function text(original: string): string {
     const localized = resolveCmsText(primaryFields, original);
     if (localized !== undefined) {
@@ -131,7 +129,7 @@ export function useCmsCopy() {
     return cmsLocaleFallback(original, resolved, locale);
   }
   function href(original: string): string {
-    for (const field of fields) {
+    for (const field of linkFields) {
       const items = field.links;
       if (Array.isArray(items)) {
         const found = items.find(
@@ -147,7 +145,7 @@ export function useCmsCopy() {
     return safeCmsUrl(original);
   }
   function image(original: string): { url: string; alt?: string } {
-    for (const field of fields) {
+    for (const field of linkFields) {
       const items = field.images;
       if (Array.isArray(items)) {
         const found = items.find(

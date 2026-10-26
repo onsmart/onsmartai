@@ -412,11 +412,23 @@ select:focus-visible,
 .language-dropdown {
   min-width: 205px;
 }
-.language-dropdown p {
+.language-dropdown p,
+.language-dropdown .language-option {
   font-size: 12px;
   padding: 8px;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
 }
-.language-dropdown p span {
+.language-dropdown .language-option:hover,
+.language-dropdown .language-option.is-active {
+  background: #f3f7fa;
+}
+.language-dropdown p span,
+.language-dropdown .language-option span {
   display: block;
   font-size: 11px;
   color: #66717a;
