@@ -2,7 +2,7 @@ import { useCms } from "./components/cms/CmsProvider";
 import { CmsBanners, CmsBlocks } from "./components/cms/CmsBlocks";
 import CmsArticle from "./pages/CmsArticle";
 import Admin from "./pages/admin/Admin";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Route, Switch, useLocation } from "wouter";
 import Header from "./components/site/Header";
 import Footer from "./components/site/Footer";
@@ -170,13 +170,21 @@ export default function App() {
         .querySelector(`meta[name="${name}"]`)
         ?.setAttribute("content", content);
     }
+  }, [location, cmsDocument, locale, t, normalized]);
+
+  const prevLocationRef = useRef(location);
+  useEffect(() => {
+    if (prevLocationRef.current === location) return;
+    prevLocationRef.current = location;
     if (window.location.hash) {
       const id = decodeURIComponent(window.location.hash.slice(1));
       requestAnimationFrame(() =>
         document.getElementById(id)?.scrollIntoView()
       );
-    } else window.scrollTo(0, 0);
-  }, [location, cmsDocument, locale, t]);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
   useEffect(() => {
     function scrollHash() {
       if (window.location.hash)
