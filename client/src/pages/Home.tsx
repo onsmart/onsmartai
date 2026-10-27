@@ -299,11 +299,7 @@ function Platform() {
             height="76"
             loading="lazy"
           />
-          <h2>
-            {cmsText("SON.IA — Plataforma")}
-            <br />
-            {cmsText("de IA Operacional")}
-          </h2>
+          <h2>{cmsText("SON.IA - Plataforma Operacional Agêntica")}</h2>
           <p>
             {cmsText(
               "Conecta conversas, agentes, sistemas e processos para transformar interações contínuas em ações de negócio governadas."
