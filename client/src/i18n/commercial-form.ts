@@ -32,6 +32,8 @@ export type CommercialFormCopy = {
   back: string;
   submit: string;
   disclaimer: string;
+  /** Frontend-only: no server submit yet; WhatsApp on success is the live channel. */
+  integrationNote: string;
   questions: Record<string, { label: string; hint: string }>;
 };
 
@@ -111,6 +113,8 @@ const pt: CommercialFormCopy = {
   submit: "Enviar qualificação",
   disclaimer:
     "Seus dados são usados apenas para retorno comercial conforme a política de privacidade.",
+  integrationNote:
+    "O envio por este formulário ainda não está integrado ao e-mail comercial. Após concluir, use o WhatsApp para contato imediato.",
   questions: questionsPt,
 };
 
@@ -150,6 +154,8 @@ const en: CommercialFormCopy = {
   submit: "Submit qualification",
   disclaimer:
     "Your data is used only for commercial follow-up under our privacy policy.",
+  integrationNote:
+    "This form is not yet connected to our email system. After submitting, use WhatsApp for an immediate response.",
   questions: {
     "palestras-em-ia": {
       label: "What is the event context?",
@@ -227,6 +233,8 @@ const es: CommercialFormCopy = {
   submit: "Enviar calificación",
   disclaimer:
     "Sus datos se usan solo para seguimiento comercial según la política de privacidad.",
+  integrationNote:
+    "Este formulario aún no está conectado al correo comercial. Tras enviar, use WhatsApp para una respuesta inmediata.",
   questions: {
     "palestras-em-ia": {
       label: "¿Cuál es el contexto del evento?",

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X, SlidersHorizontal, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
+import { useCmsCopy } from "@/components/cms/CmsProvider";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 
 type ConsentValue = {
@@ -19,6 +20,7 @@ export default function Consent({
   onOpenChange: (open: boolean) => void;
 }) {
   const { t } = useSiteCopy();
+  const { href: cmsHref } = useCmsCopy();
   const [consent, setConsent] = useState<ConsentValue | null>(null);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -157,7 +159,7 @@ export default function Consent({
               </button>
             </div>
             <Link
-              href="/legal/privacidade#cookies"
+              href={`${cmsHref("/legal/privacidade")}#cookies`}
               onClick={() => onOpenChange(false)}
               className="legal-link"
             >

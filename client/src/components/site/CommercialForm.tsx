@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
 import { commercialWhatsapp, type LandingData } from "@/data/commercial";
 import { MARKETING_EMAIL } from "@shared/contact";
+import { useCmsCopy } from "@/components/cms/CmsProvider";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { COMMERCIAL_FORM } from "@/i18n/commercial-form";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
@@ -15,6 +16,7 @@ export default function CommercialForm({
   selectedMode?: string;
 }) {
   const { locale } = useLocale();
+  const { href: cmsHref } = useCmsCopy();
   const { t } = useSiteCopy();
   const copy = COMMERCIAL_FORM[locale];
   const [step, setStep] = useState(1);
@@ -197,7 +199,9 @@ export default function CommercialForm({
                 <input name="consent" type="checkbox" required={step === 2} />
                 <span>
                   {copy.privacyPrefix}{" "}
-                  <Link href="/legal/privacidade">{copy.privacyLink}</Link>{" "}
+                  <Link href={cmsHref("/legal/privacidade")}>
+                    {copy.privacyLink}
+                  </Link>{" "}
                   {copy.privacySuffix}
                 </span>
               </label>
@@ -226,6 +230,7 @@ export default function CommercialForm({
             <ShieldCheck size={14} aria-hidden="true" />
             {copy.disclaimer}
           </p>
+          <p className="commercial-form-intro">{copy.integrationNote}</p>
         </>
       )}
     </div>

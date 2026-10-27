@@ -149,6 +149,23 @@ export type SiteCopy = UiMessages & {
     matrixLabel: string;
     branchLabel: string;
   };
+  newsletter: {
+    eyebrow: string;
+    titleLine1: string;
+    titleLine2: string;
+    lead: string;
+    successTitle: string;
+    successBody: string;
+    backToForm: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    consentPrefix: string;
+    privacyLink: string;
+    submit: string;
+    notice: string;
+  };
   shell: {
     missionEyebrow: string;
     missionCtaExpert: string;
@@ -427,6 +444,26 @@ const extraPt = {
     flowAria: "Como funciona o contato",
     matrixLabel: "Matriz",
     branchLabel: "Filial",
+  },
+  newsletter: {
+    eyebrow: "Conhecimento para decidir",
+    titleLine1: "Aprenda IA corporativa",
+    titleLine2: "antes de decidir",
+    lead:
+      "Receba conteúdos sobre inteligência artificial aplicada aos negócios, tendências e estratégias de implementação.",
+    successTitle: "Inscrição registrada.",
+    successBody:
+      "Obrigado pelo interesse. Em breve você receberá novidades sobre IA corporativa no e-mail informado.",
+    backToForm: "Voltar ao formulário",
+    nameLabel: "Nome",
+    namePlaceholder: "Como podemos chamar você?",
+    emailLabel: "E-mail",
+    emailPlaceholder: "seuemail@empresa.com.br",
+    consentPrefix: "Concordo em receber conteúdos da Onsmart.AI.",
+    privacyLink: "Conheça a política de privacidade.",
+    submit: "Quero receber conteúdos",
+    notice:
+      "Você pode cancelar a inscrição a qualquer momento, conforme a política de privacidade.",
   },
   shell: {
     missionEyebrow: "Nossa missão",
@@ -721,6 +758,26 @@ const extraEn: typeof extraPt = {
     flowAria: "How contact works",
     matrixLabel: "Head office",
     branchLabel: "Branch",
+  },
+  newsletter: {
+    eyebrow: "Knowledge to decide",
+    titleLine1: "Learn corporate AI",
+    titleLine2: "before you decide",
+    lead:
+      "Receive content on artificial intelligence applied to business, trends, and implementation strategies.",
+    successTitle: "Subscription recorded.",
+    successBody:
+      "Thank you for your interest. You will soon receive corporate AI updates at the email you provided.",
+    backToForm: "Back to the form",
+    nameLabel: "Name",
+    namePlaceholder: "What should we call you?",
+    emailLabel: "Email",
+    emailPlaceholder: "you@company.com",
+    consentPrefix: "I agree to receive content from Onsmart.AI.",
+    privacyLink: "Read the privacy policy.",
+    submit: "Subscribe to content",
+    notice:
+      "You can unsubscribe at any time, as described in the privacy policy.",
   },
   shell: {
     missionEyebrow: "Our mission",
@@ -1017,6 +1074,26 @@ const extraEs: typeof extraPt = {
     flowAria: "Cómo funciona el contacto",
     matrixLabel: "Matriz",
     branchLabel: "Sucursal",
+  },
+  newsletter: {
+    eyebrow: "Conocimiento para decidir",
+    titleLine1: "Aprenda IA corporativa",
+    titleLine2: "antes de decidir",
+    lead:
+      "Reciba contenidos sobre inteligencia artificial aplicada a los negocios, tendencias y estrategias de implementación.",
+    successTitle: "Inscripción registrada.",
+    successBody:
+      "Gracias por su interés. Pronto recibirá novedades sobre IA corporativa en el correo indicado.",
+    backToForm: "Volver al formulario",
+    nameLabel: "Nombre",
+    namePlaceholder: "¿Cómo podemos llamarlo?",
+    emailLabel: "Correo electrónico",
+    emailPlaceholder: "usted@empresa.com",
+    consentPrefix: "Acepto recibir contenidos de Onsmart.AI.",
+    privacyLink: "Conozca la política de privacidad.",
+    submit: "Quiero recibir contenidos",
+    notice:
+      "Puede cancelar la inscripción en cualquier momento, conforme a la política de privacidad.",
   },
   shell: {
     missionEyebrow: "Nuestra misión",

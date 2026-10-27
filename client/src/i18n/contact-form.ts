@@ -13,7 +13,31 @@ export const CONTACT_INTEREST_VALUES = [
 
 export type ContactInterestValue = (typeof CONTACT_INTEREST_VALUES)[number];
 
+export type ContactFormUiCopy = {
+  panelTitle: string;
+  successTitle: string;
+  backToForm: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  phoneLabel: string;
+  phoneTitle: string;
+  phonePlaceholder: string;
+  companyLabel: string;
+  companyPlaceholder: string;
+  interestLabel: string;
+  interestPlaceholder: string;
+  privacyPrefix: string;
+  privacyLink: string;
+  privacySuffix: string;
+  submitting: string;
+  submit: string;
+  footerNotice: string;
+};
+
 export type ContactFormCopy = {
+  ui: ContactFormUiCopy;
   successBody: string;
   submitError: string;
   interestLabels: Record<ContactInterestValue, string>;
@@ -23,7 +47,85 @@ export type ContactFormCopy = {
   >;
 };
 
+const uiPt: ContactFormUiCopy = {
+  panelTitle: "Conte sobre o seu próximo passo",
+  successTitle: "Mensagem recebida.",
+  backToForm: "Voltar ao formulário",
+  nameLabel: "Nome completo",
+  namePlaceholder: "Seu nome",
+  emailLabel: "E-mail corporativo",
+  emailPlaceholder: "voce@empresa.com.br",
+  phoneLabel: "Telefone",
+  phoneTitle:
+    "Informe de 8 a 25 caracteres, usando números e símbolos de telefone.",
+  phonePlaceholder: "(11) 99999-9999",
+  companyLabel: "Empresa",
+  companyPlaceholder: "Nome da empresa",
+  interestLabel: "Assunto de interesse",
+  interestPlaceholder: "Selecione o que faz sentido para você",
+  privacyPrefix: "Li o",
+  privacyLink: "política de privacidade",
+  privacySuffix:
+    " e autorizo o contato da Onsmart.AI conforme descrito nela.",
+  submitting: "Enviando…",
+  submit: "Enviar mensagem",
+  footerNotice:
+    "Suas informações serão usadas apenas para retorno comercial, conforme a política de privacidade.",
+};
+
+const uiEn: ContactFormUiCopy = {
+  panelTitle: "Tell us about your next step",
+  successTitle: "Message received.",
+  backToForm: "Back to the form",
+  nameLabel: "Full name",
+  namePlaceholder: "Your name",
+  emailLabel: "Work email",
+  emailPlaceholder: "you@company.com",
+  phoneLabel: "Phone",
+  phoneTitle: "Use 8 to 25 characters with numbers and phone symbols.",
+  phonePlaceholder: "+1 (555) 000-0000",
+  companyLabel: "Company",
+  companyPlaceholder: "Company name",
+  interestLabel: "Topic of interest",
+  interestPlaceholder: "Select what fits your situation",
+  privacyPrefix: "I have read the",
+  privacyLink: "privacy policy",
+  privacySuffix:
+    " and authorize Onsmart.AI to contact me as described therein.",
+  submitting: "Sending…",
+  submit: "Send message",
+  footerNotice:
+    "Your information will be used only for commercial follow-up, as described in the privacy policy.",
+};
+
+const uiEs: ContactFormUiCopy = {
+  panelTitle: "Cuéntenos su siguiente paso",
+  successTitle: "Mensaje recibido.",
+  backToForm: "Volver al formulario",
+  nameLabel: "Nombre completo",
+  namePlaceholder: "Su nombre",
+  emailLabel: "Correo corporativo",
+  emailPlaceholder: "usted@empresa.com",
+  phoneLabel: "Teléfono",
+  phoneTitle:
+    "Use de 8 a 25 caracteres con números y símbolos de teléfono.",
+  phonePlaceholder: "(11) 99999-9999",
+  companyLabel: "Empresa",
+  companyPlaceholder: "Nombre de la empresa",
+  interestLabel: "Asunto de interés",
+  interestPlaceholder: "Seleccione lo que tenga sentido para usted",
+  privacyPrefix: "He leído la",
+  privacyLink: "política de privacidad",
+  privacySuffix:
+    " y autorizo el contacto de Onsmart.AI según lo descrito en ella.",
+  submitting: "Enviando…",
+  submit: "Enviar mensaje",
+  footerNotice:
+    "Su información se usará solo para seguimiento comercial, conforme a la política de privacidad.",
+};
+
 const pt: ContactFormCopy = {
+  ui: uiPt,
   successBody:
     "Obrigado pelo contato. Nossa equipe comercial retornará em breve. Se preferir resposta imediata, use o WhatsApp ou {email}.",
   submitError:
@@ -71,6 +173,7 @@ const pt: ContactFormCopy = {
 };
 
 const en: ContactFormCopy = {
+  ui: uiEn,
   successBody:
     "Thank you for reaching out. Our commercial team will get back to you soon. For an immediate response, use WhatsApp or {email}.",
   submitError:
@@ -118,6 +221,7 @@ const en: ContactFormCopy = {
 };
 
 const es: ContactFormCopy = {
+  ui: uiEs,
   successBody:
     "Gracias por contactarnos. Nuestro equipo comercial responderá pronto. Si prefiere una respuesta inmediata, use WhatsApp o {email}.",
   submitError:

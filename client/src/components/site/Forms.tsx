@@ -6,6 +6,7 @@ import {
   type ContactInterestValue,
 } from "@/i18n/contact-form";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { trpc } from "@/lib/trpc";
 import { MARKETING_EMAIL } from "@shared/contact";
 import { useState, type FormEvent } from "react";
@@ -13,8 +14,8 @@ import { ArrowUpRight, CheckCircle2, Mail } from "lucide-react";
 import { Notice } from "./Common";
 
 export function Newsletter() {
-  const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
-
+  const { t } = useSiteCopy();
+  const { href: cmsHref } = useCmsCopy();
   const [done, setDone] = useState(false);
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -27,80 +28,68 @@ export function Newsletter() {
         <div>
           <p className="eyebrow">
             <span />
-            {cmsText("Conhecimento para decidir")}
+            {t("newsletter.eyebrow")}
           </p>
           <h2>
-            {cmsText("Aprenda IA corporativa")}
+            {t("newsletter.titleLine1")}
             <br />
-            {cmsText("antes de decidir")}
+            {t("newsletter.titleLine2")}
           </h2>
-          <p>
-            {cmsText(
-              "Receba conteúdos sobre inteligência artificial aplicada aos negócios, tendências e estratégias de implementação."
-            )}
-          </p>
+          <p>{t("newsletter.lead")}</p>
         </div>
         <div>
           {done ? (
             <div className="form-feedback" role="status">
               <CheckCircle2 size={25} />
-              <h3>{cmsText("Inscrição registrada.")}</h3>
-              <p>
-                {cmsText(
-                  "Obrigado pelo interesse. Em breve você receberá novidades sobre IA corporativa no e-mail informado."
-                )}
-              </p>
+              <h3>{t("newsletter.successTitle")}</h3>
+              <p>{t("newsletter.successBody")}</p>
               <button
                 className="button button-outline"
                 onClick={() => setDone(false)}
               >
-                {cmsText("Voltar ao formulário")}
+                {t("newsletter.backToForm")}
               </button>
             </div>
           ) : (
             <form className="newsletter-form" onSubmit={submit}>
               <div className="form-row">
                 <label>
-                  {cmsText("Nome")}
+                  {t("newsletter.nameLabel")}
                   <input
                     name="name"
                     autoComplete="given-name"
                     required
                     minLength={2}
                     maxLength={100}
-                    placeholder={cmsText("Como podemos chamar você?")}
+                    placeholder={t("newsletter.namePlaceholder")}
                   />
                 </label>
                 <label>
-                  {cmsText("E-mail")}
+                  {t("newsletter.emailLabel")}
                   <input
                     name="email"
                     type="email"
                     autoComplete="email"
                     required
                     maxLength={180}
-                    placeholder={cmsText("seuemail@empresa.com.br")}
+                    placeholder={t("newsletter.emailPlaceholder")}
                   />
                 </label>
               </div>
               <label className="checkbox-label">
                 <input type="checkbox" required />
                 <span>
-                  {cmsText("Concordo em receber conteúdos da Onsmart.AI.")}{" "}
+                  {t("newsletter.consentPrefix")}{" "}
                   <a href={cmsHref("/legal/privacidade")}>
-                    {cmsText("Conheça a política de privacidade.")}
+                    {t("newsletter.privacyLink")}
                   </a>
                 </span>
               </label>
               <button className="button button-primary" type="submit">
-                {cmsText("Quero receber conteúdos")}
+                {t("newsletter.submit")}
                 <ArrowUpRight size={17} />
               </button>
-              <Notice>
-                {cmsText(
-                  "Você pode cancelar a inscrição a qualquer momento, conforme a política de privacidade."
-                )}
-              </Notice>
+              <Notice>{t("newsletter.notice")}</Notice>
             </form>
           )}
         </div>
@@ -108,6 +97,7 @@ export function Newsletter() {
     </section>
   );
 }
+
 export function ContactForm({
   initialInterest = "",
 }: {
@@ -115,7 +105,8 @@ export function ContactForm({
 }) {
   const { locale } = useLocale();
   const formCopy = CONTACT_FORM[locale];
-  const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
+  const { href: cmsHref } = useCmsCopy();
+  const ui = formCopy.ui;
 
   const resolvedInitial = isContactInterestValue(initialInterest)
     ? initialInterest
@@ -126,8 +117,7 @@ export function ContactForm({
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const submitLead = trpc.contact.submit.useMutation();
-  const question =
-    interest ? formCopy.questions[interest] : undefined;
+  const question = interest ? formCopy.questions[interest] : undefined;
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
@@ -151,60 +141,56 @@ export function ContactForm({
       form.reset();
       setInterest("");
     } catch {
-      setError(
-        formCopy.submitError.replace("{email}", MARKETING_EMAIL)
-      );
+      setError(formCopy.submitError.replace("{email}", MARKETING_EMAIL));
     }
   }
   return (
     <div className="contact-form-panel">
       <div className="form-panel-top">
         <Mail size={21} />
-        <span>{cmsText("Conte sobre o seu próximo passo")}</span>
+        <span>{ui.panelTitle}</span>
       </div>
       {done ? (
         <div className="form-feedback" role="status">
           <CheckCircle2 size={28} />
-          <h3>{cmsText("Mensagem recebida.")}</h3>
-          <p>
-            {formCopy.successBody.replace("{email}", MARKETING_EMAIL)}
-          </p>
+          <h3>{ui.successTitle}</h3>
+          <p>{formCopy.successBody.replace("{email}", MARKETING_EMAIL)}</p>
           <button
             className="button button-outline"
             onClick={() => setDone(false)}
           >
-            {cmsText("Voltar ao formulário")}
+            {ui.backToForm}
           </button>
         </div>
       ) : (
         <form onSubmit={submit} className="contact-form">
           <div className="form-row">
             <label>
-              {cmsText("Nome completo")}
+              {ui.nameLabel}
               <input
                 name="name"
                 autoComplete="name"
                 required
                 minLength={2}
                 maxLength={100}
-                placeholder={cmsText("Seu nome")}
+                placeholder={ui.namePlaceholder}
               />
             </label>
             <label>
-              {cmsText("E-mail corporativo")}
+              {ui.emailLabel}
               <input
                 name="email"
                 type="email"
                 autoComplete="email"
                 required
                 maxLength={180}
-                placeholder={cmsText("voce@empresa.com.br")}
+                placeholder={ui.emailPlaceholder}
               />
             </label>
           </div>
           <div className="form-row">
             <label>
-              {cmsText("Telefone")}
+              {ui.phoneLabel}
               <input
                 name="phone"
                 type="tel"
@@ -213,26 +199,24 @@ export function ContactForm({
                 minLength={8}
                 maxLength={25}
                 pattern="[0-9+() .-]{8,25}"
-                title={cmsText(
-                  "Informe de 8 a 25 caracteres, usando números e símbolos de telefone."
-                )}
-                placeholder={cmsText("(11) 99999-9999")}
+                title={ui.phoneTitle}
+                placeholder={ui.phonePlaceholder}
               />
             </label>
             <label>
-              {cmsText("Empresa")}
+              {ui.companyLabel}
               <input
                 name="company"
                 autoComplete="organization"
                 required
                 minLength={2}
                 maxLength={120}
-                placeholder={cmsText("Nome da empresa")}
+                placeholder={ui.companyPlaceholder}
               />
             </label>
           </div>
           <label>
-            {cmsText("Assunto de interesse")}
+            {ui.interestLabel}
             <select
               name="interest"
               value={interest}
@@ -243,7 +227,7 @@ export function ContactForm({
               required
             >
               <option value="">
-                {cmsText("Selecione o que faz sentido para você")}
+                {ui.interestPlaceholder}
               </option>
               {CONTACT_INTEREST_VALUES.map(value => (
                 <option key={value} value={value}>
@@ -267,13 +251,9 @@ export function ContactForm({
           <label className="checkbox-label">
             <input type="checkbox" required />
             <span>
-              {cmsText("Li o")}{" "}
-              <a href={cmsHref("/legal/privacidade")}>
-                {cmsText("política de privacidade")}
-              </a>
-              {cmsText(
-                " e autorizo o contato da Onsmart.AI conforme descrito nela."
-              )}
+              {ui.privacyPrefix}{" "}
+              <a href={cmsHref("/legal/privacidade")}>{ui.privacyLink}</a>
+              {ui.privacySuffix}
             </span>
           </label>
           {error && (
@@ -286,16 +266,10 @@ export function ContactForm({
             type="submit"
             disabled={submitLead.isPending}
           >
-            {submitLead.isPending
-              ? cmsText("Enviando…")
-              : cmsText("Enviar mensagem")}
+            {submitLead.isPending ? ui.submitting : ui.submit}
             <ArrowUpRight size={17} />
           </button>
-          <Notice>
-            {cmsText(
-              "Suas informações serão usadas apenas para retorno comercial, conforme a política de privacidade."
-            )}
-          </Notice>
+          <Notice>{ui.footerNotice}</Notice>
         </form>
       )}
     </div>
