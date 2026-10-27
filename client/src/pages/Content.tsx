@@ -8,11 +8,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { Link, useLocation, useSearch } from "wouter";
-import {
-  parseBlogPreviews,
-  normalizeBlogSearch,
-  blogPreviewLabel,
-} from "@shared/blog";
+import { parseBlogPreviews, normalizeBlogSearch } from "@shared/blog";
 import { CMS_CATEGORIES, safeCmsUrl } from "@shared/cms";
 import { ButtonLink, PageHero } from "@/components/site/Common";
 import { Newsletter } from "@/components/site/Forms";
@@ -22,13 +18,20 @@ import {
   mergeBlogEntries,
   type BlogEntry,
 } from "@/lib/blog-model";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
+import {
+  ALL_TOPIC_KEY,
+  BLOG_PAGE_COPY,
+} from "@/i18n/blog-page";
+import {
+  blogCategoryLabel,
+  blogPreviewStatusLabel,
+} from "@/i18n/site-copy";
 import "./inner.css";
 import "./cms-public.css";
 import "./blog.css";
 
-const DEFAULT_HERO_TITLE = "IA corporativa: conhecimento que vira operação.";
-const DEFAULT_HERO_SUMMARY =
-  "Artigos para compreender, adotar e governar inteligência artificial nas empresas. Aprendizado prático para gestores e equipes.";
 const YOUTUBE_URL = "https://www.youtube.com/@onsmartai";
 const ALL_FORMATS = ["Todas", ...CMS_CATEGORIES] as const;
 const LEGACY_FORMAT_ALIASES: Record<string, string> = {
@@ -48,8 +51,9 @@ function formatFromSearch(search: string): FormatFilter {
 }
 
 function EntryDate({ entry }: { entry: BlogEntry }) {
+  const { locale } = useLocale();
   if (entry.status !== "published") return null;
-  const date = formatBlogDate(entry.publishedAt);
+  const date = formatBlogDate(entry.publishedAt, locale);
   return date ? <time dateTime={entry.publishedAt}>{date}</time> : null;
 }
 
@@ -60,15 +64,18 @@ function EntryMeta({
   entry: BlogEntry;
   featured?: boolean;
 }) {
+  const { locale } = useLocale();
   const date =
-    entry.status === "published" ? formatBlogDate(entry.publishedAt) : "";
+    entry.status === "published"
+      ? formatBlogDate(entry.publishedAt, locale)
+      : "";
   const parts = [entry.author, date].filter(Boolean);
   return (
     <div className={`blog-entry-meta ${featured ? "is-featured" : ""}`}>
       {parts.length > 0 && <span>{parts.join(" · ")}</span>}
       {entry.status !== "published" && (
         <span className="blog-review-label">
-          {blogPreviewLabel(entry.status)}
+          {blogPreviewStatusLabel(entry.status, locale)}
         </span>
       )}
     </div>
@@ -95,6 +102,9 @@ function CoverMedia({
 }
 
 function BlogCard({ entry }: { entry: BlogEntry }) {
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const page = BLOG_PAGE_COPY[locale];
   const cover = (
     <div className="blog-card-cover">
       <CoverMedia entry={entry} />
@@ -111,7 +121,7 @@ function BlogCard({ entry }: { entry: BlogEntry }) {
         <Link
           href={`/conteudo/${entry.slug}`}
           className="blog-card-cover-link"
-          aria-label={`Ler ${entry.title}`}
+          aria-label={t("a11y.readArticle", { title: entry.title })}
         >
           {cover}
         </Link>
@@ -120,8 +130,8 @@ function BlogCard({ entry }: { entry: BlogEntry }) {
           className="blog-card-cover-link is-disabled"
           aria-label={
             entry.status === "approved"
-              ? "Publicação pendente"
-              : "Aprovação pendente"
+              ? page.pubPendingAria
+              : page.approvalPendingAria
           }
         >
           {cover}
@@ -141,12 +151,12 @@ function BlogCard({ entry }: { entry: BlogEntry }) {
         {entry.status !== "published" ? (
           <span className="blog-pending-note">
             {entry.status === "approved"
-              ? "O texto completo permanece privado."
-              : "Aprovação pendente"}
+              ? page.pendingApprovedNote
+              : page.pendingShort}
           </span>
         ) : (
           <Link className="blog-read-link" href={`/conteudo/${entry.slug}`}>
-            Ler texto <ArrowRight size={16} aria-hidden="true" />
+            {page.readText} <ArrowRight size={16} aria-hidden="true" />
           </Link>
         )}
       </div>
@@ -155,13 +165,16 @@ function BlogCard({ entry }: { entry: BlogEntry }) {
 }
 
 function FeaturedEntry({ entry }: { entry: BlogEntry }) {
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const page = BLOG_PAGE_COPY[locale];
   const cover = (
     <div className="blog-featured-cover">
       <CoverMedia entry={entry} featured />
       <span className="blog-featured-cover-caption">
         {entry.status === "published"
-          ? "Leitura editorial"
-          : "Prévia editorial"}
+          ? t("blog.editorialRead")
+          : t("blog.editorialPreview")}
       </span>
     </div>
   );
@@ -173,7 +186,7 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
         <Link
           className="blog-featured-cover-link"
           href={`/conteudo/${entry.slug}`}
-          aria-label={`Ler ${entry.title}`}
+          aria-label={t("a11y.readArticle", { title: entry.title })}
         >
           {cover}
         </Link>
@@ -182,8 +195,8 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
           className="blog-featured-cover-link is-disabled"
           aria-label={
             entry.status === "approved"
-              ? "Publicação pendente"
-              : "Aprovação pendente"
+              ? page.pubPendingAria
+              : page.approvalPendingAria
           }
         >
           {cover}
@@ -196,13 +209,13 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
         <EntryMeta entry={entry} featured />
         {entry.status === "published" ? (
           <Link className="blog-read-link" href={`/conteudo/${entry.slug}`}>
-            Ler texto <ArrowRight size={17} aria-hidden="true" />
+            {page.readText} <ArrowRight size={17} aria-hidden="true" />
           </Link>
         ) : (
           <p className="blog-pending-note">
             {entry.status === "approved"
-              ? "O texto completo permanece privado até a autorização de publicação."
-              : "Aprovação pendente. O texto ainda não está disponível."}
+              ? page.pendingApprovedNote
+              : page.pendingReviewNote}
           </p>
         )}
       </div>
@@ -221,24 +234,27 @@ function EmptyState({
   hasFilters: boolean;
   onReset: () => void;
 }) {
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const page = BLOG_PAGE_COPY[locale];
   if (!ready) {
     return (
       <div className="blog-empty-state" role="status" aria-live="polite">
         <span className="blog-empty-icon" aria-hidden="true">
           <Search size={22} />
         </span>
-        <h3>Carregando o conteúdo editorial…</h3>
-        <p>Consultando os snapshots públicos disponíveis no CMS.</p>
+        <h3>{t("blog.loading")}</h3>
+        <p>{page.cmsLoadingDetail}</p>
       </div>
     );
   }
   if (error) {
     return (
       <div className="blog-empty-state is-error" role="alert">
-        <h3>Não foi possível atualizar o conteúdo.</h3>
+        <h3>{t("blog.loadErrorTitle")}</h3>
         <p>{error}</p>
         <button type="button" className="blog-reset-button" onClick={onReset}>
-          Limpar filtros
+          {t("blog.clearFilters")}
         </button>
       </div>
     );
@@ -249,18 +265,14 @@ function EmptyState({
         <Search size={22} />
       </span>
       <h3>
-        {hasFilters
-          ? "Nenhum conteúdo corresponde a esta seleção."
-          : "Ainda não há conteúdo editorial disponível."}
+        {hasFilters ? page.noMatchTitle : t("blog.emptyTitle")}
       </h3>
       <p>
-        {hasFilters
-          ? "Tente outro assunto, formato ou termo de busca."
-          : "As prévias dependem de aprovação editorial e os textos publicados aparecem somente após um snapshot real do CMS."}
+        {hasFilters ? page.noMatchBody : t("blog.emptyBodyDefault")}
       </p>
       {hasFilters && (
         <button type="button" className="blog-reset-button" onClick={onReset}>
-          Limpar filtros
+          {t("blog.clearFilters")}
         </button>
       )}
     </div>
@@ -268,11 +280,14 @@ function EmptyState({
 }
 
 export default function Content() {
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const blogCopy = BLOG_PAGE_COPY[locale];
   const { documents, ready, error } = useCms();
   const pageDocument = useCmsDocument("/conteudo");
   const search = useSearch();
   const [, navigate] = useLocation();
-  const [topic, setTopic] = useState("Todos");
+  const [topic, setTopic] = useState(ALL_TOPIC_KEY);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(0);
   const selectedFormat = formatFromSearch(search);
@@ -282,8 +297,8 @@ export default function Content() {
     [pageDocument]
   );
   const entries = useMemo(
-    () => mergeBlogEntries(previews, documents),
-    [documents, previews]
+    () => mergeBlogEntries(previews, documents, locale),
+    [documents, previews, locale]
   );
   const topics = useMemo(
     () =>
@@ -297,7 +312,7 @@ export default function Content() {
     return entries.filter(entry => {
       const matchesFormat =
         selectedFormat === "Todas" || entry.category === selectedFormat;
-      const matchesTopic = topic === "Todos" || entry.topic === topic;
+      const matchesTopic = topic === ALL_TOPIC_KEY || entry.topic === topic;
       const haystack = normalizeBlogSearch(
         [
           entry.title,
@@ -339,10 +354,12 @@ export default function Content() {
     entry => entry.status === "approved"
   ).length;
   const hasFilters =
-    Boolean(query.trim()) || topic !== "Todos" || selectedFormat !== "Todas";
+    Boolean(query.trim()) ||
+    topic !== ALL_TOPIC_KEY ||
+    selectedFormat !== "Todas";
 
   useEffect(() => {
-    setTopic("Todos");
+    setTopic(ALL_TOPIC_KEY);
     setQuery("");
     setPage(0);
   }, [search]);
@@ -360,7 +377,7 @@ export default function Content() {
   }
 
   function resetFilters() {
-    setTopic("Todos");
+    setTopic(ALL_TOPIC_KEY);
     setQuery("");
     setPage(0);
     navigate("/conteudo");
@@ -369,16 +386,17 @@ export default function Content() {
   return (
     <div className="inner-page content-page blog-page">
       <PageHero
-        eyebrow="Conteúdo · Blog Onsmart.AI"
-        title={pageDocument?.payload.title || DEFAULT_HERO_TITLE}
-        text={pageDocument?.payload.summary || DEFAULT_HERO_SUMMARY}
+        eyebrow={blogCopy.pageEyebrow}
+        title={pageDocument?.payload.title || t("blog.heroTitleDefault")}
+        text={pageDocument?.payload.summary || t("blog.heroSummaryDefault")}
       >
         <div className="content-hero-actions blog-hero-actions">
           <a className="button button-primary" href="#blog-catalog">
-            Explorar conteúdos <ArrowUpRight size={17} aria-hidden="true" />
+            {blogCopy.exploreContents}{" "}
+            <ArrowUpRight size={17} aria-hidden="true" />
           </a>
           <ButtonLink href={YOUTUBE_URL} variant="text">
-            Visitar YouTube oficial
+            {blogCopy.visitYoutube}
           </ButtonLink>
         </div>
       </PageHero>
@@ -389,27 +407,23 @@ export default function Content() {
             <div>
               <p className="eyebrow">
                 <span />
-                Conteúdo em foco
+                {blogCopy.focusEyebrow}
               </p>
-              <h2>Conhecimento para decidir o próximo passo.</h2>
-              <p className="blog-section-intro">
-                Artigos publicados e prévias autorizadas, organizados por
-                assunto e formato.
-              </p>
+              <h2>{blogCopy.focusTitle}</h2>
+              <p className="blog-section-intro">{blogCopy.focusIntro}</p>
             </div>
             <div className="blog-counts" aria-live="polite">
               <span>
-                <strong>{publishedCount}</strong> publicados
+                <strong>{publishedCount}</strong> {blogCopy.publishedCount}
               </span>
               {reviewCount > 0 && (
                 <span>
-                  <strong>{reviewCount}</strong> em revisão
+                  <strong>{reviewCount}</strong> {blogCopy.inReview}
                 </span>
               )}
               {approvedCount > 0 && (
                 <span>
-                  <strong>{approvedCount}</strong> aprovados · publicação
-                  pendente
+                  <strong>{approvedCount}</strong> {blogCopy.approvedPending}
                 </span>
               )}
             </div>
@@ -417,7 +431,7 @@ export default function Content() {
 
           <div className="blog-controls">
             <label className="blog-search-field" htmlFor="content-search">
-              <span>Buscar por título, autor ou assunto</span>
+              <span>{blogCopy.searchLabel}</span>
               <span className="blog-search-input-wrap">
                 <Search size={18} aria-hidden="true" />
                 <input
@@ -428,12 +442,12 @@ export default function Content() {
                     setQuery(event.target.value);
                     setPage(0);
                   }}
-                  placeholder="Ex.: governança, agentes, adoção"
+                  placeholder={blogCopy.searchPlaceholder}
                 />
               </span>
             </label>
             <label className="blog-format-field" htmlFor="content-format">
-              <span>Formato</span>
+              <span>{blogCopy.formatLabel}</span>
               <select
                 id="content-format"
                 value={selectedFormat}
@@ -443,7 +457,7 @@ export default function Content() {
               >
                 {ALL_FORMATS.map(format => (
                   <option key={format} value={format}>
-                    {format}
+                    {blogCategoryLabel(format, locale)}
                   </option>
                 ))}
               </select>
@@ -454,20 +468,20 @@ export default function Content() {
             <div
               className="blog-topic-filter"
               role="group"
-              aria-label="Filtrar por assunto"
+              aria-label={blogCopy.filterTopicsAria}
             >
-              <span className="blog-filter-label">Assuntos</span>
+              <span className="blog-filter-label">{blogCopy.topicsLabel}</span>
               <div className="blog-topic-options">
                 <button
                   type="button"
-                  className={topic === "Todos" ? "is-active" : ""}
-                  aria-pressed={topic === "Todos"}
+                  className={topic === ALL_TOPIC_KEY ? "is-active" : ""}
+                  aria-pressed={topic === ALL_TOPIC_KEY}
                   onClick={() => {
-                    setTopic("Todos");
+                    setTopic(ALL_TOPIC_KEY);
                     setPage(0);
                   }}
                 >
-                  Todos
+                  {blogCopy.allTopics}
                 </button>
                 {topics.map(value => (
                   <button
@@ -498,17 +512,17 @@ export default function Content() {
               <div className="blog-featured-heading">
                 <p className="eyebrow">
                   <span />
-                  Em destaque
+                  {blogCopy.featured}
                 </p>
                 <span>
                   {featured.status === "published"
-                    ? "Publicado"
-                    : blogPreviewLabel(featured.status)}
+                    ? blogCopy.published
+                    : blogPreviewStatusLabel(featured.status, locale)}
                 </span>
               </div>
               <FeaturedEntry entry={featured} />
               {visibleGridEntries.length > 0 && (
-                <div className="blog-grid" aria-label="Mais conteúdos">
+                <div className="blog-grid" aria-label={blogCopy.moreContents}>
                   {visibleGridEntries.map(entry => (
                     <BlogCard key={entry.slug} entry={entry} />
                   ))}
@@ -517,18 +531,21 @@ export default function Content() {
               {pageCount > 1 && (
                 <nav
                   className="blog-pagination"
-                  aria-label="Paginação de conteúdos"
+                  aria-label={blogCopy.paginationAria}
                 >
                   <button
                     type="button"
                     onClick={() => setPage(current => Math.max(0, current - 1))}
                     disabled={page === 0}
-                    aria-label="Página anterior"
+                    aria-label={t("blog.previousPage")}
                   >
                     <ChevronLeft size={17} aria-hidden="true" />
                   </button>
                   <span aria-live="polite">
-                    Página {page + 1} de {pageCount}
+                    {t("blog.pageOf", {
+                      current: String(page + 1),
+                      total: String(pageCount),
+                    })}
                   </span>
                   <button
                     type="button"
@@ -536,7 +553,7 @@ export default function Content() {
                       setPage(current => Math.min(pageCount - 1, current + 1))
                     }
                     disabled={page >= pageCount - 1}
-                    aria-label="Próxima página"
+                    aria-label={t("blog.nextPage")}
                   >
                     <ChevronRight size={17} aria-hidden="true" />
                   </button>
@@ -554,8 +571,9 @@ export default function Content() {
 
           <p className="blog-accessibility-status" aria-live="polite">
             {filteredEntries.length}{" "}
-            {filteredEntries.length === 1 ? "resultado" : "resultados"} nesta
-            seleção.
+            {filteredEntries.length === 1
+              ? blogCopy.resultsOne
+              : blogCopy.resultsMany}
           </p>
         </div>
       </section>
@@ -568,13 +586,10 @@ export default function Content() {
           <div>
             <p className="eyebrow">
               <span />
-              Canal oficial
+              {blogCopy.youtubeEyebrow}
             </p>
-            <h2>Mais conversas sobre IA corporativa.</h2>
-            <p>
-              Assista ao canal oficial da Onsmart.AI enquanto novos conteúdos
-              são preparados pela equipe.
-            </p>
+            <h2>{blogCopy.youtubeTitle}</h2>
+            <p>{blogCopy.youtubeBody}</p>
           </div>
           <a
             className="button button-outline"
@@ -582,7 +597,8 @@ export default function Content() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Abrir YouTube <ArrowUpRight size={17} aria-hidden="true" />
+            {blogCopy.openYoutube}{" "}
+            <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </div>
       </section>

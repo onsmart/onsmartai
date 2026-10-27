@@ -1,0 +1,101 @@
+{
+  "slug": "consultoria-em-ia",
+  "eyebrow": "AI consulting",
+  "heroTitle": "Structure AI adoption from your company's processes and goals",
+  "lead": "Process mapping, use case prioritization, and design of the AI architecture for operations. From strategy to implementation, considering governance and business objectives.",
+  "contextTitle": "Where can AI make sense in your operation?",
+  "context": "Identifying opportunities requires understanding processes and linking them to business objectives. Without that view, it is hard to prioritize use cases and think about AI architecture with governance in mind. Consulting addresses this path; format, scope, and terms are to be confirmed.",
+  "solutionTitle": "From process analysis to AI architecture design",
+  "solutionText": "Consulting covers process mapping, use case prioritization, and design of the AI architecture for operations. The approach considers governance and business objectives and may span strategy through implementation. Work detail and what will be contracted must be defined in the proposal; no official method or package is specified in the briefing.",
+  "audiences": [
+    "Companies that want to structure artificial intelligence adoption.",
+    "Leaders who need to connect AI initiatives to business objectives.",
+    "Organizations seeking to evaluate processes and prioritize use cases with governance in mind."
+  ],
+  "goals": [
+    {
+      "title": "Map processes",
+      "text": "Understand operation processes as a starting point to evaluate AI opportunities."
+    },
+    {
+      "title": "Prioritize use cases",
+      "text": "Organize opportunities according to business objectives; priorities and criteria depend on company context."
+    },
+    {
+      "title": "Design architecture",
+      "text": "Consider an AI architecture for operations, taking governance and objectives into account, without assuming specific technologies."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Understand objectives",
+      "text": "Connect the AI conversation to business objectives; format and required information will be confirmed."
+    },
+    {
+      "title": "Map processes",
+      "text": "Examine operation processes. Scope and discovery method are defined in the proposal."
+    },
+    {
+      "title": "Prioritize use cases",
+      "text": "Evaluate and prioritize use cases. Criteria and level of detail must be agreed."
+    },
+    {
+      "title": "Design AI architecture",
+      "text": "Consider architecture, strategy, and governance; implementation decisions and scope will be confirmed case by case."
+    }
+  ],
+  "methodology": "The briefing cites process mapping, use case prioritization, and architecture design, from strategy to implementation, considering governance and business objectives. It does not specify official methodology, contracted steps, duration, workload, or format. The flow above organizes cited activities for presentation; it is not a contracted method or scope. Confirm approach, participants, criteria, responsibilities, and limits in the proposal.",
+  "deliverables": [
+    "Process mapping — scope and record format to be confirmed in proposal.",
+    "Use case prioritization — criteria and result format to be confirmed.",
+    "AI architecture design for operations — level of detail and limits to be confirmed.",
+    "Possible implementation support — activities, responsibilities, and deliverables to be defined in proposal."
+  ],
+  "differentiators": [
+    {
+      "title": "Operations view",
+      "text": "The service starts from process mapping and considers AI architecture for operations."
+    },
+    {
+      "title": "Prioritization focus",
+      "text": "Includes use case prioritization in relation to business objectives."
+    },
+    {
+      "title": "Governance considered",
+      "text": "The briefing presents governance as a consulting consideration, without detailing specific controls or frameworks."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is the consulting format?",
+      "a": "The briefing does not state whether delivery is remote, in person, or hybrid, nor the working dynamic. These points must be confirmed in a commercial conversation."
+    },
+    {
+      "q": "What are the timelines and duration?",
+      "a": "No duration, schedule, or workload is stated. Timeline must be confirmed according to proposed scope."
+    },
+    {
+      "q": "What will I receive at the end?",
+      "a": "Mapping, prioritization, and architecture design are cited activities. Documents, formats, and other official deliverables must be specified and agreed in the proposal."
+    },
+    {
+      "q": "Does consulting include implementation?",
+      "a": "The description positions the work from strategy to implementation, but does not define which implementation activities are included. Scope and responsibilities will be confirmed in the proposal."
+    },
+    {
+      "q": "How do I engage and what does it cost?",
+      "a": "Pricing, commercial terms, and engagement process were not stated. Request a conversation to validate needs and receive a proposal."
+    },
+    {
+      "q": "Is there a defined methodology or technology?",
+      "a": "The briefing does not specify official methodology, stack, or tools. Any applicable choices and approach must be confirmed for the project context."
+    }
+  ],
+  "cta": "Request a diagnostic",
+  "interest": "Consultoria",
+  "metaTitle": "AI Consulting for Companies | Onsmart.AI",
+  "metaDescription": "Process mapping, use case prioritization, and AI architecture considering business objectives and governance. Scope to be confirmed.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

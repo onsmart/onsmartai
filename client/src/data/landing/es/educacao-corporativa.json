@@ -1,0 +1,96 @@
+{
+  "slug": "educacao-corporativa",
+  "eyebrow": "Educación corporativa",
+  "heroTitle": "Formación en IA conectada al recorrido de su empresa",
+  "lead": "Un programa anual de formación en inteligencia artificial para empresas, con rutas por nivel de madurez y acompañamiento continuo de la adopción. El diseño, el formato y las condiciones se definen tras entender las necesidades de la organización.",
+  "contextTitle": "¿Cómo desarrollar competencias en IA de forma continua?",
+  "context": "La adopción de IA involucra públicos con distintos niveles de familiaridad. Una iniciativa corporativa puede acercar el aprendizaje al estadio de la empresa y apoyar la continuidad de la adopción. El briefing define un programa anual con rutas por madurez y acompañamiento, sin informar formato, calendario ni alcance detallado.",
+  "solutionTitle": "Una jornada de formación para la realidad de la empresa",
+  "solutionText": "La Educación Corporativa en IA es un programa anual para empresas, organizado en rutas por nivel de madurez y con acompañamiento continuo de la adopción. La jornada puede considerar públicos, prioridades y contexto de la organización; actividades, contenidos, responsables y criterios deben confirmarse en propuesta. No hay metodología oficial, carga horaria ni entregables estandarizados informados.",
+  "audiences": [
+    "Empresas que buscan desarrollar competencias en inteligencia artificial de forma continua.",
+    "Organizaciones con equipos en distintos niveles de madurez en IA.",
+    "Empresas que desean relacionar formación y adopción de IA en el trabajo."
+  ],
+  "goals": [
+    {
+      "title": "Desarrollar competencias",
+      "text": "La formación puede apoyar el desarrollo de conocimientos en IA conforme a los niveles de madurez considerados para la empresa."
+    },
+    {
+      "title": "Acercar aprendizaje y adopción",
+      "text": "El acompañamiento continuo está previsto en la propuesta y puede mantener la atención en la adopción a lo largo del programa; su formato debe acordarse."
+    },
+    {
+      "title": "Organizar una jornada corporativa",
+      "text": "Las rutas por nivel de madurez ofrecen una base para estructurar la formación, con composición a definir según el contexto de la organización."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Entender el contexto",
+      "text": "En conversación comercial, identificar necesidades, públicos e información para evaluar la propuesta. El proceso de diagnóstico debe confirmarse."
+    },
+    {
+      "title": "Alinear niveles y rutas",
+      "text": "Discutir cómo las rutas por nivel de madurez se relacionarían con los públicos. Criterios y contenidos no informados; definir en propuesta."
+    },
+    {
+      "title": "Definir la formación",
+      "text": "Acordar actividades, formato, calendario y responsabilidades, no detallados en el briefing."
+    },
+    {
+      "title": "Combinar acompañamiento",
+      "text": "Especificar el alcance del acompañamiento continuo de la adopción, frecuencia y medios antes de contratar."
+    }
+  ],
+  "methodology": "El briefing informa programa anual, rutas por nivel de madurez y acompañamiento continuo de la adopción, sin describir metodología contratada. Etapas, contenidos, formato, calendario, carga horaria, criterios y responsabilidades deben validarse y registrarse en propuesta.",
+  "deliverables": [
+    "Composición de las rutas por nivel de madurez — alcance a confirmar en propuesta.",
+    "Actividades y materiales de formación — ítems y formatos a confirmar en propuesta.",
+    "Plan de acompañamiento continuo de la adopción — alcance, frecuencia e indicadores a confirmar; no informados como entregables oficiales."
+  ],
+  "differentiators": [
+    {
+      "title": "Propuesta corporativa anual",
+      "text": "El briefing caracteriza la oferta como programa anual de formación para empresas."
+    },
+    {
+      "title": "Rutas por madurez",
+      "text": "La propuesta prevé rutas organizadas por nivel de madurez, sin detallar niveles ni programas."
+    },
+    {
+      "title": "Acompañamiento de la adopción",
+      "text": "El acompañamiento continuo de la adopción integra la descripción del programa; formato y alcance permanecen a confirmar."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "¿El programa es presencial, remoto o híbrido?",
+      "a": "El formato no está informado. Disponibilidad y condiciones deben confirmarse en conversación comercial."
+    },
+    {
+      "q": "¿Cuál es la duración y la carga horaria?",
+      "a": "La propuesta es anual, pero carga horaria, calendario y fechas no fueron informados. Definir en propuesta."
+    },
+    {
+      "q": "¿Qué contenidos y niveles componen las rutas?",
+      "a": "Hay previsión de rutas por madurez, sin niveles, módulos ni programas especificados. La composición debe validarse para cada propuesta."
+    },
+    {
+      "q": "¿Qué incluye el acompañamiento continuo?",
+      "a": "El acompañamiento se menciona, sin actividades, frecuencia ni indicadores detallados. Su alcance debe acordarse antes de la contratación."
+    },
+    {
+      "q": "¿Cómo funciona la contratación y cuál es la inversión?",
+      "a": "Precio, condiciones comerciales y proceso de contratación no fueron informados. Consulte al equipo para validar disponibilidad y recibir propuesta."
+    }
+  ],
+  "cta": "Conversar sobre formación corporativa",
+  "interest": "Treinamentos",
+  "metaTitle": "Educación Corporativa en IA | Onsmart.AI",
+  "metaDescription": "Programa anual de formación en IA para empresas, con rutas por nivel de madurez y acompañamiento continuo de la adopción. Consulte condiciones.",
+  "commercialNotices": [
+    "Los valores, disponibilidad, formatos, alcance y condiciones de contratación están sujetos a confirmación con el equipo comercial."
+  ]
+}

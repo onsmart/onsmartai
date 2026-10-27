@@ -3,103 +3,101 @@ import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowUpRight, MessageSquare, X } from "lucide-react";
 import { Link } from "wouter";
-import { WHATSAPP } from "@/data/site";
-const suggestions = [
-  {
-    label: "Por onde minha empresa começa?",
-    text: "Você pode começar pela capacitação ou pelo mapeamento de um processo prioritário. Educação, consultoria e desenvolvimento são caminhos disponíveis no portfólio.",
-    href: "/servicos",
-    cta: "Explorar as soluções",
-  },
-  {
-    label: "O que é a SON.IA?",
-    text: "A SON.IA é a plataforma de IA operacional que conecta conversas, agentes, sistemas e processos, com regras, permissões e supervisão humana.",
-    href: "/servicos/sonia",
-    cta: "Conhecer a plataforma",
-  },
-  {
-    label: "Quero falar com um especialista",
-    text: "O atendimento comercial está disponível pelo WhatsApp oficial da Onsmart.AI. A conversa será iniciada somente quando você escolher abrir o canal.",
-    href: WHATSAPP,
-    cta: "Abrir WhatsApp comercial",
-  },
-];
+import { translatePath, useSiteCopy } from "@/i18n/useSiteCopy";
+import { useLocale } from "@/i18n/LocaleProvider";
+
 export default function SoniaDemo() {
+  const { t } = useSiteCopy();
+  const { locale } = useLocale();
+  const whatsapp = `https://wa.me/5511930683562?text=${encodeURIComponent(
+    translatePath(locale, "whatsapp.defaultMessage")
+  )}`;
+  const suggestions = [
+    {
+      label: t("sonia.suggestion1Label"),
+      text: t("sonia.suggestion1Text"),
+      href: "/servicos",
+      cta: t("sonia.suggestion1Cta"),
+    },
+    {
+      label: t("sonia.suggestion2Label"),
+      text: t("sonia.suggestion2Text"),
+      href: "/servicos/sonia",
+      cta: t("sonia.suggestion2Cta"),
+    },
+    {
+      label: t("sonia.suggestion3Label"),
+      text: t("sonia.suggestion3Text"),
+      href: whatsapp,
+      cta: t("sonia.suggestion3Cta"),
+    },
+  ];
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
         className="sonia-floating"
-        aria-label="Abrir assistente SON.IA"
+        aria-label={t("a11y.openSonia")}
       >
         <SoniaCharacter decorative className="floating-sonia-character" />
-        <span>SON.IA</span>
+        <span>{t("sonia.title")}</span>
         <span className="floating-dot" />
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="dialog-overlay sonia-overlay" />
         <Dialog.Content className="sonia-dialog">
-          <div className="sonia-dialog-head">
-            <span className="sonia-avatar">
-              <SoniaCharacter decorative />
-            </span>
+          <Dialog.Close
+            className="dialog-close"
+            aria-label={t("sonia.close")}
+          >
+            <X size={22} />
+          </Dialog.Close>
+          <div className="sonia-dialog-header">
+            <SoniaCharacter decorative />
             <div>
-              <Dialog.Title>Conheça a SON.IA</Dialog.Title>
-              <span>Assistente de orientação</span>
+              <Dialog.Title>{t("sonia.title")}</Dialog.Title>
+              <Dialog.Description>{t("sonia.subtitle")}</Dialog.Description>
             </div>
-            <Dialog.Close
-              aria-label="Fechar assistente"
-              className="dialog-close"
-            >
-              <X size={20} />
-            </Dialog.Close>
           </div>
-          <div className="sonia-chat-body">
-            <Dialog.Description className="sonia-welcome">
-              Olá! Conheça os caminhos para adotar IA na sua empresa. Selecione
-              um tema para explorar o conteúdo institucional.
-            </Dialog.Description>
-            <div className="sonia-suggestions">
-              {suggestions.map((s, i) => (
-                <button
-                  aria-pressed={selected === i}
-                  key={s.label}
-                  onClick={() => setSelected(i)}
+          <div className="sonia-suggestions">
+            {suggestions.map((item, index) => (
+              <button
+                key={item.label}
+                type="button"
+                className={selected === index ? "is-active" : ""}
+                onClick={() => setSelected(index)}
+              >
+                <MessageSquare size={16} aria-hidden="true" />
+                {item.label}
+              </button>
+            ))}
+          </div>
+          {selected !== null && (
+            <div className="sonia-response">
+              <p>{suggestions[selected].text}</p>
+              {suggestions[selected].href.startsWith("http") ? (
+                <a
+                  className="button button-primary"
+                  href={suggestions[selected].href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {s.label}
-                  <ArrowUpRight size={14} />
-                </button>
-              ))}
+                  {suggestions[selected].cta}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              ) : (
+                <Link
+                  className="button button-primary"
+                  href={suggestions[selected].href}
+                  onClick={() => setOpen(false)}
+                >
+                  {suggestions[selected].cta}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </Link>
+              )}
             </div>
-            {selected !== null && (
-              <div className="sonia-response" aria-live="polite">
-                <p>{suggestions[selected].text}</p>
-                {suggestions[selected].href.startsWith("/") ? (
-                  <a
-                    href={suggestions[selected].href}
-                    onClick={() => setOpen(false)}
-                  >
-                    {suggestions[selected].cta}
-                    <ArrowUpRight size={15} />
-                  </a>
-                ) : (
-                  <a
-                    href={suggestions[selected].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {suggestions[selected].cta}
-                    <ArrowUpRight size={15} />
-                  </a>
-                )}
-              </div>
-            )}
-            <p className="sonia-disclaimer">
-              Orientação inicial sobre soluções Onsmart.AI. Para atendimento
-              comercial, use o WhatsApp ou o formulário de contato.
-            </p>
-          </div>
+          )}
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

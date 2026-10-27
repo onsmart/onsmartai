@@ -1,4 +1,5 @@
 import { useCmsCopy } from "@/components/cms/CmsProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import type { StockPhoto } from "@/data/photography";
 import "./academy-home-photo.css";
 const modules = import.meta.glob<StockPhoto>(
@@ -6,6 +7,7 @@ const modules = import.meta.glob<StockPhoto>(
   { eager: true, import: "default" }
 );
 export default function AcademyHomePhoto() {
+  const { t } = useSiteCopy();
   const { image } = useCmsCopy();
   const photo = Object.values(modules)[0];
   if (!photo) return null;
@@ -20,10 +22,7 @@ export default function AcademyHomePhoto() {
         loading="lazy"
         decoding="async"
       />
-      <figcaption>
-        Fotografia ilustrativa · não representa a equipe ou um evento da
-        Onsmart.
-      </figcaption>
+      <figcaption>{t("showcase.photoCaption")}</figcaption>
     </figure>
   );
 }

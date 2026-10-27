@@ -1,0 +1,99 @@
+{
+  "slug": "capacitacao-de-lideres",
+  "eyebrow": "Executive AI education",
+  "heroTitle": "Prepare leadership to sponsor AI in the company",
+  "lead": "Training for directors and managers who will sponsor AI in the company, covering strategy, prioritization, business case, risks, and governance. The goal is for each leader to develop the AI roadmap for their area.",
+  "contextTitle": "From intent to responsible prioritization",
+  "context": "AI adoption involves choices about where to focus effort, how to evaluate opportunities, and how to consider risks and governance. Leaders who sponsor this agenda need to connect AI decisions to their area's priorities. The briefing does not specify particular business challenges or guaranteed results.",
+  "solutionTitle": "Training for AI decisions and sponsorship",
+  "solutionText": "Program for directors and managers who will sponsor AI in the company. Stated topics are strategy, prioritization, business case, risks, and governance. The declared goal is for each leader to develop the AI roadmap for their area; format, activities, scope, and terms must be confirmed in the proposal.",
+  "audiences": [
+    "Directors who will sponsor AI in the company.",
+    "Managers responsible for guiding AI decisions in their areas.",
+    "Leaders who need to connect area priorities to an AI roadmap."
+  ],
+  "goals": [
+    {
+      "title": "Connect AI to strategy",
+      "text": "Explore AI strategy as a theme of sponsorship and business decision-making."
+    },
+    {
+      "title": "Prioritize opportunities",
+      "text": "Work on prioritizing initiatives as a focus of the training, without promising specific results."
+    },
+    {
+      "title": "Structure an area roadmap",
+      "text": "The stated goal is for each leader to develop the AI roadmap for their area; its form and scope depend on confirmation."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Strategy",
+      "text": "Cover AI strategy; sequence and learning activity to be confirmed in proposal."
+    },
+    {
+      "title": "Prioritization",
+      "text": "Cover AI prioritization; criteria and dynamics not stated and subject to confirmation."
+    },
+    {
+      "title": "Business case",
+      "text": "Topic included in the briefing; analysis format and any resulting material must be defined in the proposal."
+    },
+    {
+      "title": "Risks and governance",
+      "text": "Cover risks and governance; specific content and activities to be confirmed."
+    },
+    {
+      "title": "Area roadmap",
+      "text": "Developing the roadmap is the program goal, not a guaranteed deliverable or outcome; scope and terms to be confirmed."
+    }
+  ],
+  "methodology": "The briefing states topics and the goal but does not define method, official sequence, format, duration, or workload. This thematic organization is consultative and does not represent contracted methodology. Activities, participation, criteria, and terms must be specified and confirmed in a commercial proposal.",
+  "deliverables": [
+    "Area AI roadmap: goal mentioned in the briefing; format, scope, authorship, criteria, and any formal deliverable to be confirmed in proposal.",
+    "Business case: topic covered in the program; no official material or deliverable specified, so any output must be confirmed in the proposal."
+  ],
+  "differentiators": [
+    {
+      "title": "Focus on sponsors",
+      "text": "Program aimed at directors and managers who will sponsor AI in the company."
+    },
+    {
+      "title": "Business decision themes",
+      "text": "Brings together strategy, prioritization, business case, risks, and governance, per the briefing."
+    },
+    {
+      "title": "Goal tied to the area",
+      "text": "The stated goal is for each leader to develop the AI roadmap for their area, with no guarantee of outcome."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Who is the training for?",
+      "a": "Directors and managers who will sponsor AI in the company."
+    },
+    {
+      "q": "Which topics are covered?",
+      "a": "Strategy, prioritization, business case, risks, and governance."
+    },
+    {
+      "q": "What is the format and duration?",
+      "a": "Format, duration, and workload are not stated in the briefing. They must be validated in the proposal before engagement."
+    },
+    {
+      "q": "Will participants receive a ready-made roadmap?",
+      "a": "The stated goal is for each leader to develop the AI roadmap for their area. The briefing does not confirm formal deliverable, format, or guarantee; these points must be defined in the proposal."
+    },
+    {
+      "q": "How do timelines, pricing, and engagement work?",
+      "a": "Timelines, pricing, and engagement terms are not stated. Contact Onsmart.AI to validate availability and receive a proposal."
+    }
+  ],
+  "cta": "Train my leadership team",
+  "interest": "Treinamentos",
+  "metaTitle": "Leadership Training in AI | Onsmart.AI",
+  "metaDescription": "Training for directors and managers: strategy, prioritization, business case, risks, and governance to sponsor AI in the company.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

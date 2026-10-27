@@ -13,7 +13,8 @@
     "db:migrate": "drizzle-kit migrate",
     "dev:static": "vite --host 0.0.0.0 --port ${PORT:-3000} --strictPort",
     "build:static": "vite build",
-    "cms:seed": "tsx scripts/apply-cms-seed.ts"
+    "cms:seed": "tsx scripts/apply-cms-seed.ts",
+    "cms:seed:locales": "tsx scripts/generate-cms-locale-seed.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.693.0",

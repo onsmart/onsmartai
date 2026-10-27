@@ -2,16 +2,18 @@ import { CompanyLogo } from "./CompanyLogo";
 import { useCmsCopy } from "@/components/cms/CmsProvider";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
-import { solutions, solutionHref, socials, WHATSAPP } from "@/data/site";
+import { useSiteContent } from "@/data/site-content";
+import { useWhatsappLink } from "@/i18n/site";
 import { MARKETING_EMAIL } from "@shared/contact";
-import { useLocale } from "@/i18n/LocaleProvider";
-import { localizedSolutionTitle } from "@/i18n/site";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 export default function Footer({
   onPreferences,
 }: {
   onPreferences: () => void;
 }) {
-  const { locale } = useLocale();
+  const whatsapp = useWhatsappLink();
+  const { t } = useSiteCopy();
+  const { solutions, solutionHref, socials } = useSiteContent();
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
 
   return (
@@ -47,10 +49,9 @@ export default function Footer({
               .filter(s => s.category === "Educação")
               .map(s => (
                 <Link href={solutionHref(s.slug)} key={s.slug}>
-                  {localizedSolutionTitle(s.slug, s.title, locale).replace(
-                    / em IA$/i,
-                    locale === "pt-BR" ? " em IA" : ""
-                  )}
+                  {s.slug === "capacitacao-de-lideres"
+                    ? t("footer.leadersInAI")
+                    : s.title}
                 </Link>
               ))}
           </div>
@@ -63,8 +64,8 @@ export default function Footer({
                   {s.slug === "sonia"
                     ? "SON.IA"
                     : s.slug === "apps-e-agentes"
-                      ? localizedSolutionTitle(s.slug, s.title, locale)
-                      : localizedSolutionTitle(s.slug, s.title, locale)}
+                      ? t("footer.customApps")
+                      : s.title}
                 </Link>
               ))}
             <Link href={cmsHref("/parcerias")}>{cmsText("Parcerias")}</Link>
@@ -96,7 +97,7 @@ export default function Footer({
           </div>
           <div>
             <h2>{cmsText("Vamos conversar")}</h2>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer">
               {cmsText("+55 (11) 93068-3562")}
               <ArrowUpRight size={15} />
             </a>

@@ -24,25 +24,25 @@ import {
   type LandingData,
 } from "@/data/commercial";
 import { MARKETING_EMAIL } from "@shared/contact";
-import { solutions } from "@/data/site";
+import { useSiteContent } from "@/data/site-content";
 import { ButtonLink, Notice, SoniaProcess } from "@/components/site/Common";
 import CommercialForm from "@/components/site/CommercialForm";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import "./commercial.css";
 
 export function CommercialFAQ({ data }: { data: LandingData }) {
+  const { t } = useSiteCopy();
   return (
     <section className="commercial-section commercial-faq" id="commercial-faq">
       <div className="container commercial-two-col">
         <div>
           <p className="eyebrow">
             <span />
-            Dúvidas frequentes
+            {t("commercial.faqEyebrow")}
           </p>
-          <h2>Clareza antes do próximo passo.</h2>
-          <p className="commercial-muted">
-            Respostas objetivas sobre escopo, formato e próximos passos com a
-            equipe comercial.
-          </p>
+          <h2>{t("commercial.faqTitle")}</h2>
+          <p className="commercial-muted">{t("commercial.faqLead")}</p>
         </div>
         <div className="commercial-faq-list">
           {data.faqs.map((faq, index) => (
@@ -66,6 +66,8 @@ export function CommercialClosing({
   data: LandingData;
   selectedMode?: string;
 }) {
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
   return (
     <section
       className="commercial-section commercial-contact-section"
@@ -75,34 +77,29 @@ export function CommercialClosing({
         <div className="commercial-contact-copy">
           <p className="eyebrow">
             <span />
-            Seu próximo passo
+            {t("commercial.closingEyebrow")}
           </p>
           <h2>
             {data.slug === "parcerias"
-              ? "Uma conversa para entender a parceria."
-              : "Vamos conectar esta solução ao seu contexto?"}
+              ? t("commercial.closingTitlePartners")
+              : t("commercial.closingTitleDefault")}
           </h2>
-          <p>
-            Escolha o contato direto com a equipe ou preencha o formulário de
-            qualificação. A proposta comercial depende de entender seu interesse
-            e as necessidades da sua operação.
-          </p>
+          <p>{t("commercial.closingBody")}</p>
           <a
             className="button button-primary"
-            href={commercialWhatsapp(data)}
+            href={commercialWhatsapp(data, locale)}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {data.slug === "parcerias" ? "Quero ser parceiro" : data.cta}
+            {data.slug === "parcerias"
+              ? t("commercial.partnersCta")
+              : data.cta}
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
           <a className="commercial-email" href={`mailto:${MARKETING_EMAIL}`}>
             {MARKETING_EMAIL}
           </a>
-          <Notice>
-            O WhatsApp abre em nova janela. O formulário envia seu interesse à
-            equipe comercial da Onsmart.AI.
-          </Notice>
+          <Notice>{t("commercial.whatsappNotice")}</Notice>
         </div>
         <CommercialForm
           key={data.slug}
@@ -114,7 +111,9 @@ export function CommercialClosing({
   );
 }
 function HeroVisual({ data }: { data: LandingData }) {
-  const publishedPhoto = useCmsDocument(landingPath(data.slug));
+  const { t } = useSiteCopy();
+  const { locale } = useLocale();
+  const publishedPhoto = useCmsDocument(landingPath(data.slug), locale);
   if (data.slug === "sonia")
     return (
       <div className="commercial-hero-visual commercial-visual-platform has-sonia-media">
@@ -122,9 +121,9 @@ function HeroVisual({ data }: { data: LandingData }) {
           src="/assets/sonia-logo.png"
           width="230"
           height="82"
-          alt="Marca oficial SON.IA"
+          alt={t("commercialPage.soniaBrandAlt")}
         />
-        <p>Conversas. Agentes. Sistemas. Processos.</p>
+        <p>{t("commercial.soniaHeroTagline")}</p>
         <SoniaPresentation />
       </div>
     );
@@ -144,22 +143,28 @@ export default function SolutionLanding({
 }: {
   params: { slug: string };
 }) {
-  const published = useCmsDocument(`/servicos/${params.slug}`);
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const { solutions, solutionCategoryLabel } = useSiteContent();
+  const published = useCmsDocument(`/servicos/${params.slug}`, locale);
   const data = published
     ? (published.payload.fields as LandingData)
-    : getCommercial(params.slug);
+    : getCommercial(params.slug, locale);
   if (!data || params.slug === "parcerias")
     return (
       <section className="not-found">
         <div className="container">
-          <p className="eyebrow">Solução não encontrada</p>
-          <h1>Vamos encontrar o caminho adequado?</h1>
-          <p>Consulte o portfólio de educação, serviços e plataforma.</p>
-          <ButtonLink href="/servicos">Explorar soluções</ButtonLink>
+          <p className="eyebrow">{t("commercial.solutionNotFoundEyebrow")}</p>
+          <h1>{t("commercial.solutionNotFoundTitle")}</h1>
+          <p>{t("commercial.solutionNotFoundBody")}</p>
+          <ButtonLink href="/servicos">
+            {t("commercial.exploreSolutions")}
+          </ButtonLink>
         </div>
       </section>
     );
-  const solution = solutions.find(s => s.slug === params.slug)!;
+  const solution = solutions.find(s => s.slug === params.slug);
+  if (!solution) return null;
   const related = solutions
     .filter(s => s.slug !== data.slug)
     .sort(
@@ -176,11 +181,11 @@ export default function SolutionLanding({
         <div className="container">
           <nav
             className="commercial-breadcrumb"
-            aria-label="Caminho de navegação"
+            aria-label={t("a11y.breadcrumbs")}
           >
-            <Link href="/">Home</Link>
+            <Link href="/">{t("commercial.homeBreadcrumb")}</Link>
             <span aria-hidden="true">/</span>
-            <Link href="/servicos">Serviços</Link>
+            <Link href="/servicos">{t("commercialPage.servicesBreadcrumb")}</Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{solution.title}</span>
           </nav>
@@ -204,7 +209,7 @@ export default function SolutionLanding({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visitar o site oficial
+                    {t("commercialPage.visitOfficialSite")}
                     <ArrowUpRight size={15} aria-hidden="true" />
                   </a>
                 ) : (
@@ -212,29 +217,32 @@ export default function SolutionLanding({
                     href="#commercial-solution"
                     className="commercial-secondary"
                   >
-                    Entender a solução
+                    {t("commercialPage.understandSolution")}
                     <ArrowRight size={15} aria-hidden="true" />
                   </a>
                 )}
               </div>
               <p className="commercial-status">
-                Condições comerciais definidas em proposta com a equipe
-                Onsmart.AI.
+                {t("commercialPage.commercialStatus")}
               </p>
             </div>
             <HeroVisual data={data} />
           </div>
         </div>
       </section>
-      <nav className="commercial-subnav" aria-label="Seções da solução">
+      <nav
+        className="commercial-subnav"
+        aria-label={t("commercialPage.subnavSolution")}
+      >
         <div className="container">
-          <a href="#commercial-solution">A solução</a>
-          <a href="#commercial-audience">Para quem</a>
-          <a href="#commercial-how">Como funciona</a>
-          <a href="#commercial-scope">Escopo</a>
-          <a href="#commercial-faq">FAQ</a>
+          <a href="#commercial-solution">{t("commercialPage.subnavSolution")}</a>
+          <a href="#commercial-audience">{t("commercialPage.subnavAudience")}</a>
+          <a href="#commercial-how">{t("commercialPage.subnavHow")}</a>
+          <a href="#commercial-scope">{t("commercialPage.subnavScope")}</a>
+          <a href="#commercial-faq">{t("commercialPage.subnavFaq")}</a>
           <a href="#commercial-contact">
-            Próximo passo <ArrowUpRight size={13} aria-hidden="true" />
+            {t("commercialPage.subnavNext")}{" "}
+            <ArrowUpRight size={13} aria-hidden="true" />
           </a>
         </div>
       </nav>
@@ -242,7 +250,8 @@ export default function SolutionLanding({
         <div className="container commercial-two-col">
           <div>
             <p className="eyebrow">
-              <span />O contexto
+              <span />
+              {t("commercialPage.contextEyebrow")}
             </p>
             <h2>{data.contextTitle}</h2>
           </div>
@@ -250,7 +259,7 @@ export default function SolutionLanding({
             <p>{data.context}</p>
             <div className="commercial-context-link">
               <Target size={20} aria-hidden="true" />
-              <span>Comece pelo objetivo, não pela ferramenta.</span>
+              <span>{t("commercialPage.contextLink")}</span>
             </div>
           </div>
         </div>
@@ -263,7 +272,8 @@ export default function SolutionLanding({
           <div className="commercial-section-lead">
             <div>
               <p className="eyebrow">
-                <span />A solução
+                <span />
+                {t("commercialPage.solutionEyebrow")}
               </p>
               <h2>{data.solutionTitle}</h2>
             </div>
@@ -282,23 +292,20 @@ export default function SolutionLanding({
             <div className="commercial-academy-conditions">
               <div>
                 <span className="eyebrow">
-                  Condições comerciais
+                  {t("landingPage.academyConditionsEyebrow")}
                 </span>
-                <strong>A partir de R$ 349</strong>
-                <p>ou 12x de R$ 29,08</p>
+                <strong>{t("landingPage.academyPrice")}</strong>
+                <p>{t("landingPage.academyInstallments")}</p>
               </div>
               <div>
-                <strong>12 meses</strong>
-                <p>Acesso individual ou por colaborador.</p>
+                <strong>{t("landingPage.academyMonthsTitle")}</strong>
+                <p>{t("landingPage.academyMonthsBody")}</p>
               </div>
               <div>
-                <strong>Curso introdutório gratuito</strong>
-                <p>Consulte a equipe sobre disponibilidade atual.</p>
+                <strong>{t("landingPage.academyFreeTitle")}</strong>
+                <p>{t("landingPage.academyFreeBody")}</p>
               </div>
-              <Notice>
-                Valores e condições de pagamento são confirmados com a equipe
-                comercial antes da contratação.
-              </Notice>
+              <Notice>{t("landingPage.academyNotice")}</Notice>
             </div>
           )}
         </div>
@@ -311,9 +318,9 @@ export default function SolutionLanding({
           <div>
             <p className="eyebrow">
               <span />
-              Para quem é
+              {t("commercialPage.audienceEyebrow")}
             </p>
-            <h2>Uma solução conectada ao seu momento.</h2>
+            <h2>{t("landingPage.audienceTitle")}</h2>
             <p className="commercial-muted">{solution.audience}</p>
           </div>
           <ul className="commercial-audience-list">
@@ -336,18 +343,18 @@ export default function SolutionLanding({
             <div>
               <p className="eyebrow">
                 <span />
-                Como funciona
+                {t("commercialPage.howEyebrow")}
               </p>
               <h2>
                 {data.slug === "sonia"
-                  ? "Da conversa à ação, com supervisão."
-                  : "Conheça os focos desta jornada."}
+                  ? t("landingPage.howTitleSonia")
+                  : t("landingPage.howTitleDefault")}
               </h2>
             </div>
             <p>
               {data.slug === "sonia"
-                ? "Visão das etapas da operação na SON.IA: da conversa à ação, com supervisão humana."
-                : "Visão geral das etapas desta solução. Formato, sequência e contratação são definidos na proposta comercial."}
+                ? t("landingPage.howLeadSonia")
+                : t("landingPage.howLeadDefault")}
             </p>
           </div>
           {data.slug === "sonia" ? (
@@ -370,10 +377,10 @@ export default function SolutionLanding({
           )}
           <Notice>
             {data.slug === "academia"
-              ? "Trilhas e níveis podem variar conforme o plano contratado."
+              ? t("landingPage.noticeAcademia")
               : data.slug === "sonia"
-                ? "Ilustração do fluxo operacional; detalhes técnicos na proposta e implantação."
-                : "Referência das etapas típicas; cronograma e metodologia são acordados na proposta."}
+                ? t("landingPage.noticeSonia")
+                : t("landingPage.noticeDefault")}
           </Notice>
         </div>
       </section>
@@ -385,24 +392,21 @@ export default function SolutionLanding({
           <div className="commercial-method">
             <p className="eyebrow">
               <span />
-              Metodologia e contratação
+              {t("landingPage.methodologyEyebrow")}
             </p>
-            <h2>O escopo vem antes da execução.</h2>
+            <h2>{t("landingPage.methodologyTitle")}</h2>
             <p>{data.methodology}</p>
             <div className="commercial-scope-note">
               <ShieldCheck size={19} aria-hidden="true" />
-              <p>
-                Método, responsabilidades e condições definitivas serão
-                confirmados pela Onsmart.AI na proposta.
-              </p>
+              <p>{t("landingPage.methodologyNote")}</p>
             </div>
           </div>
           <div className="commercial-deliverables">
             <p className="eyebrow">
               <span />
-              Entregáveis e escopo
+              {t("landingPage.deliverablesEyebrow")}
             </p>
-            <h3>O que alinhar na proposta</h3>
+            <h3>{t("landingPage.deliverablesTitle")}</h3>
             <ul>
               {data.deliverables.map(item => (
                 <li key={item}>
@@ -412,8 +416,7 @@ export default function SolutionLanding({
               ))}
             </ul>
             <p className="commercial-scope-disclaimer">
-              Entregáveis e escopo definitivos são confirmados na proposta
-              comercial com a Onsmart.AI.
+              {t("landingPage.deliverablesDisclaimer")}
             </p>
           </div>
         </div>
@@ -421,9 +424,10 @@ export default function SolutionLanding({
       <section className="commercial-section commercial-differences">
         <div className="container">
           <p className="eyebrow">
-            <span />O que orienta esta solução
+            <span />
+            {t("landingPage.diffEyebrow")}
           </p>
-          <h2>Clareza sobre o que faz diferença.</h2>
+          <h2>{t("landingPage.diffTitle")}</h2>
           <div className="commercial-difference-list">
             {data.differentiators.map((item, i) => (
               <article key={item.title}>
@@ -439,15 +443,11 @@ export default function SolutionLanding({
         <div className="container">
           <Layers3 size={24} aria-hidden="true" />
           <div>
-            <h2>Cases desta solução</h2>
-            <p>
-              Não há case específico autorizado para apresentação nesta landing
-              page. Resultados e depoimentos serão incluídos somente com
-              material validado.
-            </p>
+            <h2>{t("landingPage.casesTitle")}</h2>
+            <p>{t("landingPage.casesBody")}</p>
           </div>
           <ButtonLink href="/conteudo?categoria=Cases" variant="outline">
-            Explorar a central
+            {t("landingPage.casesCta")}
           </ButtonLink>
         </div>
       </section>
@@ -459,12 +459,12 @@ export default function SolutionLanding({
             <div>
               <p className="eyebrow">
                 <span />
-                Continue sua jornada
+                {t("landingPage.journeyEyebrow")}
               </p>
-              <h2>Outros caminhos para a adoção de IA.</h2>
+              <h2>{t("landingPage.journeyTitle")}</h2>
             </div>
             <ButtonLink href="/servicos" variant="text">
-              Todo o portfólio
+              {t("landingPage.portfolioLink")}
             </ButtonLink>
           </div>
           <div className="commercial-related-list">
@@ -477,7 +477,7 @@ export default function SolutionLanding({
                 {s.slug === "sonia" && (
                   <SoniaCharacter className="related-sonia-character" />
                 )}
-                <span>{s.category}</span>
+                <span>{solutionCategoryLabel(s.category)}</span>
                 <h3>{s.title}</h3>
                 <p>{s.description}</p>
                 <ArrowUpRight size={19} aria-hidden="true" />
@@ -485,7 +485,7 @@ export default function SolutionLanding({
             ))}
           </div>
           <details className="commercial-review">
-            <summary>Informações comerciais complementares</summary>
+            <summary>{t("landingPage.reviewSummary")}</summary>
             <ul>
               {data.commercialNotices.map(note => (
                 <li key={note}>{note}</li>

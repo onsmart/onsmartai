@@ -1,6 +1,13 @@
 import { useCmsCopy } from "@/components/cms/CmsProvider";
 import { safeCmsUrl } from "@shared/cms";
-import { getPhoto, resolvePhotoUrl, type PhotoKey } from "@/data/photography";
+import {
+  getPhoto,
+  getPhotoAlt,
+  resolvePhotoUrl,
+  type PhotoKey,
+} from "@/data/photography";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import "./site-photography.css";
 export default function SitePhotography({
   photoKey,
@@ -16,6 +23,8 @@ export default function SitePhotography({
   overrideAlt?: string;
 }) {
   const { image } = useCmsCopy();
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
   const photo = getPhoto(photoKey);
   if (!photo) return null;
   const asset = image(photo.url);
@@ -26,16 +35,15 @@ export default function SitePhotography({
     >
       <img
         src={resolvePhotoUrl(url)}
-        alt={overrideAlt || asset.alt || photo.alt}
+        alt={
+          overrideAlt || asset.alt || getPhotoAlt(photoKey, locale) || photo.alt
+        }
         width={photo.width}
         height={photo.height}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
       />
-      <figcaption>
-        Fotografia ilustrativa · não representa a equipe ou um evento da
-        Onsmart.
-      </figcaption>
+      <figcaption>{t("showcase.photoCaption")}</figcaption>
     </figure>
   );
 }

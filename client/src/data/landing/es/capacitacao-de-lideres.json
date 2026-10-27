@@ -1,0 +1,99 @@
+{
+  "slug": "capacitacao-de-lideres",
+  "eyebrow": "Educación ejecutiva en IA",
+  "heroTitle": "Prepare al liderazgo para patrocinar la IA en la empresa",
+  "lead": "Capacitación para directores y gestores que patrocinarán la IA en la empresa, abordando estrategia, priorización, business case, riesgos y gobernanza. El objetivo es que cada líder desarrolle el roadmap de IA de su área.",
+  "contextTitle": "De la intención a la priorización responsable",
+  "context": "La adopción de IA implica decisiones sobre dónde concentrar esfuerzos, cómo evaluar oportunidades y cómo considerar riesgos y gobernanza. Los líderes que patrocinan esta agenda necesitan conectar decisiones de IA con las prioridades de sus áreas. El briefing no especifica desafíos empresariales particulares ni resultados garantizados.",
+  "solutionTitle": "Capacitación para decisiones y patrocinio de IA",
+  "solutionText": "Programa para directores y gestores que patrocinarán la IA en la empresa. Los temas informados son estrategia, priorización, business case, riesgos y gobernanza. El objetivo declarado es que cada líder desarrolle el roadmap de IA de su área; formato, actividades, alcance y condiciones deben confirmarse en propuesta.",
+  "audiences": [
+    "Directores que patrocinarán la IA en la empresa.",
+    "Gestores responsables de orientar decisiones de IA en sus áreas.",
+    "Líderes que necesitan relacionar prioridades del área con un roadmap de IA."
+  ],
+  "goals": [
+    {
+      "title": "Conectar IA con la estrategia",
+      "text": "Explorar la estrategia de IA como tema de patrocinio y decisión empresarial."
+    },
+    {
+      "title": "Priorizar oportunidades",
+      "text": "Trabajar la priorización de iniciativas como foco de la capacitación, sin promesa de resultados específicos."
+    },
+    {
+      "title": "Estructurar un roadmap del área",
+      "text": "El objetivo informado es que cada líder desarrolle el roadmap de IA de su área; su forma y alcance dependen de confirmación."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Estrategia",
+      "text": "Abordaje del tema estrategia de IA; secuencia y actividad didáctica a confirmar en propuesta."
+    },
+    {
+      "title": "Priorización",
+      "text": "Abordaje de priorización de IA; criterios y dinámica no informados y sujetos a confirmación."
+    },
+    {
+      "title": "Business case",
+      "text": "Tema previsto en el briefing; formato de análisis y eventual material resultante deben definirse en propuesta."
+    },
+    {
+      "title": "Riesgos y gobernanza",
+      "text": "Abordaje de los temas de riesgos y gobernanza; contenidos específicos y actividades a confirmar."
+    },
+    {
+      "title": "Roadmap del área",
+      "text": "Desarrollar el roadmap es el objetivo del programa, no una entrega o resultado garantizado; alcance y condiciones a confirmar."
+    }
+  ],
+  "methodology": "El briefing informa los temas y el objetivo, pero no define método, secuencia oficial, formato, duración ni carga horaria. Esta organización temática es consultiva y no representa metodología contratada. Actividades, participación, criterios y condiciones deben especificarse y confirmarse en propuesta comercial.",
+  "deliverables": [
+    "Roadmap de IA del área: objetivo mencionado en el briefing; formato, alcance, autoría, criterios y eventual entrega formal a confirmar en propuesta.",
+    "Business case: tema abordado en el programa; no hay material ni entrega oficial especificados, por lo que cualquier producto debe confirmarse en propuesta."
+  ],
+  "differentiators": [
+    {
+      "title": "Enfoque en quien patrocina",
+      "text": "Programa dirigido a directores y gestores que patrocinarán IA en la empresa."
+    },
+    {
+      "title": "Temas de decisión empresarial",
+      "text": "Reúne estrategia, priorización, business case, riesgos y gobernanza, conforme al briefing."
+    },
+    {
+      "title": "Objetivo ligado al área",
+      "text": "El objetivo declarado es que cada líder desarrolle el roadmap de IA de su área, sin garantía de resultado."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "¿Para quién es la capacitación?",
+      "a": "Para directores y gestores que patrocinarán la IA en la empresa."
+    },
+    {
+      "q": "¿Qué temas se abordan?",
+      "a": "Estrategia, priorización, business case, riesgos y gobernanza."
+    },
+    {
+      "q": "¿Cuál es el formato y la duración?",
+      "a": "Formato, duración y carga horaria no están informados en el briefing. Deben validarse en propuesta antes de la contratación."
+    },
+    {
+      "q": "¿El participante recibirá un roadmap listo?",
+      "a": "El objetivo informado es que cada líder desarrolle el roadmap de IA de su área. El briefing no confirma entrega formal, formato ni garantía; esos puntos deben definirse en propuesta."
+    },
+    {
+      "q": "¿Cómo funcionan plazos, precio y contratación?",
+      "a": "Plazos, precio y condiciones de contratación no están informados. Consulte a Onsmart.AI para validar disponibilidad y recibir una propuesta."
+    }
+  ],
+  "cta": "Capacitar a mi liderazgo",
+  "interest": "Treinamentos",
+  "metaTitle": "Capacitación de Líderes en IA | Onsmart.AI",
+  "metaDescription": "Capacitación para directores y gestores: estrategia, priorización, business case, riesgos y gobernanza para patrocinar la IA en la empresa.",
+  "commercialNotices": [
+    "Los valores, disponibilidad, formatos, alcance y condiciones de contratación están sujetos a confirmación con el equipo comercial."
+  ]
+}

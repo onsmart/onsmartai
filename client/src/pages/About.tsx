@@ -20,49 +20,21 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/site/Common";
-import { companies, WHATSAPP } from "@/data/site";
+import { useSiteContent } from "@/data/site-content";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
+import { useWhatsappLink } from "@/i18n/site";
 
-const milestones = [
-  {
-    marker: "2014",
-    title: "Marco empresarial da Onsmart Tech",
-    text: "O registro público da Onsmart Tech indica 2014 como marco de origem empresarial. A relação formal entre essa cronologia e o Grupo Onsmart ainda aguarda validação interna.",
-    source: "Fonte empresarial • confirmação institucional pendente",
-  },
-  {
-    marker: "Próximo marco",
-    title: "Cronologia preparada para receber fontes oficiais",
-    text: "Outros capítulos da trajetória serão publicados somente depois da revisão documental do grupo.",
-    source: "Sem data preenchida nesta fase",
-  },
-  {
-    marker: "Estado atual",
-    title: "Educação, consultoria e operação de IA",
-    text: "A Onsmart.AI apresenta jornadas de educação, serviços e plataforma para empresas que desejam adotar inteligência artificial com governança.",
-    source: "Posicionamento do briefing • sem cronologia adicional",
-  },
-];
-
-const achievements = [
-  {
-    title: "Canal da Onsmart.AI",
-    text: "Aproximadamente 103 mil inscritos no canal oficial do YouTube. A formulação “100 mil em 18 meses” segue pendente de comprovação documental.",
-    icon: Building2,
-  },
-  {
-    title: "Lançamento da SON.IA",
-    text: "A plataforma foi apresentada em publicação oficial. A data editorial e os detalhes de lançamento permanecem pendentes.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Vôlei Adaptado de Paulínia",
-    text: "Apoio registrado em fonte oficial à equipe de Vôlei Adaptado de Paulínia.",
-    icon: Landmark,
-  },
-];
+const achievementIcons = {
+  youtube: Building2,
+  "sonia-launch": ShieldCheck,
+  volei: Landmark,
+} as const;
 
 export default function About() {
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
+  const { t } = useSiteCopy();
+  const { companies, aboutMilestones, aboutAchievements } = useSiteContent();
+  const whatsapp = useWhatsappLink();
 
   return (
     <div className="inner-page about-page">
@@ -93,7 +65,7 @@ export default function About() {
             {cmsText("Conhecer nossa história")}{" "}
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
-          <ButtonLink href={WHATSAPP} variant="text">
+          <ButtonLink href={whatsapp} variant="text">
             {cmsText("Falar com especialista")}
           </ButtonLink>
         </div>
@@ -157,10 +129,13 @@ export default function About() {
             />
             <div
               className="about-timeline"
-              aria-label="Linha do tempo institucional"
+              aria-label={t("about.timelineA11y")}
             >
-              {milestones.map((milestone, index) => (
-                <article className="about-timeline-item" key={milestone.marker}>
+              {aboutMilestones.map((milestone, index) => (
+                <article
+                  className="about-timeline-item"
+                  key={`${milestone.marker}-${index}`}
+                >
                   <div className="about-timeline-marker" aria-hidden="true">
                     <span>0{index + 1}</span>
                   </div>
@@ -179,14 +154,14 @@ export default function About() {
                             className="timeline-company-logo"
                           />
                         )}
-                        <h3>{cmsText(milestone.title)}</h3>
+                        <h3>{milestone.title}</h3>
                         <span className="timeline-expand">
                           {cmsText("Ver detalhes")}
                         </span>
                       </summary>
-                      <p>{cmsText(milestone.text)}</p>
+                      <p>{milestone.text}</p>
                       <span className="about-timeline-source">
-                        {cmsText(milestone.source)}
+                        {milestone.source}
                       </span>
                     </details>
                   </div>
@@ -243,9 +218,7 @@ export default function About() {
           <div className="container about-leadership-grid">
             <figure className="about-portrait has-photo">
               <RicardoPortrait />
-              <figcaption>
-                Ricardo Palomar · fotografia fornecida para esta página.
-              </figcaption>
+              <figcaption>{t("about.portraitCaption")}</figcaption>
             </figure>
             <div className="about-leadership-copy">
               <p className="eyebrow">
@@ -298,19 +271,22 @@ export default function About() {
               )}
             />
             <div className="about-achievements-grid">
-              {achievements.map(({ title, text, icon: Icon }, index) => (
-                <article className="about-achievement" key={title}>
-                  <div className="about-achievement-top">
-                    <span>0{index + 1}</span>
-                    <Icon size={22} strokeWidth={1.4} aria-hidden="true" />
-                  </div>
-                  {title === "Lançamento da SON.IA" && (
-                    <SoniaCharacter className="achievement-sonia-character" />
-                  )}
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
+              {aboutAchievements.map((item, index) => {
+                const Icon = achievementIcons[item.id];
+                return (
+                  <article className="about-achievement" key={item.id}>
+                    <div className="about-achievement-top">
+                      <span>0{index + 1}</span>
+                      <Icon size={22} strokeWidth={1.4} aria-hidden="true" />
+                    </div>
+                    {item.id === "sonia-launch" && (
+                      <SoniaCharacter className="achievement-sonia-character" />
+                    )}
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

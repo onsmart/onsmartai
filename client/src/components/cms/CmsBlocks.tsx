@@ -1,6 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { safeCmsUrl, type CmsBlock } from "@shared/cms";
 import { useCms } from "./CmsProvider";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 export function CmsBlocks({ blocks }: { blocks: CmsBlock[] }) {
   return (
     <div className="cms-prose">
@@ -33,11 +35,13 @@ export function CmsBlocks({ blocks }: { blocks: CmsBlock[] }) {
 export function CmsBanners() {
   const [location] = useLocation();
   const { documents } = useCms();
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
   if (location.startsWith("/admin")) return null;
   const banners = documents.filter(
     doc =>
       doc.kind === "banner" &&
-      doc.locale === "pt-BR" &&
+      (doc.locale === locale || (locale !== "pt-BR" && doc.locale === "pt-BR")) &&
       doc.payload.bannerTargets.includes(location)
   );
   return (
@@ -54,7 +58,7 @@ export function CmsBanners() {
                 href={safeCmsUrl(doc.payload.sourceUrl)}
                 className="button button-outline"
               >
-                {String(doc.payload.fields.cta || "Saiba mais")}
+                {String(doc.payload.fields.cta || t("commercial.learnMore"))}
               </Link>
             )}
           </div>

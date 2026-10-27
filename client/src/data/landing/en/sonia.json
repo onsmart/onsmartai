@@ -1,0 +1,100 @@
+{
+  "slug": "sonia",
+  "eyebrow": "Operational AI platform",
+  "heroTitle": "Connect conversations, agents, and processes to your company's operations",
+  "lead": "SON.IA connects conversations, agents, systems, and processes to turn ongoing interactions into governed business actions. Discover the Onsmart.AI platform and validate with the team which applications make sense for your operation.",
+  "contextTitle": "How do you take AI from interaction to business action?",
+  "context": "Adopting AI in the company involves more than answering a conversation: processes, context, rules, and responsibilities must be considered. SON.IA is presented as a platform that connects conversations, agents, systems, and processes. Channels, integrations, and terms applicable to each scenario must be confirmed before defining scope.",
+  "solutionTitle": "A platform to connect intelligence and operations",
+  "solutionText": "SON.IA seeks to turn ongoing interactions into governed business actions. The described flow covers receiving conversations and events, consulting authorized knowledge, applying rules and permissions, action and supervision with traceability, and routing exceptions. Available systems and actions depend on validation for each project; we do not assume connectors or features beyond the briefing.",
+  "audiences": [
+    "Companies that want to connect artificial intelligence to operations.",
+    "Teams that need to consider rules, permissions, and supervision when structuring processes with AI.",
+    "Organizations evaluating how conversations and agents can relate to business processes."
+  ],
+  "goals": [
+    {
+      "title": "Connect interactions and processes",
+      "text": "Evaluate opportunities to turn conversations and events into business actions, according to operation requirements."
+    },
+    {
+      "title": "Structure governed use",
+      "text": "Consider authorized knowledge, rules, permissions, and supervision in flow design."
+    },
+    {
+      "title": "Bridge learning and operations",
+      "text": "The platform is presented as a place to operationalize what is learned in Onsmart.AI programs; results depend on context and defined scope."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Receive",
+      "text": "Centralizes conversations and events from operation channels. Supported channels must be confirmed."
+    },
+    {
+      "title": "Understand",
+      "text": "Consults authorized knowledge and identifies context, intent, and required data."
+    },
+    {
+      "title": "Decide",
+      "text": "Follows rules, permissions, and paths defined for each process."
+    },
+    {
+      "title": "Act",
+      "text": "Records, queries, updates, or triggers connected systems, according to systems and actions validated for scope."
+    },
+    {
+      "title": "Supervise",
+      "text": "Maintains traceability and routes exceptions to the responsible person."
+    }
+  ],
+  "methodology": "The steps above organize activities described for the platform; they do not constitute contracted methodology or an official implementation process. Scope, configuration, responsibilities, involved systems, supervision criteria, schedule, and engagement terms must be confirmed in a commercial proposal.",
+  "deliverables": [
+    "Scope and application definition: confirm in proposal.",
+    "Systems, channels, and integrations involved: confirm per requirements.",
+    "Configuration, responsibilities, and supervision criteria: confirm in proposal."
+  ],
+  "differentiators": [
+    {
+      "title": "Operational focus",
+      "text": "The platform proposal connects conversations, agents, systems, and processes."
+    },
+    {
+      "title": "Rules and knowledge",
+      "text": "The described flow considers authorized knowledge, rules, and defined permissions."
+    },
+    {
+      "title": "Supervision and traceability",
+      "text": "The supervision step provides traceability and routing of exceptions to the responsible person."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Which channels and systems does SON.IA connect?",
+      "a": "The briefing does not list compatible channels, connectors, or systems. Availability must be validated for company requirements."
+    },
+    {
+      "q": "How does implementation work and how long does it take?",
+      "a": "Format, implementation steps, and timelines are not stated. These points must be evaluated and confirmed in the proposal."
+    },
+    {
+      "q": "Does the platform execute actions without human supervision?",
+      "a": "The stated flow includes rules, permissions, traceability, and routing exceptions to a responsible person. Degree of supervision and approvals for each process must be defined for scope; we do not assume unrestricted execution."
+    },
+    {
+      "q": "What are pricing and engagement terms?",
+      "a": "Pricing, licensing, and commercial terms were not stated. Contact the team for validation."
+    },
+    {
+      "q": "Is SON.IA already available for engagement?",
+      "a": "Provided materials do not clarify commercial availability, access, or engagement format. The team must confirm this information."
+    }
+  ],
+  "cta": "Request a demo",
+  "interest": "SON.IA",
+  "metaTitle": "SON.IA | Operational AI Platform",
+  "metaDescription": "Discover SON.IA, the Onsmart.AI platform that connects conversations, agents, systems, and processes for governed business actions.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

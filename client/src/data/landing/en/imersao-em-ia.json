@@ -1,0 +1,95 @@
+{
+  "slug": "imersao-em-ia",
+  "eyebrow": "Corporate AI education",
+  "heroTitle": "Turn team challenges into priorities for AI adoption",
+  "lead": "An intensive journey to identify and prioritize use cases and outline an implementation plan connected to what the SON.IA platform already executes. Format, scope, and terms are defined in a commercial conversation.",
+  "contextTitle": "From AI curiosity to relevant next steps",
+  "context": "Companies may recognize artificial intelligence opportunities without knowing which challenges to prioritize or how to connect them to operations. The immersion works from the team's use cases, without assuming results, timeline, or a standardized plan.",
+  "solutionTitle": "An intensive journey focused on the team's challenges",
+  "solutionText": "The AI Immersion aims to leave with prioritized use cases and a clear implementation plan connected to what the SON.IA platform already executes. Facilitation, activities, and specific scope must be validated for each engagement.",
+  "audiences": [
+    "Teams that need to identify AI opportunities related to their own work.",
+    "Companies seeking to prioritize potential use cases before moving to implementation.",
+    "Organizations interested in connecting AI initiatives to what SON.IA already executes."
+  ],
+  "goals": [
+    {
+      "title": "Identify opportunities",
+      "text": "Explore use cases tied to challenges raised by the team; outcomes depend on context and agreed scope."
+    },
+    {
+      "title": "Prioritize use cases",
+      "text": "Organize opportunities as a focus for discussion and prioritization, with no guarantee of feasibility or business outcome."
+    },
+    {
+      "title": "Guide next steps",
+      "text": "Outline an implementation plan to be connected to SON.IA capabilities and validated against the company's reality."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Align context",
+      "text": "Gather team challenges and needs; format and discovery activities must be confirmed in the proposal."
+    },
+    {
+      "title": "Explore use cases",
+      "text": "Work through AI application possibilities related to the stated context, without assuming a specific official dynamic."
+    },
+    {
+      "title": "Prioritize opportunities",
+      "text": "Define priority use cases within agreed scope; criteria and prioritization method must be confirmed."
+    },
+    {
+      "title": "Outline implementation",
+      "text": "Connect the implementation plan to what SON.IA already executes; content, level of detail, and responsibilities will be defined in the proposal."
+    }
+  ],
+  "methodology": "The briefing describes an intensive journey and its objectives but does not state duration, workload, format, agenda, official methodology, or team composition. These elements, along with prioritization criteria and implementation plan scope, must be confirmed in a commercial proposal before engagement.",
+  "deliverables": [
+    "Prioritized use cases — scope, record format, and criteria to be confirmed in proposal.",
+    "Clear implementation plan — content, level of detail, format, and responsibilities to be confirmed in proposal."
+  ],
+  "differentiators": [
+    {
+      "title": "Grounded in the team's reality",
+      "text": "The proposal is oriented to the team's use cases and challenges, per the briefing."
+    },
+    {
+      "title": "Priority before implementation",
+      "text": "The journey seeks to prioritize use cases and outline next steps, without guaranteeing results."
+    },
+    {
+      "title": "Connected to SON.IA",
+      "text": "The plan is presented as connected to what the platform already executes; specific capabilities must be verified in commercial scope."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is the format of the immersion?",
+      "a": "The briefing does not state whether it is in person, remote, or hybrid. Format must be confirmed in a commercial conversation."
+    },
+    {
+      "q": "How long does it last and what is the workload?",
+      "a": "Duration and workload were not provided; they will be defined and confirmed in the proposal."
+    },
+    {
+      "q": "What does the team receive?",
+      "a": "The journey aims to produce prioritized use cases and a clear implementation plan. Format, content, and limits of these deliverables must appear in the proposal; no additional deliverables are confirmed."
+    },
+    {
+      "q": "How does engagement work and what are the timelines?",
+      "a": "Commercial terms, availability, timelines, and engagement process are not stated. Request a conversation for validation."
+    },
+    {
+      "q": "Does the immersion guarantee implementation or results?",
+      "a": "No guarantee is stated. The immersion aims to prioritize use cases and outline a plan; eventual implementation and its results depend on scope and terms to be confirmed."
+    }
+  ],
+  "cta": "Request an immersion proposal",
+  "interest": "Treinamentos",
+  "metaTitle": "AI Immersion for Companies | Onsmart.AI",
+  "metaDescription": "Intensive journey to prioritize AI use cases and outline an implementation plan connected to SON.IA. Ask about format and scope.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

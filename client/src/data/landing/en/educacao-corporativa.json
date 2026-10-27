@@ -1,0 +1,96 @@
+{
+  "slug": "educacao-corporativa",
+  "eyebrow": "Corporate education",
+  "heroTitle": "AI training connected to your company's journey",
+  "lead": "An annual artificial intelligence training program for companies, with tracks by maturity level and continuous adoption support. Design, format, and terms are defined after understanding the organization's needs.",
+  "contextTitle": "How do you build AI skills continuously?",
+  "context": "AI adoption involves audiences with different levels of familiarity. A corporate initiative can align learning with the company's stage and support ongoing adoption. The briefing defines an annual program with maturity tracks and support, without stating format, calendar, or detailed scope.",
+  "solutionTitle": "A training journey for your company's reality",
+  "solutionText": "Corporate AI Education is an annual program for companies, organized in tracks by maturity level with continuous adoption support. The journey can consider audiences, priorities, and organizational context; activities, content, owners, and criteria must be confirmed in the proposal. No official methodology, workload, or standard deliverables are stated.",
+  "audiences": [
+    "Companies seeking to develop artificial intelligence skills continuously.",
+    "Organizations with teams at different AI maturity levels.",
+    "Companies that want to connect training and AI adoption at work."
+  ],
+  "goals": [
+    {
+      "title": "Build skills",
+      "text": "Training can support developing AI knowledge according to maturity levels considered for the company."
+    },
+    {
+      "title": "Connect learning and adoption",
+      "text": "Continuous support is included in the proposal and can keep focus on adoption throughout the program; its format should be agreed."
+    },
+    {
+      "title": "Organize a corporate journey",
+      "text": "Maturity-level tracks provide a basis to structure training, with composition to be defined according to organizational context."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Understand context",
+      "text": "In a commercial conversation, identify needs, audiences, and information to evaluate the proposal. The diagnostic process must be confirmed."
+    },
+    {
+      "title": "Align levels and tracks",
+      "text": "Discuss how maturity-level tracks would relate to audiences. Criteria and content not stated; define in proposal."
+    },
+    {
+      "title": "Define training",
+      "text": "Agree activities, format, calendar, and responsibilities, not detailed in the briefing."
+    },
+    {
+      "title": "Agree on support",
+      "text": "Specify scope of continuous adoption support, frequency, and channels before engaging."
+    }
+  ],
+  "methodology": "The briefing states annual program, maturity-level tracks, and continuous adoption support, without describing contracted methodology. Steps, content, format, calendar, workload, criteria, and responsibilities must be validated and documented in the proposal.",
+  "deliverables": [
+    "Composition of maturity-level tracks — scope to be confirmed in proposal.",
+    "Training activities and materials — items and formats to be confirmed in proposal.",
+    "Continuous adoption support plan — scope, frequency, and indicators to be confirmed; not stated as official deliverables."
+  ],
+  "differentiators": [
+    {
+      "title": "Annual corporate program",
+      "text": "The briefing characterizes the offering as an annual training program for companies."
+    },
+    {
+      "title": "Maturity tracks",
+      "text": "The proposal includes tracks organized by maturity level, without detailing levels or syllabi."
+    },
+    {
+      "title": "Adoption support",
+      "text": "Continuous adoption support is part of the program description; format and scope remain to be confirmed."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is the program in person, remote, or hybrid?",
+      "a": "Format is not stated. Availability and terms must be confirmed in a commercial conversation."
+    },
+    {
+      "q": "What is the duration and workload?",
+      "a": "The proposal is annual, but workload, calendar, and dates were not stated. Define in proposal."
+    },
+    {
+      "q": "What content and levels make up the tracks?",
+      "a": "Maturity tracks are planned, without specified levels, modules, or syllabi. Composition must be validated for each proposal."
+    },
+    {
+      "q": "What does continuous support include?",
+      "a": "Support is mentioned without detailed activities, frequency, or indicators. Its scope should be agreed before engagement."
+    },
+    {
+      "q": "How does engagement work and what is the investment?",
+      "a": "Pricing, commercial terms, and engagement process were not stated. Contact the team to validate availability and receive a proposal."
+    }
+  ],
+  "cta": "Talk about corporate training",
+  "interest": "Treinamentos",
+  "metaTitle": "Corporate AI Education | Onsmart.AI",
+  "metaDescription": "Annual AI training program for companies, with maturity-level tracks and continuous adoption support. Ask about terms.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

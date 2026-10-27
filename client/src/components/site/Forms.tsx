@@ -1,4 +1,11 @@
 import { useCmsCopy } from "@/components/cms/CmsProvider";
+import {
+  CONTACT_FORM,
+  CONTACT_INTEREST_VALUES,
+  isContactInterestValue,
+  type ContactInterestValue,
+} from "@/i18n/contact-form";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { trpc } from "@/lib/trpc";
 import { MARKETING_EMAIL } from "@shared/contact";
 import { useState, type FormEvent } from "react";
@@ -101,58 +108,26 @@ export function Newsletter() {
     </section>
   );
 }
-const interests = [
-  "Consultoria",
-  "Treinamentos",
-  "Desenvolvimento de IA",
-  "SON.IA",
-  "Parcerias",
-  "Imprensa",
-  "Outros assuntos",
-];
-const questions: Record<string, { label: string; placeholder: string }> = {
-  Consultoria: {
-    label: "Qual processo você gostaria de melhorar?",
-    placeholder: "Conte brevemente sobre o desafio da operação.",
-  },
-  Treinamentos: {
-    label: "Para quem seria a capacitação?",
-    placeholder: "Profissionais, lideranças ou uma equipe da empresa?",
-  },
-  "Desenvolvimento de IA": {
-    label: "O que o seu projeto precisa resolver?",
-    placeholder:
-      "Descreva a necessidade, sem enviar informações confidenciais.",
-  },
-  "SON.IA": {
-    label: "Em qual área você gostaria de conhecer a SON.IA?",
-    placeholder: "Ex.: atendimento, vendas ou operações.",
-  },
-  Parcerias: {
-    label: "Qual modalidade de parceria tem interesse?",
-    placeholder: "Agente Digital, Revenda ou White Label.",
-  },
-  Imprensa: {
-    label: "Qual é a pauta e o veículo?",
-    placeholder: "Compartilhe o tema do seu contato.",
-  },
-  "Outros assuntos": {
-    label: "Como podemos ajudar?",
-    placeholder: "Deixe uma breve mensagem.",
-  },
-};
 export function ContactForm({
   initialInterest = "",
 }: {
   initialInterest?: string;
 }) {
+  const { locale } = useLocale();
+  const formCopy = CONTACT_FORM[locale];
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
 
-  const [interest, setInterest] = useState(initialInterest);
+  const resolvedInitial = isContactInterestValue(initialInterest)
+    ? initialInterest
+    : "";
+  const [interest, setInterest] = useState<ContactInterestValue | "">(
+    resolvedInitial
+  );
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const submitLead = trpc.contact.submit.useMutation();
-  const question = questions[interest];
+  const question =
+    interest ? formCopy.questions[interest] : undefined;
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
@@ -164,7 +139,12 @@ export function ContactForm({
         email: String(data.get("email") ?? ""),
         phone: String(data.get("phone") ?? ""),
         company: String(data.get("company") ?? ""),
-        interest: String(data.get("interest") ?? interest),
+        interest: (() => {
+          const raw = String(data.get("interest") ?? interest);
+          return isContactInterestValue(raw)
+            ? formCopy.interestLabels[raw]
+            : raw;
+        })(),
         message: String(data.get("message") ?? "") || undefined,
       });
       setDone(true);
@@ -172,8 +152,7 @@ export function ContactForm({
       setInterest("");
     } catch {
       setError(
-        "Não foi possível enviar agora. Tente novamente ou escreva para " +
-          MARKETING_EMAIL
+        formCopy.submitError.replace("{email}", MARKETING_EMAIL)
       );
     }
   }
@@ -188,8 +167,7 @@ export function ContactForm({
           <CheckCircle2 size={28} />
           <h3>{cmsText("Mensagem recebida.")}</h3>
           <p>
-            Obrigado pelo contato. Nossa equipe comercial retornará em breve. Se
-            preferir resposta imediata, use o WhatsApp ou {MARKETING_EMAIL}.
+            {formCopy.successBody.replace("{email}", MARKETING_EMAIL)}
           </p>
           <button
             className="button button-outline"
@@ -258,15 +236,18 @@ export function ContactForm({
             <select
               name="interest"
               value={interest}
-              onChange={e => setInterest(e.target.value)}
+              onChange={e => {
+                const value = e.target.value;
+                setInterest(isContactInterestValue(value) ? value : "");
+              }}
               required
             >
               <option value="">
                 {cmsText("Selecione o que faz sentido para você")}
               </option>
-              {interests.map(i => (
-                <option key={i} value={i}>
-                  {i}
+              {CONTACT_INTEREST_VALUES.map(value => (
+                <option key={value} value={value}>
+                  {formCopy.interestLabels[value]}
                 </option>
               ))}
             </select>

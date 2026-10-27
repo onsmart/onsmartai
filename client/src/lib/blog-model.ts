@@ -1,5 +1,6 @@
 import type { BlogPreview } from "@shared/blog";
 import type { CmsKind, PublishedDocument } from "@shared/cms";
+import type { SiteLocale } from "@shared/locale";
 
 export const BLOG_CONTENT_KINDS = [
   "article",
@@ -41,14 +42,38 @@ export type ReviewBlogEntry = BlogEntryCommon & {
  */
 export type BlogEntry = PublishedBlogEntry | ReviewBlogEntry;
 
-export function isPublishedBlogDocument(
-  document: PublishedDocument
-): document is PublishedDocument & { kind: BlogContentKind } {
+function isBlogKind(document: PublishedDocument): boolean {
   return (
-    document.locale === "pt-BR" &&
     BLOG_CONTENT_KINDS.includes(document.kind as BlogContentKind) &&
     Boolean(document.slug)
   );
+}
+
+export function isPublishedBlogDocument(
+  document: PublishedDocument,
+  locale: SiteLocale = "pt-BR"
+): document is PublishedDocument & { kind: BlogContentKind } {
+  if (!isBlogKind(document)) return false;
+  if (document.locale === locale) return true;
+  return locale !== "pt-BR" && document.locale === "pt-BR";
+}
+
+export function pickBlogDocument(
+  documents: PublishedDocument[],
+  slug: string,
+  locale: SiteLocale
+): (PublishedDocument & { kind: BlogContentKind }) | undefined {
+  const localized = documents.find(
+    doc =>
+      doc.slug === slug && doc.locale === locale && isBlogKind(doc)
+  );
+  if (localized) return localized as PublishedDocument & { kind: BlogContentKind };
+  if (locale === "pt-BR") return undefined;
+  const fallback = documents.find(
+    doc =>
+      doc.slug === slug && doc.locale === "pt-BR" && isBlogKind(doc)
+  );
+  return fallback as (PublishedDocument & { kind: BlogContentKind }) | undefined;
 }
 
 export function getBlogFieldString(
@@ -113,15 +138,24 @@ function previewToBlogEntry(preview: BlogPreview): ReviewBlogEntry {
  */
 export function mergeBlogEntries(
   previews: BlogPreview[],
-  documents: PublishedDocument[]
+  documents: PublishedDocument[],
+  locale: SiteLocale = "pt-BR"
 ): BlogEntry[] {
   const publishedBySlug = new Map<string, PublishedBlogEntry>();
-  const publishedDocuments = documents.filter(isPublishedBlogDocument);
+  const publishedDocuments = documents.filter(doc =>
+    isPublishedBlogDocument(doc, locale)
+  );
   for (const document of publishedDocuments) {
-    if (!publishedBySlug.has(document.slug)) {
+    const existing = publishedBySlug.get(document.slug);
+    if (
+      !existing ||
+      (document.locale === locale && existing.document.locale !== locale)
+    ) {
       publishedBySlug.set(
         document.slug,
-        publishedDocumentToBlogEntry(document)
+        publishedDocumentToBlogEntry(
+          document as PublishedDocument & { kind: BlogContentKind }
+        )
       );
     }
   }
@@ -145,11 +179,16 @@ export function mergeBlogEntries(
   return entries;
 }
 
-export function formatBlogDate(value: string): string {
+export function formatBlogDate(
+  value: string,
+  locale: SiteLocale = "pt-BR"
+): string {
   if (!value) return "";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("pt-BR", {
+  const intlLocale =
+    locale === "pt-BR" ? "pt-BR" : locale === "es" ? "es" : "en-US";
+  return date.toLocaleDateString(intlLocale, {
     day: "2-digit",
     month: "long",
     year: "numeric",

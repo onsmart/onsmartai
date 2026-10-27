@@ -1,0 +1,101 @@
+{
+  "slug": "academia",
+  "eyebrow": "Training",
+  "heroTitle": "Learn AI applied to work, with no programming required",
+  "lead": "Recorded courses in three levels, from generative AI and prompt engineering to designing and managing AI agents. For professionals, managers, and companies. Commercial information and availability must be confirmed before engagement.",
+  "contextTitle": "How do you build AI skills at your own pace?",
+  "context": "Professionals, managers, and companies may need different starting points to understand and apply artificial intelligence. The Academy organizes learning in three levels, but titles, detailed content, and current access terms must be confirmed before choosing.",
+  "solutionTitle": "A three-level learning journey",
+  "solutionText": "Onsmart.AI Academy offers recorded courses with no programming required, covering topics from generative AI and prompt engineering to designing and managing AI agents. The briefing mentions individual or per-employee licensing and 12 months of access; pricing and any free offering are subject to confirmation.",
+  "audiences": [
+    "Professionals who want to learn about generative AI and prompt engineering.",
+    "Managers interested in understanding design and management of AI agents.",
+    "Companies evaluating training for employees, with individual or per-employee licensing to be confirmed."
+  ],
+  "goals": [
+    {
+      "title": "Understand generative AI",
+      "text": "Expand knowledge of generative AI and prompt engineering according to the content actually offered in the courses."
+    },
+    {
+      "title": "Learn about AI agents",
+      "text": "Explore topics in designing and managing AI agents, without assuming modules or competencies not stated."
+    },
+    {
+      "title": "Support professional learning",
+      "text": "Consider training with no programming requirement, suited to professionals, managers, and companies; outcomes depend on each participant's path and use."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Identify your starting point",
+      "text": "Consider level and topics of interest; official titles and criteria for progression between levels must be confirmed."
+    },
+    {
+      "title": "Explore the levels",
+      "text": "The offering is described in three levels, from generative AI and prompt engineering to designing and managing AI agents; syllabi were not provided."
+    },
+    {
+      "title": "Validate access",
+      "text": "The briefing mentions recorded courses, individual or per-employee licensing, and 12 months of access; availability and current terms must be confirmed."
+    },
+    {
+      "title": "Confirm engagement",
+      "text": "Contact the team about enrollment, purchase, pricing, and access. No active enrollment or purchase is stated on this page."
+    }
+  ],
+  "methodology": "The offering is described as recorded courses in three levels. Detailed format, official titles, syllabi, sequence, assessment, support, and other access terms were not provided and must be confirmed before engagement; this page does not define an official methodology.",
+  "deliverables": [
+    "Recorded courses in three levels — specific content and titles to be confirmed.",
+    "Individual or per-employee licensing mentioned in the briefing — availability and terms to be confirmed.",
+    "12 months of access mentioned in the briefing — confirm validity and applicable rules.",
+    "Free introductory course mentioned in the briefing — current existence and availability to be confirmed."
+  ],
+  "differentiators": [
+    {
+      "title": "Three levels",
+      "text": "The stated structure covers topics from generative AI and prompt engineering to designing and managing AI agents."
+    },
+    {
+      "title": "Recorded courses",
+      "text": "The briefing characterizes the training as recorded courses; platform, resources, and detailed access format were not specified."
+    },
+    {
+      "title": "No programming required",
+      "text": "The proposal is aimed at professionals, managers, and companies with no programming requirement, as described in the briefing."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What are the three levels and the content of each course?",
+      "a": "The briefing states three levels, from generative AI and prompt engineering to designing and managing AI agents, but does not include official names or syllabi. Confirm details before choosing."
+    },
+    {
+      "q": "Do I need to know how to program?",
+      "a": "Training is described as not requiring programming. Other participation requirements were not stated and must be confirmed."
+    },
+    {
+      "q": "How do format and access work?",
+      "a": "Courses are described as recorded and the briefing mentions 12 months of access. Platform, start of term, and access rules must be validated."
+    },
+    {
+      "q": "What is the price?",
+      "a": "The briefing cites from R$ 349 or 12 installments of R$ 29.08, plus a free introductory course, and requires these terms to be confirmed before publication. Current pricing, installments, and free offering are not confirmed."
+    },
+    {
+      "q": "How do I enroll or purchase a course?",
+      "a": "No active enrollment or purchase is stated. Contact the team to confirm availability, engagement, and next steps."
+    },
+    {
+      "q": "Is there a completion deadline or defined workload?",
+      "a": "This information was not provided. Contact the team to confirm duration, workload, and any applicable deadlines."
+    }
+  ],
+  "cta": "Ask about courses and terms",
+  "interest": "Treinamentos",
+  "metaTitle": "Onsmart.AI Academy | AI courses in three levels",
+  "metaDescription": "Discover Onsmart.AI Academy recorded courses: three levels in generative AI, prompt engineering, and agents, with no programming required.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

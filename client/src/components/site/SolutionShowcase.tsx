@@ -2,27 +2,36 @@ import { useState } from "react";
 import { safeCmsUrl } from "@shared/cms";
 import { Plus, Minus } from "lucide-react";
 import { useCms, useCmsCopy } from "@/components/cms/CmsProvider";
-import { solutions, solutionHref } from "@/data/site";
 import { getCommercial, type LandingData } from "@/data/commercial";
+import { useSiteContent } from "@/data/site-content";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { resolveCmsPageDocument } from "@shared/cms-page";
 import {
   getPhoto,
   photoForSolution,
   resolvePhotoUrl,
 } from "@/data/photography";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { ButtonLink, Notice, SectionHeading } from "./Common";
 import { SoniaCharacter } from "./BrandMedia";
 import "./solution-showcase.css";
+
 export default function SolutionShowcase() {
   const [active, setActive] = useState("consultoria-em-ia");
   const { documents } = useCms();
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const { solutions, solutionHref, solutionCategoryLabel } = useSiteContent();
   const { text: cmsText, image: cmsImage } = useCmsCopy();
   const chosen = solutions.find(s => s.slug === active)!;
-  const document = documents.find(
-    d => d.key === solutionHref(active) && d.locale === "pt-BR"
+  const document = resolveCmsPageDocument(
+    documents,
+    solutionHref(active),
+    locale
   );
   const data =
     (document?.payload.fields as LandingData | undefined) ||
-    getCommercial(active);
+    getCommercial(active, locale);
   const photo =
     active === "sonia" ? undefined : getPhoto(photoForSolution(active));
   const image = photo ? cmsImage(photo.url) : undefined;
@@ -32,12 +41,13 @@ export default function SolutionShowcase() {
       <div className="container">
         <div className="products-heading">
           <SectionHeading
-            eyebrow="Do aprendizado à operação"
-            title="Produtos de IA para empresas"
-            text="Programas para a sua empresa entender, adotar e governar a IA, e uma plataforma para colocar tudo em operação."
+            eyebrow={t("showcase.eyebrow")}
+            title={t("showcase.title")}
+            text={t("showcase.text")}
+            skipCmsTitle
           />
           <ButtonLink href="/servicos" variant="outline">
-            Explorar o portfólio
+            {t("showcase.explorePortfolio")}
           </ButtonLink>
         </div>
         <div className="solution-showcase">
@@ -63,19 +73,21 @@ export default function SolutionShowcase() {
               ) : null}
             </div>
             <figcaption className="showcase-caption" aria-live="polite">
-              <span className="showcase-category">{chosen.category}</span>
-              <h3>{cmsText(chosen.title)}</h3>
+              <span className="showcase-category">
+                {solutionCategoryLabel(chosen.category)}
+              </span>
+              <h3>{chosen.title}</h3>
               <p>{cmsText(summary)}</p>
               <span className="showcase-photo-note">
                 {active === "sonia"
-                  ? "Personagem oficial SON.IA · sem simular a interface da plataforma."
-                  : "Fotografia ilustrativa · não representa a equipe ou um evento da Onsmart."}
+                  ? t("showcase.soniaCaption")
+                  : t("showcase.photoCaption")}
               </span>
             </figcaption>
           </figure>
           <div className="solution-showcase-options">
-            <h3>Encontre o próximo passo.</h3>
-            <div role="group" aria-label="Selecionar uma solução de IA">
+            <h3>{t("showcase.findNextStep")}</h3>
+            <div role="group" aria-label={t("showcase.selectSolutionA11y")}>
               {solutions.map(solution => (
                 <div
                   className={`showcase-option ${active === solution.slug ? "active" : ""}`}
@@ -89,8 +101,8 @@ export default function SolutionShowcase() {
                     aria-controls="solution-showcase-panel"
                   >
                     <span>
-                      {cmsText(solution.title)}
-                      <small>{solution.category}</small>
+                      {solution.title}
+                      <small>{solutionCategoryLabel(solution.category)}</small>
                     </span>
                     {active === solution.slug ? (
                       <Minus size={21} aria-hidden="true" />
@@ -102,20 +114,12 @@ export default function SolutionShowcase() {
               ))}
             </div>
             <div className="showcase-action">
-              <ButtonLink href={solutionHref(active)}>
-                {cmsText(chosen.cta)}
-              </ButtonLink>
-              <p>
-                Educação, serviços e plataforma para diferentes etapas da sua
-                empresa.
-              </p>
+              <ButtonLink href={solutionHref(active)}>{chosen.cta}</ButtonLink>
+              <p>{t("showcase.portfolioBlurb")}</p>
             </div>
           </div>
         </div>
-        <Notice>
-          Cada solução tem página dedicada com escopo, público e formas de
-          contato com a equipe Onsmart.AI.
-        </Notice>
+        <Notice>{t("showcase.notice")}</Notice>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { CompanyLogo, type CompanyId } from "./CompanyLogo";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useSearch } from "wouter";
 import { ArrowUpRight, ChevronDown, Menu, X, Globe2 } from "lucide-react";
-import { companies, solutions, solutionHref } from "@/data/site";
+import { useSiteContent } from "@/data/site-content";
 import { useLocale } from "@/i18n/LocaleProvider";
 import {
   localizedSolutionCategory,
@@ -24,6 +24,7 @@ export default function Header() {
   const [location] = useLocation();
   const search = useSearch();
   const { ui, locale, setLocale, localeShort } = useLocale();
+  const { companies, solutions, solutionHref } = useSiteContent();
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const root = useRef<HTMLElement>(null);

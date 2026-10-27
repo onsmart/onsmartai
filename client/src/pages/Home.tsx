@@ -26,14 +26,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { Link } from "wouter";
-import {
-  HERO_SUBTITLE,
-  WHATSAPP,
-  clients,
-  solutions,
-  solutionHref,
-  editorial,
-} from "@/data/site";
+import { solutionHref } from "@/data/site";
 import {
   ButtonLink,
   EditorialCard,
@@ -43,9 +36,14 @@ import {
   SoniaProcess,
 } from "@/components/site/Common";
 import { Newsletter } from "@/components/site/Forms";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useWhatsappLink } from "@/i18n/site";
 
 function Hero() {
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
+  const { t } = useSiteCopy();
+  const whatsapp = useWhatsappLink();
 
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -104,16 +102,14 @@ function Hero() {
           {cmsText("Educação, serviços e plataforma de IA")}
         </p>
         <h1>
-          IA corporativa
+          {t("home.heroLine1")}
           <br />
-          sem mistério:
+          {t("home.heroLine2")}
           <br />
-          <span>
-            entenda, implante na sua empresa e veja o valor na operação.
-          </span>
+          <span>{t("home.heroLine3")}</span>
         </h1>
-        <p className="hero-description">{HERO_SUBTITLE}</p>
-        <ButtonLink href={WHATSAPP}>
+        <p className="hero-description">{t("home.heroSubtitle")}</p>
+        <ButtonLink href={whatsapp}>
           {cmsText("Falar com especialista")}
         </ButtonLink>
       </div>
@@ -129,7 +125,7 @@ function Hero() {
             className="video-control"
             onClick={toggle}
             aria-label={
-              playing ? "Pausar vídeo de fundo" : "Reproduzir vídeo de fundo"
+              playing ? t("a11y.pauseVideo") : t("a11y.playVideo")
             }
           >
             {playing ? <Pause size={15} /> : <Play size={15} />}
@@ -141,7 +137,7 @@ function Hero() {
 }
 function Authority() {
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
-
+  const { t } = useSiteCopy();
   const [paused, setPaused] = useState(false);
   return (
     <section className="authority-section">
@@ -164,9 +160,7 @@ function Authority() {
           className="carousel-toggle"
           onClick={() => setPaused(!paused)}
           aria-label={
-            paused
-              ? "Retomar carrossel de clientes"
-              : "Pausar carrossel de clientes"
+            paused ? t("a11y.resumeCarousel") : t("a11y.pauseCarousel")
           }
         >
           {paused ? <Play size={16} /> : <Pause size={16} />}
@@ -175,7 +169,7 @@ function Authority() {
       <div
         className={`client-marquee ${paused ? "paused" : ""}`}
         tabIndex={0}
-        aria-label="Logotipos de clientes Onsmart.AI"
+        aria-label={t("a11y.clientLogos")}
       >
         <div className="client-track">
           {[0, 1].map(copy => (
@@ -343,10 +337,12 @@ function Platform() {
   );
 }
 export default function Home() {
+  const { locale } = useLocale();
   const { documents } = useCms();
   const publishedEditorial = documents.filter(
     doc =>
-      doc.locale === "pt-BR" &&
+      (doc.locale === locale ||
+        (locale !== "pt-BR" && doc.locale === "pt-BR")) &&
       !["page", "landing", "banner"].includes(doc.kind)
   );
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();

@@ -94,8 +94,12 @@ describe("blog public previews", () => {
     expect(entries[0].title).toBe("Título aprovado de teste");
   });
   it("does not accept other-locale snapshots as Portuguese blog publications", () => {
-    const [entry] = mergeBlogEntries([preview], [published("en")]);
+    const [entry] = mergeBlogEntries([preview], [published("en")], "pt-BR");
     expect(entry.status).toBe("review");
+  });
+  it("accepts locale-matched published snapshots", () => {
+    const [entry] = mergeBlogEntries([preview], [published("en")], "en");
+    expect(entry.status).toBe("published");
   });
   it("does not resurrect removed previews without a published document", () => {
     expect(mergeBlogEntries([], [])).toEqual([]);

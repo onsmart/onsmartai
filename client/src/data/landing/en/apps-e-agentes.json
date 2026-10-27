@@ -1,0 +1,96 @@
+{
+  "slug": "apps-e-agentes",
+  "eyebrow": "AI development",
+  "heroTitle": "Custom AI apps and agents for your company",
+  "lead": "We develop customized artificial intelligence applications, agents, and platforms for specific business needs, in projects independent of the SON.IA platform.",
+  "contextTitle": "When the need calls for a bespoke solution",
+  "context": "Processes, requirements, and systems vary from company to company. A tailored solution may be considered when available alternatives do not match the identified need. Scope, feasibility, and acceptance criteria depend on discovery and validation with the company.",
+  "solutionTitle": "Development aligned to business demand",
+  "solutionText": "Onsmart.AI builds custom AI applications, agents, and platforms for specific needs. The briefing positions projects as independent of SON.IA and indicates the general path from requirements discovery to delivery; technology, integrations, steps, timelines, and criteria are defined and confirmed in the proposal.",
+  "audiences": [
+    "Companies with a specific need that may be met by an AI application.",
+    "Teams evaluating AI agents to support their own activities or processes.",
+    "Organizations considering a custom AI platform and needing to validate requirements and scope."
+  ],
+  "goals": [
+    {
+      "title": "Meet specific requirements",
+      "text": "Evaluate development of a custom solution against demand and gathered requirements; fit is subject to validation."
+    },
+    {
+      "title": "Explore AI applications",
+      "text": "Identify opportunities for AI applications, agents, or platforms related to company needs."
+    },
+    {
+      "title": "Guide a project decision",
+      "text": "Organize requirements and scope as a basis to evaluate a proposal, without anticipating feasibility or outcome."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Requirements discovery",
+      "text": "Understand demand and company requirements; format and depth of discovery will be confirmed."
+    },
+    {
+      "title": "Solution definition",
+      "text": "Assess whether demand involves an application, agent, or AI platform and document scope to propose."
+    },
+    {
+      "title": "Proposal validation",
+      "text": "Confirm approach, limits, responsibilities, technology, steps, timelines, and criteria before engaging."
+    },
+    {
+      "title": "Development and delivery",
+      "text": "Execution steps and delivery content will be described and agreed in the proposal; no confirmed public standard."
+    }
+  ],
+  "methodology": "The briefing states custom development from requirements discovery to delivery but does not define official methodology. Detailed process, technology, integrations, governance, responsibilities, schedule, and acceptance criteria must be evaluated and confirmed in the proposal before engagement.",
+  "deliverables": [
+    "Custom AI application — scope, features, and acceptance criteria to be confirmed in proposal.",
+    "Custom AI agent — purpose, limits, supervision, and requirements to be confirmed in proposal.",
+    "Custom AI platform — scope, architecture, and integrations to be confirmed in proposal."
+  ],
+  "differentiators": [
+    {
+      "title": "Custom development",
+      "text": "Projects are described as tailored to specific company needs."
+    },
+    {
+      "title": "Three solution types",
+      "text": "The briefing cites applications, agents, and AI platforms as development possibilities."
+    },
+    {
+      "title": "Independent of SON.IA",
+      "text": "The service is presented as custom projects independent of the SON.IA platform."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How does development work?",
+      "a": "The briefing points from requirements discovery to delivery. Steps, method, and each team's participation must be confirmed for the project."
+    },
+    {
+      "q": "Which technologies or integrations are used?",
+      "a": "The briefing does not state stack or standard integrations. Compatibility and technical choices must be evaluated against requirements and documented in the proposal."
+    },
+    {
+      "q": "What is the timeline and what will be delivered?",
+      "a": "Timelines, acceptance criteria, and specific deliverables are not stated; they will be defined after understanding demand and validated in the proposal."
+    },
+    {
+      "q": "Do I need to use the SON.IA platform?",
+      "a": "No. The briefing describes custom projects as independent of SON.IA."
+    },
+    {
+      "q": "How do I engage and what is the investment?",
+      "a": "Engagement process and pricing are not stated. Contact the team to present your need and confirm scope and commercial terms."
+    }
+  ],
+  "cta": "Talk about my project",
+  "interest": "Desenvolvimento de IA",
+  "metaTitle": "AI Apps and Agents Development | Onsmart.AI",
+  "metaDescription": "Custom AI applications, agents, and platforms for business needs. Scope, technology, timelines, and deliverables confirmed in proposal.",
+  "commercialNotices": [
+    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+  ]
+}

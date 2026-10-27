@@ -1,5 +1,6 @@
 import media from "@/data/brand-media.json";
 import { useCmsCopy } from "@/components/cms/CmsProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import "./brand-media.css";
 export function SoniaCharacter({
   className = "",
@@ -28,12 +29,11 @@ export function SoniaCharacter({
   );
 }
 export function SoniaPresentation({ className = "" }: { className?: string }) {
+  const { t } = useSiteCopy();
   return (
     <figure className={`sonia-presentation sonia-static ${className}`}>
       <SoniaCharacter />
-      <figcaption>
-        Personagem SON.IA · não é uma captura da interface do produto.
-      </figcaption>
+      <figcaption>{t("showcase.soniaCaption")}</figcaption>
     </figure>
   );
 }

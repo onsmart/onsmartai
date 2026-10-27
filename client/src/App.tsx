@@ -1,4 +1,4 @@
-import { useCms, useCmsDocument } from "./components/cms/CmsProvider";
+import { useCms } from "./components/cms/CmsProvider";
 import { CmsBanners, CmsBlocks } from "./components/cms/CmsBlocks";
 import CmsArticle from "./pages/CmsArticle";
 import Admin from "./pages/admin/Admin";
@@ -21,6 +21,14 @@ import Partners from "./pages/Partners";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { metadata } from "./data/site";
 import { commercialMetadata } from "./data/commercial";
+import { useLocale } from "./i18n/LocaleProvider";
+import { useSiteCopy } from "./i18n/useSiteCopy";
+import {
+  defaultSiteMeta,
+  siteMetadata,
+} from "./i18n/site-metadata";
+import { cmsPageIsAvailable, resolveCmsPageDocument } from "@shared/cms-page";
+
 function LegalLegacyRedirect({ slug }: { slug: string }) {
   const [, setLocation] = useLocation();
   useEffect(() => {
@@ -34,23 +42,29 @@ function LegalLegacyRedirect({ slug }: { slug: string }) {
 
 function Router() {
   const [location] = useLocation();
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
   const { documents, ready } = useCms();
   const normalized = location
     .replace("/previa/solucao/", "/servicos/")
     .replace("/previa/parcerias/programa", "/parcerias");
-  const known = Boolean(metadata[normalized] || commercialMetadata(normalized));
+  const known = Boolean(
+    siteMetadata(normalized, locale) ||
+      metadata[normalized] ||
+      commercialMetadata(normalized, locale)
+  );
   if (
     ready &&
     known &&
-    !documents.some(doc => doc.key === normalized && doc.locale === "pt-BR")
+    !cmsPageIsAvailable(documents, normalized, locale)
   )
     return (
       <section className="not-found">
         <div className="container">
-          <h1>Página não disponível.</h1>
-          <p>Esta página não está disponível no momento.</p>
+          <h1>{t("errors.pageUnavailableTitle")}</h1>
+          <p>{t("errors.pageUnavailableBody")}</p>
           <Link href="/" className="button button-outline">
-            Voltar à Home
+            {t("errors.backHome")}
           </Link>
         </div>
       </section>
@@ -74,39 +88,51 @@ function Router() {
       <Route path="/admin/*" component={Admin} />
       <Route path="/previa/:type/:slug" component={Preview} />
       <Route>
-        <section className="not-found">
-          <div className="container">
-            <p className="eyebrow">404 · Página não encontrada</p>
-            <h1>Vamos encontrar o seu próximo passo?</h1>
-            <p>Verifique o endereço ou volte à página inicial.</p>
-            <Link className="button button-primary" href="/">
-              Voltar à Home
-            </Link>
-          </div>
-        </section>
+        <NotFoundRoute />
       </Route>
     </Switch>
   );
 }
+
+function NotFoundRoute() {
+  const { t } = useSiteCopy();
+  return (
+    <section className="not-found">
+      <div className="container">
+        <p className="eyebrow">{t("errors.notFoundEyebrow")}</p>
+        <h1>{t("errors.notFoundTitle")}</h1>
+        <p>{t("errors.notFoundBody")}</p>
+        <Link className="button button-primary" href="/">
+          {t("errors.backHome")}
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   const [location] = useLocation();
   const [preferencesOpen, setPreferencesOpen] = useState(false);
   const { documents } = useCms();
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
   const normalized = location
     .replace("/previa/solucao/", "/servicos/")
     .replace("/previa/parcerias/programa", "/parcerias");
-  const cmsDocument = documents.find(
-    doc =>
-      doc.locale === "pt-BR" &&
-      (doc.key === normalized ||
-        (normalized === `/conteudo/${doc.slug}` &&
-          !["page", "landing", "banner"].includes(doc.kind)))
-  );
+  const cmsDocument =
+    resolveCmsPageDocument(documents, normalized, locale) ??
+    documents.find(
+      doc =>
+        (doc.locale === locale ||
+          (locale !== "pt-BR" && doc.locale === "pt-BR")) &&
+        normalized === `/conteudo/${doc.slug}` &&
+        !["page", "landing", "banner"].includes(doc.kind)
+    );
   useEffect(() => {
     const info = (location.startsWith("/admin")
       ? {
-          title: "CMS Onsmart.AI | Administração",
-          description: "Painel administrativo protegido da Onsmart.AI.",
+          title: t("errors.adminTitle"),
+          description: t("errors.adminDescription"),
         }
       : undefined) ??
       (cmsDocument
@@ -118,16 +144,14 @@ export default function App() {
         : undefined) ??
       (normalized.startsWith("/conteudo/")
         ? {
-            title: "Página não encontrada | Onsmart.AI",
-            description: "Esta página não está disponível no site Onsmart.AI.",
+            title: t("errors.articleNotFoundTitle"),
+            description: t("errors.articleNotFoundDescription"),
           }
         : undefined) ??
-      commercialMetadata(location) ??
-      metadata[location] ?? {
-        title: "Onsmart.AI",
-        description:
-          "IA corporativa sem mistério: educação, serviços e plataforma para empresas.",
-      };
+      commercialMetadata(location, locale) ??
+      siteMetadata(location, locale) ??
+      metadata[location] ??
+      defaultSiteMeta(locale);
     document.title = info.title;
     document
       .querySelector('meta[name="description"]')
@@ -152,7 +176,7 @@ export default function App() {
         document.getElementById(id)?.scrollIntoView()
       );
     } else window.scrollTo(0, 0);
-  }, [location, cmsDocument]);
+  }, [location, cmsDocument, locale, t]);
   useEffect(() => {
     function scrollHash() {
       if (window.location.hash)
@@ -197,7 +221,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <a href="#main-content" className="skip-link">
-        Ir para o conteúdo
+        {t("errors.skipToContent")}
       </a>
       <Header />
       <main id="main-content">

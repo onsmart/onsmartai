@@ -16,42 +16,11 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/site/Common";
-import { solutionHref, solutions, type Solution } from "@/data/site";
+import type { Solution } from "@/data/site";
+import { useSiteContent } from "@/data/site-content";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 
 type CategoryFilter = "Todas" | Solution["category"];
-
-const categoryMeta: Record<
-  Solution["category"],
-  {
-    id: string;
-    kicker: string;
-    title: string;
-    text: string;
-    icon: typeof GraduationCap;
-  }
-> = {
-  Educação: {
-    id: "educacao",
-    kicker: "01 / Educação",
-    title: "Aprender para decidir melhor.",
-    text: "Jornadas para aproximar pessoas, lideranças e empresas das possibilidades reais da IA corporativa.",
-    icon: GraduationCap,
-  },
-  Serviços: {
-    id: "servicos",
-    kicker: "02 / Serviços",
-    title: "Estruturar a mudança na operação.",
-    text: "Consultoria e desenvolvimento para transformar desafios empresariais em caminhos de implementação.",
-    icon: BriefcaseBusiness,
-  },
-  Plataforma: {
-    id: "plataforma",
-    kicker: "03 / Plataforma",
-    title: "Conectar inteligência a processos governados.",
-    text: "A SON.IA reúne conversas, agentes, sistemas e processos em uma plataforma de IA operacional.",
-    icon: Layers3,
-  },
-};
 
 const categoryOrder: Solution["category"][] = [
   "Educação",
@@ -59,19 +28,55 @@ const categoryOrder: Solution["category"][] = [
   "Plataforma",
 ];
 
-function solutionsFor(category: CategoryFilter) {
-  return category === "Todas"
-    ? solutions
-    : solutions.filter(solution => solution.category === category);
-}
-
 export default function Services() {
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
+  const { t } = useSiteCopy();
+  const { solutions, solutionHref, solutionCategoryLabel } = useSiteContent();
+
+  const categoryMeta = useMemo(
+    () => ({
+      Educação: {
+        id: "educacao",
+        kicker: t("services.categoryEducationKicker"),
+        title: t("services.categoryEducationTitle"),
+        text: t("services.categoryEducationText"),
+        icon: GraduationCap,
+      },
+      Serviços: {
+        id: "servicos",
+        kicker: t("services.categoryServicesKicker"),
+        title: t("services.categoryServicesTitle"),
+        text: t("services.categoryServicesText"),
+        icon: BriefcaseBusiness,
+      },
+      Plataforma: {
+        id: "plataforma",
+        kicker: t("services.categoryPlatformKicker"),
+        title: t("services.categoryPlatformTitle"),
+        text: t("services.categoryPlatformText"),
+        icon: Layers3,
+      },
+    }),
+    [t]
+  );
+
+  const filterLabels: Record<CategoryFilter, string> = useMemo(
+    () => ({
+      Todas: t("services.filterAll"),
+      Educação: t("services.filterEducation"),
+      Serviços: t("services.filterServices"),
+      Plataforma: t("services.filterPlatform"),
+    }),
+    [t]
+  );
 
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("Todas");
   const visibleSolutions = useMemo(
-    () => solutionsFor(activeCategory),
-    [activeCategory]
+    () =>
+      activeCategory === "Todas"
+        ? solutions
+        : solutions.filter(solution => solution.category === activeCategory),
+    [activeCategory, solutions]
   );
   useEffect(() => {
     function revealAnchor() {
@@ -136,7 +141,7 @@ export default function Services() {
 
         <section
           className="services-filter-section"
-          aria-label="Filtro de soluções"
+          aria-label={t("services.filterA11y")}
         >
           <div className="container services-filter-layout">
             <div className="services-filter-label">
@@ -146,7 +151,7 @@ export default function Services() {
             <div
               className="services-filter-controls"
               role="group"
-              aria-label="Categorias do portfólio"
+              aria-label={t("services.categoriesA11y")}
             >
               {(["Todas", ...categoryOrder] as CategoryFilter[]).map(
                 category => (
@@ -157,7 +162,7 @@ export default function Services() {
                     aria-pressed={activeCategory === category}
                     onClick={() => setActiveCategory(category)}
                   >
-                    {category}
+                    {filterLabels[category]}
                   </button>
                 )
               )}
@@ -222,7 +227,7 @@ export default function Services() {
                             <div className="services-solution-title-row">
                               <h3>{solution.title}</h3>
                               <span className="services-solution-category">
-                                {solution.category}
+                                {solutionCategoryLabel(solution.category)}
                               </span>
                             </div>
                             <p className="services-solution-description">

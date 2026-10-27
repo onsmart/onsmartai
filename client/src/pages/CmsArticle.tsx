@@ -3,11 +3,15 @@ import { Link } from "wouter";
 import { useCms } from "@/components/cms/CmsProvider";
 import { safeCmsUrl, type CmsBlock, type PublishedDocument } from "@shared/cms";
 import {
-  BLOG_CONTENT_KINDS,
   formatBlogDate,
   isPublishedBlogDocument,
+  pickBlogDocument,
   publishedDocumentToBlogEntry,
 } from "@/lib/blog-model";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
+import { ARTICLE_UI } from "@/i18n/article-ui";
+import { blogCategoryLabel } from "@/i18n/site-copy";
 import "./cms-public.css";
 import "./blog.css";
 
@@ -30,16 +34,18 @@ function CmsContentCover({ document }: { document: PublishedDocument }) {
 }
 
 export function CmsContentCard({ document }: { document: PublishedDocument }) {
-  if (!isPublishedBlogDocument(document)) return null;
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  if (!isPublishedBlogDocument(document, locale)) return null;
   const data = document.payload;
-  const date = formatBlogDate(data.publishedAt);
+  const date = formatBlogDate(data.publishedAt, locale);
   const entry = publishedDocumentToBlogEntry(document);
   return (
     <article className="cms-content-card">
       <Link
         href={`/conteudo/${document.slug}`}
         className="cms-content-cover-link"
-        aria-label={`Ler ${data.title}`}
+        aria-label={t("a11y.readArticle", { title: data.title })}
       >
         <CmsContentCover document={document} />
       </Link>
@@ -104,13 +110,14 @@ function CmsArticleBlocks({ blocks }: { blocks: CmsBlock[] }) {
 }
 
 function ArticleIndex({ blocks }: { blocks: CmsBlock[] }) {
+  const { t } = useSiteCopy();
   const headings = blocks
     .map((block, index) => ({ block, index }))
     .filter(item => item.block.type === "heading" && item.block.text.trim());
   if (headings.length < 2) return null;
   return (
-    <nav className="blog-article-index" aria-label="Índice do artigo">
-      <p>Índice</p>
+    <nav className="blog-article-index" aria-label={t("a11y.articleIndex")}>
+      <p>{t("a11y.articleIndex")}</p>
       <ol>
         {headings.map(({ block, index }) => (
           <li key={headingId(index)}>
@@ -123,20 +130,20 @@ function ArticleIndex({ blocks }: { blocks: CmsBlock[] }) {
 }
 
 function MissingArticle({ ready, error }: { ready: boolean; error: string }) {
+  const { t } = useSiteCopy();
   return (
     <section className="blog-article-missing">
       <div className="container">
         <p className="eyebrow">
           <span />
-          Conteúdo
+          {t("blog.contentEyebrow")}
         </p>
-        <h1>{ready ? "Conteúdo não disponível." : "Carregando conteúdo…"}</h1>
-        <p>
-          {error ||
-            "Este conteúdo não está publicado ou não está disponível nesta URL."}
-        </p>
+        <h1>
+          {ready ? t("blog.missingTitle") : t("blog.missingLoading")}
+        </h1>
+        <p>{error || t("blog.missingBody")}</p>
         <Link href="/conteudo" className="button button-outline">
-          <ArrowLeft size={16} aria-hidden="true" /> Voltar à central
+          <ArrowLeft size={16} aria-hidden="true" /> {t("blog.backToHub")}
         </Link>
       </div>
     </section>
@@ -145,26 +152,23 @@ function MissingArticle({ ready, error }: { ready: boolean; error: string }) {
 
 export default function CmsArticle({ params }: { params: { slug: string } }) {
   const { documents, ready, error } = useCms();
-  const document = documents.find(
-    candidate =>
-      candidate.slug === params.slug &&
-      candidate.locale === "pt-BR" &&
-      BLOG_CONTENT_KINDS.includes(
-        candidate.kind as (typeof BLOG_CONTENT_KINDS)[number]
-      )
-  );
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const ui = ARTICLE_UI[locale];
+  const document = pickBlogDocument(documents, params.slug, locale);
 
-  if (!document || !isPublishedBlogDocument(document)) {
+  if (!document || !isPublishedBlogDocument(document, locale)) {
     return <MissingArticle ready={ready} error={error} />;
   }
 
   const data = document.payload;
-  const publishedDate = formatBlogDate(data.publishedAt);
+  const publishedDate = formatBlogDate(data.publishedAt, locale);
+  const categoryLabel = blogCategoryLabel(data.category, locale);
   const related = data.relatedSlugs.flatMap(slug => {
-    const candidate = documents.find(item => item.slug === slug);
+    const candidate = pickBlogDocument(documents, slug, locale);
     return candidate &&
       candidate.slug !== document.slug &&
-      isPublishedBlogDocument(candidate)
+      isPublishedBlogDocument(candidate, locale)
       ? [candidate]
       : [];
   });
@@ -176,16 +180,19 @@ export default function CmsArticle({ params }: { params: { slug: string } }) {
     <article className="blog-article">
       <header className="blog-article-header">
         <div className="container">
-          <nav className="blog-breadcrumbs" aria-label="Caminho de navegação">
-            <Link href="/">Home</Link>
+          <nav
+            className="blog-breadcrumbs"
+            aria-label={t("a11y.breadcrumbs")}
+          >
+            <Link href="/">{ui.home}</Link>
             <span aria-hidden="true">/</span>
-            <Link href="/conteudo">Conteúdo</Link>
+            <Link href="/conteudo">{ui.content}</Link>
             <span aria-hidden="true">/</span>
-            <span aria-current="page">{data.category}</span>
+            <span aria-current="page">{categoryLabel}</span>
           </nav>
           <p className="eyebrow">
             <span />
-            {data.category}
+            {categoryLabel}
           </p>
           <h1>{data.title}</h1>
           {data.summary && (
@@ -193,7 +200,11 @@ export default function CmsArticle({ params }: { params: { slug: string } }) {
           )}
           {(data.author || publishedDate) && (
             <div className="blog-article-meta">
-              {data.author && <span>Por {data.author}</span>}
+              {data.author && (
+                <span>
+                  {ui.byAuthor} {data.author}
+                </span>
+              )}
               {publishedDate && (
                 <time dateTime={data.publishedAt}>{publishedDate}</time>
               )}
@@ -222,20 +233,21 @@ export default function CmsArticle({ params }: { params: { slug: string } }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Acessar material <Download size={17} aria-hidden="true" />
+              {ui.downloadMaterial}{" "}
+              <Download size={17} aria-hidden="true" />
             </a>
           )}
           {sourceUrl && (
             <p className="blog-source-link">
-              <span>Fonte</span>{" "}
+              <span>{ui.source}</span>{" "}
               <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-                Consultar fonte original{" "}
+                {ui.viewSource}{" "}
                 <ArrowUpRight size={14} aria-hidden="true" />
               </a>
             </p>
           )}
           <Link href="/conteudo" className="button button-text blog-back-link">
-            <ArrowLeft size={16} aria-hidden="true" /> Voltar para Conteúdo
+            <ArrowLeft size={16} aria-hidden="true" /> {ui.backToContent}
           </Link>
         </div>
       </div>
@@ -248,9 +260,9 @@ export default function CmsArticle({ params }: { params: { slug: string } }) {
           <div className="container">
             <p className="eyebrow">
               <span />
-              Continue a leitura
+              {ui.relatedEyebrow}
             </p>
-            <h2 id="related-content-title">Conteúdos relacionados</h2>
+            <h2 id="related-content-title">{ui.relatedTitle}</h2>
             <div className="blog-related-grid">
               {related.map(relatedDocument => (
                 <CmsContentCard

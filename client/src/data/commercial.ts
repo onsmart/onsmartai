@@ -1,4 +1,8 @@
+import type { SiteLocale } from "@shared/locale";
+import { localizedSolutionTitle } from "@/i18n/site";
+import { translatePath } from "@/i18n/useSiteCopy";
 import { solutions } from "./site";
+
 export type CommercialBlock = { title: string; text: string };
 export type LandingData = {
   slug: string;
@@ -27,31 +31,64 @@ export type LandingData = {
   metaDescription: string;
   commercialNotices: string[];
 };
-const modules = import.meta.glob<LandingData>("./landing/*.json", {
+
+const ptModules = import.meta.glob<LandingData>("./landing/*.json", {
   eager: true,
   import: "default",
 });
-export const commercialPages: LandingData[] = Object.values(modules);
+const enModules = import.meta.glob<LandingData>("./landing/en/*.json", {
+  eager: true,
+  import: "default",
+});
+const esModules = import.meta.glob<LandingData>("./landing/es/*.json", {
+  eager: true,
+  import: "default",
+});
+
+function commercialPagesFor(locale: SiteLocale): LandingData[] {
+  if (locale === "en") return Object.values(enModules);
+  if (locale === "es") return Object.values(esModules);
+  return Object.values(ptModules);
+}
+
+export const commercialPages: LandingData[] = commercialPagesFor("pt-BR");
+
 export const landingPath = (slug: string) =>
   slug === "parcerias" ? "/parcerias" : `/servicos/${slug}`;
-export function getCommercial(slug: string) {
-  return commercialPages.find(page => page.slug === slug);
+
+export function getCommercial(slug: string, locale: SiteLocale = "pt-BR") {
+  const page = commercialPagesFor(locale).find(p => p.slug === slug);
+  if (page) return page;
+  if (locale !== "pt-BR") return getCommercial(slug, "pt-BR");
+  return undefined;
 }
-export function commercialMetadata(path: string) {
+
+export function commercialMetadata(path: string, locale: SiteLocale = "pt-BR") {
   const normalized = path
     .replace("/previa/solucao/", "/servicos/")
     .replace("/previa/parcerias/programa", "/parcerias");
-  const data = commercialPages.find(
+  const data = commercialPagesFor(locale).find(
     page => landingPath(page.slug) === normalized
   );
-  return data
-    ? { title: data.metaTitle, description: data.metaDescription }
+  const resolved = data ?? (locale !== "pt-BR" ? commercialPagesFor("pt-BR").find(
+    page => landingPath(page.slug) === normalized
+  ) : undefined);
+  return resolved
+    ? { title: resolved.metaTitle, description: resolved.metaDescription }
     : undefined;
 }
-export function commercialWhatsapp(data: LandingData) {
+
+export function commercialWhatsapp(data: LandingData, locale: SiteLocale = "pt-BR") {
   const message =
     data.slug === "parcerias"
-      ? "Olá! Conheci o programa de parcerias da Onsmart.AI e gostaria de conversar sobre as modalidades disponíveis."
-      : `Olá! Conheci a solução ${solutions.find(s => s.slug === data.slug)?.title || data.heroTitle} no site da Onsmart.AI e gostaria de conversar com a equipe sobre o próximo passo.`;
+      ? translatePath(locale, "whatsapp.partnersMessage")
+      : translatePath(locale, "whatsapp.solutionMessage", {
+          solution:
+            localizedSolutionTitle(
+              data.slug,
+              solutions.find(s => s.slug === data.slug)?.title || data.heroTitle,
+              locale
+            ),
+        });
   return `https://wa.me/5511930683562?text=${encodeURIComponent(message)}`;
 }

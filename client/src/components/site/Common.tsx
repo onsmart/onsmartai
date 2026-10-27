@@ -15,13 +15,10 @@ import {
   Zap,
   Eye,
 } from "lucide-react";
-import {
-  processSteps,
-  pillars,
-  MISSION,
-  WHATSAPP,
-  type Editorial,
-} from "@/data/site";
+import type { Editorial } from "@/data/site";
+import { useSiteContent } from "@/data/site-content";
+import { useWhatsappLink } from "@/i18n/site";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 
 export function ButtonLink({
   href,
@@ -60,14 +57,16 @@ export function SectionHeading({
   title,
   text,
   light = false,
+  skipCmsTitle = false,
 }: {
   eyebrow?: string;
   title: string;
   text?: string;
   light?: boolean;
+  skipCmsTitle?: boolean;
 }) {
   const { text: cmsText } = useCmsCopy();
-  if (title !== MISSION) title = cmsText(title);
+  if (!skipCmsTitle) title = cmsText(title);
   if (text) text = cmsText(text);
   if (eyebrow) eyebrow = cmsText(eyebrow);
   return (
@@ -105,6 +104,7 @@ export function PageHero({
   visual?: ReactNode;
 }) {
   const { text: cmsText } = useCmsCopy();
+  const { t } = useSiteCopy();
   const [location] = useLocation();
   const document = useCmsDocument(location);
   title = cmsText(title);
@@ -139,8 +139,8 @@ export function PageHero({
           <figure className="page-hero-visual">{cmsPhoto || visual}</figure>
         )}
         <div className="hero-rule">
-          <span>ONSMART.AI</span>
-          <span>Conhecimento. Estratégia. Operação.</span>
+          <span>{t("shell.heroRuleTag")}</span>
+          <span>{t("shell.heroRuleLine")}</span>
         </div>
       </div>
     </section>
@@ -148,20 +148,22 @@ export function PageHero({
 }
 export function SoniaProcess({ compact = false }: { compact?: boolean }) {
   const [active, setActive] = useState(0);
+  const { t } = useSiteCopy();
+  const { processSteps } = useSiteContent();
   const icons = [MessageSquare, Database, Fingerprint, Zap, Eye];
   const ActiveIcon = icons[active];
   return (
     <div className={`sonia-process ${compact ? "compact" : ""}`}>
       <div className="process-top">
         <span className="process-label">
-          <Workflow size={15} /> Fluxo operacional
+          <Workflow size={15} /> {t("shell.processLabel")}
         </span>
-        <span className="concept-tag">Diagrama conceitual</span>
+        <span className="concept-tag">{t("shell.processConceptTag")}</span>
       </div>
       <div
         className="process-controls"
         role="group"
-        aria-label="Etapas do processo SON.IA"
+        aria-label={t("shell.processA11y")}
       >
         {processSteps.map((s, i) => (
           <button
@@ -189,17 +191,24 @@ export function SoniaProcess({ compact = false }: { compact?: boolean }) {
       </div>
       <div className="process-bottom">
         <ShieldCheck size={16} />
-        <span>Regras, permissões e supervisão humana em todo o fluxo.</span>
+        <span>{t("shell.processSupervision")}</span>
       </div>
     </div>
   );
 }
 export function MissionSection({ about = false }: { about?: boolean }) {
+  const whatsapp = useWhatsappLink();
+  const { t } = useSiteCopy();
+  const { mission, pillars } = useSiteContent();
   const icons = [Check, ShieldCheck, Workflow];
   return (
     <section className="section mission-section">
       <div className="container">
-        <SectionHeading eyebrow="Nossa missão" title={MISSION} />
+        <SectionHeading
+          eyebrow={t("shell.missionEyebrow")}
+          title={mission}
+          skipCmsTitle
+        />
         <div className="pillar-grid">
           {pillars.map((p, i) => {
             const Icon = icons[i];
@@ -212,33 +221,36 @@ export function MissionSection({ about = false }: { about?: boolean }) {
             );
           })}
         </div>
-        <ButtonLink href={about ? WHATSAPP : "/quem-somos"} variant="outline">
-          {about ? "Falar com especialista" : "Conheça nossa história"}
+        <ButtonLink href={about ? whatsapp : "/quem-somos"} variant="outline">
+          {about ? t("shell.missionCtaExpert") : t("shell.missionCtaAbout")}
         </ButtonLink>
       </div>
     </section>
   );
 }
 export function EditorialCard({ item }: { item: Editorial }) {
+  const { t } = useSiteCopy();
   return (
     <article className="editorial-card">
       <Link
         href={`/previa/conteudo/${item.slug}`}
         className={`editorial-cover editorial-${item.slug}`}
-        aria-label={`Ler: ${item.title}`}
+        aria-label={t("shell.editorialReadAria", { title: item.title })}
       >
         {item.image ? (
           <img
             src={item.image}
-            alt="Miniatura do vídeo oficial de lançamento da SON.IA"
+            alt={t("shell.editorialThumbAlt")}
             loading="lazy"
           />
         ) : (
           <div className="editorial-placeholder">
             <span>
-              {item.slug === "esporte-e-inclusao" ? "COMUNIDADE" : "CONEXÕES"}
+              {item.slug === "esporte-e-inclusao"
+                ? t("shell.editorialCommunity")
+                : t("shell.editorialConnections")}
             </span>
-            <span>Fotografia oficial pendente</span>
+            <span>{t("shell.editorialPhotoPending")}</span>
           </div>
         )}
         <span className="cover-arrow">

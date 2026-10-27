@@ -1,0 +1,92 @@
+{
+  "slug": "parcerias",
+  "eyebrow": "Programa de Alianzas",
+  "heroTitle": "Explore una alianza en soluciones de IA con Onsmart.AI",
+  "lead": "Conozca las modalidades previstas para emprendedores, agencias, prestadores de servicios, gestores y empresas interesadas en comercializar soluciones de IA. Formato, condiciones y operación de cada modalidad deben confirmarse con el equipo.",
+  "contextTitle": "Su actuación puede abrir conversaciones sobre IA en las empresas",
+  "context": "Emprendedores, agencias, prestadores de servicios y empresas pueden tener interés en actuar con soluciones de inteligencia artificial. Onsmart.AI prevé un programa con tres modalidades; los detalles comerciales y operacionales aún deben validarse antes de cualquier adhesión.",
+  "solutionTitle": "Conozca las modalidades previstas",
+  "solutionText": "El briefing identifica Agente Digital, Reventa y White Label como modalidades del programa. Esta página presenta estas opciones para iniciar una conversación, no como oferta con condiciones ya definidas. Descripción operacional, público indicado, oportunidad de actuación, beneficios oficialmente confirmados y funcionamiento de cada modalidad deben aclararse con el equipo antes de la contratación.",
+  "audiences": [
+    "Emprendedores interesados en comercializar soluciones de IA",
+    "Agencias de marketing y prestadores de servicios",
+    "Gestores y empresas que evalúan una actuación en alianza"
+  ],
+  "goals": [
+    {
+      "title": "Evaluar una posibilidad de actuación",
+      "text": "Identificar qué modalidad merece discutirse considerando el perfil y los objetivos del interesado; la adecuación depende de validación comercial."
+    },
+    {
+      "title": "Entender el alcance de la alianza",
+      "text": "Aclarar con el equipo el funcionamiento, responsabilidades y condiciones aplicables antes de cualquier decisión."
+    },
+    {
+      "title": "Definir próximos pasos",
+      "text": "Iniciar una conversación de calificación para verificar si hay alineación, sin presuponer aprobación o disponibilidad de una modalidad."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Elija un perfil para conversar",
+      "text": "La página puede presentar Agente Digital, Reventa y White Label como opciones de interés, conforme previsto en el briefing; elegir no representa adhesión."
+    },
+    {
+      "title": "Comparta su contexto",
+      "text": "El briefing prevé formulario de calificación específico. Campos, recolección de datos y criterios de calificación deben confirmarse antes de la publicación."
+    },
+    {
+      "title": "Converse con el equipo",
+      "text": "Solicite aclaraciones sobre alcance y condiciones. El briefing prevé opción de agendamiento con el área responsable, cuya disponibilidad y funcionamiento deben confirmarse."
+    }
+  ],
+  "methodology": "No hay método de alianza, proceso de implementación, criterios de aprobación, responsabilidades ni cronograma oficialmente detallados en el briefing. El equipo debe confirmar estos puntos, además de la disponibilidad de cada modalidad, en conversación y eventual propuesta comercial. La organización anterior es solo orientación de navegación y calificación, no un proceso contratado.",
+  "deliverables": [
+    "Descripción y público indicado de cada modalidad — contenido oficial a confirmar",
+    "Oportunidad de actuación y beneficios oficialmente confirmados — validar con el equipo",
+    "Funcionamiento, responsabilidades y condiciones comerciales — definir antes de eventual contratación"
+  ],
+  "differentiators": [
+    {
+      "title": "Tres modalidades identificadas",
+      "text": "El briefing lista Agente Digital, Reventa y White Label, sin especificar condiciones u operación."
+    },
+    {
+      "title": "Públicos diversos",
+      "text": "La propuesta de página considera emprendedores, agencias de marketing, prestadores de servicios, gestores y empresas interesadas en comercializar soluciones de IA."
+    },
+    {
+      "title": "Conversación antes de asumir condiciones",
+      "text": "La comunicación mantiene pendientes los detalles no proporcionados, como comisiones, ganancias, contratos y funcionamiento."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "¿Qué modalidades están previstas?",
+      "a": "El briefing lista Agente Digital, Reventa y White Label. La disponibilidad y las condiciones de cada una deben confirmarse con el equipo."
+    },
+    {
+      "q": "¿Cómo funciona cada modalidad?",
+      "a": "El funcionamiento no está detallado en el material disponible. Pida al equipo la descripción oficial, responsabilidades y alcance antes de avanzar."
+    },
+    {
+      "q": "¿Hay comisión, ganancias o condiciones contractuales definidas?",
+      "a": "Esta información no fue proporcionada. No es posible afirmar porcentajes, ganancias, contratos u otras condiciones; confirme directamente con el equipo."
+    },
+    {
+      "q": "¿White Label incluye personalización o licencias?",
+      "a": "El briefing solo cita White Label como modalidad. Personalización, licencias y demás condiciones no están confirmadas y deben verificarse."
+    },
+    {
+      "q": "¿Cómo manifestar interés o agendar una conversación?",
+      "a": "El briefing prevé formulario de calificación y opción de agendamiento con el área responsable. La disponibilidad, el proceso y los datos solicitados aún deben confirmarse."
+    }
+  ],
+  "cta": "Quiero ser aliado",
+  "interest": "Parcerias",
+  "metaTitle": "Programa de Alianzas en IA | Onsmart.AI",
+  "metaDescription": "Conozca las modalidades de alianza previstas por Onsmart.AI y converse con el equipo para validar alcance, funcionamiento y condiciones.",
+  "commercialNotices": [
+    "Los valores, disponibilidad, formatos, alcance y condiciones de contratación están sujetos a confirmación con el equipo comercial."
+  ]
+}

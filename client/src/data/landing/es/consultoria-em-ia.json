@@ -1,0 +1,101 @@
+{
+  "slug": "consultoria-em-ia",
+  "eyebrow": "Consultoría en IA",
+  "heroTitle": "Estructure la adopción de IA a partir de los procesos y objetivos de su empresa",
+  "lead": "Mapeo de procesos, priorización de casos de uso y diseño de la arquitectura de IA de la operación. De la estrategia a la implementación, considerando gobernanza y objetivos empresariales.",
+  "contextTitle": "¿Dónde puede tener sentido la IA en su operación?",
+  "context": "Identificar oportunidades exige comprender los procesos y relacionarlos con los objetivos empresariales. Sin esa lectura, resulta difícil priorizar casos de uso y pensar la arquitectura de IA considerando gobernanza. La consultoría aborda este recorrido; formato, alcance y condiciones están por confirmar.",
+  "solutionTitle": "Del análisis de procesos al diseño de la arquitectura de IA",
+  "solutionText": "La consultoría contempla mapeo de procesos, priorización de casos de uso y diseño de la arquitectura de IA de la operación. El enfoque considera gobernanza y objetivos empresariales y puede abarcar de la estrategia a la implementación. El detalle del trabajo y lo que se contratará deben definirse en propuesta; no hay método ni paquete oficial especificado en el briefing.",
+  "audiences": [
+    "Empresas que quieren estructurar la adopción de inteligencia artificial.",
+    "Liderazgos que necesitan relacionar iniciativas de IA con objetivos empresariales.",
+    "Organizaciones que buscan evaluar procesos y priorizar casos de uso considerando gobernanza."
+  ],
+  "goals": [
+    {
+      "title": "Mapear procesos",
+      "text": "Comprender procesos de la operación como punto de partida para evaluar oportunidades de IA."
+    },
+    {
+      "title": "Priorizar casos de uso",
+      "text": "Organizar oportunidades de acuerdo con los objetivos empresariales; prioridades y criterios dependen del contexto de la empresa."
+    },
+    {
+      "title": "Diseñar la arquitectura",
+      "text": "Considerar una arquitectura de IA para la operación, teniendo en cuenta gobernanza y objetivos, sin presuponer tecnologías específicas."
+    }
+  ],
+  "flow": [
+    {
+      "title": "Entender objetivos",
+      "text": "Relacionar la conversación sobre IA con los objetivos empresariales; formato e información necesaria serán confirmados."
+    },
+    {
+      "title": "Mapear procesos",
+      "text": "Examinar procesos de la operación. Amplitud y método de levantamiento se definen en propuesta."
+    },
+    {
+      "title": "Priorizar casos de uso",
+      "text": "Evaluar y priorizar casos de uso. Criterios y nivel de detalle deben acordarse."
+    },
+    {
+      "title": "Diseñar la arquitectura de IA",
+      "text": "Considerar arquitectura, estrategia y gobernanza; decisiones de implementación y alcance se confirmarán caso a caso."
+    }
+  ],
+  "methodology": "El briefing cita mapeo de procesos, priorización de casos de uso y diseño de arquitectura, de la estrategia a la implementación, considerando gobernanza y objetivos empresariales. No especifica metodología oficial, etapas contratadas, duración, carga horaria ni formato. El flujo anterior organiza actividades citadas con fines de presentación; no constituye método ni alcance contratado. Confirmar enfoque, participantes, criterios, responsabilidades y límites en propuesta.",
+  "deliverables": [
+    "Mapeo de procesos — alcance y forma de registro a confirmar en propuesta.",
+    "Priorización de casos de uso — criterios y formato del resultado a confirmar.",
+    "Diseño de la arquitectura de IA de la operación — nivel de detalle y límites a confirmar.",
+    "Eventual apoyo a la implementación — actividades, responsabilidades y entregas a definir en propuesta."
+  ],
+  "differentiators": [
+    {
+      "title": "Visión de la operación",
+      "text": "El servicio parte del mapeo de procesos y considera la arquitectura de IA de la operación."
+    },
+    {
+      "title": "Enfoque en priorización",
+      "text": "Incluye priorización de casos de uso en relación con los objetivos empresariales."
+    },
+    {
+      "title": "Gobernanza considerada",
+      "text": "El briefing presenta gobernanza como consideración de la consultoría, sin detallar controles o marcos específicos."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "¿Cuál es el formato de la consultoría?",
+      "a": "El briefing no informa si la atención es remota, presencial o híbrida, ni la dinámica de trabajo. Esos puntos deben confirmarse en la conversación comercial."
+    },
+    {
+      "q": "¿Cuáles son los plazos y la duración?",
+      "a": "No hay duración, cronograma ni carga horaria informados. El plazo debe confirmarse conforme al alcance propuesto."
+    },
+    {
+      "q": "¿Qué recibiré al final?",
+      "a": "Mapeo, priorización y diseño de arquitectura son actividades citadas. Los documentos, formatos y demás entregas oficiales deben especificarse y acordarse en propuesta."
+    },
+    {
+      "q": "¿La consultoría incluye implementación?",
+      "a": "La descripción posiciona el trabajo de la estrategia a la implementación, pero no define qué actividades de implementación están incluidas. El alcance y las responsabilidades se confirmarán en propuesta."
+    },
+    {
+      "q": "¿Cómo contratar y cuánto cuesta?",
+      "a": "Precio, condiciones comerciales y proceso de contratación no fueron informados. Solicite una conversación para validar necesidad y recibir una propuesta."
+    },
+    {
+      "q": "¿Hay una metodología o tecnología definida?",
+      "a": "El briefing no especifica metodología oficial, stack ni herramientas. Cualquier elección y enfoque aplicable debe confirmarse para el contexto del proyecto."
+    }
+  ],
+  "cta": "Solicitar diagnóstico",
+  "interest": "Consultoria",
+  "metaTitle": "Consultoría en IA para Empresas | Onsmart.AI",
+  "metaDescription": "Mapeo de procesos, priorización de casos de uso y arquitectura de IA considerando objetivos empresariales y gobernanza. Alcance a confirmar.",
+  "commercialNotices": [
+    "Los valores, disponibilidad, formatos, alcance y condiciones de contratación están sujetos a confirmación con el equipo comercial."
+  ]
+}

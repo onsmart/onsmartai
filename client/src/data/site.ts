@@ -1,4 +1,5 @@
 import brandMedia from "./brand-media.json";
+import { SITE_METADATA } from "@/i18n/site-metadata";
 export const whatsappMessage =
   "Olá! Conheci a Onsmart.AI pelo site e gostaria de conversar com um especialista sobre soluções de inteligência artificial para minha empresa.";
 export const WHATSAPP = `https://wa.me/5511930683562?text=${encodeURIComponent(whatsappMessage)}`;
@@ -252,45 +253,6 @@ export const editorial: Editorial[] = [
     image: brandMedia.sonia.url,
   },
 ];
-export const metadata: Record<string, { title: string; description: string }> =
-  {
-    "/": {
-      title: "Onsmart.AI | IA corporativa sem mistério",
-      description: HERO_SUBTITLE,
-    },
-    "/quem-somos": {
-      title: "Quem Somos | Onsmart.AI e Grupo Onsmart",
-      description:
-        "Conheça a missão, a liderança e o ecossistema da Onsmart.AI.",
-    },
-    "/servicos": {
-      title: "Educação, Consultoria e Soluções de IA | Onsmart.AI",
-      description:
-        "Da estratégia à operação: educação, consultoria, desenvolvimento de IA e plataforma SON.IA.",
-    },
-    "/ecossistema": {
-      title: "Ecossistema | Grupo Onsmart",
-      description:
-        "Conheça as empresas do Grupo Onsmart e sua conexão com a Onsmart.AI.",
-    },
-    "/conteudo": {
-      title: "Blog Onsmart.AI | Conteúdo sobre IA corporativa",
-      description:
-        "Explore artigos sobre adoção, governança e agentes de IA para empresas. Conhecimento claro para decisões e operações mais responsáveis.",
-    },
-    "/contato": {
-      title: "Fale com a Onsmart.AI | Inteligência Artificial",
-      description:
-        "Converse com a Onsmart.AI sobre educação, consultoria e o próximo passo da IA na sua empresa.",
-    },
-    "/legal/privacidade": {
-      title: "Política de Privacidade | Onsmart.AI",
-      description:
-        "Como a Onsmart.AI trata dados pessoais, cookies e formulários, em conformidade com a LGPD.",
-    },
-    "/legal/termos": {
-      title: "Termos de Uso | Onsmart.AI",
-      description:
-        "Condições de uso do site institucional e comercial da Onsmart.AI.",
-    },
-  };
+
+/** @deprecated Use siteMetadata(path, locale) from site-metadata.ts */
+export const metadata = SITE_METADATA["pt-BR"];

@@ -1,3 +1,5 @@
+import type { SiteLocale } from "@shared/locale";
+
 export type PhotoKey =
   | "workshop"
   | "strategy"
@@ -22,12 +24,55 @@ const modules = import.meta.glob<Record<PhotoKey, StockPhoto>>(
   { eager: true, import: "default" }
 );
 export const stockPhotos = Object.values(modules)[0];
+const photoAlts: Record<SiteLocale, Record<PhotoKey, string>> = {
+  "pt-BR": {
+    workshop:
+      "Profissionais em workshop corporativo, em fotografia ilustrativa licenciada.",
+    strategy:
+      "Reunião de estratégia em ambiente corporativo, em fotografia ilustrativa licenciada.",
+    learning:
+      "Aprendizado em ambiente corporativo, em fotografia ilustrativa licenciada.",
+    development:
+      "Desenvolvimento de software em ambiente corporativo, em fotografia ilustrativa licenciada.",
+    event:
+      "Público em evento empresarial, em fotografia ilustrativa licenciada.",
+  },
+  en: {
+    workshop:
+      "Professionals in a corporate workshop, illustrative licensed photography.",
+    strategy:
+      "Strategy meeting in a corporate setting, illustrative licensed photography.",
+    learning:
+      "Learning in a corporate environment, illustrative licensed photography.",
+    development:
+      "Software development in a corporate environment, illustrative licensed photography.",
+    event:
+      "Audience at a business event, illustrative licensed photography.",
+  },
+  es: {
+    workshop:
+      "Profesionales en un taller corporativo, fotografía ilustrativa con licencia.",
+    strategy:
+      "Reunión de estrategia en entorno corporativo, fotografía ilustrativa con licencia.",
+    learning:
+      "Aprendizaje en entorno corporativo, fotografía ilustrativa con licencia.",
+    development:
+      "Desarrollo de software en entorno corporativo, fotografía ilustrativa con licencia.",
+    event:
+      "Público en un evento empresarial, fotografía ilustrativa con licencia.",
+  },
+};
+
+export function getPhotoAlt(key: PhotoKey, locale: SiteLocale): string {
+  return photoAlts[locale][key];
+}
+
 export function getPhoto(key: PhotoKey) {
   if (key === "event")
     return {
       url: "/assets/hero-poster.webp",
       name: "hero-poster.webp",
-      alt: "Público em evento empresarial, em fotografia ilustrativa licenciada.",
+      alt: photoAlts["pt-BR"].event,
       width: 1280,
       height: 720,
       size: 0,

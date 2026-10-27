@@ -11,12 +11,14 @@ import {
 } from "lucide-react";
 import { ContactForm } from "@/components/site/Forms";
 import { ButtonLink, Notice, PageHero } from "@/components/site/Common";
-import { WHATSAPP } from "@/data/site";
+import { useWhatsappLink } from "@/i18n/site";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { MARKETING_EMAIL } from "@shared/contact";
 
 export default function Contact() {
+  const { t } = useSiteCopy();
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
-
+  const whatsapp = useWhatsappLink();
   const search = useSearch();
   const interest = new URLSearchParams(search).get("interesse") || "";
   return (
@@ -32,7 +34,7 @@ export default function Contact() {
         )}
       >
         <div className="contact-hero-actions">
-          <ButtonLink href={WHATSAPP} variant="primary">
+          <ButtonLink href={whatsapp} variant="primary">
             {cmsText("Falar pelo WhatsApp")}
           </ButtonLink>
           <a
@@ -63,7 +65,7 @@ export default function Contact() {
               </p>
               <div
                 className="contact-form-sequence"
-                aria-label="Como funciona o contato"
+                aria-label={t("contact.flowAria")}
               >
                 <div>
                   <span>01</span>
@@ -103,7 +105,7 @@ export default function Contact() {
             <div className="contact-channels-grid">
               <a
                 className="contact-channel contact-channel-whatsapp"
-                href={WHATSAPP}
+                href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -162,7 +164,7 @@ export default function Contact() {
                 <span className="contact-address-number">01</span>
                 <MapPin size={21} strokeWidth={1.4} aria-hidden="true" />
                 <div>
-                  <span>{cmsText("Matriz")}</span>
+                  <span>{t("contact.matrixLabel")}</span>
                   <address>
                     {cmsText("Rua Arizona, 1349, Conj. 1B,")}
                     <br />
@@ -174,7 +176,7 @@ export default function Contact() {
                 <span className="contact-address-number">02</span>
                 <MapPin size={21} strokeWidth={1.4} aria-hidden="true" />
                 <div>
-                  <span>{cmsText("Filial")}</span>
+                  <span>{t("contact.branchLabel")}</span>
                   <address>
                     {cmsText("Rua Comendador Araújo, 499, Cj. 1003,")}
                     <br />

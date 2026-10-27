@@ -1,7 +1,9 @@
 import { useCmsDocument } from "@/components/cms/CmsProvider";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { safeCmsUrl } from "@shared/cms";
 import {
-  approvedMediaPreviews,
+  getApprovedMediaPreviews,
   type MediaPreview,
 } from "@/data/media-previews";
 import { ArrowUpRight } from "lucide-react";
@@ -23,10 +25,12 @@ function validPreview(value: unknown): value is MediaPreview {
   );
 }
 export default function HomeMediaStories() {
-  const home = useCmsDocument("/");
+  const { locale } = useLocale();
+  const { t } = useSiteCopy();
+  const home = useCmsDocument("/", locale);
   const items = Array.isArray(home?.payload.fields.homeMediaPreviews)
     ? home.payload.fields.homeMediaPreviews.filter(validPreview)
-    : approvedMediaPreviews;
+    : getApprovedMediaPreviews(locale);
   return (
     <div className="home-media-grid">
       {items.slice(0, 3).map(item => (
@@ -45,7 +49,7 @@ export default function HomeMediaStories() {
           <div className="home-media-copy">
             <h3>{item.title}</h3>
             <p className="home-media-byline">
-              Por <strong>{item.author}</strong>
+              {t("media.byAuthor")} <strong>{item.author}</strong>
             </p>
             <p className="home-media-summary">{item.summary}</p>
             <div className="home-media-card-foot">
@@ -56,7 +60,7 @@ export default function HomeMediaStories() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Ver fonte oficial
+                  {t("media.officialSource")}
                   <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
               )}

@@ -11,7 +11,12 @@ import { safeCmsUrl } from "@shared/cms";
 import { apiCms } from "@/lib/cms-api";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { cmsLocaleFallback } from "@/i18n/cms-fallback";
-import type { SiteLocale } from "@shared/locale";
+import {
+  DEFAULT_LOCALE,
+  readStoredLocale,
+  type SiteLocale,
+} from "@shared/locale";
+import { UI_MESSAGES } from "@/i18n/messages";
 type State = { documents: PublishedDocument[]; ready: boolean; error: string };
 const Context = createContext<State>({
   documents: [],
@@ -49,12 +54,16 @@ export function CmsProvider({
             setState({ documents: result.documents, ready: true, error: "" });
         })
         .catch(() => {
-          if (active)
+          if (active) {
+            const locale =
+              typeof window !== "undefined"
+                ? readStoredLocale()
+                : DEFAULT_LOCALE;
             setState(current => ({
               ...current,
-              error:
-                "O conteúdo atualizado não pôde ser carregado. Tente novamente.",
+              error: UI_MESSAGES[locale].cms.loadError,
             }));
+          }
         });
     }
     load();

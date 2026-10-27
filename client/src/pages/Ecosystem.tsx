@@ -18,8 +18,6 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/site/Common";
-import { companies } from "@/data/site";
-
 const companyIcons = {
   tech: Building2,
   ai: Layers3,
