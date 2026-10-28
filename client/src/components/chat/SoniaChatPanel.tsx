@@ -47,15 +47,6 @@ type ChatMessage = {
   text: string;
 };
 
-type ElevenLabsMessage = {
-  message?: string;
-  text?: string;
-  transcript?: string;
-  role?: MessageRole;
-  source?: "user" | "agent" | "ai";
-  event_id?: number;
-};
-
 function sessionLocationOptions(config: ElevenLabsAgentConfig) {
   return config.serverLocation
     ? { serverLocation: config.serverLocation }
@@ -104,7 +95,6 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   hasBegunTextChatRef.current = hasBegunTextChat;
   const messagesRef = useRef<ChatMessage[]>([]);
   const userTextSentRef = useRef(false);
-  const elOpeningMessageSeenRef = useRef(false);
   const audioReplyAfterUserRef = useRef(false);
   const audioFallbackShownRef = useRef(false);
 
@@ -179,38 +169,6 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     agentStreamBufferRef.current = "";
   }, []);
 
-  const handleElevenLabsMessage = useCallback(
-    (payload: ElevenLabsMessage) => {
-      const raw =
-        payload.message ?? payload.text ?? payload.transcript ?? "";
-      const role: MessageRole =
-        payload.role ??
-        (payload.source === "user" ? "user" : "agent");
-
-      if (role === "agent") {
-        setIsAwaitingAgentReply(false);
-      }
-
-      const displayText =
-        role === "agent" ? formatAgentChatText(raw) : raw.trim();
-      if (!displayText) {
-        if (role === "agent") {
-          soniaChatWarn(
-            "Agente respondeu sem texto exibível (possível tag de voz vazia)."
-          );
-        }
-        return;
-      }
-
-      finalizeAgentStream();
-      appendMessage(role, displayText, payload.event_id);
-      if (role === "agent") {
-        soniaChatInfo("Resposta do agente exibida no chat.");
-      }
-    },
-    [appendMessage, finalizeAgentStream]
-  );
-
   const handleAgentChatResponsePart = useCallback(
     (part: { text?: string; type?: string }) => {
       const chunk = part.text ?? "";
@@ -257,11 +215,7 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
 
       const type = record.type ?? "";
 
-      if (
-        type === "agent_response" ||
-        type === "agent_chat_response_part" ||
-        type === "error"
-      ) {
+      if (type === "error") {
         soniaChatInfo(`WebSocket ← ${type}.`);
       }
 
@@ -277,28 +231,8 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
         }
         return;
       }
-
-      if (
-        type === "agent_response" &&
-        record.agent_response_event?.agent_response != null
-      ) {
-        if (!elOpeningMessageSeenRef.current) {
-          elOpeningMessageSeenRef.current = true;
-        }
-        handleElevenLabsMessage({
-          role: "agent",
-          source: "ai",
-          message: record.agent_response_event.agent_response,
-          event_id: record.agent_response_event.event_id,
-        });
-        return;
-      }
-
-      if (type === "agent_chat_response_part" && record.text_response_part) {
-        handleAgentChatResponsePart(record.text_response_part);
-      }
     },
-    [appendMessage, handleAgentChatResponsePart, handleElevenLabsMessage, t]
+    [appendMessage, t]
   );
 
   textSessionCallbacksRef.current = {
@@ -326,12 +260,7 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     onMessage: (message) => {
       if (sessionKindRef.current !== "text") return;
       if (message.source === "user") return;
-      handleElevenLabsMessage({
-        source: "ai",
-        role: "agent",
-        message: message.message,
-        event_id: message.event_id,
-      });
+      // Texto usa só agent_chat_response_part (stream); onMessage repete o commit final.
     },
     onAgentChatResponsePart: (part) => {
       if (sessionKindRef.current !== "text") return;
@@ -487,7 +416,6 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     setHasBegunTextChat(false);
     hasBegunTextChatRef.current = false;
     userTextSentRef.current = false;
-    elOpeningMessageSeenRef.current = false;
     audioReplyAfterUserRef.current = false;
     audioFallbackShownRef.current = false;
   }, []);
