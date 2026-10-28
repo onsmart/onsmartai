@@ -2,12 +2,12 @@ import type { Express, Request, Response, NextFunction } from "express";
 
 const PROD_CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://unpkg.com https://cdn.jsdelivr.net",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://unpkg.com https://cdn.jsdelivr.net https://assets.calendly.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://api.elevenlabs.io https://api.us.elevenlabs.io https://convai.elevenlabs.io https://*.elevenlabs.io wss://*.elevenlabs.io wss://api.elevenlabs.io wss://api.us.elevenlabs.io",
-  "frame-src 'self' https://*.elevenlabs.io",
+  "connect-src 'self' https://api.elevenlabs.io https://api.us.elevenlabs.io https://convai.elevenlabs.io https://*.elevenlabs.io wss://*.elevenlabs.io wss://api.elevenlabs.io wss://api.us.elevenlabs.io https://calendly.com https://*.calendly.com",
+  "frame-src 'self' https://*.elevenlabs.io https://calendly.com https://*.calendly.com",
   "media-src 'self' blob: https:",
 ].join("; ");
 

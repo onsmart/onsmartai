@@ -182,6 +182,15 @@
   border-radius: var(--radius-card);
 }
 
+:root .inner-page .contact-calendly-inline {
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+
+:root .inner-page .contact-booking-header {
+  border-radius: 0;
+}
+
 :root .inner-page .services-category-icon,
 :root .inner-page .content-featured-mark,
 :root .inner-page .content-youtube-mark,

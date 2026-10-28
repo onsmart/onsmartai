@@ -186,6 +186,8 @@ export type SiteCopy = UiMessages & {
     flowAria: string;
     matrixLabel: string;
     branchLabel: string;
+    bookingLead: string;
+    bookingNotice: string;
   };
   newsletter: {
     eyebrow: string;
@@ -527,6 +529,10 @@ const extraPt = {
     flowAria: "Como funciona o contato",
     matrixLabel: "Matriz",
     branchLabel: "Filial",
+    bookingLead:
+      "Escolha data e horário para uma conversa com a equipe comercial.",
+    bookingNotice:
+      "Prefere outro canal? WhatsApp e e-mail continuam disponíveis acima.",
   },
   newsletter: {
     eyebrow: "Conhecimento para decidir",
@@ -886,6 +892,9 @@ const extraEn: typeof extraPt = {
     flowAria: "How contact works",
     matrixLabel: "Head office",
     branchLabel: "Branch",
+    bookingLead: "Pick a date and time for a conversation with our commercial team.",
+    bookingNotice:
+      "Prefer another channel? WhatsApp and email remain available above.",
   },
   newsletter: {
     eyebrow: "Knowledge to decide",
@@ -1246,6 +1255,10 @@ const extraEs: typeof extraPt = {
     flowAria: "Cómo funciona el contacto",
     matrixLabel: "Matriz",
     branchLabel: "Sucursal",
+    bookingLead:
+      "Elija fecha y horario para una conversación con el equipo comercial.",
+    bookingNotice:
+      "¿Prefiere otro canal? WhatsApp y correo siguen disponibles arriba.",
   },
   newsletter: {
     eyebrow: "Conocimiento para decidir",

@@ -87,7 +87,7 @@
 }
 
 .inner-page .section-heading h2,
-.inner-page .section h2 {
+.inner-page .section:not(.contact-booking-section) h2 {
   color: var(--inner-ink);
   font-weight: 500;
   letter-spacing: -0.04em;
@@ -2026,24 +2026,78 @@
 }
 
 .contact-booking-panel {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1fr) auto;
-  gap: 24px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.5vw, 24px);
   padding: clamp(25px, 4vw, 48px);
+  padding-bottom: clamp(22px, 3.5vw, 36px);
   border: 1px solid var(--inner-ink);
-  background: var(--inner-ink);
+  background:
+    radial-gradient(
+      120% 80% at 100% 0%,
+      rgba(121, 185, 234, 0.12),
+      transparent 55%
+    ),
+    var(--inner-ink);
   color: var(--inner-paper);
   overflow: hidden;
 }
 
+.contact-booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(20px, 4vw, 48px);
+  padding-bottom: clamp(22px, 3vw, 30px);
+  border-bottom: 1px solid rgba(121, 185, 234, 0.22);
+}
+
+.contact-booking-header-main {
+  display: flex;
+  gap: clamp(18px, 2.5vw, 26px);
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-booking-panel .contact-heading-mark {
+  flex-shrink: 0;
+  color: rgba(121, 185, 234, 0.5);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 0.85;
+}
+
+.contact-booking-panel .contact-heading-mark span {
+  color: rgba(249, 250, 253, 0.25);
+}
+
+.contact-calendly-inline {
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.contact-calendly-inline iframe {
+  display: block;
+  width: 100%;
+  min-height: 720px;
+  border: 0;
+}
+
 .contact-booking-icon {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border: 1px solid var(--inner-blue);
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(121, 185, 234, 0.45);
+  background: linear-gradient(
+    160deg,
+    rgba(121, 185, 234, 0.16),
+    rgba(121, 185, 234, 0.04)
+  );
   color: var(--inner-blue);
 }
 
@@ -2051,14 +2105,26 @@
   color: var(--inner-blue);
 }
 
+.contact-booking-panel .contact-booking-copy h2,
 .contact-booking-panel h2 {
-  margin: 13px 0 8px;
+  margin: 12px 0 10px;
   color: var(--inner-paper);
-  font-size: clamp(1.6rem, 3.5vw, 3.2rem);
-  line-height: 1.05;
+  font-size: clamp(1.45rem, 2.8vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.08;
+  max-width: 14em;
+  letter-spacing: -0.03em;
 }
 
-.contact-booking-panel p:not(.eyebrow) {
+.contact-booking-lead {
+  max-width: 36rem;
+  margin: 0;
+  color: rgba(249, 250, 253, 0.82);
+  font-size: clamp(0.875rem, 1.4vw, 0.95rem);
+  line-height: 1.65;
+}
+
+.contact-booking-panel p:not(.eyebrow):not(.contact-booking-lead) {
   max-width: 650px;
   margin: 0;
   color: rgba(249, 250, 253, 0.7);
@@ -2352,8 +2418,13 @@
 
   .content-controls,
   .content-youtube-panel,
-  .contact-booking-panel {
-    grid-template-columns: 1fr;
+  .contact-booking-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-booking-panel h2 {
+    max-width: none;
   }
 
   .content-catalog-count {

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { ContactForm } from "@/components/site/Forms";
 import { ButtonLink, Notice, PageHero } from "@/components/site/Common";
+import CalendlyInline from "@/components/site/CalendlyInline";
 import { useWhatsappLink } from "@/i18n/site";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { MARKETING_EMAIL } from "@shared/contact";
@@ -190,31 +191,34 @@ export default function Contact() {
 
         <section className="section contact-booking-section">
           <div className="container contact-booking-panel">
-            <div className="contact-booking-icon">
-              <CalendarClock size={25} strokeWidth={1.3} aria-hidden="true" />
+            <div className="contact-booking-header">
+              <div className="contact-booking-header-main">
+                <div className="contact-booking-icon">
+                  <CalendarClock
+                    size={26}
+                    strokeWidth={1.35}
+                    aria-hidden="true"
+                  />
+                </div>
+                <div className="contact-booking-copy">
+                  <p className="eyebrow">
+                    <span />
+                    {cmsText("Agendamento")}
+                  </p>
+                  <h2>
+                    {cmsText("Reserve um espaço para o próximo capítulo.")}
+                  </h2>
+                  <p className="contact-booking-lead">{t("contact.bookingLead")}</p>
+                </div>
+              </div>
+              <span className="contact-heading-mark" aria-hidden="true">
+                03<span>{cmsText("/03")}</span>
+              </span>
             </div>
-            <div>
-              <p className="eyebrow">
-                <span />
-                {cmsText("Agendamento")}
-              </p>
-              <h2>{cmsText("Reserve um espaço para o próximo capítulo.")}</h2>
-              <p>
-                {cmsText(
-                  "A integração com Calendly ou outra ferramenta oficial de agendamento será configurada quando o link definitivo estiver disponível."
-                )}
-              </p>
-            </div>
-            <span className="contact-booking-status">
-              {cmsText("Em breve")}
-            </span>
+            <CalendlyInline className="contact-calendly-inline" minHeight={720} />
           </div>
           <div className="container contact-notice-wrap">
-            <Notice>
-              {cmsText(
-                "O agendamento online será disponibilizado em breve. Enquanto isso, fale conosco pelo WhatsApp ou e-mail."
-              )}
-            </Notice>
+            <Notice>{t("contact.bookingNotice")}</Notice>
           </div>
         </section>
       </div>

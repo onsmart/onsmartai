@@ -28,7 +28,6 @@ import {
   getCmsDocument,
   getCmsGrantByUserId,
   getCmsMedia,
-  getPublishedDocuments,
   getUserByOpenIdForCms,
   listCmsAdminOpenIds,
   listCmsAudit,
@@ -39,6 +38,7 @@ import {
   toCmsDocument,
   toCmsMedia,
 } from "./db";
+import { resolvePublicCmsDocuments } from "./seed-public";
 import type { CmsRole, CmsUser } from "@shared/cms";
 
 class CmsHttpError extends Error {
@@ -451,14 +451,7 @@ export function registerCmsRoutes(app: Express): void {
   router.get(
     "/public",
     asyncRoute(async (_req, res) => {
-      const documents = (await getPublishedDocuments()).filter(document => {
-        try {
-          assertPublishable(document.kind, document.payload);
-          return true;
-        } catch {
-          return false;
-        }
-      });
+      const documents = await resolvePublicCmsDocuments();
       return jsonOk(res, { documents });
     })
   );

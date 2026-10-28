@@ -1653,15 +1653,15 @@
           },
           {
             "original": "A integração com Calendly ou outra ferramenta oficial de agendamento será configurada quando o link definitivo estiver disponível.",
-            "text": "A integração com Calendly ou outra ferramenta oficial de agendamento será configurada quando o link definitivo estiver disponível."
+            "text": "Escolha data e horário para uma conversa com a equipe comercial."
           },
           {
             "original": "Link oficial pendente",
-            "text": "Link oficial pendente"
+            "text": "Agendar reunião"
           },
           {
             "original": "Não há link de agendamento, mapa ou integração externa ativa nesta Fase 1.",
-            "text": "Não há link de agendamento, mapa ou integração externa ativa nesta Fase 1."
+            "text": "Prefere outro canal? WhatsApp e e-mail continuam disponíveis acima."
           }
         ],
         "links": [
@@ -2946,11 +2946,11 @@
     "slug": "parcerias",
     "payload": {
       "title": "Explore uma parceria em soluções de IA com a Onsmart.AI",
-      "summary": "Conheça as modalidades previstas para empreendedores, agências, prestadores de serviços, gestores e empresas interessadas em comercializar soluções de IA. Formato, condições e operação de cada modalidade precisam ser confirmados com a equipe.",
+      "summary": "Conheça as modalidades para empreendedores, agências, prestadores de serviços, gestores e empresas que desejam comercializar soluções de inteligência artificial com a Onsmart.AI.",
       "author": "",
       "publishedAt": "",
       "seoTitle": "Programa de Parcerias em IA | Onsmart.AI",
-      "seoDescription": "Conheça as modalidades de parceria previstas pela Onsmart.AI e converse com a equipe para validar escopo, funcionamento e condições.",
+      "seoDescription": "Conheça as modalidades de parceria da Onsmart.AI — Agente Digital, Revenda e White Label — e converse com a equipe sobre escopo e condições.",
       "imageUrl": "",
       "imageAlt": "",
       "category": "Blog",
@@ -3000,9 +3000,9 @@
         ],
         "methodology": "Cada modalidade tem requisitos, benefícios e condições específicos, apresentados em conversa e em proposta comercial. O fluxo acima organiza o primeiro contato; detalhes contratuais são definidos caso a caso com a equipe Onsmart.AI.",
         "deliverables": [
-          "Descrição e público indicado de cada modalidade — conteúdo oficial a confirmar",
-          "Oportunidade de atuação e benefícios oficialmente confirmados — validar com a equipe",
-          "Funcionamento, responsabilidades e condições comerciais — definir antes de eventual contratação"
+          "Materiais e orientação comercial conforme a modalidade escolhida",
+          "Capacitação e apoio da equipe para posicionar o portfólio",
+          "Proposta com escopo, responsabilidades e condições acordadas"
         ],
         "differentiators": [
           {

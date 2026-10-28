@@ -5,9 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { publicPlatformScript } from "./server/_core/publicConfig";
-import ptCmsSeed from "./server/cms-seed-data.json";
-import localeCmsSeed from "./server/cms-seed-locales.json";
-import type { PublishedDocument } from "./shared/cms";
+import { buildCmsPublicJson } from "./server/cms/seed-public";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -172,30 +170,6 @@ function buildElevenLabsPublicConfigJson(): string {
   });
 }
 
-type CmsSeedRow = {
-  key: string;
-  kind: PublishedDocument["kind"];
-  locale: PublishedDocument["locale"];
-  slug: string;
-  payload: PublishedDocument["payload"];
-};
-
-function buildCmsPublicJson(): string {
-  const mapSeed = (rows: CmsSeedRow[], offset: number): PublishedDocument[] =>
-    rows.map((row, index) => ({
-      id: offset + index + 1,
-      key: row.key,
-      kind: row.kind,
-      locale: row.locale,
-      slug: row.slug,
-      payload: row.payload,
-    }));
-  const pt = ptCmsSeed as CmsSeedRow[];
-  const locales = localeCmsSeed as CmsSeedRow[];
-  const documents = [...mapSeed(pt, 0), ...mapSeed(locales, pt.length)];
-  return JSON.stringify({ data: { documents } });
-}
-
 function vitePluginVercelStaticApiFallbacks(): Plugin {
   return {
     name: "vercel-static-api-fallbacks",
@@ -231,6 +205,11 @@ function vitePluginPublicPlatformConfig(): Plugin {
         res.setHeader("Content-Type", "application/javascript");
         res.setHeader("Cache-Control", "no-store");
         res.end(publicPlatformScript());
+      });
+      server.middlewares.use("/cms/public.json", (_req, res) => {
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Cache-Control", "no-store");
+        res.end(buildCmsPublicJson());
       });
     },
     generateBundle() {
