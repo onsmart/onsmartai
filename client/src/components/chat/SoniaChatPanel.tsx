@@ -243,6 +243,8 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
 
   const handleIncomingSocketEvent = useCallback(
     (event: unknown) => {
+      if (sessionKindRef.current !== "text") return;
+
       const record = event as {
         type?: string;
         agent_response_event?: {
@@ -317,7 +319,6 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   };
 
   const conversation = useConversation({
-    ...bindTextSessionCallbacks(),
     onMessage: (message) => {
       if (sessionKindRef.current !== "text") return;
       if (message.source === "user") return;
@@ -327,6 +328,10 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
         message: message.message,
         event_id: message.event_id,
       });
+    },
+    onAgentChatResponsePart: (part) => {
+      if (sessionKindRef.current !== "text") return;
+      handleAgentChatResponsePart(part);
     },
     onConnect: () => {
       setIsStartingVoice(false);
@@ -352,7 +357,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       }
       if (modeRef.current === "voice" && reason !== "user") {
         soniaChatWarn(
-          "Sessão de voz encerrada inesperadamente (agente ou conexão).",
+          "Sessão de voz encerrada inesperadamente (agente ou conexão). Se persistir, confira no ElevenLabs ferramentas webhook com URL inválida ou teste o agente no preview.",
           details
         );
       }
@@ -533,6 +538,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
         signedUrl,
         connectionType: "websocket",
         textOnly: true,
+        ...bindTextSessionCallbacks(),
       });
       return true;
     } catch (error) {
@@ -637,7 +643,6 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       isConnected,
       isPendingConnection,
       startTextSession,
-      bindTextSessionCallbacks,
     ]
   );
 
@@ -811,8 +816,8 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
                   </button>
                 </div>
               ) : messages.length === 0 && isConnected ? (
-                <p className="sonia-typing" role="status">
-                  {t("sonia.connecting")}
+                <p className="sonia-text-hint" role="status">
+                  {t("sonia.textConnectedHelp")}
                 </p>
               ) : (
                 messages.map((message) => (
