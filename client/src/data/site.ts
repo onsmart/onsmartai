@@ -105,7 +105,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "sonia",
-    title: "SON.IA — Plataforma de IA Operacional",
+    title: "SON.IA — Plataforma Operacional Agêntica",
     category: "Plataforma",
     description:
       "Conecta conversas, agentes, sistemas e processos para transformar interações contínuas em ações de negócio governadas.",

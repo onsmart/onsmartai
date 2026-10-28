@@ -138,7 +138,6 @@ function Hero() {
 function Authority() {
   const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
   const { t } = useSiteCopy();
-  const [paused, setPaused] = useState(false);
   return (
     <section className="authority-section">
       <div className="container authority-heading">
@@ -156,18 +155,9 @@ function Authority() {
           <br />
           <strong>{cmsText("ao longo de sua trajetória")}</strong>
         </p>
-        <button
-          className="carousel-toggle"
-          onClick={() => setPaused(!paused)}
-          aria-label={
-            paused ? t("a11y.resumeCarousel") : t("a11y.pauseCarousel")
-          }
-        >
-          {paused ? <Play size={16} /> : <Pause size={16} />}
-        </button>
       </div>
       <div
-        className={`client-marquee ${paused ? "paused" : ""}`}
+        className="client-marquee"
         tabIndex={0}
         aria-label={t("a11y.clientLogos")}
       >
@@ -299,7 +289,7 @@ function Platform() {
             height="76"
             loading="lazy"
           />
-          <h2>{cmsText("SON.IA - Plataforma Operacional Agêntica")}</h2>
+          <h2>{cmsText("SON.IA — Plataforma Operacional Agêntica")}</h2>
           <p>
             {cmsText(
               "Conecta conversas, agentes, sistemas e processos para transformar interações contínuas em ações de negócio governadas."

@@ -104,7 +104,10 @@ const pt: UiMessages = {
       title: "Desenvolvimento de Apps e Agentes de IA",
       category: "services",
     },
-    sonia: { title: "SON.IA — Plataforma de IA Operacional", category: "platform" },
+    sonia: {
+      title: "SON.IA — Plataforma Operacional Agêntica",
+      category: "platform",
+    },
   },
 };
 
@@ -165,7 +168,10 @@ const en: UiMessages = {
       title: "Custom AI apps and agents",
       category: "services",
     },
-    sonia: { title: "SON.IA — Operational AI platform", category: "platform" },
+    sonia: {
+      title: "SON.IA — Agentic Operations Platform",
+      category: "platform",
+    },
   },
 };
 
@@ -228,7 +234,7 @@ const es: UiMessages = {
       category: "services",
     },
     sonia: {
-      title: "SON.IA — Plataforma de IA operacional",
+      title: "SON.IA — Plataforma Operacional Agéntica",
       category: "platform",
     },
   },

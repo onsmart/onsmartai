@@ -1,6 +1,7 @@
 import EcosystemChart from "@/components/site/EcosystemChart";
-import { CompanyLogo, type CompanyId } from "@/components/site/CompanyLogo";
+import { CompanyLogo } from "@/components/site/CompanyLogo";
 import { useCmsCopy } from "@/components/cms/CmsProvider";
+import { useSiteContent } from "@/data/site-content";
 import "./inner.css";
 import {
   ArrowDown,
@@ -12,21 +13,20 @@ import {
   Network,
   ShieldCheck,
 } from "lucide-react";
-import {
-  ButtonLink,
-  Notice,
-  PageHero,
-  SectionHeading,
-} from "@/components/site/Common";
+import { ButtonLink, PageHero, SectionHeading } from "@/components/site/Common";
+import { useSiteCopy } from "@/i18n/useSiteCopy";
+
 const companyIcons = {
   tech: Building2,
   ai: Layers3,
   growth: BarChart3,
   robotics: Construction,
-};
+} as const;
 
 export default function Ecosystem() {
-  const { text: cmsText, href: cmsHref, image: cmsImage } = useCmsCopy();
+  const { text: cmsText, href: cmsHref } = useCmsCopy();
+  const { companies } = useSiteContent();
+  const { t } = useSiteCopy();
 
   return (
     <div className="inner-page ecosystem-page">
@@ -67,7 +67,7 @@ export default function Ecosystem() {
             <div className="ecosystem-overview-copy">
               <p>
                 {cmsText(
-                  "O grupo conecta empresas com papéis distintos. Onde a documentação institucional ainda não está disponível, a página mantém o espaço preparado e sinaliza a pendência — sem presumir produtos ou diferenciais."
+                  "O grupo conecta empresas com papéis distintos em tecnologia, inteligência artificial, crescimento e inovação. Cada marca tem site e proposta próprios — explore abaixo."
                 )}
               </p>
               <a className="ecosystem-scroll-link" href="#tech">
@@ -111,7 +111,7 @@ export default function Ecosystem() {
                   "Um ecossistema empresarial. Diferentes frentes de atuação."
                 )}
                 text={cmsText(
-                  "Explore as marcas do Grupo Onsmart. As apresentações complementares serão incorporadas com os materiais oficiais."
+                  "Conheça cada marca do grupo, com descrição resumida e link para o site oficial quando disponível."
                 )}
               />
               <span className="ecosystem-companies-count">
@@ -122,117 +122,68 @@ export default function Ecosystem() {
             </div>
 
             <div className="ecosystem-company-sections">
-              <article
-                className="ecosystem-company-section ecosystem-company-section-tech"
-                id="tech"
-              >
-                <div className="ecosystem-company-section-meta">
-                  <span>01</span>
-                  <Building2 size={19} aria-hidden="true" />
-                </div>
-                <div className="ecosystem-company-section-content">
-                  <CompanyLogo id="tech" className="company-section-logo" />
-                  <h2>{cmsText("Tecnologia desde 2014.")}</h2>
-                  <p>
-                    {cmsText(
-                      "O registro público da Onsmart Tech é a fonte do marco de 2014. A apresentação da atuação, dos produtos e dos diferenciais será incorporada quando os materiais oficiais do grupo forem validados."
-                    )}
-                  </p>
-                  <Notice>
-                    {cmsText(
-                      "Conteúdo institucional em atualização."
-                    )}
-                  </Notice>
-                </div>
-                <span className="ecosystem-company-state">
-                  {cmsText("Onsmart Tech")}
-                </span>
-              </article>
-
-              <article
-                className="ecosystem-company-section ecosystem-company-section-ai"
-                id="ai"
-              >
-                <div className="ecosystem-company-section-meta">
-                  <span>02</span>
-                  <Layers3 size={19} aria-hidden="true" />
-                </div>
-                <div className="ecosystem-company-section-content">
-                  <CompanyLogo id="ai" className="company-section-logo" />
-                  <h2>
-                    {cmsText(
-                      "Educação, consultoria e desenvolvimento personalizado."
-                    )}
-                  </h2>
-                  <p>
-                    {cmsText(
-                      "A empresa responsável por educação, consultoria, serviços e soluções de inteligência artificial para o ambiente corporativo. O Ecossistema SON.IA conecta conversas, agentes, sistemas e processos em ações de negócio governadas."
-                    )}
-                  </p>
-                  <div className="ecosystem-ai-pillars">
-                    <span>{cmsText("Educação")}</span>
-                    <span>{cmsText("Consultoria")}</span>
-                    <span>{cmsText("Desenvolvimento")}</span>
-                    <span>{cmsText("SON.IA")}</span>
-                  </div>
-                  <ButtonLink href={cmsHref("/servicos")} variant="outline">
-                    {cmsText("Conhecer soluções")}
-                  </ButtonLink>
-                </div>
-                <span className="ecosystem-company-state">
-                  {cmsText("Educação, serviços e plataforma de IA")}
-                </span>
-              </article>
-
-              <article
-                className="ecosystem-company-section ecosystem-company-section-growth"
-                id="growth"
-              >
-                <div className="ecosystem-company-section-meta">
-                  <span>03</span>
-                  <BarChart3 size={19} aria-hidden="true" />
-                </div>
-                <div className="ecosystem-company-section-content">
-                  <CompanyLogo id="growth" className="company-section-logo" />
-                  <h2>
-                    {cmsText("Crescimento e novos negócios.")}
-                  </h2>
-                  <p>
-                    {cmsText(
-                      "Frente do Grupo Onsmart dedicada a acelerar resultados e expandir oportunidades com tecnologia."
-                    )}
-                  </p>
-                </div>
-                <span className="ecosystem-company-state">
-                  {cmsText("Onsmart Growth")}
-                </span>
-              </article>
-
-              <article
-                className="ecosystem-company-section ecosystem-company-section-robotics"
-                id="robotics"
-              >
-                <div className="ecosystem-company-section-meta">
-                  <span>04</span>
-                  <Construction size={19} aria-hidden="true" />
-                </div>
-                <div className="ecosystem-company-section-content">
-                  <CompanyLogo id="robotics" className="company-section-logo" />
-                  <h2>{cmsText("Em breve.")}</h2>
-                  <p>
-                    {cmsText(
-                      "Uma frente reservada para o próximo capítulo do Grupo Onsmart, sem produtos, tecnologias ou prazo inventados."
-                    )}
-                  </p>
-                  <div className="ecosystem-coming-soon">
-                    <ShieldCheck size={20} aria-hidden="true" />
-                    <span>{cmsText("Em breve")}</span>
-                  </div>
-                </div>
-                <span className="ecosystem-company-state">
-                  {cmsText("Em breve")}
-                </span>
-              </article>
+              {companies.map((company, index) => {
+                const Icon = companyIcons[company.id];
+                return (
+                  <article
+                    className={`ecosystem-company-section ecosystem-company-section-${company.id}`}
+                    id={company.id}
+                    key={company.id}
+                  >
+                    <div className="ecosystem-company-section-meta">
+                      <span>0{index + 1}</span>
+                      <Icon size={19} aria-hidden="true" />
+                    </div>
+                    <div className="ecosystem-company-section-content">
+                      <CompanyLogo
+                        id={company.id}
+                        className="company-section-logo"
+                      />
+                      <h2>{company.headline}</h2>
+                      <p>{company.text}</p>
+                      {company.id === "ai" && (
+                        <div className="ecosystem-ai-pillars">
+                          <span>{cmsText("Educação")}</span>
+                          <span>{cmsText("Consultoria")}</span>
+                          <span>{cmsText("Desenvolvimento")}</span>
+                          <span>{cmsText("SON.IA")}</span>
+                        </div>
+                      )}
+                      <div className="ecosystem-company-actions">
+                        {company.status === "live" && company.website && (
+                          <a
+                            className="button button-outline ecosystem-site-link"
+                            href={cmsHref(company.website)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${t("ecosystem.visitSite")} — ${company.name}`}
+                          >
+                            {t("ecosystem.visitSite")}
+                            <ArrowUpRight size={16} aria-hidden="true" />
+                          </a>
+                        )}
+                        {company.id === "ai" && (
+                          <ButtonLink
+                            href={cmsHref("/servicos")}
+                            variant="outline"
+                          >
+                            {t("ecosystem.exploreSolutions")}
+                          </ButtonLink>
+                        )}
+                        {company.status === "development" && (
+                          <div className="ecosystem-coming-soon">
+                            <ShieldCheck size={20} aria-hidden="true" />
+                            <span>{t("ecosystem.inDevelopment")}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <span className="ecosystem-company-state">
+                      {company.state}
+                    </span>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

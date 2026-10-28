@@ -7,7 +7,7 @@ import { Link, Route, Switch, useLocation } from "wouter";
 import Header from "./components/site/Header";
 import Footer from "./components/site/Footer";
 import Consent from "./components/site/Consent";
-import SoniaDemo from "./components/site/SoniaDemo";
+import SoniaChat from "./components/chat/SoniaChat";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -246,7 +246,7 @@ export default function App() {
       </main>
       <Footer onPreferences={() => setPreferencesOpen(true)} />
       <Consent open={preferencesOpen} onOpenChange={setPreferencesOpen} />
-      <SoniaDemo />
+      <SoniaChat />
     </ErrorBoundary>
   );
 }

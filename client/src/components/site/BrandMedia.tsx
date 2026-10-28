@@ -11,19 +11,16 @@ export function SoniaCharacter({
 }) {
   const { image } = useCmsCopy();
   const asset = image(media.sonia.url);
+  const isFloating = className.includes("floating-sonia-character");
+  const src = asset.url || media.sonia.url;
   return (
     <img
       className={`sonia-character ${className}`}
-      src={
-        className.includes("floating-sonia-character") &&
-        asset.url === media.sonia.url
-          ? media.sonia.thumbnailUrl
-          : asset.url
-      }
+      src={src}
       alt={decorative ? "" : asset.alt || media.sonia.alt}
       width={media.sonia.width}
       height={media.sonia.height}
-      loading="lazy"
+      loading={isFloating ? "eager" : "lazy"}
       decoding="async"
     />
   );

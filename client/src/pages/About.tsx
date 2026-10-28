@@ -1,5 +1,5 @@
 import brandMedia from "@/data/brand-media.json";
-import { CompanyLogo, type CompanyId } from "@/components/site/CompanyLogo";
+import { CompanyLogo } from "@/components/site/CompanyLogo";
 import { RicardoPortrait, SoniaCharacter } from "@/components/site/BrandMedia";
 import { useCmsCopy } from "@/components/cms/CmsProvider";
 import "./inner.css";
@@ -140,17 +140,17 @@ export default function About() {
                     <span>0{index + 1}</span>
                   </div>
                   <div className="about-timeline-copy">
-                    <details open={index === 0}>
+                    <details open>
                       <summary>
                         <span className="about-timeline-year">
-                          {milestone.marker === "2014" && (
+                          {/^\d{4}$/.test(milestone.marker) && (
                             <CalendarDays size={15} aria-hidden="true" />
                           )}
                           {milestone.marker}
                         </span>
-                        {milestone.marker === "2014" && (
+                        {milestone.companyId && (
                           <CompanyLogo
-                            id="tech"
+                            id={milestone.companyId}
                             className="timeline-company-logo"
                           />
                         )}
@@ -188,28 +188,43 @@ export default function About() {
               </div>
             </div>
             <div className="about-companies-list">
-              {companies.map((company, index) => (
-                <article
-                  className={`about-company-row about-company-row-${company.id}`}
-                  key={company.id}
-                >
-                  <span className="about-company-number">0{index + 1}</span>
-                  <div className="about-company-name">
-                    <h3>
-                      <CompanyLogo id={company.id as CompanyId} />
-                    </h3>
-                  </div>
-                  <div className="about-company-copy">
-                    <span>{cmsText(company.state)}</span>
-                    <p>{cmsText(company.text)}</p>
-                  </div>
-                  <ArrowUpRight
-                    className="about-company-arrow"
-                    size={20}
-                    aria-hidden="true"
-                  />
-                </article>
-              ))}
+              {companies.map((company, index) => {
+                const rowClass = `about-company-row about-company-row-${company.id}`;
+                const inner = (
+                  <>
+                    <span className="about-company-number">0{index + 1}</span>
+                    <div className="about-company-name">
+                      <h3>
+                        <CompanyLogo id={company.id} />
+                      </h3>
+                    </div>
+                    <div className="about-company-copy">
+                      <span>{company.state}</span>
+                      <p>{company.text}</p>
+                    </div>
+                    <ArrowUpRight
+                      className="about-company-arrow"
+                      size={20}
+                      aria-hidden="true"
+                    />
+                  </>
+                );
+                return company.website ? (
+                  <a
+                    className={rowClass}
+                    href={cmsHref(company.website)}
+                    key={company.id}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <article className={rowClass} key={company.id}>
+                    {inner}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -231,7 +246,7 @@ export default function About() {
               </p>
               <p>
                 {cmsText(
-                  "Ricardo Palomar é identificado publicamente como CEO da Onsmart e do Onsmart Group. A fotografia foi fornecida para esta página. A biografia executiva completa permanece pendente de validação oficial."
+                  "Ricardo Palomar é CEO e fundador da Onsmart e do Onsmart Group. Lidera a estratégia de educação, consultoria e plataforma para empresas que desejam adotar inteligência artificial com governança e resultado na operação."
                 )}
               </p>
               <div className="about-leadership-links">
@@ -252,11 +267,6 @@ export default function About() {
                   <ExternalLink size={15} aria-hidden="true" />
                 </a>
               </div>
-              <Notice>
-                {cmsText(
-                  "Fotografia fornecida. Biografia executiva complementar sujeita a validação institucional."
-                )}
-              </Notice>
             </div>
           </div>
         </section>

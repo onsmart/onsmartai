@@ -188,13 +188,14 @@
   }
 }
 
-.client-logo.logo-white img,
-.client-logo.logo-white:hover img {
-  filter: grayscale(1) invert(1);
-  opacity: 0.82;
+/* Logos brancos (fundo transparente) no carrossel claro da Home */
+.authority-section .client-logo.logo-white img,
+.authority-section .client-logo.logo-white:hover img {
+  filter: brightness(0);
+  opacity: 0.78;
 }
-.client-logo.logo-white:hover img {
-  opacity: 1;
+.authority-section .client-logo.logo-white:hover img {
+  opacity: 0.92;
 }
 
 .commercial-hero-visual.commercial-visual-platform.has-sonia-media {

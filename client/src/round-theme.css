@@ -168,13 +168,11 @@
 /* Internal pages: only actual panels, cards, image frames and controls. */
 :root .inner-page .about-story-panel,
 :root .inner-page .about-portrait,
-:root .inner-page .about-achievement,
 :root .inner-page .services-solution-soft,
 :root .inner-page .services-academy-note,
 :root .inner-page .services-closing-panel,
 :root .inner-page .ecosystem-diagram,
 :root .inner-page .ecosystem-node,
-:root .inner-page .ecosystem-company-section,
 :root .inner-page .ecosystem-closing-panel,
 :root .inner-page .content-featured,
 :root .inner-page .content-grid .editorial-card,
@@ -212,8 +210,6 @@
 :root .commercial-page .commercial-deliverables,
 :root .commercial-page .commercial-form-panel,
 :root .commercial-page .commercial-mode-confirm,
-:root .commercial-page .partner-mode-controls > button,
-:root .commercial-page .partner-mode-panel,
 :root .commercial-page .partner-conditions-note {
   border-radius: var(--radius-card);
 }

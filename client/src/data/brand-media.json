@@ -9,14 +9,13 @@
     "size": 100516
   },
   "sonia": {
-    "url": "/manus-storage/sonia-transparent_b0003895.webp",
-    "alt": "Personagem SON.IA com fundo transparente, óculos e headset.",
+    "url": "/manus-storage/soniaonsmartai.png",
+    "alt": "SON.IA — assistente virtual da Onsmart.AI.",
     "width": 960,
     "height": 960,
-    "name": "sonia-transparent.webp",
-    "mime": "image/webp",
-    "size": 98230,
-    "thumbnailUrl": "/manus-storage/sonia-transparent-mini_88a7df10.webp"
+    "name": "soniaonsmartai.png",
+    "mime": "image/png",
+    "size": 0
   },
   "confraria": {
     "url": "/manus-storage/confraria_2bd365b8.webp",

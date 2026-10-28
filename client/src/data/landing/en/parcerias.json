@@ -2,11 +2,11 @@
   "slug": "parcerias",
   "eyebrow": "Partnership Program",
   "heroTitle": "Explore an AI solutions partnership with Onsmart.AI",
-  "lead": "Learn about the modalities planned for entrepreneurs, agencies, service providers, managers, and companies interested in commercializing AI solutions. Format, terms, and operation of each modality must be confirmed with the team.",
+  "lead": "Discover modalities for entrepreneurs, agencies, service providers, managers, and companies that want to commercialize artificial intelligence solutions with Onsmart.AI.",
   "contextTitle": "Your work can open conversations about AI in companies",
-  "context": "Entrepreneurs, agencies, service providers, and companies may be interested in working with artificial intelligence solutions. Onsmart.AI plans a program with three modalities; commercial and operational details still need validation before any enrollment.",
-  "solutionTitle": "Discover the planned modalities",
-  "solutionText": "The briefing identifies Digital Agent, Reseller, and White Label as program modalities. This page presents these options to start a conversation, not as an offer with defined terms. Operational description, target audience, business opportunity, officially confirmed benefits, and how each modality works must be clarified by the team before engagement.",
+  "context": "Entrepreneurs, agencies, service providers, and companies can expand portfolio and client relationships by working with Onsmart.AI education, services, and platform.",
+  "solutionTitle": "Three partnership modalities",
+  "solutionText": "Digital Agent, Reseller, and White Label are distinct paths to work with the Onsmart.AI brand and portfolio. Each modality has scope, responsibilities, and commercial terms defined in conversation and in a proposal.",
   "audiences": [
     "Entrepreneurs interested in commercializing AI solutions",
     "Marketing agencies and service providers",
@@ -14,79 +14,79 @@
   ],
   "goals": [
     {
-      "title": "Evaluate a possible role",
-      "text": "Identify which modality deserves discussion given the interested party's profile and goals; fit depends on commercial validation."
+      "title": "Digital Agent",
+      "text": "Refer and lead conversations about Onsmart.AI AI solutions, with commercial team support to qualify opportunities and manage client relationships."
     },
     {
-      "title": "Understand partnership scope",
-      "text": "Clarify with the team how it works, responsibilities, and applicable terms before any decision."
+      "title": "Reseller",
+      "text": "Sell education, services, and the SON.IA platform under the Onsmart.AI brand, with materials, training, and team support to serve companies at scale."
     },
     {
-      "title": "Define next steps",
-      "text": "Start a qualification conversation to verify alignment, without assuming approval or availability of a modality."
+      "title": "White Label",
+      "text": "Offer AI solutions under your company identity, per model, integrations, and scope agreed in a proposal with Onsmart.AI."
     }
   ],
   "flow": [
     {
       "title": "Choose a profile to discuss",
-      "text": "The page may present Digital Agent, Reseller, and White Label as interest options, as planned in the briefing; choosing does not represent enrollment."
+      "text": "Select Digital Agent, Reseller, or White Label based on how you operate. Your choice guides the first conversation — it is not automatic enrollment."
     },
     {
       "title": "Share your context",
-      "text": "The briefing provides for a specific qualification form. Fields, data collection, and qualification criteria must be confirmed before publication."
+      "text": "Complete the qualification form or contact us on WhatsApp. Tell us about your audience, operations, and AI goals."
     },
     {
       "title": "Talk with the team",
-      "text": "Request clarification on scope and terms. The briefing provides for scheduling with the responsible area; availability and operation must be confirmed."
+      "text": "The commercial team clarifies scope, responsibilities, terms, and timeline for each modality before any commitment."
     }
   ],
-  "methodology": "No partnership method, implementation process, approval criteria, responsibilities, or schedule are officially detailed in the briefing. The team must confirm these points, along with availability of each modality, in conversation and any commercial proposal. The organization above is navigation and qualification guidance only, not a contracted process.",
+  "methodology": "Each modality has specific requirements, benefits, and terms, presented in conversation and in a commercial proposal. The flow above organizes first contact; contractual details are defined case by case with the Onsmart.AI team.",
   "deliverables": [
-    "Description and target audience for each modality — official content to be confirmed",
-    "Business opportunity and officially confirmed benefits — validate with the team",
-    "Operation, responsibilities, and commercial terms — define before any engagement"
+    "Commercial materials and guidance per chosen modality",
+    "Training and team support to position the portfolio",
+    "Proposal with agreed scope, responsibilities, and terms"
   ],
   "differentiators": [
     {
-      "title": "Three identified modalities",
-      "text": "The briefing lists Digital Agent, Reseller, and White Label, without specifying terms or operation."
+      "title": "Commercial focus",
+      "text": "Lead referral, proposal support, and pipeline follow-up with the Onsmart.AI team."
     },
     {
-      "title": "Diverse audiences",
-      "text": "The page proposal considers entrepreneurs, marketing agencies, service providers, managers, and companies interested in commercializing AI solutions."
+      "title": "Full portfolio",
+      "text": "Education, consulting, custom development, and the SON.IA platform to build market offers."
     },
     {
-      "title": "Conversation before assuming terms",
-      "text": "Communication keeps pending details not provided, such as commissions, earnings, contracts, and operation."
+      "title": "Brand and scope",
+      "text": "Option to deliver under your brand, with usage rules, support, and integrations aligned in contract."
     }
   ],
   "faqs": [
     {
-      "q": "Which modalities are planned?",
-      "a": "The briefing lists Digital Agent, Reseller, and White Label. Availability and terms for each must be confirmed with the team."
+      "q": "Which modalities are available?",
+      "a": "Digital Agent, Reseller, and White Label. The team confirms availability and terms for each based on your profile and region."
     },
     {
       "q": "How does each modality work?",
-      "a": "Operation is not detailed in available materials. Ask the team for the official description, responsibilities, and scope before proceeding."
+      "a": "Each path has distinct roles, responsibilities, and commercial models. In the qualification conversation, the team presents official operation and scope for you."
     },
     {
-      "q": "Are commission, earnings, or contract terms defined?",
-      "a": "This information was not provided. Percentages, earnings, contracts, or other terms cannot be stated; confirm directly with the team."
+      "q": "Is there commission or referral compensation?",
+      "a": "Commercial terms, including compensation and targets, are presented in a proposal after qualification. We do not publish generic percentages on the site."
     },
     {
       "q": "Does White Label include customization or licenses?",
-      "a": "The briefing only cites White Label as a modality. Customization, licenses, and other terms are not confirmed and must be verified."
+      "a": "White Label may involve visual identity, product scope, and licensing per agreement. These points are defined in a proposal, not generically."
     },
     {
       "q": "How do I express interest or schedule a conversation?",
-      "a": "The briefing provides for a qualification form and scheduling with the responsible area. Availability, process, and requested data still need confirmation."
+      "a": "Use the form on this page or WhatsApp. The partnerships team will follow up to align modality, next steps, and scheduling if needed."
     }
   ],
   "cta": "I want to be a partner",
   "interest": "Parcerias",
   "metaTitle": "AI Partnership Program | Onsmart.AI",
-  "metaDescription": "Discover Onsmart.AI planned partnership modalities and talk with the team to validate scope, operation, and terms.",
+  "metaDescription": "Discover Onsmart.AI partnership modalities — Digital Agent, Reseller, and White Label — and talk with the team about scope and terms.",
   "commercialNotices": [
-    "Pricing, availability, formats, scope, and engagement terms are subject to confirmation with the commercial team."
+    "Pricing, availability, formats, scope, and engagement terms are confirmed with the commercial team in a proposal."
   ]
 }

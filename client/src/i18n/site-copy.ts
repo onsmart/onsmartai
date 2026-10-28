@@ -82,6 +82,30 @@ export type SiteCopy = UiMessages & {
   sonia: {
     title: string;
     subtitle: string;
+    statusReady: string;
+    voiceInCall: string;
+    welcomeMessage: string;
+    voiceTab: string;
+    chatTab: string;
+    startConversation: string;
+    endConversation: string;
+    connecting: string;
+    listening: string;
+    speaking: string;
+    inputPlaceholder: string;
+    send: string;
+    restart: string;
+    quickSuggestions: string;
+    audioTitle: string;
+    audioStartHelp: string;
+    audioConnectedHelp: string;
+    textStartHelp: string;
+    textBeginIntro: string;
+    textConnectedHelp: string;
+    typing: string;
+    mute: string;
+    unmute: string;
+    micError: string;
     suggestion1Label: string;
     suggestion1Text: string;
     suggestion1Cta: string;
@@ -92,6 +116,13 @@ export type SiteCopy = UiMessages & {
     suggestion3Text: string;
     suggestion3Cta: string;
     close: string;
+    voiceModeLabel: string;
+    textModeLabel: string;
+    voiceLoading: string;
+    voiceUnavailableScript: string;
+    voiceUnavailableConfig: string;
+    voiceUnavailableNetwork: string;
+    textChatAuthRequired: string;
   };
   commercial: {
     faqEyebrow: string;
@@ -143,6 +174,12 @@ export type SiteCopy = UiMessages & {
     timelineA11y: string;
     portraitCaption: string;
     soniaLaunchTitle: string;
+  };
+  ecosystem: {
+    visitSite: string;
+    exploreSolutions: string;
+    inDevelopment: string;
+    visitSiteA11y: string;
   };
   contact: {
     flowAria: string;
@@ -363,19 +400,56 @@ const extraPt = {
   sonia: {
     title: "SON.IA",
     subtitle: "Assistente de orientação",
+    statusReady: "Pronto para atendimento",
+    voiceInCall: "Em conversa por voz",
+    welcomeMessage:
+      "Olá! Eu sou a SON.IA, assistente da Onsmart.AI. Em que posso te ajudar hoje?",
+    voiceTab: "Voz",
+    chatTab: "Chat",
+    startConversation: "Iniciar conversa",
+    endConversation: "Encerrar",
+    connecting: "Conectando…",
+    listening: "Ouvindo você",
+    speaking: "SON.IA está falando",
+    inputPlaceholder: "Digite sua mensagem…",
+    send: "Enviar",
+    restart: "Reiniciar conversa",
+    quickSuggestions: "Sugestões rápidas:",
+    audioTitle: "Atendimento por voz",
+    audioStartHelp: "Clique em Iniciar conversa para falar com a SON.IA.",
+    audioConnectedHelp: "Fale naturalmente. Você pode encerrar quando quiser.",
+    textStartHelp: "Depois de iniciar, use as sugestões ou digite sua mensagem.",
+    textBeginIntro:
+      "Clique abaixo para a SON.IA enviar a primeira mensagem e começar o atendimento.",
+    textConnectedHelp: "Continue a conversa por texto com a SON.IA.",
+    typing: "SON.IA está respondendo…",
+    mute: "Silenciar microfone",
+    unmute: "Ativar microfone",
+    micError: "Não foi possível acessar o microfone. Verifique as permissões do navegador.",
     suggestion1Label: "Por onde minha empresa começa?",
     suggestion1Text:
       "Você pode começar pela capacitação ou pelo mapeamento de um processo prioritário.",
     suggestion1Cta: "Explorar as soluções",
     suggestion2Label: "O que é a SON.IA?",
     suggestion2Text:
-      "A SON.IA é a plataforma de IA operacional que conecta conversas, agentes, sistemas e processos.",
+      "SON.IA — Plataforma Operacional Agêntica: conecta conversas, agentes, sistemas e processos com governança e participação humana.",
     suggestion2Cta: "Conhecer a plataforma",
     suggestion3Label: "Quero falar com um especialista",
     suggestion3Text:
       "O atendimento comercial está disponível pelo WhatsApp oficial da Onsmart.AI.",
     suggestion3Cta: "Abrir WhatsApp comercial",
     close: "Fechar assistente",
+    voiceModeLabel: "Modo voz",
+    textModeLabel: "Modo texto",
+    voiceLoading: "Preparando conversa por voz…",
+    voiceUnavailableScript:
+      "Não foi possível carregar o assistente de voz. O chat em texto continua disponível.",
+    voiceUnavailableConfig:
+      "Assistente ainda não configurado no servidor. Tente novamente mais tarde.",
+    voiceUnavailableNetwork:
+      "Falha ao conectar ao serviço. Tente novamente em instantes.",
+    textChatAuthRequired:
+      "O chat por texto precisa da variável ELEVENLABS_API_KEY no servidor (.env). A voz continua funcionando sem ela.",
   },
   commercial: {
     faqEyebrow: "Dúvidas frequentes",
@@ -437,8 +511,14 @@ const extraPt = {
   },
   about: {
     timelineA11y: "Linha do tempo institucional",
-    portraitCaption: "Ricardo Palomar · fotografia fornecida para esta página.",
+    portraitCaption: "Ricardo Palomar · CEO, Onsmart.AI",
     soniaLaunchTitle: "Lançamento da SON.IA",
+  },
+  ecosystem: {
+    visitSite: "Visitar site",
+    exploreSolutions: "Conhecer soluções",
+    inDevelopment: "Em desenvolvimento",
+    visitSiteA11y: "Abrir site em nova aba",
   },
   contact: {
     flowAria: "Como funciona o contato",
@@ -578,18 +658,18 @@ const extraPt = {
     partnersNextEyebrow: "Próximos passos",
     partnersNextTitle: "Entender antes de assumir um compromisso.",
     partnersNextLead:
-      "Fluxo editorial para orientar o primeiro contato. Não substitui os critérios de avaliação nem as condições oficiais do programa.",
-    partnersBookingTitle: "Uma conversa com o setor responsável.",
+      "Três passos para qualificar seu interesse e conversar com a equipe de parcerias.",
+    partnersBookingTitle: "Fale com a equipe de parcerias",
     partnersBookingBody:
-      "O espaço de agendamento está preparado. O link oficial será configurado na etapa de integrações, quando disponibilizado.",
-    partnersBookingPending: "Agendamento pendente",
+      "Use o formulário de qualificação ou o WhatsApp para iniciar a conversa sobre modalidade, escopo e condições.",
+    partnersBookingPending: "Formulário e WhatsApp",
     partnersRelatedEyebrow: "Conheça a Onsmart.AI",
     partnersRelatedTitle: "Explore as soluções antes de conversar.",
     partnersExplorePortfolio: "Explorar o portfólio",
     partnersExploreEcosystem: "Conhecer o ecossistema",
-    partnersPendingSummary: "Informações pendentes do programa",
+    partnersPendingSummary: "Informações comerciais",
     partnersModesNotice:
-      "Não foram presumidos percentuais, ganhos, exclusividade, direitos de marca, licenciamento ou condições de White Label.",
+      "Percentuais, exclusividade e condições de White Label são definidos em proposta após a qualificação com a equipe.",
   },
 };
 
@@ -677,19 +757,56 @@ const extraEn: typeof extraPt = {
   sonia: {
     title: "SON.IA",
     subtitle: "Guidance assistant",
+    statusReady: "Ready to assist",
+    voiceInCall: "Voice conversation active",
+    welcomeMessage:
+      "Hello! I'm SON.IA, Onsmart.AI's assistant. How can I help you today?",
+    voiceTab: "Voice",
+    chatTab: "Chat",
+    startConversation: "Start conversation",
+    endConversation: "End",
+    connecting: "Connecting…",
+    listening: "Listening",
+    speaking: "SON.IA is speaking",
+    inputPlaceholder: "Type your message…",
+    send: "Send",
+    restart: "Restart conversation",
+    quickSuggestions: "Quick suggestions:",
+    audioTitle: "Voice assistance",
+    audioStartHelp: "Click Start conversation to talk with SON.IA.",
+    audioConnectedHelp: "Speak naturally. You can end the session anytime.",
+    textStartHelp: "After you start, use suggestions or type your message.",
+    textBeginIntro:
+      "Click below for SON.IA to send the first message and begin.",
+    textConnectedHelp: "Continue the text conversation with SON.IA.",
+    typing: "SON.IA is replying…",
+    mute: "Mute microphone",
+    unmute: "Unmute microphone",
+    micError: "Could not access the microphone. Check your browser permissions.",
     suggestion1Label: "Where should my company start?",
     suggestion1Text:
       "You can start with training or mapping a priority process. Education, consulting, and development are available in our portfolio.",
     suggestion1Cta: "Explore solutions",
     suggestion2Label: "What is SON.IA?",
     suggestion2Text:
-      "SON.IA is the operational AI platform that connects conversations, agents, systems, and processes with governance.",
+      "SON.IA — Agentic Operations Platform: connects conversations, agents, systems, and processes with governance and human oversight.",
     suggestion2Cta: "Discover the platform",
     suggestion3Label: "I want to talk to a specialist",
     suggestion3Text:
       "Commercial support is available through Onsmart.AI's official WhatsApp.",
     suggestion3Cta: "Open commercial WhatsApp",
     close: "Close assistant",
+    voiceModeLabel: "Voice mode",
+    textModeLabel: "Text mode",
+    voiceLoading: "Preparing voice conversation…",
+    voiceUnavailableScript:
+      "Could not load the voice assistant. Text chat remains available.",
+    voiceUnavailableConfig:
+      "Assistant is not configured on the server yet. Please try again later.",
+    voiceUnavailableNetwork:
+      "Could not reach the service. Try again in a moment.",
+    textChatAuthRequired:
+      "Text chat requires ELEVENLABS_API_KEY on the server (.env). Voice still works without it.",
   },
   commercial: {
     faqEyebrow: "Frequently asked questions",
@@ -751,8 +868,14 @@ const extraEn: typeof extraPt = {
   },
   about: {
     timelineA11y: "Institutional timeline",
-    portraitCaption: "Ricardo Palomar · photography provided for this page.",
+    portraitCaption: "Ricardo Palomar · CEO, Onsmart.AI",
     soniaLaunchTitle: "SON.IA launch",
+  },
+  ecosystem: {
+    visitSite: "Visit website",
+    exploreSolutions: "Explore solutions",
+    inDevelopment: "In development",
+    visitSiteA11y: "Open website in a new tab",
   },
   contact: {
     flowAria: "How contact works",
@@ -891,18 +1014,18 @@ const extraEn: typeof extraPt = {
     partnersNextEyebrow: "Next steps",
     partnersNextTitle: "Understand before making a commitment.",
     partnersNextLead:
-      "Editorial flow to guide first contact. It does not replace evaluation criteria or official program terms.",
-    partnersBookingTitle: "A conversation with the responsible team.",
+      "Three steps to qualify your interest and talk with the partnerships team.",
+    partnersBookingTitle: "Talk with the partnerships team",
     partnersBookingBody:
-      "The scheduling area is ready. The official link will be configured in the integrations phase when available.",
-    partnersBookingPending: "Scheduling pending",
+      "Use the qualification form or WhatsApp to start the conversation about modality, scope, and terms.",
+    partnersBookingPending: "Form and WhatsApp",
     partnersRelatedEyebrow: "Discover Onsmart.AI",
     partnersRelatedTitle: "Explore solutions before you talk.",
     partnersExplorePortfolio: "Explore the portfolio",
     partnersExploreEcosystem: "Discover the ecosystem",
-    partnersPendingSummary: "Pending program information",
+    partnersPendingSummary: "Commercial information",
     partnersModesNotice:
-      "No percentages, earnings, exclusivity, brand rights, licensing, or White Label terms are assumed.",
+      "Percentages, exclusivity, and White Label terms are defined in a proposal after qualification with the team.",
   },
 };
 
@@ -992,19 +1115,56 @@ const extraEs: typeof extraPt = {
   sonia: {
     title: "SON.IA",
     subtitle: "Asistente de orientación",
+    statusReady: "Lista para atender",
+    voiceInCall: "Conversación por voz activa",
+    welcomeMessage:
+      "¡Hola! Soy SON.IA, asistente de Onsmart.AI. ¿En qué puedo ayudarte hoy?",
+    voiceTab: "Voz",
+    chatTab: "Chat",
+    startConversation: "Iniciar conversación",
+    endConversation: "Finalizar",
+    connecting: "Conectando…",
+    listening: "Escuchando",
+    speaking: "SON.IA está hablando",
+    inputPlaceholder: "Escriba su mensaje…",
+    send: "Enviar",
+    restart: "Reiniciar conversación",
+    quickSuggestions: "Sugerencias rápidas:",
+    audioTitle: "Atención por voz",
+    audioStartHelp: "Haga clic en Iniciar conversación para hablar con SON.IA.",
+    audioConnectedHelp: "Hable con naturalidad. Puede finalizar cuando quiera.",
+    textStartHelp: "Después de iniciar, use las sugerencias o escriba su mensaje.",
+    textBeginIntro:
+      "Haga clic abajo para que SON.IA envíe el primer mensaje e inicie la atención.",
+    textConnectedHelp: "Continúe la conversación por texto con SON.IA.",
+    typing: "SON.IA está respondiendo…",
+    mute: "Silenciar micrófono",
+    unmute: "Activar micrófono",
+    micError: "No se pudo acceder al micrófono. Verifique los permisos del navegador.",
     suggestion1Label: "¿Por dónde empieza mi empresa?",
     suggestion1Text:
       "Puede comenzar por la capacitación o el mapeo de un proceso prioritario.",
     suggestion1Cta: "Explorar soluciones",
     suggestion2Label: "¿Qué es SON.IA?",
     suggestion2Text:
-      "SON.IA es la plataforma de IA operacional que conecta conversaciones, agentes, sistemas y procesos.",
+      "SON.IA — Plataforma Operacional Agéntica: conecta conversaciones, agentes, sistemas y procesos con gobernanza y supervisión humana.",
     suggestion2Cta: "Conocer la plataforma",
     suggestion3Label: "Quiero hablar con un especialista",
     suggestion3Text:
       "La atención comercial está disponible por el WhatsApp oficial de Onsmart.AI.",
     suggestion3Cta: "Abrir WhatsApp comercial",
     close: "Cerrar asistente",
+    voiceModeLabel: "Modo voz",
+    textModeLabel: "Modo texto",
+    voiceLoading: "Preparando conversación por voz…",
+    voiceUnavailableScript:
+      "No se pudo cargar el asistente de voz. El chat en texto sigue disponible.",
+    voiceUnavailableConfig:
+      "El asistente aún no está configurado en el servidor. Intente más tarde.",
+    voiceUnavailableNetwork:
+      "No se pudo conectar al servicio. Intente de nuevo en unos instantes.",
+    textChatAuthRequired:
+      "El chat por texto requiere ELEVENLABS_API_KEY en el servidor (.env). La voz sigue funcionando sin ella.",
   },
   commercial: {
     faqEyebrow: "Preguntas frecuentes",
@@ -1066,9 +1226,14 @@ const extraEs: typeof extraPt = {
   },
   about: {
     timelineA11y: "Línea de tiempo institucional",
-    portraitCaption:
-      "Ricardo Palomar · fotografía proporcionada para esta página.",
+    portraitCaption: "Ricardo Palomar · CEO, Onsmart.AI",
     soniaLaunchTitle: "Lanzamiento de SON.IA",
+  },
+  ecosystem: {
+    visitSite: "Visitar sitio",
+    exploreSolutions: "Conocer soluciones",
+    inDevelopment: "En desarrollo",
+    visitSiteA11y: "Abrir sitio en una nueva pestaña",
   },
   contact: {
     flowAria: "Cómo funciona el contacto",
@@ -1208,18 +1373,18 @@ const extraEs: typeof extraPt = {
     partnersNextEyebrow: "Próximos pasos",
     partnersNextTitle: "Entender antes de asumir un compromiso.",
     partnersNextLead:
-      "Flujo editorial para orientar el primer contacto. No sustituye los criterios de evaluación ni las condiciones oficiales del programa.",
-    partnersBookingTitle: "Una conversación con el área responsable.",
+      "Tres pasos para calificar su interés y conversar con el equipo de alianzas.",
+    partnersBookingTitle: "Hable con el equipo de alianzas",
     partnersBookingBody:
-      "El espacio de agendamiento está preparado. El enlace oficial se configurará en la etapa de integraciones, cuando esté disponible.",
-    partnersBookingPending: "Agendamiento pendiente",
+      "Use el formulario de calificación o WhatsApp para iniciar la conversación sobre modalidad, alcance y condiciones.",
+    partnersBookingPending: "Formulario y WhatsApp",
     partnersRelatedEyebrow: "Conozca Onsmart.AI",
     partnersRelatedTitle: "Explore las soluciones antes de conversar.",
     partnersExplorePortfolio: "Explorar el portafolio",
     partnersExploreEcosystem: "Conocer el ecosistema",
-    partnersPendingSummary: "Información pendiente del programa",
+    partnersPendingSummary: "Información comercial",
     partnersModesNotice:
-      "No se presumen porcentajes, ganancias, exclusividad, derechos de marca, licencias ni condiciones de White Label.",
+      "Porcentajes, exclusividad y condiciones de White Label se definen en propuesta tras la calificación con el equipo.",
   },
 };
 

@@ -7,6 +7,7 @@ import {
 } from "@/i18n/site";
 import { getCommercial } from "./commercial";
 import brandMedia from "./brand-media.json";
+import type { CompanyId } from "@/components/site/CompanyLogo";
 import {
   clients,
   socials,
@@ -17,10 +18,13 @@ import {
 } from "./site";
 
 export type CompanyContent = {
-  id: string;
+  id: CompanyId;
   name: string;
   state: string;
+  headline: string;
   text: string;
+  website?: string;
+  status: "live" | "development";
 };
 
 export type Pillar = { title: string; text: string };
@@ -31,6 +35,7 @@ export type AboutMilestone = {
   title: string;
   text: string;
   source: string;
+  companyId?: CompanyId;
 };
 
 export type AboutAchievement = {
@@ -176,87 +181,123 @@ const companies: Record<SiteLocale, CompanyContent[]> = {
     {
       id: "tech",
       name: "Onsmart Tech",
-      state: "Conteúdo institucional em validação",
+      state: "Onsmart Tech",
+      headline: "Tecnologia e operação desde 2014.",
       text:
-        "A apresentação oficial desta empresa será incorporada após validação dos materiais do Grupo Onsmart.",
+        "Marco histórico do Grupo Onsmart em tecnologia e serviços corporativos. A Onsmart Tech sustenta a base técnica e operacional do ecossistema.",
+      website: "https://onsmart.com.br",
+      status: "live",
     },
     {
       id: "ai",
       name: "Onsmart.AI",
       state: "Educação, serviços e plataforma de IA",
+      headline: "Educação, consultoria e plataforma de IA.",
       text:
-        "Educação, consultoria, desenvolvimento personalizado e o Ecossistema SON.IA para empresas adotarem inteligência artificial com governança.",
+        "Educação, consultoria, desenvolvimento sob medida e o Ecossistema SON.IA para empresas adotarem inteligência artificial com governança e resultado na operação.",
+      website: "https://onsmart.ai",
+      status: "live",
     },
     {
       id: "growth",
       name: "Onsmart.AI Growth Lab",
-      state: "Conteúdo institucional em validação",
+      state: "Onsmart.AI Growth Lab",
+      headline: "Crescimento e novos negócios.",
       text:
-        "As soluções e os diferenciais serão apresentados com base nos materiais oficiais da empresa.",
+        "Acelera experimentação, parcerias e oportunidades com IA no mercado corporativo, conectando estratégia comercial à entrega do grupo.",
+      website: "https://growthlab.onsmart.ai",
+      status: "live",
     },
     {
       id: "robotics",
       name: "Onsmart.AI Robotics",
-      state: "Em breve",
-      text: "Em breve.",
+      state: "Em desenvolvimento",
+      headline: "Robótica e automação inteligente.",
+      text:
+        "Frente do Grupo Onsmart dedicada à robótica e à automação inteligente. Site e soluções serão divulgados quando estiverem disponíveis.",
+      status: "development",
     },
   ],
   en: [
     {
       id: "tech",
       name: "Onsmart Tech",
-      state: "Institutional content under validation",
+      state: "Onsmart Tech",
+      headline: "Technology and operations since 2014.",
       text:
-        "The official presentation of this company will be added after Grupo Onsmart materials are validated.",
+        "A historic milestone for Grupo Onsmart in corporate technology and services. Onsmart Tech supports the ecosystem's technical and operational foundation.",
+      website: "https://onsmart.com.br",
+      status: "live",
     },
     {
       id: "ai",
       name: "Onsmart.AI",
       state: "Education, services, and AI platform",
+      headline: "Education, consulting, and AI platform.",
       text:
-        "Education, consulting, custom development, and the SON.IA Ecosystem so companies can adopt artificial intelligence with governance.",
+        "Education, consulting, custom development, and the SON.IA Ecosystem so companies can adopt artificial intelligence with governance and operational results.",
+      website: "https://onsmart.ai",
+      status: "live",
     },
     {
       id: "growth",
       name: "Onsmart.AI Growth Lab",
-      state: "Institutional content under validation",
+      state: "Onsmart.AI Growth Lab",
+      headline: "Growth and new business.",
       text:
-        "Solutions and differentiators will be presented based on the company's official materials.",
+        "Accelerates experimentation, partnerships, and AI opportunities in the corporate market, connecting commercial strategy to group delivery.",
+      website: "https://growthlab.onsmart.ai",
+      status: "live",
     },
     {
       id: "robotics",
       name: "Onsmart.AI Robotics",
-      state: "Coming soon",
-      text: "Coming soon.",
+      state: "In development",
+      headline: "Robotics and intelligent automation.",
+      text:
+        "A Grupo Onsmart front focused on robotics and intelligent automation. Website and solutions will be announced when available.",
+      status: "development",
     },
   ],
   es: [
     {
       id: "tech",
       name: "Onsmart Tech",
-      state: "Contenido institucional en validación",
+      state: "Onsmart Tech",
+      headline: "Tecnología y operación desde 2014.",
       text:
-        "La presentación oficial de esta empresa se incorporará tras validar los materiales del Grupo Onsmart.",
+        "Hito histórico del Grupo Onsmart en tecnología y servicios corporativos. Onsmart Tech sostiene la base técnica y operacional del ecosistema.",
+      website: "https://onsmart.com.br",
+      status: "live",
     },
     {
       id: "ai",
       name: "Onsmart.AI",
       state: "Educación, servicios y plataforma de IA",
+      headline: "Educación, consultoría y plataforma de IA.",
       text:
-        "Educación, consultoría, desarrollo personalizado y el Ecosistema SON.IA para que las empresas adopten inteligencia artificial con gobernanza.",
+        "Educación, consultoría, desarrollo a medida y el Ecosistema SON.IA para que las empresas adopten inteligencia artificial con gobernanza y resultados en la operación.",
+      website: "https://onsmart.ai",
+      status: "live",
     },
     {
       id: "growth",
       name: "Onsmart.AI Growth Lab",
-      state: "Contenido institucional en validación",
+      state: "Onsmart.AI Growth Lab",
+      headline: "Crecimiento y nuevos negocios.",
       text:
-        "Las soluciones y los diferenciales se presentarán según los materiales oficiales de la empresa.",
+        "Acelera experimentación, alianzas y oportunidades con IA en el mercado corporativo, conectando la estrategia comercial con la entrega del grupo.",
+      website: "https://growthlab.onsmart.ai",
+      status: "live",
     },
     {
       id: "robotics",
       name: "Onsmart.AI Robotics",
-      state: "Próximamente",
-      text: "Próximamente.",
+      state: "En desarrollo",
+      headline: "Robótica y automatización inteligente.",
+      text:
+        "Frente del Grupo Onsmart dedicada a la robótica y la automatización inteligente. El sitio y las soluciones se anunciarán cuando estén disponibles.",
+      status: "development",
     },
   ],
 };
@@ -392,22 +433,25 @@ const aboutMilestones: Record<SiteLocale, AboutMilestone[]> = {
       marker: "2014",
       title: "Marco empresarial da Onsmart Tech",
       text:
-        "O registro público da Onsmart Tech indica 2014 como marco de origem empresarial. A relação formal entre essa cronologia e o Grupo Onsmart ainda aguarda validação interna.",
-      source: "Fonte empresarial • confirmação institucional pendente",
+        "O registro público da Onsmart Tech indica 2014 como marco de origem empresarial no Grupo Onsmart.",
+      source: "Onsmart Tech",
+      companyId: "tech",
     },
     {
-      marker: "Próximo marco",
-      title: "Cronologia preparada para receber fontes oficiais",
+      marker: "2025",
+      title: "Site institucional Onsmart.AI",
       text:
-        "Outros capítulos da trajetória serão publicados somente depois da revisão documental do grupo.",
-      source: "Sem data preenchida nesta fase",
+        "Lançamento do site onsmart.ai como vitrine de educação, consultoria, serviços e da plataforma SON.IA para empresas que adotam IA com governança.",
+      source: "onsmart.ai",
+      companyId: "ai",
     },
     {
-      marker: "Estado atual",
-      title: "Educação, consultoria e operação de IA",
+      marker: "2025",
+      title: "Onsmart.AI Growth Lab",
       text:
-        "A Onsmart.AI apresenta jornadas de educação, serviços e plataforma para empresas que desejam adotar inteligência artificial com governança.",
-      source: "Posicionamento do briefing • sem cronologia adicional",
+        "Entrada do Growth Lab na linha do tempo do grupo, ampliando a atuação em crescimento e experimentação com soluções de IA para o mercado.",
+      source: "Onsmart.AI Growth Lab",
+      companyId: "growth",
     },
   ],
   en: [
@@ -415,22 +459,25 @@ const aboutMilestones: Record<SiteLocale, AboutMilestone[]> = {
       marker: "2014",
       title: "Onsmart Tech business milestone",
       text:
-        "Public records list 2014 as Onsmart Tech's business origin milestone. The formal link between this timeline and Grupo Onsmart is still pending internal validation.",
-      source: "Business source • institutional confirmation pending",
+        "Public records list 2014 as Onsmart Tech's business origin milestone within Grupo Onsmart.",
+      source: "Onsmart Tech",
+      companyId: "tech",
     },
     {
-      marker: "Next milestone",
-      title: "Timeline ready for official sources",
+      marker: "2025",
+      title: "Onsmart.AI institutional website",
       text:
-        "Additional chapters of the journey will be published only after the group's document review.",
-      source: "No date filled in at this stage",
+        "Launch of onsmart.ai as the hub for education, consulting, services, and the SON.IA platform for companies adopting AI with governance.",
+      source: "onsmart.ai",
+      companyId: "ai",
     },
     {
-      marker: "Current state",
-      title: "Education, consulting, and AI operations",
+      marker: "2025",
+      title: "Onsmart.AI Growth Lab",
       text:
-        "Onsmart.AI offers education, services, and platform journeys for companies that want to adopt artificial intelligence with governance.",
-      source: "Briefing positioning • no additional timeline",
+        "Growth Lab joins the group timeline, expanding work on growth and experimentation with AI solutions for the market.",
+      source: "Onsmart.AI Growth Lab",
+      companyId: "growth",
     },
   ],
   es: [
@@ -438,22 +485,25 @@ const aboutMilestones: Record<SiteLocale, AboutMilestone[]> = {
       marker: "2014",
       title: "Hito empresarial de Onsmart Tech",
       text:
-        "El registro público de Onsmart Tech indica 2014 como hito de origen empresarial. La relación formal entre esta cronología y el Grupo Onsmart aún aguarda validación interna.",
-      source: "Fuente empresarial • confirmación institucional pendiente",
+        "El registro público de Onsmart Tech indica 2014 como hito de origen empresarial en el Grupo Onsmart.",
+      source: "Onsmart Tech",
+      companyId: "tech",
     },
     {
-      marker: "Próximo hito",
-      title: "Cronología preparada para recibir fuentes oficiales",
+      marker: "2025",
+      title: "Sitio institucional Onsmart.AI",
       text:
-        "Otros capítulos de la trayectoria se publicarán solo después de la revisión documental del grupo.",
-      source: "Sin fecha completada en esta fase",
+        "Lanzamiento del sitio onsmart.ai como vitrina de educación, consultoría, servicios y la plataforma SON.IA para empresas que adoptan IA con gobernanza.",
+      source: "onsmart.ai",
+      companyId: "ai",
     },
     {
-      marker: "Estado actual",
-      title: "Educación, consultoría y operación de IA",
+      marker: "2025",
+      title: "Onsmart.AI Growth Lab",
       text:
-        "Onsmart.AI presenta recorridos de educación, servicios y plataforma para empresas que desean adoptar inteligencia artificial con gobernanza.",
-      source: "Posicionamiento del briefing • sin cronología adicional",
+        "Incorporación del Growth Lab en la línea de tiempo del grupo, ampliando la actuación en crecimiento y experimentación con soluciones de IA para el mercado.",
+      source: "Onsmart.AI Growth Lab",
+      companyId: "growth",
     },
   ],
 };
@@ -464,19 +514,19 @@ const aboutAchievements: Record<SiteLocale, AboutAchievement[]> = {
       id: "youtube",
       title: "Canal da Onsmart.AI",
       text:
-        "Aproximadamente 103 mil inscritos no canal oficial do YouTube. A formulação “100 mil em 18 meses” segue pendente de comprovação documental.",
+        "Mais de 100 mil inscritos no canal oficial no YouTube, com conteúdo sobre IA aplicada a negócios, gestão e transformação digital.",
     },
     {
       id: "sonia-launch",
       title: "Lançamento da SON.IA",
       text:
-        "A plataforma foi apresentada em publicação oficial. A data editorial e os detalhes de lançamento permanecem pendentes.",
+        "SON.IA é a plataforma operacional agêntica da Onsmart.AI — conversas, agentes, sistemas e processos com governança para a operação do dia a dia.",
     },
     {
       id: "volei",
       title: "Vôlei Adaptado de Paulínia",
       text:
-        "Apoio registrado em fonte oficial à equipe de Vôlei Adaptado de Paulínia.",
+        "Apoio à equipe de Vôlei Adaptado de Paulínia, reforçando o compromisso da empresa com inclusão e participação na comunidade.",
     },
   ],
   en: [
@@ -484,19 +534,19 @@ const aboutAchievements: Record<SiteLocale, AboutAchievement[]> = {
       id: "youtube",
       title: "Onsmart.AI channel",
       text:
-        "Approximately 103K subscribers on the official YouTube channel. The “100K in 18 months” claim remains pending documentary verification.",
+        "Over 100K subscribers on the official YouTube channel, with content on applied AI, management, and digital transformation.",
     },
     {
       id: "sonia-launch",
       title: "SON.IA launch",
       text:
-        "The platform was presented in an official publication. The editorial date and launch details remain pending.",
+        "SON.IA is Onsmart.AI’s agentic operations platform — conversations, agents, systems, and processes with governance for day-to-day operations.",
     },
     {
       id: "volei",
       title: "Paulínia adaptive volleyball team",
       text:
-        "Support recorded from an official source for the Paulínia adaptive volleyball team.",
+        "Support for the Paulínia adaptive volleyball team, reflecting the company’s commitment to inclusion and community engagement.",
     },
   ],
   es: [
@@ -504,19 +554,19 @@ const aboutAchievements: Record<SiteLocale, AboutAchievement[]> = {
       id: "youtube",
       title: "Canal de Onsmart.AI",
       text:
-        "Aproximadamente 103 mil suscriptores en el canal oficial de YouTube. La formulación «100 mil en 18 meses» sigue pendiente de comprobación documental.",
+        "Más de 100 mil suscriptores en el canal oficial de YouTube, con contenido sobre IA aplicada a negocios, gestión y transformación digital.",
     },
     {
       id: "sonia-launch",
       title: "Lanzamiento de SON.IA",
       text:
-        "La plataforma fue presentada en una publicación oficial. La fecha editorial y los detalles de lanzamiento permanecen pendientes.",
+        "SON.IA es la plataforma operacional agéntica de Onsmart.AI: conversaciones, agentes, sistemas y procesos con gobernanza para la operación diaria.",
     },
     {
       id: "volei",
       title: "Vóley Adaptado de Paulínia",
       text:
-        "Apoyo registrado en fuente oficial al equipo de Vóley Adaptado de Paulínia.",
+        "Apoyo al equipo de Vóley Adaptado de Paulínia, reforzando el compromiso de la empresa con la inclusión y la comunidad.",
     },
   ],
 };
