@@ -610,7 +610,9 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     >
       <header className="sonia-chat-header">
         <div className="sonia-chat-header-main">
-          <SoniaCharacter decorative className="sonia-chat-avatar" />
+          <div className="sonia-chat-avatar-wrap">
+            <SoniaCharacter decorative className="sonia-chat-avatar" />
+          </div>
           <div className="sonia-chat-header-text">
             <h2>{t("sonia.title")}</h2>
             <p className="sonia-chat-status">{statusLabel}</p>
@@ -734,17 +736,25 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
             <div ref={listRef} className="sonia-message-list">
               {!hasBegunTextChat ? (
                 <div className="sonia-message-empty sonia-begin-chat">
-                  <p className="sonia-text-hint">{t("sonia.textBeginIntro")}</p>
-                  <button
-                    type="button"
-                    className="sonia-chat-primary-btn sonia-begin-chat-btn"
-                    onClick={() => void beginTextChat()}
-                    disabled={!config?.configured || isPendingConnection}
-                  >
-                    {isPendingConnection
-                      ? t("sonia.connecting")
-                      : t("sonia.startConversation")}
-                  </button>
+                  <div className="sonia-begin-card">
+                    <SoniaCharacter
+                      decorative
+                      className="sonia-begin-avatar"
+                    />
+                    <p className="sonia-text-hint sonia-begin-intro">
+                      {t("sonia.textBeginIntro")}
+                    </p>
+                    <button
+                      type="button"
+                      className="sonia-chat-primary-btn sonia-begin-chat-btn"
+                      onClick={() => void beginTextChat()}
+                      disabled={!config?.configured || isPendingConnection}
+                    >
+                      {isPendingConnection
+                        ? t("sonia.connecting")
+                        : t("sonia.startConversation")}
+                    </button>
+                  </div>
                 </div>
               ) : messages.length === 0 && isConnected ? (
                 <p className="sonia-text-hint" role="status">
@@ -756,43 +766,62 @@ export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
                     key={message.id}
                     className={`sonia-message-row ${message.role === "user" ? "is-user" : "is-agent"}`}
                   >
+                    {message.role === "agent" ? (
+                      <SoniaCharacter
+                        decorative
+                        className="sonia-message-avatar"
+                      />
+                    ) : null}
                     <div className="sonia-message-bubble">{message.text}</div>
                   </div>
                 ))
               )}
               {hasBegunTextChat && isAwaitingAgentReply ? (
-                <p className="sonia-typing" role="status">{t("sonia.typing")}</p>
+                <div className="sonia-typing" role="status">
+                  <SoniaCharacter decorative className="sonia-message-avatar" />
+                  <div className="sonia-typing-bubble">
+                    <span className="sonia-typing-dots" aria-hidden="true">
+                      <span />
+                      <span />
+                      <span />
+                    </span>
+                    <span className="sr-only">{t("sonia.typing")}</span>
+                  </div>
+                </div>
               ) : null}
             </div>
             <form className="sonia-input-row" onSubmit={sendMessage}>
-              <input
-                type="text"
-                value={draft}
-                onChange={(e) => {
-                  setDraft(e.target.value);
-                  if (isConnected) conversation.sendUserActivity();
-                }}
-                placeholder={t("sonia.inputPlaceholder")}
-                aria-label={t("sonia.inputPlaceholder")}
-                disabled={
-                  !config?.configured ||
-                  !hasBegunTextChat ||
-                  isPendingConnection
-                }
-              />
-              <button
-                type="submit"
-                className="sonia-send-btn"
-                aria-label={t("sonia.send")}
-                disabled={
-                  !hasBegunTextChat ||
-                  !draft.trim() ||
-                  !config?.configured ||
-                  isPendingConnection
-                }
-              >
-                <Send size={18} aria-hidden="true" />
-              </button>
+              <div className="sonia-input-composer">
+                <input
+                  type="text"
+                  className="sonia-input-field"
+                  value={draft}
+                  onChange={(e) => {
+                    setDraft(e.target.value);
+                    if (isConnected) conversation.sendUserActivity();
+                  }}
+                  placeholder={t("sonia.inputPlaceholder")}
+                  aria-label={t("sonia.inputPlaceholder")}
+                  disabled={
+                    !config?.configured ||
+                    !hasBegunTextChat ||
+                    isPendingConnection
+                  }
+                />
+                <button
+                  type="submit"
+                  className="sonia-send-btn"
+                  aria-label={t("sonia.send")}
+                  disabled={
+                    !hasBegunTextChat ||
+                    !draft.trim() ||
+                    !config?.configured ||
+                    isPendingConnection
+                  }
+                >
+                  <Send size={18} aria-hidden="true" />
+                </button>
+              </div>
             </form>
           </div>
         )}

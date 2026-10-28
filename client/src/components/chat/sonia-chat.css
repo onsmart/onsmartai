@@ -1,4 +1,4 @@
-/* SON.IA chat — Onsmart.AI: primary #79b9ea, ink #242729, paper #f9fafd */
+/* SON.IA chat — Onsmart.AI */
 
 elevenlabs-convai {
   display: none !important;
@@ -6,36 +6,96 @@ elevenlabs-convai {
 
 .sonia-chat-launcher {
   position: fixed;
-  right: max(0.75rem, env(safe-area-inset-right, 0px));
-  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
   z-index: 9998;
   display: flex;
   align-items: center;
   gap: 10px;
   max-width: calc(100vw - 2rem);
-  padding: 6px 14px 6px 6px;
-  border: 1px solid var(--soft, #bdd5e7);
+  padding: 6px 16px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--blue, #79b9ea) 45%, transparent);
   border-radius: 999px;
-  background: var(--paper, #f9fafd);
+  background: color-mix(in srgb, var(--paper, #f9fafd) 92%, #fff);
+  backdrop-filter: blur(12px);
   color: var(--ink, #242729);
   font-size: 0.875rem;
   font-weight: 600;
-  box-shadow: 0 8px 28px rgba(36, 39, 41, 0.16);
+  box-shadow:
+    0 4px 6px rgba(36, 39, 41, 0.04),
+    0 16px 40px rgba(36, 39, 41, 0.12);
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.sonia-chat-launcher:hover {
+  transform: translateY(-2px);
+  border-color: var(--blue, #79b9ea);
+  box-shadow:
+    0 8px 12px rgba(36, 39, 41, 0.06),
+    0 20px 48px rgba(121, 185, 234, 0.25);
+}
+
+.sonia-chat-launcher:focus-visible {
+  outline: 2px solid var(--blue, #79b9ea);
+  outline-offset: 3px;
 }
 
 .sonia-chat-launcher-avatar {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
   border: 2px solid var(--blue, #79b9ea);
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(36, 39, 41, 0.1);
 }
 
 .sonia-chat-launcher-label {
-  padding-right: 4px;
+  padding-right: 2px;
+}
+
+.sonia-chat-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(36, 39, 41, 0.35);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  animation: sonia-fade-in 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .sonia-chat-backdrop {
+    display: none;
+  }
+}
+
+@keyframes sonia-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sonia-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 480px) {
@@ -44,26 +104,27 @@ elevenlabs-convai {
   }
 
   .sonia-chat-launcher {
+    position: fixed;
     padding: 4px;
     border-radius: 50%;
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     justify-content: center;
   }
 
   .sonia-chat-launcher .sonia-chat-online {
     position: absolute;
-    bottom: 6px;
-    right: 6px;
+    bottom: 4px;
+    right: 4px;
     margin: 0;
   }
 }
 
 .sonia-chat-online {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: #2d8a4e;
+  background: #22c55e;
   flex-shrink: 0;
   margin-left: auto;
   box-shadow: 0 0 0 2px var(--paper, #f9fafd);
@@ -73,112 +134,175 @@ elevenlabs-convai {
 .sonia-chat-online--header {
   margin-left: 0;
   align-self: center;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 @keyframes sonia-pulse {
   0%,
   100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.45;
+    opacity: 0.55;
+    transform: scale(0.92);
   }
 }
 
 .sonia-chat-panel {
   position: fixed;
-  right: max(0.75rem, env(safe-area-inset-right, 0px));
-  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  width: min(440px, calc(100vw - 1.5rem));
-  height: min(620px, calc(100dvh - 1.5rem));
-  max-height: calc(100dvh - 1.5rem);
+  width: min(420px, calc(100vw - 1.25rem));
+  height: min(640px, calc(100dvh - 2rem));
+  max-height: calc(100dvh - 2rem);
   overflow: hidden;
-  border: 1px solid var(--line, #dce4e9);
-  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--line, #dce4e9) 80%, #fff);
+  border-radius: 20px;
   background: var(--paper, #f9fafd);
-  box-shadow: 0 20px 60px rgba(36, 39, 41, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+    0 24px 64px rgba(36, 39, 41, 0.16),
+    0 8px 24px rgba(121, 185, 234, 0.12);
+  animation: sonia-panel-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (min-width: 768px) {
   .sonia-chat-panel {
-    width: min(460px, calc(100vw - 2rem));
-    height: min(660px, calc(100dvh - 2rem));
+    width: min(440px, calc(100vw - 2rem));
+    height: min(680px, calc(100dvh - 2.5rem));
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 639px) {
   .sonia-chat-panel {
     left: max(0.5rem, env(safe-area-inset-left, 0px));
     right: max(0.5rem, env(safe-area-inset-right, 0px));
     width: auto;
-    height: min(88dvh, 680px);
-    border-radius: 12px;
+    bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+    height: min(92dvh, 720px);
+    max-height: calc(100dvh - 1rem);
+    border-radius: 16px;
   }
 }
 
 .sonia-chat-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 12px 12px 10px;
-  background: var(--blue, #79b9ea);
+  padding: 14px 14px 12px;
+  background: #fff;
   color: var(--ink, #242729);
+  border-bottom: 1px solid var(--line, #dce4e9);
+}
+
+.sonia-chat-header::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(
+    90deg,
+    var(--blue, #79b9ea) 0%,
+    color-mix(in srgb, var(--blue, #79b9ea) 55%, transparent) 100%
+  );
+  opacity: 0.85;
 }
 
 .sonia-chat-header-main {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
   min-width: 0;
+  flex: 1;
+}
+
+.sonia-chat-avatar-wrap {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px var(--line, #dce4e9),
+    0 4px 14px rgba(36, 39, 41, 0.08);
 }
 
 .sonia-chat-avatar {
-  width: 44px;
-  height: 44px;
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center top;
-  border: 2px solid rgba(249, 250, 253, 0.85);
-  flex-shrink: 0;
+  object-position: center 8%;
+  background: var(--paper, #f9fafd);
+}
+
+.sonia-chat-header-text {
+  min-width: 0;
 }
 
 .sonia-chat-header-text h2 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
 }
 
 .sonia-chat-status {
-  margin: 2px 0 0;
-  font-size: 0.65rem;
+  margin: 4px 0 0;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  opacity: 0.85;
-  transition: opacity 0.25s ease;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground, #555e64);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sonia-chat-header-actions {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   flex-shrink: 0;
 }
 
 .sonia-chat-icon-btn {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(36, 39, 41, 0.12);
-  border-radius: 8px;
-  background: rgba(249, 250, 253, 0.45);
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line, #dce4e9);
+  border-radius: 12px;
+  background: var(--paper, #f9fafd);
   color: var(--ink, #242729);
   cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.sonia-chat-icon-btn:hover:not(:disabled) {
+  background: #fff;
+  border-color: color-mix(in srgb, var(--blue, #79b9ea) 45%, var(--line, #dce4e9));
+  transform: scale(1.04);
+}
+
+.sonia-chat-icon-btn:focus-visible {
+  outline: 2px solid var(--ink, #242729);
+  outline-offset: 2px;
 }
 
 .sonia-chat-icon-btn:disabled {
@@ -188,8 +312,10 @@ elevenlabs-convai {
 
 .sonia-chat-tabs {
   display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #fff;
   border-bottom: 1px solid var(--line, #dce4e9);
-  background: color-mix(in srgb, var(--blue, #79b9ea) 18%, var(--paper, #f9fafd));
 }
 
 .sonia-chat-tab {
@@ -197,22 +323,39 @@ elevenlabs-convai {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 8px;
+  gap: 8px;
+  padding: 10px 12px;
   border: none;
-  border-bottom: 2px solid transparent;
+  border-radius: 12px;
   background: transparent;
-  font-size: 0.65rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted, #555e64);
+  letter-spacing: 0.07em;
+  color: var(--muted-foreground, #555e64);
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sonia-chat-tab:hover:not(.is-active) {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink, #242729);
 }
 
 .sonia-chat-tab.is-active {
   color: var(--ink, #242729);
-  border-bottom-color: var(--ink, #242729);
+  background: color-mix(in srgb, var(--blue, #79b9ea) 14%, #fff);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--blue, #79b9ea) 35%, transparent),
+    0 2px 8px rgba(36, 39, 41, 0.05);
+}
+
+.sonia-chat-tab:focus-visible {
+  outline: 2px solid var(--blue, #79b9ea);
+  outline-offset: 2px;
 }
 
 .sonia-chat-body {
@@ -221,6 +364,11 @@ elevenlabs-convai {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper, #f9fafd) 100%, #fff) 0%,
+    color-mix(in srgb, var(--muted, #eef3f7) 35%, var(--paper, #f9fafd)) 100%
+  );
 }
 
 .sonia-chat-config-error {
@@ -238,7 +386,7 @@ elevenlabs-convai {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 20px 16px 16px;
 }
 
 .sonia-voice-pane-center {
@@ -254,45 +402,65 @@ elevenlabs-convai {
   position: relative;
   display: grid;
   place-items: center;
-  width: 112px;
-  height: 112px;
-  margin-bottom: 16px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
   border-radius: 50%;
-  border: 1px solid var(--line, #dce4e9);
-  background: color-mix(in srgb, var(--blue, #79b9ea) 22%, #fff);
+  border: 1px solid color-mix(in srgb, var(--blue, #79b9ea) 35%, transparent);
+  background: radial-gradient(
+    circle at 30% 25%,
+    #fff 0%,
+    color-mix(in srgb, var(--blue, #79b9ea) 28%, #fff) 100%
+  );
   color: var(--ink, #242729);
+  box-shadow: 0 8px 32px rgba(121, 185, 234, 0.2);
+  transition: box-shadow 0.4s ease;
 }
 
 .sonia-voice-mic-ring.is-listening {
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--blue, #79b9ea) 28%, transparent);
-  transition: box-shadow 0.35s ease;
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--blue, #79b9ea) 22%, transparent),
+    0 12px 40px rgba(121, 185, 234, 0.35);
+  animation: sonia-mic-pulse 2s ease-in-out infinite;
 }
 
 .sonia-voice-mic-ring.is-speaking {
-  box-shadow: 0 0 0 8px color-mix(in srgb, var(--blue, #79b9ea) 42%, transparent);
-  transition: box-shadow 0.35s ease;
+  box-shadow:
+    0 0 0 10px color-mix(in srgb, var(--blue, #79b9ea) 30%, transparent),
+    0 16px 48px rgba(121, 185, 234, 0.4);
+}
+
+@keyframes sonia-mic-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 .sonia-voice-title {
   margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.15rem);
-  font-weight: 600;
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .sonia-voice-help {
-  margin: 8px 0 0;
-  max-width: 260px;
-  font-size: 0.8rem;
-  line-height: 1.55;
-  color: var(--muted, #555e64);
+  margin: 10px 0 0;
+  max-width: 280px;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted-foreground, #555e64);
 }
 
 .sonia-voice-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   justify-content: center;
-  padding-top: 8px;
+  padding-top: 12px;
 }
 
 .sonia-chat-primary-btn,
@@ -301,13 +469,22 @@ elevenlabs-convai {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 0 20px;
+  min-height: 46px;
+  padding: 0 22px;
   border-radius: 999px;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   border: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.sonia-chat-primary-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(36, 39, 41, 0.18);
 }
 
 .sonia-chat-primary-btn {
@@ -316,19 +493,26 @@ elevenlabs-convai {
 }
 
 .sonia-chat-primary-btn.is-end {
-  background: #c44;
+  background: linear-gradient(135deg, #dc4c4c 0%, #b83a3a 100%);
   color: #fff;
 }
 
 .sonia-chat-primary-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .sonia-chat-secondary-btn {
-  background: var(--paper, #f9fafd);
+  background: #fff;
   color: var(--ink, #242729);
   border: 1px solid var(--line, #dce4e9);
+}
+
+.sonia-chat-secondary-btn:hover:not(:disabled) {
+  border-color: var(--blue, #79b9ea);
+  background: color-mix(in srgb, var(--blue, #79b9ea) 8%, #fff);
 }
 
 .sonia-text-pane {
@@ -336,14 +520,25 @@ elevenlabs-convai {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 0 0 4px;
 }
 
 .sonia-message-list {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding-right: 4px;
+  padding: 14px 14px 8px;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+.sonia-message-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sonia-message-list::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--line, #dce4e9) 80%, transparent);
+  border-radius: 999px;
 }
 
 .sonia-message-empty {
@@ -356,14 +551,43 @@ elevenlabs-convai {
   flex: 1;
   justify-content: center;
   align-items: center;
+  min-height: 14rem;
+  padding: 1rem 0.5rem;
+}
+
+.sonia-begin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 1rem 0.5rem 2rem;
-  min-height: 12rem;
+  max-width: 18rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid color-mix(in srgb, var(--line, #dce4e9) 70%, #fff);
+  box-shadow: 0 8px 28px rgba(36, 39, 41, 0.06);
+}
+
+.sonia-begin-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--blue, #79b9ea);
+  margin-bottom: 12px;
+  box-shadow: 0 6px 20px rgba(121, 185, 234, 0.25);
+}
+
+.sonia-begin-intro {
+  font-size: 0.8125rem !important;
+  line-height: 1.55 !important;
+  margin: 0 0 4px !important;
 }
 
 .sonia-begin-chat-btn {
-  margin-top: 0.5rem;
-  min-width: min(100%, 14rem);
+  margin-top: 0.75rem;
+  width: 100%;
 }
 
 .sonia-welcome-bubble {
@@ -374,7 +598,7 @@ elevenlabs-convai {
   color: var(--ink, #242729);
   background: #fff;
   border: 1px solid var(--line, #dce4e9);
-  border-radius: 12px 12px 12px 4px;
+  border-radius: 16px 16px 16px 6px;
 }
 
 .sonia-quick-label {
@@ -383,7 +607,7 @@ elevenlabs-convai {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--muted, #555e64);
+  color: var(--muted-foreground, #555e64);
 }
 
 .sonia-quick-chips {
@@ -397,7 +621,7 @@ elevenlabs-convai {
   padding: 10px 12px;
   font-size: 0.75rem;
   line-height: 1.45;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid var(--line, #dce4e9);
   background: #fff;
   color: var(--ink, #242729);
@@ -415,13 +639,16 @@ elevenlabs-convai {
 
 .sonia-text-hint {
   margin: 4px 0 0;
-  font-size: 0.72rem;
-  color: var(--muted, #555e64);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground, #555e64);
 }
 
 .sonia-message-row {
   display: flex;
-  margin-bottom: 10px;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .sonia-message-row.is-user {
@@ -432,71 +659,208 @@ elevenlabs-convai {
   justify-content: flex-start;
 }
 
+.sonia-message-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 1.5px solid color-mix(in srgb, var(--blue, #79b9ea) 50%, transparent);
+  align-self: flex-end;
+}
+
 .sonia-message-bubble {
-  max-width: 88%;
-  padding: 10px 12px;
-  font-size: clamp(0.8rem, 2.2vw, 0.875rem);
+  max-width: min(88%, 280px);
+  padding: 11px 14px;
+  font-size: clamp(0.8125rem, 2.2vw, 0.875rem);
   line-height: 1.55;
-  border-radius: 12px;
+  border-radius: 16px;
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 .sonia-message-row.is-user .sonia-message-bubble {
-  background: var(--blue, #79b9ea);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--blue, #79b9ea) 95%, #fff) 0%,
+    color-mix(in srgb, var(--blue, #79b9ea) 80%, #6aabdc) 100%
+  );
   color: var(--ink, #242729);
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 2px 8px rgba(121, 185, 234, 0.25);
 }
 
 .sonia-message-row.is-agent .sonia-message-bubble {
   background: #fff;
-  border: 1px solid var(--line, #dce4e9);
-  border-bottom-left-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--line, #dce4e9) 90%, #fff);
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 2px 10px rgba(36, 39, 41, 0.05);
 }
 
 .sonia-typing {
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--muted, #555e64);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.sonia-typing-bubble {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid var(--line, #dce4e9);
+  border-radius: 16px 16px 16px 6px;
+  box-shadow: 0 2px 8px rgba(36, 39, 41, 0.04);
+}
+
+.sonia-typing-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.sonia-typing-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue, #79b9ea);
+  animation: sonia-typing-bounce 1.2s ease-in-out infinite;
+}
+
+.sonia-typing-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.sonia-typing-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes sonia-typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
 }
 
 .sonia-input-row {
-  position: relative;
-  margin-top: 10px;
   flex-shrink: 0;
+  padding: 4px 14px max(12px, env(safe-area-inset-bottom, 0px));
+  background: transparent;
+  border: none;
 }
 
-.sonia-input-row input {
-  width: 100%;
-  padding: 12px 48px 12px 14px;
-  border: 1px solid var(--line, #dce4e9);
-  border-radius: 10px;
+.sonia-input-composer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 48px;
+  padding: 4px 4px 4px 16px;
+  border-radius: 999px;
   background: #fff;
-  font-size: 0.85rem;
-  outline: none;
+  border: 1px solid var(--line, #dce4e9);
+  transition: border-color 0.2s ease;
 }
 
-.sonia-input-row input:focus {
-  border-color: var(--blue, #79b9ea);
+.sonia-input-composer:focus-within {
+  border-color: color-mix(in srgb, var(--line, #dce4e9) 85%, var(--ink, #242729));
+  box-shadow: none;
+}
+
+.sonia-input-composer:has(.sonia-input-field:disabled) {
+  opacity: 0.72;
+  background: color-mix(in srgb, var(--muted, #eef3f7) 35%, #fff);
+}
+
+.sonia-input-field {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 8px 10px 0;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--ink, #242729);
+  outline: none;
+  box-shadow: none;
+}
+
+.sonia-input-field:focus,
+.sonia-input-field:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none;
+}
+
+.sonia-input-field::placeholder {
+  color: color-mix(in srgb, var(--muted-foreground, #555e64) 75%, transparent);
+}
+
+.sonia-input-field:disabled {
+  cursor: not-allowed;
 }
 
 .sonia-send-btn {
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
   display: grid;
+  flex-shrink: 0;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: none;
-  border-radius: 8px;
+  border-radius: 50%;
   background: var(--ink, #242729);
   color: var(--paper, #f9fafd);
   cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.sonia-send-btn:hover:not(:disabled) {
+  transform: scale(1.04);
+  background: color-mix(in srgb, var(--ink, #242729) 88%, var(--blue, #79b9ea));
+}
+
+.sonia-send-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--blue, #79b9ea);
 }
 
 .sonia-send-btn:disabled {
   opacity: 0.35;
   cursor: not-allowed;
+  transform: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonia-chat-panel,
+  .sonia-chat-backdrop,
+  .sonia-chat-launcher,
+  .sonia-voice-mic-ring.is-listening,
+  .sonia-typing-dots span,
+  .sonia-chat-online {
+    animation: none;
+    transition: none;
+  }
 }

@@ -26,7 +26,15 @@ export default function SoniaChat() {
       )}
 
       {open ? (
-        <SoniaChatPanelInner onClose={() => setOpen(false)} />
+        <>
+          <button
+            type="button"
+            className="sonia-chat-backdrop"
+            aria-label={t("sonia.close")}
+            onClick={() => setOpen(false)}
+          />
+          <SoniaChatPanelInner onClose={() => setOpen(false)} />
+        </>
       ) : null}
     </ConversationProvider>
   );
