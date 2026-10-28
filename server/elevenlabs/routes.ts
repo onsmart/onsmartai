@@ -40,7 +40,7 @@ export function registerElevenLabsRoutes(app: Express) {
         agentId,
         configured: Boolean(agentId),
         textChatReady: Boolean(agentId && apiKey),
-        textOnlySession: textOnlyOverride,
+        textOnlySession: Boolean(agentId && apiKey) || textOnlyOverride,
         serverLocation: serverLocation || undefined,
         voiceId: voiceId || undefined,
       });

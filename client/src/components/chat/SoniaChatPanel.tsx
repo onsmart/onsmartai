@@ -317,6 +317,17 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   };
 
   const conversation = useConversation({
+    ...bindTextSessionCallbacks(),
+    onMessage: (message) => {
+      if (sessionKindRef.current !== "text") return;
+      if (message.source === "user") return;
+      handleElevenLabsMessage({
+        source: "ai",
+        role: "agent",
+        message: message.message,
+        event_id: message.event_id,
+      });
+    },
     onConnect: () => {
       setIsStartingVoice(false);
       setIsStartingText(false);
@@ -336,6 +347,12 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       ) {
         soniaChatWarn(
           "Sessão de texto encerrada antes da resposta do agente.",
+          details
+        );
+      }
+      if (modeRef.current === "voice" && reason !== "user") {
+        soniaChatWarn(
+          "Sessão de voz encerrada inesperadamente (agente ou conexão).",
           details
         );
       }
@@ -403,7 +420,9 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       .then((next) => {
         if (!active) return;
         setConfig(next);
-        setElevenLabsTextOnlySession(Boolean(next.textOnlySession));
+        setElevenLabsTextOnlySession(
+          Boolean(next.textChatReady && next.textOnlySession !== false)
+        );
         if (next.configured && next.textChatReady === false) {
           soniaChatWarn(t("sonia.textChatAuthRequired"));
         }
@@ -514,7 +533,6 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
         signedUrl,
         connectionType: "websocket",
         textOnly: true,
-        ...bindTextSessionCallbacks(),
       });
       return true;
     } catch (error) {
@@ -552,8 +570,6 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       if (!navigator.mediaDevices?.getUserMedia) {
         throw new Error(t("sonia.micError"));
       }
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      stream.getTracks().forEach((track) => track.stop());
 
       const conversationToken = await fetchElevenLabsConversationToken();
       const voiceOptions: HookOptions = {

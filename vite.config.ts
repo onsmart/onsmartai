@@ -161,11 +161,12 @@ function buildElevenLabsPublicConfigJson(): string {
   const apiKey = process.env.ELEVENLABS_API_KEY?.trim() ?? "";
   const serverLocation = process.env.ELEVENLABS_SERVER_LOCATION?.trim() ?? "";
   const voiceId = process.env.ELEVENLABS_VOICE_ID?.trim() ?? "";
+  const textChatReady = Boolean(agentId && apiKey);
   return JSON.stringify({
     agentId,
     configured: Boolean(agentId),
-    textChatReady: Boolean(agentId && apiKey),
-    textOnlySession: textOnlyOverride,
+    textChatReady,
+    textOnlySession: textChatReady || textOnlyOverride,
     serverLocation: serverLocation || undefined,
     voiceId: voiceId || undefined,
   });

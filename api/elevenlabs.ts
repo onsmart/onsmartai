@@ -132,14 +132,16 @@ export default async function handler(
 
   try {
     if (action === "config") {
+      const textChatReady = Boolean(env.agentId && env.apiKey);
       res
         .status(200)
         .setHeader("Cache-Control", "no-store")
         .json({
           agentId: env.agentId,
           configured: Boolean(env.agentId),
-          textChatReady: Boolean(env.agentId && env.apiKey),
-          textOnlySession: env.textOnlyOverride,
+          textChatReady,
+          // Chat WebSocket needs runtime text_only override (allowed in agent Security).
+          textOnlySession: textChatReady || env.textOnlyOverride,
           serverLocation: env.serverLocation || undefined,
           voiceId: env.voiceId || undefined,
         });
