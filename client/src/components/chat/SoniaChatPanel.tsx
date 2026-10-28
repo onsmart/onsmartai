@@ -12,11 +12,13 @@ import {
   ElevenLabsSignedUrlError,
   fetchElevenLabsSignedUrl,
 } from "@/lib/elevenlabsSignedUrl";
-import { elevenLabsLanguage } from "@/lib/elevenlabsLocale";
-import { applyElevenLabsTextSessionPatch } from "@/lib/elevenlabsTextSessionPatch";
+import {
+  ElevenLabsConversationTokenError,
+  fetchElevenLabsConversationToken,
+} from "@/lib/elevenlabsConversationToken";
+import { applyElevenLabsTextSessionPatch, setElevenLabsTextOnlySession } from "@/lib/elevenlabsTextSessionPatch";
 
 applyElevenLabsTextSessionPatch();
-import { useLocale } from "@/i18n/LocaleProvider";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import {
   FormEvent,
@@ -29,6 +31,7 @@ import { Keyboard, Mic, MicOff, RotateCcw, Send, X } from "lucide-react";
 import {
   soniaChatDebug,
   soniaChatError,
+  soniaChatInfo,
   soniaChatWarn,
 } from "./soniaChatLog";
 import { formatAgentChatText } from "./formatAgentChatText";
@@ -52,26 +55,31 @@ type ElevenLabsMessage = {
   event_id?: number;
 };
 
-function voiceSessionOverrides(
-  config: ElevenLabsAgentConfig,
-  locale: ReturnType<typeof useLocale>["locale"]
-) {
-  const language = elevenLabsLanguage(locale);
-  return {
-    agent: { language },
-    ...(config.voiceId ? { tts: { voiceId: config.voiceId } } : {}),
-  };
-}
-
 function sessionLocationOptions(config: ElevenLabsAgentConfig) {
   return config.serverLocation
     ? { serverLocation: config.serverLocation }
     : {};
 }
 
+/** Encerra sessão anterior e aguarda o SDK liberar antes de abrir voz (evita LiveKit preso). */
+async function waitForConversationIdle(
+  endSession: () => void,
+  readStatus: () => string,
+  timeoutMs = 2_000
+): Promise<void> {
+  endSession();
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    const status = readStatus();
+    if (status !== "connected" && status !== "connecting") {
+      return;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+}
+
 function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   const { t } = useSiteCopy();
-  const { locale } = useLocale();
   const listRef = useRef<HTMLDivElement>(null);
   const pendingTextRef = useRef<string | null>(null);
   const agentStreamIdRef = useRef<string | null>(null);
@@ -86,14 +94,36 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   const textSessionLockRef = useRef(false);
   const modeRef = useRef(mode);
   modeRef.current = mode;
+  const sessionKindRef = useRef<ChatMode>("text");
   const awaitingReplyRef = useRef(false);
   const [isAwaitingAgentReply, setIsAwaitingAgentReply] = useState(false);
   const [hasBegunTextChat, setHasBegunTextChat] = useState(false);
   awaitingReplyRef.current = isAwaitingAgentReply;
   const hasBegunTextChatRef = useRef(false);
   hasBegunTextChatRef.current = hasBegunTextChat;
-  const localWelcomeShownRef = useRef(false);
   const messagesRef = useRef<ChatMessage[]>([]);
+  const userTextSentRef = useRef(false);
+  const elOpeningMessageSeenRef = useRef(false);
+  const audioReplyAfterUserRef = useRef(false);
+  const audioFallbackShownRef = useRef(false);
+
+  const textSessionCallbacksRef = useRef({
+    onIncomingEvent: (_event: unknown) => {},
+    onOutgoingEvent: (_event: unknown) => {},
+    onDebug: (_event: unknown) => {},
+  });
+
+  const bindTextSessionCallbacks = useCallback(
+    () => ({
+      onIncomingEvent: (event: unknown) =>
+        textSessionCallbacksRef.current.onIncomingEvent(event),
+      onOutgoingEvent: (event: unknown) =>
+        textSessionCallbacksRef.current.onOutgoingEvent(event),
+      onDebug: (event: unknown) =>
+        textSessionCallbacksRef.current.onDebug(event),
+    }),
+    []
+  );
 
   const normalizeAgentText = useCallback(
     (role: MessageRole, text: string) =>
@@ -123,16 +153,6 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     [normalizeAgentText]
   );
 
-  const userMessageInThread = useCallback(
-    () => messagesRef.current.some((message) => message.role === "user"),
-    []
-  );
-
-  const shouldIgnorePreUserAgentMessage = useCallback(() => {
-    if (userMessageInThread()) return false;
-    return messagesRef.current.some((message) => message.role === "agent");
-  }, [userMessageInThread]);
-
   const upsertStreamingAgentMessage = useCallback((text: string) => {
     const trimmed = formatAgentChatText(text);
     if (!trimmed) return;
@@ -141,12 +161,15 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     agentStreamIdRef.current = streamId;
     setMessages((current) => {
       const index = current.findIndex((m) => m.id === streamId);
+      let next: ChatMessage[];
       if (index >= 0) {
-        const next = [...current];
+        next = [...current];
         next[index] = { ...next[index], text: trimmed };
-        return next;
+      } else {
+        next = [...current, { id: streamId, role: "agent", text: trimmed }];
       }
-      return [...current, { id: streamId, role: "agent", text: trimmed }];
+      messagesRef.current = next;
+      return next;
     });
   }, []);
 
@@ -155,18 +178,153 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     agentStreamBufferRef.current = "";
   }, []);
 
+  const handleElevenLabsMessage = useCallback(
+    (payload: ElevenLabsMessage) => {
+      const raw =
+        payload.message ?? payload.text ?? payload.transcript ?? "";
+      const role: MessageRole =
+        payload.role ??
+        (payload.source === "user" ? "user" : "agent");
+
+      if (role === "agent") {
+        setIsAwaitingAgentReply(false);
+      }
+
+      const displayText =
+        role === "agent" ? formatAgentChatText(raw) : raw.trim();
+      if (!displayText) {
+        if (role === "agent") {
+          soniaChatWarn(
+            "Agente respondeu sem texto exibível (possível tag de voz vazia)."
+          );
+        }
+        return;
+      }
+
+      finalizeAgentStream();
+      appendMessage(role, displayText, payload.event_id);
+      if (role === "agent") {
+        soniaChatInfo("Resposta do agente exibida no chat.");
+      }
+    },
+    [appendMessage, finalizeAgentStream]
+  );
+
+  const handleAgentChatResponsePart = useCallback(
+    (part: { text?: string; type?: string }) => {
+      const chunk = part.text ?? "";
+      const partType = String(part.type ?? "").toLowerCase();
+      if (partType === "start") {
+        setIsAwaitingAgentReply(false);
+        agentStreamBufferRef.current = "";
+        agentStreamIdRef.current = `agent-stream-${Date.now()}`;
+        soniaChatInfo("Agente começou a responder (stream).");
+        return;
+      }
+      if (partType === "delta") {
+        agentStreamBufferRef.current += chunk;
+        upsertStreamingAgentMessage(agentStreamBufferRef.current);
+        return;
+      }
+      if (partType === "stop") {
+        if (chunk) {
+          agentStreamBufferRef.current += chunk;
+        }
+        upsertStreamingAgentMessage(agentStreamBufferRef.current);
+        finalizeAgentStream();
+        setIsAwaitingAgentReply(false);
+        soniaChatInfo("Resposta do agente concluída (stream).");
+        return;
+      }
+      soniaChatWarn("Parte de resposta desconhecida.", part);
+    },
+    [finalizeAgentStream, upsertStreamingAgentMessage]
+  );
+
+  const handleIncomingSocketEvent = useCallback(
+    (event: unknown) => {
+      const record = event as {
+        type?: string;
+        agent_response_event?: {
+          agent_response?: string;
+          event_id?: number;
+        };
+        text_response_part?: { text?: string; type?: string };
+      };
+
+      const type = record.type ?? "";
+
+      if (
+        type === "agent_response" ||
+        type === "agent_chat_response_part" ||
+        type === "error"
+      ) {
+        soniaChatInfo(`WebSocket ← ${type}.`);
+      }
+
+      if (type === "audio" && userTextSentRef.current) {
+        audioReplyAfterUserRef.current = true;
+        if (!audioFallbackShownRef.current) {
+          soniaChatWarn(
+            "O agente respondeu em áudio (voz), não em texto. No ElevenLabs, ative Conversation → Text only para o chat do site, ou use a aba Voz."
+          );
+          audioFallbackShownRef.current = true;
+          setIsAwaitingAgentReply(false);
+          appendMessage("agent", t("sonia.textChatAudioOnlyFallback"));
+        }
+        return;
+      }
+
+      if (
+        type === "agent_response" &&
+        record.agent_response_event?.agent_response != null
+      ) {
+        if (!elOpeningMessageSeenRef.current) {
+          elOpeningMessageSeenRef.current = true;
+        }
+        handleElevenLabsMessage({
+          role: "agent",
+          source: "ai",
+          message: record.agent_response_event.agent_response,
+          event_id: record.agent_response_event.event_id,
+        });
+        return;
+      }
+
+      if (type === "agent_chat_response_part" && record.text_response_part) {
+        handleAgentChatResponsePart(record.text_response_part);
+      }
+    },
+    [appendMessage, handleAgentChatResponsePart, handleElevenLabsMessage, t]
+  );
+
+  textSessionCallbacksRef.current = {
+    onIncomingEvent: handleIncomingSocketEvent,
+    onOutgoingEvent: (event) => {
+      const record = event as { type?: string; text?: string };
+      if (record.type === "user_message") {
+        soniaChatInfo("WebSocket → user_message enviada.", record.text);
+      }
+    },
+    onDebug: (event) => {
+      const record = event as { type?: string };
+      if (record.type === "error" || record.type === "invalid_event") {
+        soniaChatError("ElevenLabs reportou erro na sessão.", event);
+      } else {
+        soniaChatDebug("Evento ElevenLabs.", event);
+      }
+    },
+  };
+
   const conversation = useConversation({
     onConnect: () => {
       setIsStartingVoice(false);
-      if (
-        modeRef.current !== "text" ||
-        !hasBegunTextChatRef.current ||
-        localWelcomeShownRef.current
-      ) {
-        return;
+      setIsStartingText(false);
+      if (sessionKindRef.current === "text") {
+        soniaChatInfo("Sessão de texto conectada.");
+      } else {
+        soniaChatInfo("Sessão de voz conectada.");
       }
-      localWelcomeShownRef.current = true;
-      appendMessage("agent", t("sonia.welcomeMessage"));
     },
     onDisconnect: (details) => {
       soniaChatDebug("Sessão ElevenLabs encerrada.", details);
@@ -186,56 +344,19 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       setIsStartingText(false);
       setIsAwaitingAgentReply(false);
     },
-    onError: (message) => {
+    onError: (message, error) => {
       pendingTextRef.current = null;
       setIsStartingVoice(false);
+      setIsStartingText(false);
       setIsAwaitingAgentReply(false);
-      soniaChatError(message?.trim() || "Falha na conversa com a SON.IA.");
-    },
-    onMessage: (payload: ElevenLabsMessage) => {
-      const raw =
-        payload.message ?? payload.text ?? payload.transcript ?? "";
-      if (!raw.trim()) return;
-      const role: MessageRole =
-        payload.role ??
-        (payload.source === "user" ? "user" : "agent");
-      if (role === "agent" && shouldIgnorePreUserAgentMessage()) {
-        return;
-      }
-      finalizeAgentStream();
-      setIsAwaitingAgentReply(false);
-      appendMessage(role, raw, payload.event_id);
-    },
-    onDebug: (event) => {
-      const record = event as { type?: string };
-      if (record.type === "error" || record.type === "invalid_event") {
-        soniaChatError("ElevenLabs reportou erro na sessão.", event);
+      const detail = message?.trim() || "Falha na conversa com a SON.IA.";
+      if (modeRef.current === "voice") {
+        soniaChatError(
+          `${detail} Se persistir, confira no ElevenLabs (Segurança) se overrides de idioma/voz estão desligados — a voz usa só a config do agente.`,
+          error
+        );
       } else {
-        soniaChatDebug("Evento ElevenLabs.", event);
-      }
-    },
-    onAgentChatResponsePart: (part) => {
-      if (!userMessageInThread()) return;
-      const chunk = part.text ?? "";
-      const partType = String(part.type ?? "").toLowerCase();
-      if (partType === "start") {
-        setIsAwaitingAgentReply(false);
-        agentStreamBufferRef.current = "";
-        agentStreamIdRef.current = `agent-stream-${Date.now()}`;
-        return;
-      }
-      if (partType === "delta") {
-        agentStreamBufferRef.current += chunk;
-        upsertStreamingAgentMessage(agentStreamBufferRef.current);
-        return;
-      }
-      if (partType === "stop") {
-        if (chunk) {
-          agentStreamBufferRef.current += chunk;
-        }
-        upsertStreamingAgentMessage(agentStreamBufferRef.current);
-        finalizeAgentStream();
-        setIsAwaitingAgentReply(false);
+        soniaChatError(detail, error);
       }
     },
   });
@@ -249,10 +370,11 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     if (sentPendingIdRef.current === pending) return;
     sentPendingIdRef.current = pending;
     pendingTextRef.current = null;
+    userTextSentRef.current = true;
     setIsAwaitingAgentReply(true);
     try {
       conversation.sendUserMessage(pending);
-      soniaChatDebug("Mensagem de texto enviada à sessão ElevenLabs.");
+      soniaChatInfo("Mensagem de texto enviada à sessão ElevenLabs.");
     } catch (error) {
       sentPendingIdRef.current = null;
       pendingTextRef.current = pending;
@@ -281,6 +403,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       .then((next) => {
         if (!active) return;
         setConfig(next);
+        setElevenLabsTextOnlySession(Boolean(next.textOnlySession));
         if (next.configured && next.textChatReady === false) {
           soniaChatWarn(t("sonia.textChatAuthRequired"));
         }
@@ -308,6 +431,17 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   }, [isConnected, mode, flushPendingUserText]);
 
   useEffect(() => {
+    if (!isAwaitingAgentReply) return;
+    const timeout = window.setTimeout(() => {
+      setIsAwaitingAgentReply(false);
+      soniaChatWarn(
+        "Nenhuma resposta do agente após 90s. Verifique o agente no ElevenLabs ou reinicie a conversa."
+      );
+    }, 90_000);
+    return () => window.clearTimeout(timeout);
+  }, [isAwaitingAgentReply]);
+
+  useEffect(() => {
     return () => {
       if (import.meta.hot) {
         return;
@@ -324,7 +458,10 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   const resetTextChatFlow = useCallback(() => {
     setHasBegunTextChat(false);
     hasBegunTextChatRef.current = false;
-    localWelcomeShownRef.current = false;
+    userTextSentRef.current = false;
+    elOpeningMessageSeenRef.current = false;
+    audioReplyAfterUserRef.current = false;
+    audioFallbackShownRef.current = false;
   }, []);
 
   const restartConversation = () => {
@@ -370,12 +507,14 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
 
     textSessionLockRef.current = true;
     setIsStartingText(true);
+    sessionKindRef.current = "text";
     try {
       const signedUrl = await fetchElevenLabsSignedUrl();
       conversation.startSession({
         signedUrl,
         connectionType: "websocket",
         textOnly: true,
+        ...bindTextSessionCallbacks(),
       });
       return true;
     } catch (error) {
@@ -398,28 +537,43 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
 
   const startVoice = async () => {
     if (!config?.agentId) return;
-    if (isConnected || isConnecting || isStartingVoice) return;
+    if (isStartingVoice) return;
 
     setIsStartingVoice(true);
+    sessionKindRef.current = "voice";
     try {
+      if (isConnected || isConnecting) {
+        await waitForConversationIdle(
+          endSession,
+          () => conversation.status
+        );
+      }
+
       if (!navigator.mediaDevices?.getUserMedia) {
         throw new Error(t("sonia.micError"));
       }
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       stream.getTracks().forEach((track) => track.stop());
 
+      const conversationToken = await fetchElevenLabsConversationToken();
       const voiceOptions: HookOptions = {
-        agentId: config.agentId,
+        conversationToken,
         connectionType: "webrtc",
         textOnly: false,
         ...sessionLocationOptions(config),
-        overrides: voiceSessionOverrides(config, locale),
       };
       conversation.startSession(voiceOptions);
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : t("sonia.micError");
-      window.alert(message);
+      if (
+        error instanceof ElevenLabsConversationTokenError &&
+        error.status === 503
+      ) {
+        soniaChatError(t("sonia.textChatAuthRequired"));
+      } else {
+        const message =
+          error instanceof Error ? error.message : t("sonia.micError");
+        window.alert(message);
+      }
       setIsStartingVoice(false);
     }
   };
@@ -441,6 +595,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       const trimmed = text.trim();
       if (!trimmed || !hasBegunTextChat) return;
 
+      userTextSentRef.current = true;
       appendMessage("user", trimmed);
       setIsAwaitingAgentReply(true);
 
@@ -453,7 +608,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
 
       try {
         conversation.sendUserMessage(trimmed);
-        soniaChatDebug("Mensagem de texto enviada à sessão ElevenLabs.");
+        soniaChatInfo("Mensagem de texto enviada à sessão ElevenLabs.");
       } catch (error) {
         setIsAwaitingAgentReply(false);
         soniaChatError("Não foi possível enviar a mensagem de texto.", error);
@@ -466,6 +621,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       isConnected,
       isPendingConnection,
       startTextSession,
+      bindTextSessionCallbacks,
     ]
   );
 
@@ -638,7 +794,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
                       : t("sonia.startConversation")}
                   </button>
                 </div>
-              ) : messages.length === 0 && isPendingConnection ? (
+              ) : messages.length === 0 && isConnected ? (
                 <p className="sonia-typing" role="status">
                   {t("sonia.connecting")}
                 </p>

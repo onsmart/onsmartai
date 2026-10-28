@@ -16,6 +16,14 @@ export function soniaChatError(message: string, detail?: unknown) {
   console.error(PREFIX, message);
 }
 
+export function soniaChatInfo(message: string, detail?: unknown) {
+  if (detail !== undefined) {
+    console.info(PREFIX, message, detail);
+    return;
+  }
+  console.info(PREFIX, message);
+}
+
 export function soniaChatDebug(message: string, detail?: unknown) {
   if (import.meta.env.DEV) {
     if (detail !== undefined) {

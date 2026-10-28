@@ -4,6 +4,7 @@ export type ElevenLabsAgentConfig = {
   agentId: string;
   configured: boolean;
   textChatReady?: boolean;
+  textOnlySession?: boolean;
   serverLocation?: string;
   voiceId?: string;
 };

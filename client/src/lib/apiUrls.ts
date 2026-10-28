@@ -11,3 +11,7 @@ export function getElevenLabsConfigUrl(): string {
 export function getElevenLabsSignedUrlUrl(): string {
   return "/api/elevenlabs-signed-url";
 }
+
+export function getElevenLabsConversationTokenUrl(): string {
+  return "/api/elevenlabs-conversation-token";
+}

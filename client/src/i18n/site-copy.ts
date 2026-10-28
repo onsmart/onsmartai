@@ -123,6 +123,7 @@ export type SiteCopy = UiMessages & {
     voiceUnavailableConfig: string;
     voiceUnavailableNetwork: string;
     textChatAuthRequired: string;
+    textChatAudioOnlyFallback: string;
   };
   commercial: {
     faqEyebrow: string;
@@ -450,6 +451,8 @@ const extraPt = {
       "Falha ao conectar ao serviço. Tente novamente em instantes.",
     textChatAuthRequired:
       "O chat por texto precisa da variável ELEVENLABS_API_KEY no servidor (.env). A voz continua funcionando sem ela.",
+    textChatAudioOnlyFallback:
+      "Recebi sua mensagem, mas este agente está respondendo em áudio (voz), não em texto. Para o chat do site, ative modo só texto no painel ElevenLabs (Conversation → Text only) ou use a aba Voz aqui.",
   },
   commercial: {
     faqEyebrow: "Dúvidas frequentes",
@@ -807,6 +810,8 @@ const extraEn: typeof extraPt = {
       "Could not reach the service. Try again in a moment.",
     textChatAuthRequired:
       "Text chat requires ELEVENLABS_API_KEY on the server (.env). Voice still works without it.",
+    textChatAudioOnlyFallback:
+      "I got your message, but this agent is replying with audio only, not text. For site chat, enable text-only mode in the ElevenLabs dashboard (Conversation → Text only) or use the Voice tab here.",
   },
   commercial: {
     faqEyebrow: "Frequently asked questions",
@@ -1165,6 +1170,8 @@ const extraEs: typeof extraPt = {
       "No se pudo conectar al servicio. Intente de nuevo en unos instantes.",
     textChatAuthRequired:
       "El chat por texto requiere ELEVENLABS_API_KEY en el servidor (.env). La voz sigue funcionando sin ella.",
+    textChatAudioOnlyFallback:
+      "Recibí su mensaje, pero este agente responde solo en audio, no en texto. Para el chat del sitio, active modo solo texto en ElevenLabs (Conversation → Text only) o use la pestaña Voz.",
   },
   commercial: {
     faqEyebrow: "Preguntas frecuentes",

@@ -19,6 +19,10 @@ import { registerCmsRoutes } from "../cms/routes";
 import { registerElevenLabsRoutes } from "../elevenlabs/routes";
 import { registerSecurityHeaders } from "./securityHeaders";
 import { readElevenLabsEnv } from "../elevenlabs/env";
+import {
+  fetchAgentVoiceHints,
+  logAgentVoiceHints,
+} from "../elevenlabs/agentMultimodal";
 
 async function startServer() {
   const app = express();
@@ -54,7 +58,12 @@ async function startServer() {
   server.on("error", error => { console.error("Server failed:", error.message); process.exit(1); });
   server.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`);
-    const { agentId, apiKey } = readElevenLabsEnv();
+    const { agentId, apiKey, serverLocation } = readElevenLabsEnv();
+    if (agentId && apiKey) {
+      void fetchAgentVoiceHints(agentId, apiKey, serverLocation).then(
+        logAgentVoiceHints
+      );
+    }
     if (agentId && !apiKey) {
       console.warn(
         "[SON.IA] ELEVENLABS_API_KEY ausente no .env — chat por texto precisa de signed URL. Reinicie o servidor após alterar o .env."

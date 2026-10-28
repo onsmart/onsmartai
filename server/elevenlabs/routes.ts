@@ -1,6 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { readElevenLabsEnv } from "./env";
 import { fetchConvaiSignedUrl } from "./signedUrl";
+import { fetchConvaiConversationToken } from "./conversationToken";
 import {
   buildElevenLabsWidgetPayload,
   isAllowedCorsOrigin,
@@ -30,7 +31,8 @@ export function registerElevenLabsRoutes(app: Express) {
   };
 
   app.get("/api/elevenlabs-config", (_req, res) => {
-    const { agentId, apiKey, serverLocation, voiceId } = readElevenLabsEnv();
+    const { agentId, apiKey, serverLocation, voiceId, textOnlyOverride } =
+      readElevenLabsEnv();
     res
       .status(200)
       .set("Cache-Control", "no-store")
@@ -38,6 +40,7 @@ export function registerElevenLabsRoutes(app: Express) {
         agentId,
         configured: Boolean(agentId),
         textChatReady: Boolean(agentId && apiKey),
+        textOnlySession: textOnlyOverride,
         serverLocation: serverLocation || undefined,
         voiceId: voiceId || undefined,
       });
@@ -65,6 +68,31 @@ export function registerElevenLabsRoutes(app: Express) {
       res.status(200).set("Cache-Control", "no-store").json({ signedUrl });
     } catch {
       res.status(502).json({ error: "signed_url_failed" });
+    }
+  });
+
+  app.get("/api/elevenlabs-conversation-token", async (_req, res) => {
+    const { agentId, apiKey, serverLocation } = readElevenLabsEnv();
+    if (!agentId) {
+      res.status(404).json({ error: "agent_not_configured" });
+      return;
+    }
+    if (!apiKey) {
+      res.status(503).json({ error: "api_key_missing" });
+      return;
+    }
+    try {
+      const conversationToken = await fetchConvaiConversationToken(
+        agentId,
+        apiKey,
+        serverLocation
+      );
+      res
+        .status(200)
+        .set("Cache-Control", "no-store")
+        .json({ conversationToken });
+    } catch {
+      res.status(502).json({ error: "conversation_token_failed" });
     }
   });
 
