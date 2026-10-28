@@ -1,6 +1,7 @@
 import {
   ConversationProvider,
   useConversation,
+  useConversationControls,
   type HookOptions,
 } from "@elevenlabs/react";
 import { SoniaCharacter } from "@/components/site/BrandMedia";
@@ -318,7 +319,10 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     },
   };
 
+  const conversationControls = useConversationControls();
+
   const conversation = useConversation({
+    ...bindTextSessionCallbacks(),
     onMessage: (message) => {
       if (sessionKindRef.current !== "text") return;
       if (message.source === "user") return;
@@ -395,7 +399,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
     userTextSentRef.current = true;
     setIsAwaitingAgentReply(true);
     try {
-      conversation.sendUserMessage(pending);
+      conversationControls.sendUserMessage(pending);
       soniaChatInfo("Mensagem de texto enviada à sessão ElevenLabs.");
     } catch (error) {
       sentPendingIdRef.current = null;
@@ -403,7 +407,7 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       setIsAwaitingAgentReply(false);
       soniaChatError("Não foi possível enviar a mensagem de texto.", error);
     }
-  }, [conversation]);
+  }, [conversationControls]);
 
   const status = conversation.status;
   const isConnected = status === "connected";
@@ -470,14 +474,14 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
       if (import.meta.hot) {
         return;
       }
-      conversation.endSession();
+      conversationControls.endSession();
     };
-  }, [conversation]);
+  }, [conversationControls.endSession]);
 
   const endSession = useCallback(() => {
-    conversation.endSession();
+    conversationControls.endSession();
     setIsStartingVoice(false);
-  }, [conversation]);
+  }, [conversationControls]);
 
   const resetTextChatFlow = useCallback(() => {
     setHasBegunTextChat(false);
@@ -538,7 +542,6 @@ function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
         signedUrl,
         connectionType: "websocket",
         textOnly: true,
-        ...bindTextSessionCallbacks(),
       });
       return true;
     } catch (error) {
