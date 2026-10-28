@@ -1,7 +1,8 @@
+import { ConversationProvider } from "@elevenlabs/react";
 import { SoniaCharacter } from "@/components/site/BrandMedia";
 import { useState } from "react";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
-import SoniaChatPanel from "./SoniaChatPanel";
+import { SoniaChatPanelInner } from "./SoniaChatPanel";
 import "./sonia-chat.css";
 
 export default function SoniaChat() {
@@ -9,7 +10,7 @@ export default function SoniaChat() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <ConversationProvider>
       {!open && (
         <button
           type="button"
@@ -24,7 +25,9 @@ export default function SoniaChat() {
         </button>
       )}
 
-      {open ? <SoniaChatPanel onClose={() => setOpen(false)} /> : null}
-    </>
+      {open ? (
+        <SoniaChatPanelInner onClose={() => setOpen(false)} />
+      ) : null}
+    </ConversationProvider>
   );
 }

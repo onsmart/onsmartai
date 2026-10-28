@@ -79,7 +79,7 @@ async function waitForConversationIdle(
   }
 }
 
-function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
+export function SoniaChatPanelInner({ onClose }: { onClose: () => void }) {
   const { t } = useSiteCopy();
   const listRef = useRef<HTMLDivElement>(null);
   const pendingTextRef = useRef<string | null>(null);
