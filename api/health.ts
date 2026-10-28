@@ -1,15 +1,18 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { elevenLabsEnvDiagnostics } from "./elevenlabsLib";
+type VercelLikeResponse = {
+  status: (code: number) => VercelLikeResponse;
+  json: (body: unknown) => void;
+};
 
-export default function handler(_req: VercelRequest, res: VercelResponse) {
-  try {
-    res.status(200).json({
-      status: "ok",
-      runtime: "vercel",
-      elevenlabs: elevenLabsEnvDiagnostics(),
-    });
-  } catch (error) {
-    console.error("[api/health]", error);
-    res.status(500).json({ error: "handler_failed" });
-  }
+export default function handler(
+  _req: unknown,
+  res: VercelLikeResponse
+) {
+  res.status(200).json({
+    status: "ok",
+    runtime: "vercel",
+    elevenlabs: {
+      agentIdSet: Boolean(process.env.ELEVENLABS_AGENT_ID?.trim()),
+      apiKeySet: Boolean(process.env.ELEVENLABS_API_KEY?.trim()),
+    },
+  });
 }

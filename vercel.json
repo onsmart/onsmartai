@@ -17,6 +17,18 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/api/elevenlabs-config",
+      "destination": "/api/elevenlabs?action=config"
+    },
+    {
+      "source": "/api/elevenlabs-signed-url",
+      "destination": "/api/elevenlabs?action=signed-url"
+    },
+    {
+      "source": "/api/elevenlabs-conversation-token",
+      "destination": "/api/elevenlabs?action=conversation-token"
+    },
     { "source": "/api/cms/public", "destination": "/cms/public.json" },
     { "source": "/api/platform/config.js", "destination": "/platform/config.js" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
