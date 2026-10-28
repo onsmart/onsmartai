@@ -6,9 +6,6 @@
   "functions": {
     "api/**/*.ts": {
       "maxDuration": 15
-    },
-    "api/cms/public.ts": {
-      "includeFiles": "{server/cms-seed-data.json,server/cms-seed-locales.json,shared/**}"
     }
   },
   "headers": [
@@ -20,6 +17,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/api/cms/public", "destination": "/api/cms-public" },
     { "source": "/api/platform/config.js", "destination": "/platform/config.js" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]

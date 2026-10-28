@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import ptSeed from "../../server/cms-seed-data.json";
-import localeSeed from "../../server/cms-seed-locales.json";
-import type { PublishedDocument } from "../../shared/cms";
+import ptSeed from "../server/cms-seed-data.json";
+import localeSeed from "../server/cms-seed-locales.json";
+import type { PublishedDocument } from "../shared/cms";
 
 type SeedRow = {
   key: string;
