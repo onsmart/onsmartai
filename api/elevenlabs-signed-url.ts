@@ -1,6 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { readElevenLabsEnv } from "../server/elevenlabs/env";
-import { fetchConvaiSignedUrl } from "../server/elevenlabs/signedUrl";
+import {
+  fetchConvaiSignedUrl,
+  readElevenLabsEnv,
+} from "./_lib/elevenlabs";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET" && req.method !== "HEAD") {

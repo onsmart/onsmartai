@@ -1,4 +1,7 @@
-import { getElevenLabsConfigUrl } from "./apiUrls";
+import {
+  getElevenLabsConfigStaticUrl,
+  getElevenLabsConfigUrl,
+} from "./apiUrls";
 
 export type ElevenLabsAgentConfig = {
   agentId: string;
@@ -11,21 +14,31 @@ export type ElevenLabsAgentConfig = {
 
 let configCache: ElevenLabsAgentConfig | null = null;
 
-export async function fetchElevenLabsAgentConfig(): Promise<ElevenLabsAgentConfig> {
-  if (configCache) return configCache;
-
-  const response = await fetch(getElevenLabsConfigUrl(), {
+async function loadConfigFrom(url: string): Promise<ElevenLabsAgentConfig> {
+  const response = await fetch(url, {
     credentials: "same-origin",
     headers: { Accept: "application/json" },
   });
-
   if (!response.ok) {
     throw new Error(`elevenlabs-config-${response.status}`);
   }
+  return (await response.json()) as ElevenLabsAgentConfig;
+}
 
-  const payload = (await response.json()) as ElevenLabsAgentConfig;
-  configCache = payload;
-  return payload;
+export async function fetchElevenLabsAgentConfig(): Promise<ElevenLabsAgentConfig> {
+  if (configCache) return configCache;
+
+  try {
+    configCache = await loadConfigFrom(getElevenLabsConfigUrl());
+    return configCache;
+  } catch (apiError) {
+    try {
+      configCache = await loadConfigFrom(getElevenLabsConfigStaticUrl());
+      return configCache;
+    } catch {
+      throw apiError;
+    }
+  }
 }
 
 export function clearElevenLabsConfigCache() {

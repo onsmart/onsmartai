@@ -1,7 +1,26 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm build:static",
+  "buildCommand": "pnpm vercel-build",
   "outputDirectory": "dist/public",
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+  "functions": {
+    "api/**/*.ts": {
+      "maxDuration": 15
+    },
+    "api/cms/public.ts": {
+      "includeFiles": "{server/cms-seed-data.json,server/cms-seed-locales.json,shared/**}"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/api/platform/config.js", "destination": "/platform/config.js" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }

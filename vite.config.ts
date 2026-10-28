@@ -5,6 +5,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { publicPlatformScript } from "./server/_core/publicConfig";
+import ptCmsSeed from "./server/cms-seed-data.json";
+import localeCmsSeed from "./server/cms-seed-locales.json";
+import type { PublishedDocument } from "./shared/cms";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -149,6 +152,68 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
+function buildElevenLabsPublicConfigJson(): string {
+  const textOnlyOverride =
+    process.env.ELEVENLABS_TEXT_ONLY_OVERRIDE?.trim() === "1" ||
+    process.env.ELEVENLABS_TEXT_ONLY_OVERRIDE?.trim()?.toLowerCase() ===
+      "true";
+  const agentId = process.env.ELEVENLABS_AGENT_ID?.trim() ?? "";
+  const apiKey = process.env.ELEVENLABS_API_KEY?.trim() ?? "";
+  const serverLocation = process.env.ELEVENLABS_SERVER_LOCATION?.trim() ?? "";
+  const voiceId = process.env.ELEVENLABS_VOICE_ID?.trim() ?? "";
+  return JSON.stringify({
+    agentId,
+    configured: Boolean(agentId),
+    textChatReady: Boolean(agentId && apiKey),
+    textOnlySession: textOnlyOverride,
+    serverLocation: serverLocation || undefined,
+    voiceId: voiceId || undefined,
+  });
+}
+
+type CmsSeedRow = {
+  key: string;
+  kind: PublishedDocument["kind"];
+  locale: PublishedDocument["locale"];
+  slug: string;
+  payload: PublishedDocument["payload"];
+};
+
+function buildCmsPublicJson(): string {
+  const mapSeed = (rows: CmsSeedRow[], offset: number): PublishedDocument[] =>
+    rows.map((row, index) => ({
+      id: offset + index + 1,
+      key: row.key,
+      kind: row.kind,
+      locale: row.locale,
+      slug: row.slug,
+      payload: row.payload,
+    }));
+  const pt = ptCmsSeed as CmsSeedRow[];
+  const locales = localeCmsSeed as CmsSeedRow[];
+  const documents = [...mapSeed(pt, 0), ...mapSeed(locales, pt.length)];
+  return JSON.stringify({ data: { documents } });
+}
+
+function vitePluginVercelStaticApiFallbacks(): Plugin {
+  return {
+    name: "vercel-static-api-fallbacks",
+    apply: "build",
+    generateBundle() {
+      this.emitFile({
+        type: "asset",
+        fileName: "sonia/elevenlabs-config.json",
+        source: buildElevenLabsPublicConfigJson(),
+      });
+      this.emitFile({
+        type: "asset",
+        fileName: "cms/public.json",
+        source: buildCmsPublicJson(),
+      });
+    },
+  };
+}
+
 // Static development and static publishing use the same public-value whitelist
 // as Express. Runtime-only secrets never enter the browser bundle. Express keeps
 // serving this path dynamically when the application server is selected.
@@ -156,6 +221,11 @@ function vitePluginPublicPlatformConfig(): Plugin {
   return {
     name: "manus-public-platform-config",
     configureServer(server) {
+      server.middlewares.use("/platform/config.js", (_req, res) => {
+        res.setHeader("Content-Type", "application/javascript");
+        res.setHeader("Cache-Control", "no-store");
+        res.end(publicPlatformScript());
+      });
       server.middlewares.use("/api/platform/config.js", (_req, res) => {
         res.setHeader("Content-Type", "application/javascript");
         res.setHeader("Cache-Control", "no-store");
@@ -165,7 +235,7 @@ function vitePluginPublicPlatformConfig(): Plugin {
     generateBundle() {
       this.emitFile({
         type: "asset",
-        fileName: "api/platform/config.js",
+        fileName: "platform/config.js",
         source: publicPlatformScript(),
       });
     },
@@ -174,6 +244,7 @@ function vitePluginPublicPlatformConfig(): Plugin {
 
 const plugins = [
   vitePluginPublicPlatformConfig(),
+  vitePluginVercelStaticApiFallbacks(),
   react(),
   tailwindcss(),
   jsxLocPlugin(),

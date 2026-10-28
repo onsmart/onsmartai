@@ -1,6 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { readElevenLabsEnv } from "../server/elevenlabs/env";
-import { fetchConvaiConversationToken } from "../server/elevenlabs/conversationToken";
+import {
+  fetchConvaiConversationToken,
+  readElevenLabsEnv,
+} from "./_lib/elevenlabs";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET" && req.method !== "HEAD") {

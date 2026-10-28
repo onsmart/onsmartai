@@ -8,6 +8,10 @@ export function getElevenLabsConfigUrl(): string {
   return "/api/elevenlabs-config";
 }
 
+export function getElevenLabsConfigStaticUrl(): string {
+  return "/sonia/elevenlabs-config.json";
+}
+
 export function getElevenLabsSignedUrlUrl(): string {
   return "/api/elevenlabs-signed-url";
 }
