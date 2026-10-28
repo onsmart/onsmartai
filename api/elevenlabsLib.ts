@@ -8,6 +8,9 @@ export type ElevenLabsServerEnv = {
   textOnlyOverride: boolean;
 };
 
+const SDK_SOURCE = "js_sdk";
+const SDK_VERSION = "1.32.0";
+
 export function readElevenLabsEnv(): ElevenLabsServerEnv {
   const textOnlyOverride =
     process.env.ELEVENLABS_TEXT_ONLY_OVERRIDE?.trim() === "1" ||
@@ -30,13 +33,44 @@ function apiOrigin(serverLocation: string): string {
   return "https://api.elevenlabs.io";
 }
 
+function convaiQuery(agentId: string, serverLocation: string): URLSearchParams {
+  const params = new URLSearchParams({
+    agent_id: agentId,
+    source: SDK_SOURCE,
+    version: SDK_VERSION,
+  });
+  const environment = process.env.ELEVENLABS_ENVIRONMENT?.trim();
+  if (environment) {
+    params.set("environment", environment);
+  }
+  void serverLocation;
+  return params;
+}
+
+async function readApiErrorMessage(response: Response): Promise<string> {
+  try {
+    const payload = (await response.json()) as {
+      detail?: { message?: string } | string;
+      message?: string;
+    };
+    if (typeof payload.detail === "string") return payload.detail;
+    if (payload.detail && typeof payload.detail.message === "string") {
+      return payload.detail.message;
+    }
+    if (typeof payload.message === "string") return payload.message;
+  } catch {
+    /* ignore */
+  }
+  return `HTTP ${response.status}`;
+}
+
 export async function fetchConvaiSignedUrl(
   agentId: string,
   apiKey: string,
   serverLocation = ""
 ): Promise<string> {
   const origin = apiOrigin(serverLocation);
-  const params = new URLSearchParams({ agent_id: agentId });
+  const params = convaiQuery(agentId, serverLocation);
   const response = await fetch(
     `${origin}/v1/convai/conversation/get-signed-url?${params.toString()}`,
     {
@@ -48,7 +82,8 @@ export async function fetchConvaiSignedUrl(
   );
 
   if (!response.ok) {
-    throw new Error(`signed-url-${response.status}`);
+    const detail = await readApiErrorMessage(response);
+    throw new Error(`signed-url-${response.status}: ${detail}`);
   }
 
   const payload = (await response.json()) as { signed_url?: string };
@@ -65,7 +100,7 @@ export async function fetchConvaiConversationToken(
   serverLocation = ""
 ): Promise<string> {
   const origin = apiOrigin(serverLocation);
-  const params = new URLSearchParams({ agent_id: agentId });
+  const params = convaiQuery(agentId, serverLocation);
   const response = await fetch(
     `${origin}/v1/convai/conversation/token?${params.toString()}`,
     {
@@ -77,7 +112,8 @@ export async function fetchConvaiConversationToken(
   );
 
   if (!response.ok) {
-    throw new Error(`conversation-token-${response.status}`);
+    const detail = await readApiErrorMessage(response);
+    throw new Error(`conversation-token-${response.status}: ${detail}`);
   }
 
   const payload = (await response.json()) as { token?: string };
@@ -97,5 +133,15 @@ export function publicElevenLabsConfig(env = readElevenLabsEnv()) {
     textOnlySession: textOnlyOverride,
     serverLocation: serverLocation || undefined,
     voiceId: voiceId || undefined,
+  };
+}
+
+export function elevenLabsEnvDiagnostics() {
+  const env = readElevenLabsEnv();
+  return {
+    agentIdSet: Boolean(env.agentId),
+    apiKeySet: Boolean(env.apiKey),
+    serverLocation: env.serverLocation || null,
+    textOnlyOverride: env.textOnlyOverride,
   };
 }

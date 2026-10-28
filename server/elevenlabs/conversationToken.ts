@@ -10,7 +10,11 @@ export async function fetchConvaiConversationToken(
   serverLocation = ""
 ): Promise<string> {
   const origin = apiOrigin(serverLocation);
-  const params = new URLSearchParams({ agent_id: agentId });
+  const params = new URLSearchParams({
+    agent_id: agentId,
+    source: "js_sdk",
+    version: "1.32.0",
+  });
   const response = await fetch(
     `${origin}/v1/convai/conversation/token?${params.toString()}`,
     {

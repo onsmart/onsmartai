@@ -17,7 +17,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/api/cms/public", "destination": "/api/cms-public" },
+    { "source": "/api/cms/public", "destination": "/cms/public.json" },
     { "source": "/api/platform/config.js", "destination": "/platform/config.js" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
