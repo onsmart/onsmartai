@@ -89,7 +89,4 @@ export async function resolvePublicCmsDocuments(): Promise<PublishedDocument[]> 
   return mergePublishedDocuments(fromDb, seed, { landingSeedOverridesDb: true });
 }
 
-export function buildCmsPublicJson(): string {
-  const documents = filterPublishableDocuments(publishedDocumentsFromSeed());
-  return JSON.stringify({ data: { documents } });
-}
+export { buildCmsPublicJson } from "./cms-public-json";

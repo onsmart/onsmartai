@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { publicPlatformScript } from "./server/_core/publicConfig";
-import { buildCmsPublicJson } from "./server/cms/seed-public";
+import { buildCmsPublicJson } from "./server/cms/cms-public-json";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
