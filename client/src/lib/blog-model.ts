@@ -209,14 +209,24 @@ export function mergeSyndicatedBlogEntries(
   return sortBlogEntriesByDate([...syndicated, ...rest]);
 }
 
+function publishedOutboundUrl(entry: PublishedBlogEntry): string {
+  return entry.sourceUrl.trim();
+}
+
 export function blogEntryHref(entry: BlogEntry): string | null {
   if (entry.status === "external") return entry.sourceUrl;
-  if (entry.status === "published") return `/conteudo/${entry.slug}`;
+  if (entry.status === "published") {
+    const outbound = publishedOutboundUrl(entry);
+    if (outbound) return outbound;
+    return `/conteudo/${entry.slug}`;
+  }
   return null;
 }
 
 export function blogEntryOpensInNewTab(entry: BlogEntry): boolean {
-  return entry.status === "external";
+  if (entry.status === "external") return true;
+  if (entry.status === "published") return Boolean(publishedOutboundUrl(entry));
+  return false;
 }
 
 export function formatBlogDate(

@@ -4,6 +4,7 @@
  */
 import ptCmsSeed from "../cms-seed-data.json";
 import localeCmsSeed from "../cms-seed-locales.json";
+import { aiInsiderPublishedDocuments } from "./ai-insider-documents";
 
 type CmsSeedRow = {
   key: string;
@@ -27,6 +28,11 @@ function mapSeedRows(rows: CmsSeedRow[], idOffset: number) {
 export function buildCmsPublicJson(): string {
   const pt = ptCmsSeed as CmsSeedRow[];
   const locales = localeCmsSeed as CmsSeedRow[];
-  const documents = [...mapSeedRows(pt, 0), ...mapSeedRows(locales, pt.length)];
+  const seedDocuments = [
+    ...mapSeedRows(pt, 0),
+    ...mapSeedRows(locales, pt.length),
+  ];
+  const aiInsider = aiInsiderPublishedDocuments(seedDocuments.length);
+  const documents = [...seedDocuments, ...aiInsider];
   return JSON.stringify({ data: { documents } });
 }

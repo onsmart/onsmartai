@@ -5,7 +5,7 @@ import {
   type BlogPreview,
   blogPreviewLabel,
 } from "../shared/blog";
-import { mergeBlogEntries, formatBlogDate } from "../client/src/lib/blog-model";
+import { mergeBlogEntries, formatBlogDate, blogEntryHref, blogEntryOpensInNewTab } from "../client/src/lib/blog-model";
 import { cmsEmptyPayload, type PublishedDocument } from "../shared/cms";
 const preview: BlogPreview = {
   slug: "artigo-de-teste",
@@ -108,5 +108,32 @@ describe("blog public previews", () => {
     expect(normalizeBlogSearch("Governança ADOÇÃO")).toBe("governanca adocao");
     expect(formatBlogDate("")).toBe("");
     expect(formatBlogDate("inválida")).toBe("");
+  });
+  it("links syndicated CMS news to sourceUrl in a new tab", () => {
+    const entry = mergeBlogEntries([], [
+      {
+        ...published(),
+        kind: "news",
+        slug: "ai-insider-teste",
+        payload: {
+          ...published().payload,
+          title: "Edição teste",
+          summary: "Resumo com corpo suficiente para publicação.",
+          publishedAt: "2026-01-15T12:00:00.000Z",
+          sourceUrl: "https://www.linkedin.com/posts/example",
+          blocks: [
+            {
+              type: "paragraph",
+              text: "Parágrafo de corpo.",
+              items: [],
+              href: "",
+            },
+          ],
+        },
+      },
+    ])[0];
+    expect(entry.status).toBe("published");
+    expect(blogEntryHref(entry)).toBe("https://www.linkedin.com/posts/example");
+    expect(blogEntryOpensInNewTab(entry)).toBe(true);
   });
 });

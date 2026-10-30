@@ -215,7 +215,7 @@ export default function Contact() {
                 03<span>{cmsText("/03")}</span>
               </span>
             </div>
-            <CalendlyInline className="contact-calendly-inline" minHeight={720} />
+            <CalendlyInline className="contact-calendly-inline" />
           </div>
           <div className="container contact-notice-wrap">
             <Notice>{t("contact.bookingNotice")}</Notice>

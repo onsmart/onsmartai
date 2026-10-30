@@ -2072,7 +2072,10 @@
 }
 
 .contact-calendly-inline {
-  width: 100%;
+  --calendly-embed-height: 540px;
+  width: min(100%, 640px);
+  max-height: var(--calendly-embed-height);
+  margin-inline: auto;
   background: #fff;
   overflow: hidden;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -2081,7 +2084,9 @@
 .contact-calendly-inline iframe {
   display: block;
   width: 100%;
-  min-height: 720px;
+  height: var(--calendly-embed-height);
+  min-height: var(--calendly-embed-height);
+  max-height: var(--calendly-embed-height);
   border: 0;
 }
 
@@ -2446,6 +2451,11 @@
 
   .contact-booking-status {
     justify-self: start;
+  }
+
+  .contact-calendly-inline {
+    --calendly-embed-height: 480px;
+    width: 100%;
   }
 }
 

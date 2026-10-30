@@ -33,7 +33,6 @@ import {
 } from "@/i18n/blog-page";
 import {
   blogCategoryLabel,
-  blogPreviewStatusLabel,
 } from "@/i18n/site-copy";
 import "./inner.css";
 import "./cms-public.css";
@@ -45,7 +44,7 @@ const LEGACY_FORMAT_ALIASES: Record<string, string> = {
   Mídia: "Onsmart na mídia",
   Materiais: "Materiais gratuitos",
 };
-const GRID_PAGE_SIZE = 5;
+const GRID_PAGE_SIZE = 9;
 
 type FormatFilter = (typeof ALL_FORMATS)[number];
 
@@ -80,11 +79,6 @@ function EntryMeta({
   return (
     <div className={`blog-entry-meta ${featured ? "is-featured" : ""}`}>
       {parts.length > 0 && <span>{parts.join(" · ")}</span>}
-      {entry.status !== "published" && (
-        <span className="blog-review-label">
-          {blogPreviewStatusLabel(entry.status, locale)}
-        </span>
-      )}
     </div>
   );
 }
@@ -216,26 +210,21 @@ function BlogCard({ entry }: { entry: BlogEntry }) {
         </h3>
         <p className="blog-card-summary">{entry.summary}</p>
         <EntryMeta entry={entry} />
-        {!readable ? (
-          <span className="blog-pending-note">
-            {entry.status === "approved"
-              ? page.pendingApprovedNote
-              : page.pendingShort}
-          </span>
-        ) : blogEntryOpensInNewTab(entry) ? (
-          <a
-            className="blog-read-link"
-            href={blogEntryHref(entry)!}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {readLabel} <ArrowRight size={16} aria-hidden="true" />
-          </a>
-        ) : (
-          <Link className="blog-read-link" href={blogEntryHref(entry)!}>
-            {readLabel} <ArrowRight size={16} aria-hidden="true" />
-          </Link>
-        )}
+        {readable &&
+          (blogEntryOpensInNewTab(entry) ? (
+            <a
+              className="blog-read-link"
+              href={blogEntryHref(entry)!}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {readLabel} <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          ) : (
+            <Link className="blog-read-link" href={blogEntryHref(entry)!}>
+              {readLabel} <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          ))}
       </div>
     </article>
   );
@@ -252,11 +241,11 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
     <div className="blog-featured-cover">
       <CoverMedia entry={entry} featured />
       <span className="blog-featured-cover-caption">
-        {readable
-          ? entry.status === "external"
-            ? page.aiInsiderNewsletter
-            : t("blog.editorialRead")
-          : t("blog.editorialPreview")}
+        {readable && entry.status === "external"
+          ? page.aiInsiderNewsletter
+          : readable
+            ? t("blog.editorialRead")
+            : ""}
       </span>
     </div>
   );
@@ -304,13 +293,7 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
               {readLabel} <ArrowRight size={17} aria-hidden="true" />
             </Link>
           )
-        ) : (
-          <p className="blog-pending-note">
-            {entry.status === "approved"
-              ? page.pendingApprovedNote
-              : page.pendingReviewNote}
-          </p>
-        )}
+        ) : null}
       </div>
     </article>
   );
@@ -444,12 +427,6 @@ export default function Content() {
   const publishedCount = filteredEntries.filter(entry =>
     blogEntryIsReadable(entry)
   ).length;
-  const reviewCount = filteredEntries.filter(
-    entry => entry.status === "review"
-  ).length;
-  const approvedCount = filteredEntries.filter(
-    entry => entry.status === "approved"
-  ).length;
   const hasFilters =
     Boolean(query.trim()) ||
     topic !== ALL_TOPIC_KEY ||
@@ -522,16 +499,6 @@ export default function Content() {
               <span>
                 <strong>{publishedCount}</strong> {blogCopy.publishedCount}
               </span>
-              {reviewCount > 0 && (
-                <span>
-                  <strong>{reviewCount}</strong> {blogCopy.inReview}
-                </span>
-              )}
-              {approvedCount > 0 && (
-                <span>
-                  <strong>{approvedCount}</strong> {blogCopy.approvedPending}
-                </span>
-              )}
             </div>
           </div>
 
@@ -620,11 +587,6 @@ export default function Content() {
                   <span />
                   {blogCopy.featured}
                 </p>
-                <span>
-                  {featured.status === "published"
-                    ? blogCopy.published
-                    : blogPreviewStatusLabel(featured.status, locale)}
-                </span>
               </div>
               <FeaturedEntry entry={featured} />
               {visibleGridEntries.length > 0 && (

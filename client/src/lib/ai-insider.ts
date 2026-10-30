@@ -13,8 +13,8 @@ export function loadAiInsiderBlogEntries(): ExternalBlogEntry[] {
     author: feed.author,
     topic: feed.topic,
     category: feed.category,
-    imageUrl: feed.imageUrl,
-    imageAlt: feed.imageAlt,
+    imageUrl: edition.imageUrl?.trim() || feed.imageUrl,
+    imageAlt: edition.imageAlt?.trim() || feed.imageAlt,
     publishedAt: edition.publishedAt,
     sourceUrl: edition.sourceUrl,
   }));

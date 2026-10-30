@@ -42,7 +42,7 @@ type Props = {
 export default function CalendlyInline({
   url = CALENDLY_MEETING_URL,
   className = "",
-  minHeight = 700,
+  minHeight = 540,
 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
 

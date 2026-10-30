@@ -3,6 +3,7 @@ import ptCmsSeed from "../cms-seed-data.json";
 import localeCmsSeed from "../cms-seed-locales.json";
 import { assertPublishable } from "./validation";
 import { getPublishedDocuments } from "./db";
+import { aiInsiderPublishedDocuments } from "./ai-insider-documents";
 
 type CmsSeedRow = {
   key: string;
@@ -30,7 +31,8 @@ function mapSeedRows(rows: CmsSeedRow[], idOffset: number): PublishedDocument[] 
 export function publishedDocumentsFromSeed(): PublishedDocument[] {
   const pt = ptCmsSeed as CmsSeedRow[];
   const locales = localeCmsSeed as CmsSeedRow[];
-  return [...mapSeedRows(pt, 0), ...mapSeedRows(locales, pt.length)];
+  const seed = [...mapSeedRows(pt, 0), ...mapSeedRows(locales, pt.length)];
+  return [...seed, ...aiInsiderPublishedDocuments(seed.length)];
 }
 
 export function filterPublishableDocuments(
@@ -69,11 +71,27 @@ export function mergePublishedDocuments(
   return [...merged.values()];
 }
 
+/** LinkedIn newsletter snapshots are syndicated from seed when absent in the DB. */
+export function mergeAiInsiderSyndication(
+  documents: PublishedDocument[]
+): PublishedDocument[] {
+  const merged = new Map<string, PublishedDocument>();
+  for (const doc of documents) merged.set(documentKey(doc), doc);
+  const syndicated = filterPublishableDocuments(
+    aiInsiderPublishedDocuments(documents.length + 500)
+  );
+  for (const doc of syndicated) {
+    if (!merged.has(documentKey(doc))) merged.set(documentKey(doc), doc);
+  }
+  return [...merged.values()];
+}
+
 export async function resolvePublicCmsDocuments(): Promise<PublishedDocument[]> {
   const seed = filterPublishableDocuments(publishedDocumentsFromSeed());
 
   if (process.env.NODE_ENV !== "development") {
-    return filterPublishableDocuments(await getPublishedDocuments());
+    const fromDb = filterPublishableDocuments(await getPublishedDocuments());
+    return mergeAiInsiderSyndication(fromDb);
   }
 
   let fromDb: PublishedDocument[] = [];
@@ -86,7 +104,9 @@ export async function resolvePublicCmsDocuments(): Promise<PublishedDocument[]> 
     );
   }
 
-  return mergePublishedDocuments(fromDb, seed, { landingSeedOverridesDb: true });
+  return mergeAiInsiderSyndication(
+    mergePublishedDocuments(fromDb, seed, { landingSeedOverridesDb: true })
+  );
 }
 
 export { buildCmsPublicJson } from "./cms-public-json";

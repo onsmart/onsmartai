@@ -11,29 +11,55 @@
       "slug": "ai-insider-ia-operacao-valor",
       "title": "IA na operação: além da produtividade individual",
       "summary": "Transformar uso de IA em valor exige repensar processos, integrar a tecnologia ao fluxo de trabalho e definir como os resultados serão medidos — tema desta edição da newsletter.",
-      "publishedAt": "2025-10-21T12:00:00.000Z",
-      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_iaparanegocios-automacao-transformacaodigital-activity-7518774021958635522-FQlb"
+      "publishedAt": "2026-10-21T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_iaparanegocios-automacao-transformacaodigital-activity-7518774021958635522-FQlb",
+      "imageUrl": "/manus-storage/ai-insider-ia-operacao-valor.jpg",
+      "imageAlt": "Capa da edição AI Insider Brazil sobre IA na operação"
     },
     {
       "slug": "ai-insider-imobiliarias-atendimento",
       "title": "Atendimento imobiliário: continuidade, follow-up e IA",
       "summary": "Como a IA pode ajudar imobiliárias a organizar o atendimento, manter o follow-up e reduzir tarefas operacionais quando o cliente já encontrou o imóvel.",
-      "publishedAt": "2025-09-28T12:00:00.000Z",
-      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_o-cliente-encontrou-o-im%C3%B3vel-mas-sua-imobili%C3%A1ria-activity-7510307330031554561-9Rnv"
+      "publishedAt": "2026-09-28T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_o-cliente-encontrou-o-im%C3%B3vel-mas-sua-imobili%C3%A1ria-activity-7510307330031554561-9Rnv",
+      "imageUrl": "/manus-storage/ai-insider-imobiliarias-atendimento.jpg",
+      "imageAlt": "Capa da edição AI Insider Brazil sobre atendimento imobiliário"
+    },
+    {
+      "slug": "ai-insider-contador-ia",
+      "title": "Contabilidade e IA: além da homenagem, rotina que libera conhecimento",
+      "summary": "A rotina contábil exige análise e responsabilidade, mas muito tempo ainda se perde em tarefas repetitivas. Reflexão sobre onde a IA pode apoiar contadores sem substituir julgamento.",
+      "publishedAt": "2026-09-22T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_o-contador-n%C3%A3o-deveria-passar-o-dia-respondendo-activity-7507771656896081921-u454",
+      "imageUrl": "/manus-storage/ai-insider-contador-ia.jpg",
+      "imageAlt": "Capa da edição AI Insider Brazil sobre contabilidade e IA"
     },
     {
       "slug": "ai-insider-por-que-sonia",
       "title": "Por que decidimos criar a SON.IA",
       "summary": "Antes de ferramenta ou plataforma, a pergunta certa é qual problema da operação precisa ser resolvido. Edição sobre o nascimento da SON.IA e os sintomas que vemos nas empresas.",
-      "publishedAt": "2025-08-31T12:00:00.000Z",
-      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_por-que-decidimos-criar-a-sonia-activity-7500175734368280576-dZq7"
+      "publishedAt": "2026-08-31T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_por-que-decidimos-criar-a-sonia-activity-7500175734368280576-dZq7",
+      "imageUrl": "/manus-storage/ai-insider-por-que-sonia.jpg",
+      "imageAlt": "Capa da edição AI Insider Brazil sobre a SON.IA"
     },
     {
       "slug": "ai-insider-lei-sucesso-ia",
       "title": "A lei do sucesso com IA",
       "summary": "Tecnologia é meio; sem transformar pessoas, processos e cultura, a IA gera frustração em vez de valor. Reflexão sobre integrar IA ao DNA da organização.",
-      "publishedAt": "2025-05-18T12:00:00.000Z",
-      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_inteligenciaartificial-transformacaodigital-activity-7329889075874697216-jhMT"
+      "publishedAt": "2026-05-18T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_inteligenciaartificial-transformacaodigital-activity-7329889075874697216-jhMT",
+      "imageUrl": "/manus-storage/ai-insider-lei-sucesso-ia.jpg",
+      "imageAlt": "Capa da edição AI Insider Brazil sobre sucesso com IA"
+    },
+    {
+      "slug": "ai-insider-agentes-multiagentes",
+      "title": "De prompts a sistemas multiagente: o que muda na operação",
+      "summary": "Agentes de IA não são apenas chat: combinam instruções, ferramentas e coordenação entre etapas. Notas sobre quando essa arquitetura faz sentido no corporativo.",
+      "publishedAt": "2026-09-20T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_na-semana-passada-lan%C3%A7amos-oficialmente-activity-7505958892904886272-zKyk",
+      "imageUrl": "/manus-storage/ai-insider-agentes-multiagentes.jpg",
+      "imageAlt": "Capa da edição AI Insider Brazil sobre agentes e multiagentes"
     }
   ]
 }
