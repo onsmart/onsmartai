@@ -36,11 +36,17 @@ export type ReviewBlogEntry = BlogEntryCommon & {
   preview: BlogPreview;
 };
 
+export type ExternalBlogEntry = BlogEntryCommon & {
+  status: "external";
+  publishedAt: string;
+  sourceUrl: string;
+};
+
 /**
  * Public UI model. Review entries intentionally contain metadata only; they
  * never carry blocks, references, or a draft URL.
  */
-export type BlogEntry = PublishedBlogEntry | ReviewBlogEntry;
+export type BlogEntry = PublishedBlogEntry | ReviewBlogEntry | ExternalBlogEntry;
 
 function isBlogKind(document: PublishedDocument): boolean {
   return (
@@ -177,6 +183,40 @@ export function mergeBlogEntries(
     }
   }
   return entries;
+}
+
+function blogEntryTimestamp(entry: BlogEntry): number {
+  if (entry.status === "published" || entry.status === "external") {
+    const time = new Date(entry.publishedAt).getTime();
+    return Number.isNaN(time) ? 0 : time;
+  }
+  return 0;
+}
+
+export function sortBlogEntriesByDate(entries: BlogEntry[]): BlogEntry[] {
+  return [...entries].sort(
+    (left, right) => blogEntryTimestamp(right) - blogEntryTimestamp(left)
+  );
+}
+
+/** Syndicated editions (e.g. LinkedIn newsletter) take precedence over same slug. */
+export function mergeSyndicatedBlogEntries(
+  syndicated: ExternalBlogEntry[],
+  entries: BlogEntry[]
+): BlogEntry[] {
+  const syndicatedSlugs = new Set(syndicated.map(entry => entry.slug));
+  const rest = entries.filter(entry => !syndicatedSlugs.has(entry.slug));
+  return sortBlogEntriesByDate([...syndicated, ...rest]);
+}
+
+export function blogEntryHref(entry: BlogEntry): string | null {
+  if (entry.status === "external") return entry.sourceUrl;
+  if (entry.status === "published") return `/conteudo/${entry.slug}`;
+  return null;
+}
+
+export function blogEntryOpensInNewTab(entry: BlogEntry): boolean {
+  return entry.status === "external";
 }
 
 export function formatBlogDate(

@@ -32,6 +32,8 @@ export type BlogPageCopy = {
   resultsOne: string;
   resultsMany: string;
   readText: string;
+  readOnLinkedIn: string;
+  aiInsiderNewsletter: string;
   pubPendingAria: string;
   approvalPendingAria: string;
   pendingShort: string;
@@ -76,6 +78,8 @@ const pt: BlogPageCopy = {
   resultsOne: "resultado nesta seleção.",
   resultsMany: "resultados nesta seleção.",
   readText: "Ler texto",
+  readOnLinkedIn: "Ler no LinkedIn",
+  aiInsiderNewsletter: "Newsletter AI Insider Brazil",
   pubPendingAria: "Publicação pendente",
   approvalPendingAria: "Aprovação pendente",
   pendingShort: "Aprovação pendente",
@@ -116,6 +120,8 @@ const en: BlogPageCopy = {
   resultsOne: "result in this selection.",
   resultsMany: "results in this selection.",
   readText: "Read article",
+  readOnLinkedIn: "Read on LinkedIn",
+  aiInsiderNewsletter: "AI Insider Brazil newsletter",
   pubPendingAria: "Publication pending",
   approvalPendingAria: "Approval pending",
   pendingShort: "Approval pending",
@@ -157,6 +163,8 @@ const es: BlogPageCopy = {
   resultsOne: "resultado en esta selección.",
   resultsMany: "resultados en esta selección.",
   readText: "Leer texto",
+  readOnLinkedIn: "Leer en LinkedIn",
+  aiInsiderNewsletter: "Newsletter AI Insider Brazil",
   pubPendingAria: "Publicación pendiente",
   approvalPendingAria: "Aprobación pendiente",
   pendingShort: "Aprobación pendiente",

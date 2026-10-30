@@ -16,8 +16,15 @@ import { useCms, useCmsDocument } from "@/components/cms/CmsProvider";
 import {
   formatBlogDate,
   mergeBlogEntries,
+  mergeSyndicatedBlogEntries,
+  blogEntryHref,
+  blogEntryOpensInNewTab,
   type BlogEntry,
 } from "@/lib/blog-model";
+import {
+  AI_INSIDER_NEWSLETTER_URL,
+  loadAiInsiderBlogEntries,
+} from "@/lib/ai-insider";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import {
@@ -52,7 +59,7 @@ function formatFromSearch(search: string): FormatFilter {
 
 function EntryDate({ entry }: { entry: BlogEntry }) {
   const { locale } = useLocale();
-  if (entry.status !== "published") return null;
+  if (entry.status !== "published" && entry.status !== "external") return null;
   const date = formatBlogDate(entry.publishedAt, locale);
   return date ? <time dateTime={entry.publishedAt}>{date}</time> : null;
 }
@@ -66,7 +73,7 @@ function EntryMeta({
 }) {
   const { locale } = useLocale();
   const date =
-    entry.status === "published"
+    entry.status === "published" || entry.status === "external"
       ? formatBlogDate(entry.publishedAt, locale)
       : "";
   const parts = [entry.author, date].filter(Boolean);
@@ -101,30 +108,81 @@ function CoverMedia({
   );
 }
 
+function blogEntryIsReadable(
+  entry: BlogEntry
+): entry is Extract<BlogEntry, { status: "published" | "external" }> {
+  return entry.status === "published" || entry.status === "external";
+}
+
+function BlogEntryMediaLink({
+  entry,
+  className,
+  ariaLabel,
+  children,
+}: {
+  entry: BlogEntry;
+  className?: string;
+  ariaLabel: string;
+  children: ReactNode;
+}) {
+  const href = blogEntryHref(entry);
+  if (!href) {
+    return (
+      <div
+        className={[className, "is-disabled"].filter(Boolean).join(" ")}
+        aria-label={ariaLabel}
+      >
+        {children}
+      </div>
+    );
+  }
+  if (blogEntryOpensInNewTab(entry)) {
+    return (
+      <a
+        href={href}
+        className={className}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className} aria-label={ariaLabel}>
+      {children}
+    </Link>
+  );
+}
+
 function BlogCard({ entry }: { entry: BlogEntry }) {
   const { locale } = useLocale();
   const { t } = useSiteCopy();
   const page = BLOG_PAGE_COPY[locale];
+  const readable = blogEntryIsReadable(entry);
+  const readLabel =
+    entry.status === "external" ? page.readOnLinkedIn : page.readText;
   const cover = (
     <div className="blog-card-cover">
       <CoverMedia entry={entry} />
       <span className="blog-cover-mark" aria-hidden="true">
-        {entry.status === "published" ? <ArrowUpRight size={20} /> : <span />}
+        {readable ? <ArrowUpRight size={20} /> : <span />}
       </span>
     </div>
   );
   return (
     <article
-      className={`blog-card ${entry.status !== "published" ? "is-review" : ""}`}
+      className={`blog-card ${entry.status !== "published" && entry.status !== "external" ? "is-review" : ""}`}
     >
-      {entry.status === "published" ? (
-        <Link
-          href={`/conteudo/${entry.slug}`}
+      {readable ? (
+        <BlogEntryMediaLink
+          entry={entry}
           className="blog-card-cover-link"
-          aria-label={t("a11y.readArticle", { title: entry.title })}
+          ariaLabel={t("a11y.readArticle", { title: entry.title })}
         >
           {cover}
-        </Link>
+        </BlogEntryMediaLink>
       ) : (
         <div
           className="blog-card-cover-link is-disabled"
@@ -140,23 +198,42 @@ function BlogCard({ entry }: { entry: BlogEntry }) {
       <div className="blog-card-body">
         <p className="blog-card-topic">{entry.topic || entry.category}</p>
         <h3>
-          {entry.status === "published" ? (
-            <Link href={`/conteudo/${entry.slug}`}>{entry.title}</Link>
+          {readable ? (
+            blogEntryOpensInNewTab(entry) ? (
+              <a
+                href={blogEntryHref(entry)!}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {entry.title}
+              </a>
+            ) : (
+              <Link href={blogEntryHref(entry)!}>{entry.title}</Link>
+            )
           ) : (
             entry.title
           )}
         </h3>
         <p className="blog-card-summary">{entry.summary}</p>
         <EntryMeta entry={entry} />
-        {entry.status !== "published" ? (
+        {!readable ? (
           <span className="blog-pending-note">
             {entry.status === "approved"
               ? page.pendingApprovedNote
               : page.pendingShort}
           </span>
+        ) : blogEntryOpensInNewTab(entry) ? (
+          <a
+            className="blog-read-link"
+            href={blogEntryHref(entry)!}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {readLabel} <ArrowRight size={16} aria-hidden="true" />
+          </a>
         ) : (
-          <Link className="blog-read-link" href={`/conteudo/${entry.slug}`}>
-            {page.readText} <ArrowRight size={16} aria-hidden="true" />
+          <Link className="blog-read-link" href={blogEntryHref(entry)!}>
+            {readLabel} <ArrowRight size={16} aria-hidden="true" />
           </Link>
         )}
       </div>
@@ -168,28 +245,33 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
   const { locale } = useLocale();
   const { t } = useSiteCopy();
   const page = BLOG_PAGE_COPY[locale];
+  const readable = blogEntryIsReadable(entry);
+  const readLabel =
+    entry.status === "external" ? page.readOnLinkedIn : page.readText;
   const cover = (
     <div className="blog-featured-cover">
       <CoverMedia entry={entry} featured />
       <span className="blog-featured-cover-caption">
-        {entry.status === "published"
-          ? t("blog.editorialRead")
+        {readable
+          ? entry.status === "external"
+            ? page.aiInsiderNewsletter
+            : t("blog.editorialRead")
           : t("blog.editorialPreview")}
       </span>
     </div>
   );
   return (
     <article
-      className={`blog-featured ${entry.status !== "published" ? "is-review" : ""}`}
+      className={`blog-featured ${!readable ? "is-review" : ""}`}
     >
-      {entry.status === "published" ? (
-        <Link
+      {readable ? (
+        <BlogEntryMediaLink
+          entry={entry}
           className="blog-featured-cover-link"
-          href={`/conteudo/${entry.slug}`}
-          aria-label={t("a11y.readArticle", { title: entry.title })}
+          ariaLabel={t("a11y.readArticle", { title: entry.title })}
         >
           {cover}
-        </Link>
+        </BlogEntryMediaLink>
       ) : (
         <div
           className="blog-featured-cover-link is-disabled"
@@ -207,10 +289,21 @@ function FeaturedEntry({ entry }: { entry: BlogEntry }) {
         <h2>{entry.title}</h2>
         <p className="blog-featured-summary">{entry.summary}</p>
         <EntryMeta entry={entry} featured />
-        {entry.status === "published" ? (
-          <Link className="blog-read-link" href={`/conteudo/${entry.slug}`}>
-            {page.readText} <ArrowRight size={17} aria-hidden="true" />
-          </Link>
+        {readable ? (
+          blogEntryOpensInNewTab(entry) ? (
+            <a
+              className="blog-read-link"
+              href={blogEntryHref(entry)!}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {readLabel} <ArrowRight size={17} aria-hidden="true" />
+            </a>
+          ) : (
+            <Link className="blog-read-link" href={blogEntryHref(entry)!}>
+              {readLabel} <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+          )
         ) : (
           <p className="blog-pending-note">
             {entry.status === "approved"
@@ -297,7 +390,11 @@ export default function Content() {
     [pageDocument]
   );
   const entries = useMemo(
-    () => mergeBlogEntries(previews, documents, locale),
+    () =>
+      mergeSyndicatedBlogEntries(
+        loadAiInsiderBlogEntries(),
+        mergeBlogEntries(previews, documents, locale)
+      ),
     [documents, previews, locale]
   );
   const topics = useMemo(
@@ -344,8 +441,8 @@ export default function Content() {
     page * GRID_PAGE_SIZE,
     page * GRID_PAGE_SIZE + GRID_PAGE_SIZE
   );
-  const publishedCount = filteredEntries.filter(
-    entry => entry.status === "published"
+  const publishedCount = filteredEntries.filter(entry =>
+    blogEntryIsReadable(entry)
   ).length;
   const reviewCount = filteredEntries.filter(
     entry => entry.status === "review"
@@ -398,6 +495,15 @@ export default function Content() {
           <ButtonLink href={YOUTUBE_URL} variant="text">
             {blogCopy.visitYoutube}
           </ButtonLink>
+          <a
+            className="commercial-secondary"
+            href={AI_INSIDER_NEWSLETTER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {blogCopy.aiInsiderNewsletter}
+            <ArrowUpRight size={15} aria-hidden="true" />
+          </a>
         </div>
       </PageHero>
 

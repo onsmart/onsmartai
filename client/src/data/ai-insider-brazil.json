@@ -1,0 +1,39 @@
+{
+  "series": "AI Insider Brazil",
+  "newsletterUrl": "https://www.linkedin.com/in/ricardo-palomar/",
+  "author": "Ricardo Palomar",
+  "topic": "AI Insider Brazil",
+  "category": "Notícias",
+  "imageUrl": "/manus-storage/ricardo_f4ee75ca.webp",
+  "imageAlt": "Ricardo Palomar, CEO do Grupo Onsmart",
+  "editions": [
+    {
+      "slug": "ai-insider-ia-operacao-valor",
+      "title": "IA na operação: além da produtividade individual",
+      "summary": "Transformar uso de IA em valor exige repensar processos, integrar a tecnologia ao fluxo de trabalho e definir como os resultados serão medidos — tema desta edição da newsletter.",
+      "publishedAt": "2025-10-21T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_iaparanegocios-automacao-transformacaodigital-activity-7518774021958635522-FQlb"
+    },
+    {
+      "slug": "ai-insider-imobiliarias-atendimento",
+      "title": "Atendimento imobiliário: continuidade, follow-up e IA",
+      "summary": "Como a IA pode ajudar imobiliárias a organizar o atendimento, manter o follow-up e reduzir tarefas operacionais quando o cliente já encontrou o imóvel.",
+      "publishedAt": "2025-09-28T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_o-cliente-encontrou-o-im%C3%B3vel-mas-sua-imobili%C3%A1ria-activity-7510307330031554561-9Rnv"
+    },
+    {
+      "slug": "ai-insider-por-que-sonia",
+      "title": "Por que decidimos criar a SON.IA",
+      "summary": "Antes de ferramenta ou plataforma, a pergunta certa é qual problema da operação precisa ser resolvido. Edição sobre o nascimento da SON.IA e os sintomas que vemos nas empresas.",
+      "publishedAt": "2025-08-31T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_por-que-decidimos-criar-a-sonia-activity-7500175734368280576-dZq7"
+    },
+    {
+      "slug": "ai-insider-lei-sucesso-ia",
+      "title": "A lei do sucesso com IA",
+      "summary": "Tecnologia é meio; sem transformar pessoas, processos e cultura, a IA gera frustração em vez de valor. Reflexão sobre integrar IA ao DNA da organização.",
+      "publishedAt": "2025-05-18T12:00:00.000Z",
+      "sourceUrl": "https://www.linkedin.com/posts/ricardo-palomar_inteligenciaartificial-transformacaodigital-activity-7329889075874697216-jhMT"
+    }
+  ]
+}

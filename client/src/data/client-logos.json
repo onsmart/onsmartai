@@ -197,6 +197,86 @@
       "file": "brand-assets/supplied-client-logos/avivar.png",
       "size": 9892,
       "mime": "image/png"
+    },
+    {
+      "name": "OpenAI",
+      "url": "/assets/partner-logos/openai.png",
+      "source": "Marca exibida com autorização",
+      "width": 120,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/OpenAI.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "NVIDIA",
+      "url": "/assets/partner-logos/nvidia.png",
+      "source": "Marca exibida com autorização",
+      "width": 120,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/nvidia.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "Microsoft",
+      "url": "/assets/partner-logos/microsoft.png",
+      "source": "Marca exibida com autorização",
+      "width": 120,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/Microsoft-Logo.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "AWS",
+      "url": "/assets/partner-logos/aws.png",
+      "source": "Marca exibida com autorização",
+      "width": 90,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/AWS.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "Databricks",
+      "url": "/assets/partner-logos/databricks.png",
+      "source": "Marca exibida com autorização",
+      "width": 120,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/databricks.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "Anthropic",
+      "url": "/assets/partner-logos/anthropic.png",
+      "source": "Marca exibida com autorização",
+      "width": 120,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/Anthropic.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "Meta",
+      "url": "/assets/partner-logos/meta.png",
+      "source": "Marca exibida com autorização",
+      "width": 120,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/meta.png",
+      "mime": "image/png"
+    },
+    {
+      "name": "Manus",
+      "url": "/assets/partner-logos/manus.png",
+      "source": "Marca exibida com autorização",
+      "width": 100,
+      "height": 32,
+      "variant": "normal",
+      "file": "images/Manus.png",
+      "mime": "image/png"
     }
   ],
   "pending": [
