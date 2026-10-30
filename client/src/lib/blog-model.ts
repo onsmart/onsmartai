@@ -55,11 +55,17 @@ function isBlogKind(document: PublishedDocument): boolean {
   );
 }
 
+function hasValidPublishedAt(document: PublishedDocument): boolean {
+  const value = document.payload.publishedAt.trim();
+  return Boolean(value) && !Number.isNaN(Date.parse(value));
+}
+
 export function isPublishedBlogDocument(
   document: PublishedDocument,
   locale: SiteLocale = "pt-BR"
 ): document is PublishedDocument & { kind: BlogContentKind } {
   if (!isBlogKind(document)) return false;
+  if (!hasValidPublishedAt(document)) return false;
   if (document.locale === locale) return true;
   return locale !== "pt-BR" && document.locale === "pt-BR";
 }

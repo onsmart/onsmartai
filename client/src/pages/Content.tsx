@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation, useSearch } from "wouter";
 import { parseBlogPreviews, normalizeBlogSearch } from "@shared/blog";
+import { resolveCmsPageDocument } from "@shared/cms-page";
 import { CMS_CATEGORIES, safeCmsUrl } from "@shared/cms";
 import { ButtonLink, PageHero } from "@/components/site/Common";
 import { Newsletter } from "@/components/site/Forms";
@@ -368,18 +369,27 @@ export default function Content() {
   const [page, setPage] = useState(0);
   const selectedFormat = formatFromSearch(search);
 
-  const previews = useMemo(
-    () => parseBlogPreviews(pageDocument?.payload.fields.blogPreviews),
-    [pageDocument]
+  const catalogPage = useMemo(
+    () => resolveCmsPageDocument(documents, "/conteudo", locale),
+    [documents, locale]
   );
-  const entries = useMemo(
-    () =>
-      mergeSyndicatedBlogEntries(
-        loadAiInsiderBlogEntries(),
-        mergeBlogEntries(previews, documents, locale)
-      ),
-    [documents, previews, locale]
-  );
+  const previews = useMemo(() => {
+    const localized = parseBlogPreviews(
+      catalogPage?.payload.fields.blogPreviews
+    );
+    if (localized.length > 0) return localized;
+    const fallback = resolveCmsPageDocument(documents, "/conteudo", "pt-BR");
+    return parseBlogPreviews(fallback?.payload.fields.blogPreviews);
+  }, [catalogPage, documents]);
+  const entries = useMemo(() => {
+    const merged = mergeSyndicatedBlogEntries(
+      loadAiInsiderBlogEntries(),
+      mergeBlogEntries(previews, documents, locale)
+    );
+    return merged.filter(
+      entry => entry.status === "published" || entry.status === "external"
+    );
+  }, [documents, previews, locale]);
   const topics = useMemo(
     () =>
       Array.from(
@@ -410,9 +420,11 @@ export default function Content() {
     });
   }, [entries, query, selectedFormat, topic]);
   const featuredSlug =
-    typeof pageDocument?.payload.fields.blogFeaturedSlug === "string"
-      ? pageDocument.payload.fields.blogFeaturedSlug
-      : "";
+    typeof catalogPage?.payload.fields.blogFeaturedSlug === "string"
+      ? catalogPage.payload.fields.blogFeaturedSlug
+      : typeof pageDocument?.payload.fields.blogFeaturedSlug === "string"
+        ? pageDocument.payload.fields.blogFeaturedSlug
+        : "";
   const featured =
     filteredEntries.find(entry => entry.slug === featuredSlug) ||
     filteredEntries[0];

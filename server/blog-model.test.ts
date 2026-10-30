@@ -5,7 +5,10 @@ import {
   type BlogPreview,
   blogPreviewLabel,
 } from "../shared/blog";
-import { mergeBlogEntries, formatBlogDate, blogEntryHref, blogEntryOpensInNewTab } from "../client/src/lib/blog-model";
+import { mergeBlogEntries, formatBlogDate, blogEntryHref, blogEntryOpensInNewTab, mergeSyndicatedBlogEntries } from "../client/src/lib/blog-model";
+import { loadAiInsiderBlogEntries } from "../client/src/lib/ai-insider";
+import fs from "node:fs";
+import path from "node:path";
 import { cmsEmptyPayload, type PublishedDocument } from "../shared/cms";
 const preview: BlogPreview = {
   slug: "artigo-de-teste",
@@ -135,5 +138,35 @@ describe("blog public previews", () => {
     expect(entry.status).toBe("published");
     expect(blogEntryHref(entry)).toBe("https://www.linkedin.com/posts/example");
     expect(blogEntryOpensInNewTab(entry)).toBe(true);
+  });
+  it("ignores editorial shells without a valid publishedAt", () => {
+    const [entry] = mergeBlogEntries(
+      [preview],
+      [{ ...published(), payload: { ...published().payload, publishedAt: "" } }]
+    );
+    expect(entry.status).toBe("review");
+  });
+  it("includes CMS blog previews alongside AI Insider syndication", () => {
+    const publicPath = path.join(process.cwd(), "dist/public/cms/public.json");
+    if (!fs.existsSync(publicPath)) return;
+    const { data } = JSON.parse(fs.readFileSync(publicPath, "utf8")) as {
+      data: { documents: PublishedDocument[] };
+    };
+    const page = data.documents.find(
+      doc => doc.key === "/conteudo" && doc.locale === "pt-BR"
+    );
+    const previews = parseBlogPreviews(page?.payload.fields.blogPreviews);
+    const entries = mergeSyndicatedBlogEntries(
+      loadAiInsiderBlogEntries(),
+      mergeBlogEntries(previews, data.documents, "pt-BR")
+    );
+    expect(previews.length).toBeGreaterThan(0);
+    expect(entries.length).toBeGreaterThanOrEqual(
+      previews.length + loadAiInsiderBlogEntries().length
+    );
+    expect(entries.some(entry => entry.slug === "como-comecar-ia-na-empresa")).toBe(
+      true
+    );
+    expect(entries).toHaveLength(9);
   });
 });
